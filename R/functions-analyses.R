@@ -27,7 +27,6 @@
 #######################################################
 ## Change in genotypic frequencies due to fitness
 ##  through female function
-
 Ff.11  <-  function(Fii, Wf.mat, ...) {
 	Fii[1]*Wf.mat[1,1]
 }
@@ -130,7 +129,6 @@ Fs.44  <-  function(Fii, Ws.mat, ...) {
 
 #####################################################
 ## Average fitness through each sex role and selfing
-
 Wf.av  <-  function(Fii, Wf.mat, ...){
    Ff.11(Fii,Wf.mat) + Ff.12(Fii,Wf.mat)+ Ff.13(Fii,Wf.mat) + Ff.14(Fii,Wf.mat) + Ff.22(Fii,Wf.mat) + Ff.23(Fii,Wf.mat) + Ff.24(Fii,Wf.mat) + Ff.33(Fii,Wf.mat) + Ff.34(Fii,Wf.mat) + Ff.44(Fii,Wf.mat)
 }
@@ -193,7 +191,7 @@ F11.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, Ws.mat = Ws.mat, par
 	(1 - par.list$C) * x1*y1 + 
 	     par.list$C  * ((Fs.11(Fii,Ws.mat) + Fs.12(Fii,Ws.mat)/4 + Fs.13(Fii,Ws.mat)/4 + Fs.14(Fii,Ws.mat)*((1 - par.list$r)^2)/4 + Fs.23(Fii,Ws.mat)*(par.list$r^2)/4)/(Ws.av(Fii=Fii, Ws.mat=Ws.mat)))
 }
-F12.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+F12.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, Ws.mat = Ws.mat, par.list = par.list,...) {
 	x1  <-  x1(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
 	y2  <-  y2(Fii = Fii, Wm.mat = Wm.mat, par.list = par.list,...)
 	x2  <-  x2(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
@@ -201,7 +199,7 @@ F12.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	(1 - par.list$C)* (x1*y2 + x2*y1) + 
 	     par.list$C * ((Fs.12(Fii,Ws.mat)/2 + Fs.14(Fii,Ws.mat)*par.list$r*(1 - par.list$r)/2 + Fs.23(Fii,Ws.mat)*par.list$r*(1 - par.list$r)/2)/(Ws.av(Fii=Fii, Ws.mat=Ws.mat)))
 }
-F13.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+F13.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, Ws.mat = Ws.mat, par.list = par.list,...) {
 	x1  <-  x1(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
 	y3  <-  y3(Fii = Fii, Wm.mat = Wm.mat, par.list = par.list,...)
 	x3  <-  x3(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
@@ -209,21 +207,21 @@ F13.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	(1 - par.list$C) * (x1*y3 + x3*y1) + 
 	     par.list$C  * ((Fs.13(Fii,Ws.mat)/2 + Fs.14(Fii,Ws.mat)*par.list$r*(1 - par.list$r)/2 + Fs.23(Fii,Ws.mat)*par.list$r*(1 - par.list$r)/2)/(Ws.av(Fii=Fii, Ws.mat=Ws.mat)))
 }
-F14.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+F14.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, Ws.mat = Ws.mat, par.list = par.list,...) {
 	x1  <-  x1(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
 	y4  <-  y4(Fii = Fii, Wm.mat = Wm.mat, par.list = par.list,...)
 	x4  <-  x4(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
 	y1  <-  y1(Fii = Fii, Wm.mat = Wm.mat, par.list = par.list,...)
 	(1 - par.list$C) * (x1*y4 + x4*y1) + 
-	     par.list$C  * ((Fs.14(Fii,Ws.mat[1,4])*((1 - par.list$r)^2)/2 + Fs.23(Fii,Ws.mat)*(par.list$r^2)/2)/(Ws.av(Fii=Fii, Ws.mat=Ws.mat)))
+	     par.list$C  * ((Fs.14(Fii,Ws.mat)*((1 - par.list$r)^2)/2 + Fs.23(Fii,Ws.mat)*(par.list$r^2)/2)/(Ws.av(Fii=Fii, Ws.mat=Ws.mat)))
 }
-F22.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
-	x2  <-  x2(Fii = Fii, Wm.mat = Wm.mat, par.list = par.list,...)
+F22.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, Ws.mat = Ws.mat, par.list = par.list,...) {
+	x2  <-  x2(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
 	y2  <-  y2(Fii = Fii, Wm.mat = Wm.mat, par.list = par.list,...)
 	(1 - par.list$C) * x2*y2 + 
 	     par.list$C  * ((Fs.22(Fii,Ws.mat) + Fs.12(Fii,Ws.mat)/4 + Fs.14(Fii,Ws.mat)*(par.list$r^2)/4 + Fs.23(Fii,Ws.mat)*((1 - par.list$r)^2)/4 + Fs.24(Fii,Ws.mat)/4)/(Ws.av(Fii=Fii, Ws.mat=Ws.mat)))
 }
-F23.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+F23.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, Ws.mat = Ws.mat, par.list = par.list,...) {
 	x2  <-  x2(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
 	y3  <-  y3(Fii = Fii, Wm.mat = Wm.mat, par.list = par.list,...)
 	x3  <-  x3(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
@@ -231,7 +229,7 @@ F23.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	(1 - par.list$C) * (x2*y3 + x3*y2) + 
 	     par.list$C  * ((Fs.14(Fii,Ws.mat)*(par.list$r^2)/2 + Fs.23(Fii,Ws.mat)*((1 - par.list$r)^2)/2)/(Ws.av(Fii=Fii, Ws.mat=Ws.mat)))
 }
-F24.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+F24.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, Ws.mat = Ws.mat, par.list = par.list,...) {
 	x2  <-  x2(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
 	y4  <-  y4(Fii = Fii, Wm.mat = Wm.mat, par.list = par.list,...)
 	x4  <-  x4(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
@@ -239,12 +237,12 @@ F24.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	(1 - par.list$C) * (x2*y4 + x4*y2) + 
 	     par.list$C  * ((Fs.24(Fii,Ws.mat)/2 + Fs.14(Fii,Ws.mat)*par.list$r*(1 - par.list$r)/2 + Fs.23(Fii,Ws.mat)*par.list$r*(1 - par.list$r)/2)/(Ws.av(Fii=Fii, Ws.mat=Ws.mat)))
 }
-F33.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+F33.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, Ws.mat = Ws.mat, par.list = par.list,...) {
 	x3  <-  x3(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
 	y3  <-  y3(Fii = Fii, Wm.mat = Wm.mat, par.list = par.list,...)
 	(1 - par.list$C)*x3*y3 + par.list$C*((Fii[8]*Wf.mat[3,3] + Fii[3]*Wf.mat[1,3]/4 + Fii[4]*Wf.mat[1,4]*(par.list$r^2)/4 + Fii[6]*Wf.mat[2,3]*((1 - par.list$r)^2)/4 + Fii[9]*Wf.mat[3,4]/4)/(Wf.av(Fii=Fii, Wf.mat=Wf.mat)))
 }
-F34.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+F34.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, Ws.mat = Ws.mat, par.list = par.list,...) {
 	x3  <-  x3(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
 	y4  <-  y4(Fii = Fii, Wm.mat = Wm.mat, par.list = par.list,...)
 	x4  <-  x4(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
@@ -252,7 +250,7 @@ F34.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,
 	(1 - par.list$C) * (x3*y4 + x4*y3) + 
 	     par.list$C  * ((Fs.14(Fii,Ws.mat)*par.list$r*(1 - par.list$r)/2 + Fs.23(Fii,Ws.mat)*par.list$r*(1 - par.list$r)/2 + Fs.34(Fii,Ws.mat)/2)/(Ws.av(Fii=Fii, Ws.mat=Ws.mat)))
 }
-F44.pr  <-  function(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par.list,...) {
+F44.pr  <-  function(Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, Ws.mat = Ws.mat, par.list = par.list,...) {
 	x4  <-  x4(Fii = Fii, Wf.mat = Wf.mat, par.list = par.list,...)
 	y4  <-  y4(Fii = Fii, Wm.mat = Wm.mat, par.list = par.list,...)
 	(1 - par.list$C) * x4*y4 + 
@@ -260,15 +258,43 @@ F44.pr  <-  function(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par
 }
 
 
+################################################
+## Single-locus equilibrium frequency functions
 
+qHatAdd  <-  function(C, sf, sm) {
+	(sf*(1+C)-sm*(1-C)*(1-sf))/(2*sf*sm)
+}
 
+#qHatDomRev  <-  function(C, sf, sm, hf, hm) {
+#}
 
+QEFAA  <-  function(q,C) {
+	(1-q)^2 + (C*q*(1-q))/(2-C)
+}
+QEFAa  <-  function(q,C) {
+	2*q*(1-q) - (C*q*(1-q))/(2-C)
+}
+QEFaa  <-  function(q,C) {
+	q^2 + (C*q*(1-q))/(2-C)
+}
 
+# Kidwell et al. (1977) male and female frequencies
+pmHat  <-  function(sf,sm) {
+	((sm-1)/sm) + sqrt((sm*sf-sm-sf+2)/(2*sm*sf))
+}
 
-
-
-
-
+pfHat  <-  function(sf,sm) {
+	-(-2+sf * sqrt((4+2*sf*(sm-1)-2*sm)/(sf*sm)))/(2*sf)
+}
+KidwellFAA  <-  function(pf,pm) {
+	pf*pm
+}
+KidwellFAa  <-  function(pf,pm) {
+	pf*(1-pm) + (1-pf)*pm
+}
+KidwellFaa  <-  function(pf,pm) {
+	(1-pf)*(1-pm)
+}
 
 
 
@@ -314,7 +340,7 @@ F44.pr  <-  function(Fii = Fii, Wf.mat = Wf.mat, Wm.mat = Wm.mat, par.list = par
 recursionFwdSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 
 	##  Warnings
-	if(any(par.list[2:7] < 0) | any(par.list[2:7] > 1) | par.list[7] > 0.5)
+	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | par.list[8] > 0.5)
 		stop('The chosen parameter values fall outside of the reasonable bounds')
 
 	if(par.list$hf  !=  par.list$hm)
