@@ -324,7 +324,9 @@ KidwellFaa  <-  function(pf,pm) {
 #'				   sf   =  0.7,
 #'				   hm   =  1/2,
 #'				   hf   =  1/2,
-#'                 hM   =  0,
+#'                 hMf  =  0,
+#'                 hMm  =  0,
+#'                 k    =  1,
 #'				   r    =  0.5
 #'				   )
 #' @param Fii.init A vector of initial genotypic frequencies (must have length = 10).
@@ -340,7 +342,7 @@ KidwellFaa  <-  function(pf,pm) {
 recursionFwdSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 
 	##  Warnings
-	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | par.list[8] > 0.5)
+	if(any(par.list[2:8] < 0) | any(par.list[2:8] > 1) | par.list[10] > 0.5)
 		stop('The chosen parameter values fall outside of the reasonable bounds')
 
 	if(par.list$hf  !=  par.list$hm)
@@ -351,33 +353,29 @@ recursionFwdSim  <-  function(par.list, Fii.init, threshold = 1e-6) {
 
 
 	##  Fitness Matrices
-	Wf.mult.mat   <-  matrix(
-						c((1-par.list$sf),             (1-par.list$sf),             (1-par.list$hf*par.list$sf) , (1-par.list$hf*par.list$sf),
-						  (1-par.list$sf),             (1-par.list$sf),             (1-par.list$hf*par.list$sf) , (1-par.list$hf*par.list$sf),
-						  (1-par.list$hf*par.list$sf), (1-par.list$hf*par.list$sf), 1,                            1,
-						  (1-par.list$hf*par.list$sf), (1-par.list$hf*par.list$sf), 1,                            1), 
+	Wf.mat   <-  matrix(
+						c(1,                                                    (1 + par.list$k*par.list$hMf),                         (1-par.list$hf*par.list$sf),                          (1-par.list$hf*par.list$sf + par.list$k*par.list$hMf),
+						 (1 + par.list$k*par.list$hMf),                         (1 + par.list$k),                                      (1-par.list$hf*par.list$sf + par.list$k*par.list$hMf), (1-par.list$hf*par.list$sf + par.list$k),
+						 (1-par.list$hf*par.list$sf),                           (1-par.list$hf*par.list$sf + par.list$k*par.list$hMf), (1-par.list$sf),                                       (1-par.list$sf + par.list$k*par.list$hMf),
+						 (1-par.list$hf*par.list$sf + par.list$k*par.list$hMf), (1-par.list$hf*par.list$sf + par.list$k),              (1-par.list$sf + par.list$k*par.list$hMf),            (1-par.list$sf + par.list$k)), 
 						nrow=4, byrow=TRUE
 						)
 
-	Wm.mult.mat   <-  matrix(
-						c(1,                           1,                           (1-par.list$hm*par.list$sm), (1-par.list$hm*par.list$sm),
-						  1,                           1,                           (1-par.list$hm*par.list$sm), (1-par.list$hm*par.list$sm),
-						  (1-par.list$hm*par.list$sm), (1-par.list$hm*par.list$sm), (1-par.list$sm),             (1-par.list$sm),
-						  (1-par.list$hm*par.list$sm), (1-par.list$hm*par.list$sm), (1-par.list$sm) ,            (1-par.list$sm)), 
+	Wm.mat   <-  matrix(
+						c((1-par.list$sm),                              (1-par.list$sm)*(1-par.list$hMm),             (1-par.list$hm*par.list$sm),                  (1-par.list$hm*par.list$sm)*(1-par.list$hMm),
+						  (1-par.list$sm)*(1-par.list$hMm),             0,                                            (1-par.list$hm*par.list$sm)*(1-par.list$hMm), 0,
+						  (1-par.list$hm*par.list$sm),                  (1-par.list$hm*par.list$sm)*(1-par.list$hMm), 1,                                            (1-par.list$hMm),
+						  (1-par.list$hm*par.list$sm)*(1-par.list$hMm), 0,                                            (1-par.list$hMm),                             0), 
 						nrow=4, byrow=TRUE
 						)	
 
-	Ws.mult.mat   <-  matrix(
-						c(1,               (1-par.list$hM), 1,               (1-par.list$hM),
-						  (1-par.list$hM), 0,               (1-par.list$hM), 0,
-						  1,               (1-par.list$hM), 1,                (1-par.list$hM),
-						  (1-par.list$hM), 0,               (1-par.list$hM) , 0), 
+	Ws.mat   <-  matrix(
+						c(1,                                                                     (1 + par.list$k*par.list$hMf)*(1-par.list$hMm),                         (1-par.list$hf*par.list$sf) ,                                           (1-par.list$hf*par.list$sf + par.list$k*par.list$hMf)*(1-par.list$hMm),
+						 (1 + par.list$k*par.list$hMf)*(1-par.list$hMm),                         0,                                                                      (1-par.list$hf*par.list$sf + par.list$k*par.list$hMf)*(1-par.list$hMm), 0,
+						 (1-par.list$hf*par.list$sf),                                            (1-par.list$hf*par.list$sf + par.list$k*par.list$hMf)*(1-par.list$hMm), (1-par.list$sf),                                                        (1-par.list$sf + par.list$k*par.list$hMf)*(1-par.list$hMm),
+						 (1-par.list$hf*par.list$sf + par.list$k*par.list$hMf)*(1-par.list$hMm), 0,                                                                      (1-par.list$sf + par.list$k*par.list$hMf)*(1-par.list$hMm),            0), 
 						nrow=4, byrow=TRUE
-						)	
-
-	Wf.mat  <-  Wf.mult.mat
-	Wm.mat  <-  Wm.mult.mat * Ws.mult.mat
-	Ws.mat  <-  Wf.mult.mat * Ws.mult.mat
+						)
 
 
 	##  Initilize data storage structures
