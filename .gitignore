@@ -96,6 +96,8 @@ vignettes/*.pdf
 *.log
 *.fdb_latexmk
 *.out
+*.blg
+*.bst
 # Mathematica Notebooks #
 #########################
 *.nb
