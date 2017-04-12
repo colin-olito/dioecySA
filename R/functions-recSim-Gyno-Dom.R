@@ -266,80 +266,16 @@ Gpr.44  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm
 }
 
 
-
-###############################################################
-## Additional Necessary Functions 
-##    -- Single-locus SA equilibrium allele frequencies
-##    -- Single-locus SA equilibrium genotypic frequencies
-##    -- Single-locus SA Invasion Conditions
-##    -- Single-locus Sterility allele equilibrium frequencies
-###############################################################
-
-# Single-locus SA equilibrium allele frequencies
-qHatAdd  <-  function(C, delta, sf, sm) {
-	((sf - sm + sf*sm) + C*(sf + sm - sf*sm - 2*sf*delta)) / (2*(sf*sm - C*sf*sm*delta))
-}
-qHatDomRev  <-  function(C, sf, sm, h) {
-	((-1 + C)*sm*(-2*h + C*(-1 + 2*h + delta)) + sf*(2 - 2*h + C*(-1 + 2*h - delta))*(-1 + C*(-1 + 2*delta))) / 
-	    (2*(-1 + C)*(-1 + 2*h)*((-1 + C)*sm + sf*(-1 + C*(-1 + 2*delta))))
-}
-
-# Single-locus SA equilibrium genotypic frequencies
-QE.FAA  <-  function(q, C) {
-	(1-q)^2 + (C*q*(1-q))/(2-C)
-}
-QE.FAa  <-  function(q,C) {
-	2*q*(1-q) - (C*q*(1-q))/(2-C)
-}
-QE.Faa  <-  function(q,C) {
-	q^2 + (C*q*(1-q))/(2-C)
-}
-
-# Kidwell et al. (1977) male and female frequencies
-pmHat  <-  function(sf,sm) {
-	((sm-1)/sm) + sqrt((sm*sf-sm-sf+2)/(2*sm*sf))
-}
-pfHat  <-  function(sf,sm) {
-	-(-2+sf * sqrt((4+2*sf*(sm-1)-2*sm)/(sf*sm)))/(2*sf)
-}
-Kidwell.FAA  <-  function(pf,pm) {
-	pf*pm
-}
-Kidwell.FAa  <-  function(pf,pm) {
-	pf*(1-pm) + (1-pf)*pm
-}
-Kidwell.Faa  <-  function(pf,pm) {
-	(1-pf)*(1-pm)
-}
-
-## Single-locus SA invasion conditions
-Inv.a.add  <-  function(sm, C, delta) {
-	((1 - C)*sm) / ((sm - 1)*(-1 + C*(-1 + 2*delta)))
-}
-Inv.A.add  <-  function(sm, C, delta) {
-	(sm - C*sm) / (1 + C + sm - C*sm - 2*C*delta)
-}
-Inv.a.domRev  <-  function(sm, h, C, delta) {
-	((-1 + C)*(2 - C + 2*(-1 + C)*h)*sm) / ((-C + 2*(-1 + C)*h)*(-1 + sm)*(-1 + C*(-1 + 2*delta)))
-}
-Inv.A.domRev  <-  function(sm, h, C, delta) {
-	((-1 + C)*(-C + 2*(-1 + C)*h)*sm) / (2 + 2*h*(-1 + sm) + (C^2)*(-1 + 2*h)*(1 + sm - 2*delta) + C*(1 + sm - 4*h*sm + 4*(-1 + h)*delta))
-}
-
 # Single-locus sterility allele equilibrium frequencies, Eq.5 in Charlesworth (1978).
-Zhat  <-  function(par.list) {
+Zhat.gyn  <-  function(par.list) {
 	(par.list$k + 2*par.list$C*par.list$delta - 1) / (2*(par.list$k + par.list$C*par.list$delta))
 }
 
 
 
+################################################################################################
+################################################################################################
 
-
-
-
-########################
-##  Simulation function
-########################
 
 #' Forward deterministic simulation of genotypic recursions for
 #' 2-locus SA w/ linked sterility locus
@@ -370,10 +306,10 @@ Zhat  <-  function(par.list) {
 #' @author Colin Olito.
 #' @examples
 #' recursionFwdSim(par.list, Fii.init, Gii.init, threshold = 1e-6) 
-recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-6) {
+recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-6, ...) {
 
 	##  Warnings
-	if(any(par.list[2:7] < 0) | any(par.list[2:7] > 1) | par.list[9] > 0.5)
+	if(any(par.list[2:7] < 0) | any(par.list[2:7] > 1) | par.list$r > 0.5)
 		stop('The chosen parameter values fall outside of the reasonable bounds')
 
 	if(par.list$hf  !=  par.list$hm)
@@ -408,12 +344,6 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-6) {
 	colnames(Fii.gen)  <-  c('Fpr.11', 'Fpr.12', 'Fpr.13', 'Fpr.14', 'Fpr.22', 'Fpr.23', 'Fpr.24', 'Fpr.33', 'Fpr.34', 'Fpr.44',
 		                     'Gpr.11', 'Gpr.12', 'Gpr.13', 'Gpr.14', 'Gpr.22', 'Gpr.23', 'Gpr.24', 'Gpr.33', 'Gpr.34', 'Gpr.44')
 	
-	##  Initial frequencies (if exploring Sf x Sm parameter space, and want to speed up convergence) NEED TO EDIT
-#	if(par.list$sf > par.list$sm)
-#		Fii.init    <-  c(0.01,0,0,0,0,0,0,0,0,0.99)
-#	if(par.list$sf < par.list$sm)
-#		Fii.init    <-  c(0.99,0,0,0,0,0,0,0,0,0.01)
-
 	##  Generation Loop
 		# initialize
 	for (j in 1:ncol(Fii.gen)) {
@@ -434,49 +364,151 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-6) {
 		i      <-  i+1
 	}
 
-	##  Is equilibrium polymorphic?
-#	if (any(Fii.gen[i-1,c(1,10)] > 0.999)) # & all(Fii.gen[i-1,2:9] < 1e-4))
-#		 Poly  <-  0
-#	else Poly  <-  1
+	# Calculate 1-locus equilibrium frequency of unisexuals
+	Zhat  <-  Zhat.gyn(par.list=par.list)
 
-	##  Calculate Eigenvalues from analytic solutions 
-	##  using quasi-equibirium genotypic frequencies
-#	if (par.list$hf == 0.5) {
-#		l.AB1  <- lambda.AB1.add(par.list)
-#		l.AB2  <- lambda.AB2.add(par.list)
-#		l.ab1  <- lambda.ab1.add(par.list)
-#		l.ab2  <- lambda.ab2.add(par.list)
-#	}
-#	if (par.list$hf == 0.25) {
-#		l.AB1  <- lambda.AB1.domRev(par.list)
-#		l.AB2  <- lambda.AB2.domRev(par.list)
-#		l.ab1  <- lambda.ab1.domRev(par.list)
-#		l.ab2  <- lambda.ab2.domRev(par.list)
-#	}
-
-#	if (any(c(l.AB1, l.AB2) > 1) & any(c(l.ab1, l.ab2) > 1 ))
-#		 eigPoly  <-  1
-#	else eigPoly  <-  0
-
-	##  Does simulation result agree with Eigenvalues?
-
-#	if (Poly == eigPoly)
-#		 agree  <-  1
-#	else agree  <-  0
-
-
-	##  Output list
+	##  Output
 	res  <-  list(
 				  "par.list" =  par.list,
 				  "Fii.gen"  =  Fii.gen[1:i-1,],
-				  "EQ.freq"  =  Fii.gen[i-1,]
-#				  "l.AB1"    =  l.AB1,
-#				  "l.AB2"    =  l.AB2,
-#				  "l.ab1"    =  l.ab1,
-#				  "l.ab2"    =  l.ab2,
-#				  "Poly"     =  Poly,
-#				  "eigPoly"  =  eigPoly,
-#				  "agree"    =  agree
+				  "EQ.freq"  =  Fii.gen[i-1,],
+				  "Zhat"     =  Zhat
  				 )
 	return(res)
+}
+
+
+
+
+#' Simulation loop wrapping forward deterministic simulations 
+#' of genotypic recursions 
+#' #'
+#' @title Forward deterministic simulation of genotypic recursions.
+#' @param n number of randomly generated values for sf & sm. 
+#' Determines resolution with which parameter space is explored.
+#' @param gen Maximum number of generations for each simulation (as in par.list).
+#' @param C The fixed selfing rate (as in par.list).
+#' @param hf Dominance through female expression (as in par.list).
+#' @param hm Dominance through male expression (as in par.list).
+#' @param r.vals Values of recombination rate to explore(as in par.list).
+#' @param threshold Threshold difference between genotypic frequencies before simulation cuts off.
+#' @return Returns a data frame with parameter values, a variable describing whether 
+#' the final state of the simulation was polymorphic polymorphism, whether evaluating the eigenvalues
+#' predicts polymorphism, and whether these two methods agree with one another.
+#' @seealso `recursionFwdSim`
+#' @export
+#' @author Colin Olito.
+#' @examples
+#' recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0, delta = 0, 
+#'                     hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+#'                     seed = 3497016, threshold = 1e-7)
+
+recursionFwdSimLoop  <-  function(n = 5000, gen = 5000, sRange = c(0,1), C = 0, delta = 0, 
+	                              hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+	                              seed = 3497016, threshold = 1e-7) {
+
+	## Warnings
+	if(any(c(C,hf,hm,r.vals) < 0) | any(c(C,hf,hm) > 1) | any(r.vals > 0.5))
+		stop('At least one of the chosen parameter values fall outside of the reasonable bounds')
+
+	if(threshold > 1e-7)
+		stop('Carefully consider whether you want to change this threshold, 
+			  as it will affect how many generations are required to reach
+			  convergence, and thus how long the simulations take')
+
+	# Calculate k values
+	K   <-  invGyn(C, delta)
+	Ks  <-  c((K + 0.1), K, (K - 0.1), (K - 0.2), (K - 0.3))
+
+	#  initialize selection coeficients and storage structures
+	set.seed(seed)
+	s.vals   <-  matrix(runif(2*n, min=sRange[1], max=sRange[2]), ncol=2)
+	eqFreqs  <-  matrix(0, nrow=length(r.vals)*length(Ks)*nrow(s.vals), ncol=20)
+	Zhat     <-  rep(0, length(r.vals)*length(Ks)*nrow(s.vals))
+
+	
+	##  Simulation Loop over values of r, sm, sf for fixed selfing rate (C)
+	for (i in 1:length(r.vals)) {
+		for (j in 1:length(Ks)) {
+			for (m in 1:nrow(s.vals)) {
+				
+				par.list  <-  list(
+							   		gen    =  5000,
+									C      =  C,
+									delta  =  delta,
+									sf     =  s.vals[m,1],
+									sm     =  s.vals[m,2],
+									hf     =  hm,
+									hm     =  hf,
+				            		k      =  Ks[j],
+									r      =  r.vals[i]
+								   )
+			
+				##  Set initial frequencies to speed up convergence. 
+				if(par.list$sf > Inv.a.add(par.list$sm, par.list$C, par.list$delta)) {
+					Fii.init    <-  c((1 - C)*0.98,0,(1 - C)*0.01,(1 - C)*0.01,0,0,0,(1 - C)*0,0,0)
+					Gii.init    <-  c((C*0.98),0,(C*0.01),(C*0.01),0,0,0,(C*0),0,0)
+				}
+				if(par.list$sf < Inv.A.add(par.list$sm, par.list$C, par.list$delta)) {
+					Fii.init    <-  c((1 - C)*0,0,(1 - C)*0.01,(1 - C)*0.01,0,0,0,(1 - C)*0.98,0,0)
+					Gii.init    <-  c((C*0),0,(C*0.01),(C*0.01),0,0,0,(C*0.98),0,0)
+				}
+				if(par.list$sf < Inv.a.add(par.list$sm, par.list$C, par.list$delta) & 
+					   par.list$sf > Inv.A.add(par.list$sm, par.list$C, par.list$delta)) {
+					if(hm == 0.5 & hf == 0.5) {
+					   	qHat  <-  qHatAdd(par.list$C, par.list$delta, par.list$sf, par.list$sm)
+					   	QEs   <-  c(QE.FAA(q = qHat, C = par.list$C), QE.FAa(q = qHat, C = par.list$C), QE.Faa(q = qHat, C = par.list$C))
+					   	QEs  <- QEs - 0.01
+						Fii.init    <-  c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0)
+						Gii.init    <-  c(C*QEs[1], C*0.01, C*QEs[2], C*0.01, 0, 0, 0, C*QEs[3], C*0.01, 0)
+					}
+					if(hf == hm & hm < 0.5 & hf < 0.5) {
+					   	qHat  <-  qHatDomRev(par.list$C, par.list$delta, par.list$sf, par.list$sm, par.list$hf)
+					   	QEs   <-  c(QE.FAA(q = qHat, C = par.list$C), QE.FAa(q = qHat, C = par.list$C), QE.Faa(q = qHat, C = par.list$C))
+					   	QEs  <- QEs - 0.01
+						Fii.init    <-  c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0)
+						Gii.init    <-  c(C*QEs[1], C*0.01, C*QEs[2], C*0.01, 0, 0, 0, C*QEs[3], C*0.01, 0)
+					}
+				}
+
+				# Run simulation for given parameter values
+				res      <-  recursionFwdSim(par.list = par.list, Fii.init = Fii.init, Gii.init = Gii.init, threshold = threshold)
+				
+				# Store equilibrium frequencies
+				eqFreqs[((i-1)*length(Ks)*nrow(s.vals)) + ((j-1)*nrow(s.vals)) + m,]  <-  res$EQ.freq
+				Zhat[((i-1)*length(Ks)*nrow(s.vals)) + ((j-1)*nrow(s.vals)) + m]  <-  res$Zhat
+			}
+		}
+	}
+
+	#  Compile results as data.frame
+	rs  <-  c()
+	ks  <-  c()
+	for(i in 1:length(r.vals)) {
+		rs  <-  c(rs, rep(r.vals[i], length(Ks)*nrow(s.vals)))
+	}
+	for(i in 1:length(r.vals)) {
+		for(j in 1:length(Ks)) {
+			ks  <-  c(ks, rep(Ks[j], nrow(s.vals)))
+		}
+	}
+	results.df  <-  data.frame("hf"      =  rep(hf, length(r.vals)*length(Ks)*nrow(s.vals)),
+							   "hm"      =  rep(hm, length(r.vals)*length(Ks)*nrow(s.vals)),
+							   "C"       =  rep(C,   length(r.vals)*length(Ks)*nrow(s.vals)),
+							   "r"       =  rs,
+							   "k"       =  ks,
+							   "sf"      =  rep(s.vals[,1], length(r.vals)*length(Ks)),
+							   "sm"      =  rep(s.vals[,2], length(r.vals)*length(Ks))
+							   )
+	results.df  <-  cbind(results.df, eqFreqs, Zhat)
+	colnames(results.df)  <-  c('hf','hm','C','r','k','sf','sm',
+		                        'F.11', 'F.12', 'F.13', 'F.14', 'F.22', 'F.23', 'F.24', 'F.33', 'F.34', 'F.44', 
+	    	                    'G.11', 'G.12', 'G.13', 'G.14', 'G.22', 'G.23', 'G.24', 'G.33', 'G.34', 'G.44', 'Zhat')
+	
+	#  Write results.df to .txt file
+	filename  <-  paste("./output/data/simResults/gyn-dom", "_C", C, "_delta", delta, "_add", "_strgSel", ".csv", sep="")
+	write.csv(results.df, file=filename, row.names = FALSE)
+
+	#  Return results.df in case user wants it
+	return(results.df)
 }

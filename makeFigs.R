@@ -1,6 +1,9 @@
 #  Functions to generate Figures for: 
 #    
-#  
+#  Title:  Sexually antagonistic polymorphism and the 
+#          evolution of dimorphic sexual systems in 
+#          hermaphrodites
+#
 #  Author: Colin Olito
 #
 #
