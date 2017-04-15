@@ -24,6 +24,7 @@ rm(list=ls())
 #####################
 ##  Dependencies
 source('R/functions-analyses.R')
+source('R/functions-figures.R')
 source('R/functions-recSim-Gyno-Dom.R')
 
 # set seed for random number generator
@@ -36,6 +37,12 @@ randSeed  <-  3497016
 
 ######################################
 #  Additive effects (hf = hm = 0.5)
+
+recursionFwdSimLoop(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0.5, 
+	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01), 
+	                threshold = 1e-7)
+
+
 
 #  Obligate Outcrossing (C = 0)
 recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0, delta = 0, 

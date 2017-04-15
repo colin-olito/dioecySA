@@ -116,6 +116,57 @@ transparentColor <- function(col, opacity=0.5) {
 
 
 
+#' Creates a vector of sf values spaced across a slice of funnelplots for a given sm value
+#'
+#' @title Creates a vector of sf values spaced across a slice of funnelplots for a given sm value
+#' @param sm, selection coefficient via male function.
+#' @param C, population selfing rate.
+#' @param delta, population inbreeding depression.
+#' @param h, dominance coefficients. Default is additive fitness effects (hf = hm = 1/2). 
+#'           Can also provide arbitrary value h for the case of dominance reversal (h = hf = hm < 1/2)
+#' @return A numeric vector.
+#' @author Colin Olito.
+#' @export
+funnelSlice  <-  function(sm, C, delta, h = 0.5) { 
+    if(h == 0.5){
+        if(Inv.a.add(sm, C, delta) >= 1) {
+        y  <-  c(Inv.A.add(sm, C, delta) - 0.1*(1 - Inv.A.add(sm, C, delta)),
+                     Inv.A.add(sm, C, delta) +   (1 - Inv.A.add(sm, C, delta))/10,
+                     Inv.A.add(sm, C, delta) +   (1 - Inv.A.add(sm, C, delta))/5,
+                     Inv.A.add(sm, C, delta) +   (1 - Inv.A.add(sm, C, delta))/2,
+                     1
+                    )
+            }
+        if(Inv.a.add(sm, C, delta) < 1) {
+            y  <-  c(Inv.A.add(sm, C, delta) - 0.1*(Inv.a.add(sm, C, delta) - Inv.A.add(sm, C, delta)),
+                     Inv.A.add(sm, C, delta) +   (Inv.a.add(sm, C, delta) - Inv.A.add(sm, C, delta))/6,
+                     Inv.A.add(sm, C, delta) +   (Inv.a.add(sm, C, delta) - Inv.A.add(sm, C, delta))/2,
+                     Inv.A.add(sm, C, delta) + 5*(Inv.a.add(sm, C, delta) - Inv.A.add(sm, C, delta))/6,
+                     Inv.a.add(sm, C, delta) + 0.1*(Inv.a.add(sm, C, delta) - Inv.A.add(sm, C, delta))
+                    )
+            }
+        }
+    if(h < 0.5){
+        if(Inv.a.domRev(sm, h, C, delta) >= 1) {
+        y  <-  c(Inv.A.domRev(sm, h, C, delta) - 0.1*(1 - Inv.A.domRev(sm, h, C, delta)),
+                     Inv.A.domRev(sm, h, C, delta) +   (1 - Inv.A.domRev(sm, h, C, delta))/10,
+                     Inv.A.domRev(sm, h, C, delta) +   (1 - Inv.A.domRev(sm, h, C, delta))/5,
+                     Inv.A.domRev(sm, h, C, delta) +   (1 - Inv.A.domRev(sm, h, C, delta))/2,
+                     1
+                    )
+            }
+        if(Inv.a.domRev(sm, h, C, delta) < 1) {
+            y  <-  c(Inv.A.domRev(sm, h, C, delta) - 0.1*(Inv.a.domRev(sm, h, C, delta) - Inv.A.domRev(sm, h, C, delta)),
+                     Inv.A.domRev(sm, h, C, delta) +   (Inv.a.domRev(sm, h, C, delta) - Inv.A.domRev(sm, h, C, delta))/6,
+                     Inv.A.domRev(sm, h, C, delta) +   (Inv.a.domRev(sm, h, C, delta) - Inv.A.domRev(sm, h, C, delta))/2,
+                     Inv.A.domRev(sm, h, C, delta) + 5*(Inv.a.domRev(sm, h, C, delta) - Inv.A.domRev(sm, h, C, delta))/6,
+                     Inv.a.domRev(sm, h, C, delta) + 0.1*(Inv.a.domRev(sm, h, C, delta) - Inv.A.domRev(sm, h, C, delta))
+                    )
+            }
+        }
+    y[y > 1]  <-  1
+    y
+}
 
 
 ##############################################################

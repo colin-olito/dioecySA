@@ -23,11 +23,16 @@
 
 # Single-locus SA equilibrium allele frequencies
 qHatAdd  <-  function(C, delta, sf, sm) {
-	((sf - sm + sf*sm) + C*(sf + sm - sf*sm - 2*sf*delta)) / (2*(sf*sm - C*sf*sm*delta))
+	qHat  <-  ((sf - sm + sf*sm) + C*(sf + sm - sf*sm - 2*sf*delta)) / (2*(sf*sm - C*sf*sm*delta))
+	if(qHat < 0 | qHat > 1 | is.nan(qHat) | is.na(qHat))
+		qHat  <-  0
+	qHat
 }
 qHatDomRev  <-  function(C, delta, sf, sm, h) {
-	((-1 + C)*sm*(-2*h + C*(-1 + 2*h + delta)) + sf*(2 - 2*h + C*(-1 + 2*h - delta))*(-1 + C*(-1 + 2*delta))) / 
-	    (2*(-1 + C)*(-1 + 2*h)*((-1 + C)*sm + sf*(-1 + C*(-1 + 2*delta))))
+	qHat  <-  ((-1 + C)*sm*(-2*h + C*(-1 + 2*h + delta)) + sf*(2 - 2*h + C*(-1 + 2*h - delta))*(-1 + C*(-1 + 2*delta))) / (2*(-1 + C)*(-1 + 2*h)*((-1 + C)*sm + sf*(-1 + C*(-1 + 2*delta))))
+	if(qHat < 0 | qHat > 1 | is.nan(qHat) | is.na(qHat))
+		qHat  <-  0
+	qHat
 }
 
 # Single-locus SA equilibrium genotypic frequencies
@@ -43,10 +48,16 @@ QE.Faa  <-  function(q,C) {
 
 # Kidwell et al. (1977) male and female frequencies
 pmHat  <-  function(sf,sm) {
-	((sm-1)/sm) + sqrt((sm*sf-sm-sf+2)/(2*sm*sf))
+	pmHat  <-  ((sm-1)/sm) + sqrt((sm*sf-sm-sf+2)/(2*sm*sf))
+	if(pmHat < 0 | pmHat > 1 | is.nan(pmHat) | is.na(pmHat))
+		pmHat  <-  0
+	pmHat
 }
 pfHat  <-  function(sf,sm) {
-	-(-2+sf * sqrt((4+2*sf*(sm-1)-2*sm)/(sf*sm)))/(2*sf)
+	pfHat  <-  -(-2+sf * sqrt((4+2*sf*(sm-1)-2*sm)/(sf*sm)))/(2*sf)
+	if(pfHat < 0 | pfHat > 1 | is.nan(pfHat) | is.na(pfHat))
+		pfHat  <-  0
+	pfHat
 }
 Kidwell.FAA  <-  function(pf,pm) {
 	pf*pm
@@ -79,7 +90,7 @@ Inv.A.domRev  <-  function(sm, h, C, delta) {
 # each parameter k, C, delta.
 Zhat.gyn  <-  function(par.list) {
 	Zhat  <-  (par.list$k + 2*par.list$C*par.list$delta - 1) / (2*(par.list$k + par.list$C*par.list$delta))
-	if(Zhat < 0 | is.nan(Zhat))
+	if(Zhat < 0 | is.na(Zhat))
 		Zhat  <-  0
 	Zhat
 }

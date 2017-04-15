@@ -366,13 +366,15 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-6, ..
 
 	# Calculate 1-locus equilibrium frequency of unisexuals
 	Zhat  <-  Zhat.gyn(par.list=par.list)
+	qHat  <-  qHatAdd(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
 
 	##  Output
 	res  <-  list(
 				  "par.list" =  par.list,
 				  "Fii.gen"  =  Fii.gen[1:i-1,],
 				  "EQ.freq"  =  Fii.gen[i-1,],
-				  "Zhat"     =  Zhat
+				  "Zhat"     =  Zhat,
+				  "qHat"     =  qHat
  				 )
 	return(res)
 }
@@ -403,9 +405,9 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-6, ..
 #'                     hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
 #'                     seed = 3497016, threshold = 1e-7)
 
-recursionFwdSimLoop  <-  function(n = 5000, gen = 5000, sRange = c(0,1), C = 0, delta = 0, 
-	                              hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                              seed = 3497016, threshold = 1e-7) {
+recursionFwdSimLoop  <-  function(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0.5, 
+	                              sm.vals = c(0.05, 0.2, 0.8, 0.95), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+	                              threshold = 1e-7) {
 
 	## Warnings
 	if(any(c(C,hf,hm,r.vals) < 0) | any(c(C,hf,hm) > 1) | any(r.vals > 0.5))
@@ -416,16 +418,21 @@ recursionFwdSimLoop  <-  function(n = 5000, gen = 5000, sRange = c(0,1), C = 0, 
 			  as it will affect how many generations are required to reach
 			  convergence, and thus how long the simulations take')
 
+	# Calculate sf values
+	s.vals  <-  c(0,0)
+	for (i in 1:length(sm.vals)) {
+			s.vals  <-  rbind(s.vals, cbind(funnelSlice(sm.vals[i], C, delta, h = hf), sm.vals[i]))
+		}
+	s.vals  <-  s.vals[-1,]
+
 	# Calculate k values
-	K   <-  invGyn(C, delta)
-	Ks  <-  c((K + 0.1), K, (K - 0.1), (K - 0.2), (K - 0.3))
+	Ks  <-  as.numeric(rounded(rev(seq(-0.3, 0.1, length=2)),precision=3))
+	Ks  <-  Ks + invGyn(C, delta)
 
 	#  initialize selection coeficients and storage structures
-	set.seed(seed)
-	s.vals   <-  matrix(runif(2*n, min=sRange[1], max=sRange[2]), ncol=2)
 	eqFreqs  <-  matrix(0, nrow=length(r.vals)*length(Ks)*nrow(s.vals), ncol=20)
 	Zhat     <-  rep(0, length(r.vals)*length(Ks)*nrow(s.vals))
-
+	qHat     <-  rep(0, length(r.vals)*length(Ks)*nrow(s.vals))
 	
 	##  Simulation Loop over values of r, sm, sf for fixed selfing rate (C)
 	for (i in 1:length(r.vals)) {
@@ -443,7 +450,7 @@ recursionFwdSimLoop  <-  function(n = 5000, gen = 5000, sRange = c(0,1), C = 0, 
 				            		k      =  Ks[j],
 									r      =  r.vals[i]
 								   )
-			
+
 				##  Set initial frequencies to speed up convergence. 
 				if(par.list$sf > Inv.a.add(par.list$sm, par.list$C, par.list$delta)) {
 					Fii.init    <-  c((1 - C)*0.98,0,(1 - C)*0.01,(1 - C)*0.01,0,0,0,(1 - C)*0,0,0)
@@ -459,24 +466,25 @@ recursionFwdSimLoop  <-  function(n = 5000, gen = 5000, sRange = c(0,1), C = 0, 
 					   	qHat  <-  qHatAdd(par.list$C, par.list$delta, par.list$sf, par.list$sm)
 					   	QEs   <-  c(QE.FAA(q = qHat, C = par.list$C), QE.FAa(q = qHat, C = par.list$C), QE.Faa(q = qHat, C = par.list$C))
 					   	QEs  <- QEs - 0.01
-						Fii.init    <-  c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0)
-						Gii.init    <-  c(C*QEs[1], C*0.01, C*QEs[2], C*0.01, 0, 0, 0, C*QEs[3], C*0.01, 0)
+						Fii.init    <-  as.numeric(rounded(c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0), precision = 15))
+						Gii.init    <-  as.numeric(rounded(c(      C*QEs[1],       C*0.01,       C*QEs[2],       C*0.01, 0, 0, 0,       C*QEs[3],       C*0.01, 0), precision = 15))
 					}
 					if(hf == hm & hm < 0.5 & hf < 0.5) {
 					   	qHat  <-  qHatDomRev(par.list$C, par.list$delta, par.list$sf, par.list$sm, par.list$hf)
 					   	QEs   <-  c(QE.FAA(q = qHat, C = par.list$C), QE.FAa(q = qHat, C = par.list$C), QE.Faa(q = qHat, C = par.list$C))
 					   	QEs  <- QEs - 0.01
-						Fii.init    <-  c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0)
-						Gii.init    <-  c(C*QEs[1], C*0.01, C*QEs[2], C*0.01, 0, 0, 0, C*QEs[3], C*0.01, 0)
+						Fii.init    <-  as.numeric(rounded(c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0), precision = 15))
+						Gii.init    <-  as.numeric(rounded(c(      C*QEs[1],       C*0.01,       C*QEs[2],       C*0.01, 0, 0, 0,       C*QEs[3],       C*0.01, 0), precision = 15))
 					}
 				}
 
 				# Run simulation for given parameter values
 				res      <-  recursionFwdSim(par.list = par.list, Fii.init = Fii.init, Gii.init = Gii.init, threshold = threshold)
-				
+browser()				
 				# Store equilibrium frequencies
 				eqFreqs[((i-1)*length(Ks)*nrow(s.vals)) + ((j-1)*nrow(s.vals)) + m,]  <-  res$EQ.freq
-				Zhat[((i-1)*length(Ks)*nrow(s.vals)) + ((j-1)*nrow(s.vals)) + m]  <-  res$Zhat
+				Zhat[((i-1)*length(Ks)*nrow(s.vals))    + ((j-1)*nrow(s.vals)) + m]   <-  res$Zhat
+				qHat[((i-1)*length(Ks)*nrow(s.vals))    + ((j-1)*nrow(s.vals)) + m]   <-  res$qHat
 			}
 		}
 	}
@@ -500,10 +508,10 @@ recursionFwdSimLoop  <-  function(n = 5000, gen = 5000, sRange = c(0,1), C = 0, 
 							   "sf"      =  rep(s.vals[,1], length(r.vals)*length(Ks)),
 							   "sm"      =  rep(s.vals[,2], length(r.vals)*length(Ks))
 							   )
-	results.df  <-  cbind(results.df, eqFreqs, Zhat)
+	results.df  <-  cbind(results.df, eqFreqs, Zhat, qHat)
 	colnames(results.df)  <-  c('hf','hm','C','r','k','sf','sm',
 		                        'F.11', 'F.12', 'F.13', 'F.14', 'F.22', 'F.23', 'F.24', 'F.33', 'F.34', 'F.44', 
-	    	                    'G.11', 'G.12', 'G.13', 'G.14', 'G.22', 'G.23', 'G.24', 'G.33', 'G.34', 'G.44', 'Zhat')
+	    	                    'G.11', 'G.12', 'G.13', 'G.14', 'G.22', 'G.23', 'G.24', 'G.33', 'G.34', 'G.44', 'Zhat', 'qHat')
 	
 	#  Write results.df to .txt file
 	filename  <-  paste("./output/data/simResults/gyn-dom", "_C", C, "_delta", delta, "_add", "_strgSel", ".csv", sep="")
