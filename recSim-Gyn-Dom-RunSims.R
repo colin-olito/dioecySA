@@ -27,10 +27,6 @@ source('R/functions-analyses.R')
 source('R/functions-figures.R')
 source('R/functions-recSim-Gyno-Dom.R')
 
-# set seed for random number generator
-randSeed  <-  3497016
-
-
 ######################################
 #  Strong selection (sm,sf ~ [0,1])
 ######################################
@@ -38,110 +34,53 @@ randSeed  <-  3497016
 ######################################
 #  Additive effects (hf = hm = 0.5)
 
+#  Obligate Outcrossing (C = 0)
 recursionFwdSimLoop(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0.5, 
-	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01), 
+	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+	                threshold = 1e-7)
+
+#  Partial Selfing
+recursionFwdSimLoop(gen = 5000, C = 0.25, delta = 0.2, hf = 0.5, hm = 0.5, 
+	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+	                threshold = 1e-7)
+
+recursionFwdSimLoop(gen = 5000, C = 0.25, delta = 0.8, hf = 0.5, hm = 0.5, 
+	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+	                threshold = 1e-7)
+
+recursionFwdSimLoop(gen = 5000, C = 0.75, delta = 0.2, hf = 0.5, hm = 0.5, 
+	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+	                threshold = 1e-7)
+
+recursionFwdSimLoop(gen = 5000, C = 0.75, delta = 0.8, hf = 0.5, hm = 0.5, 
+	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+	                threshold = 1e-7)
+
+######################################
+#  Dominance Reversal (hf = hm = 0.25)
+
+
+#  Obligate Outcrossing (C = 0)
+recursionFwdSimLoop(gen = 5000, C = 0, delta = 0, hf = 0.25, hm = 0.25, 
+	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+	                threshold = 1e-7)
+
+#  Partial Selfing
+recursionFwdSimLoop(gen = 5000, C = 0.25, delta = 0.2, hf = 0.25, hm = 0.25, 
+	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+	                threshold = 1e-7)
+
+recursionFwdSimLoop(gen = 5000, C = 0.25, delta = 0.8, hf = 0.25, hm = 0.25, 
+	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+	                threshold = 1e-7)
+
+recursionFwdSimLoop(gen = 5000, C = 0.75, delta = 0.2, hf = 0.25, hm = 0.25, 
+	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
+	                threshold = 1e-7)
+
+recursionFwdSimLoop(gen = 5000, C = 0.75, delta = 0.8, hf = 0.25, hm = 0.25, 
+	                sm.vals = c(0.05, 0.5), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
 	                threshold = 1e-7)
 
 
 
-#  Obligate Outcrossing (C = 0)
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0, delta = 0, 
-	                       hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-#  Partial Selfing
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0.25, delta = 0.2, 
-	                       hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0.25, delta = 0.8, 
-	                       hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0.75, delta = 0.2, 
-	                       hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0.75, delta = 0.8, 
-	                       hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-######################################
-#  Dominance Reversal (hf = hm = 0.25)
-
-#  Obligate Outcrossing (C = 0)
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0, delta = 0, 
-	                       hf = 0.25, hm = 0.25, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-#  Partial Selfing
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0.25, delta = 0.2, 
-	                       hf = 0.25, hm = 0.25, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0.25, delta = 0.8, 
-	                       hf = 0.25, hm = 0.25, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0.75, delta = 0.2, 
-	                       hf = 0.25, hm = 0.25, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0.75, delta = 0.8, 
-	                       hf = 0.25, hm = 0.25, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-
-######################################
-#  Weak Selection (sm,sf ~ [0,0.1])
-######################################
-
-######################################
-#  Additive effects (hf = hm = 0.5)
-
-#  Obligate Outcrossing (C = 0)
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,0.1), C = 0, delta = 0, 
-	                       hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-#  Partial Selfing
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,0.1), C = 0.25, delta = 0.2, 
-	                       hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,0.1), C = 0.25, delta = 0.8, 
-	                       hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,0.1), C = 0.75, delta = 0.2, 
-	                       hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,0.1), C = 0.75, delta = 0.8, 
-	                       hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-######################################
-#  Dominance Reversal (hf = hm = 0.25)
-
-#  Obligate Outcrossing (C = 0)
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,0.1), C = 0, delta = 0, 
-	                       hf = 0.25, hm = 0.25, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-#  Partial Selfing
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,0.1), C = 0.25, delta = 0.2, 
-	                       hf = 0.25, hm = 0.25, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,0.1), C = 0.25, delta = 0.8, 
-	                       hf = 0.25, hm = 0.25, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,0.1), C = 0.75, delta = 0.2, 
-	                       hf = 0.25, hm = 0.25, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
-
-recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,0.1), C = 0.75, delta = 0.8, 
-	                       hf = 0.25, hm = 0.25, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
-	                       seed = randSeed, threshold = 1e-7)
