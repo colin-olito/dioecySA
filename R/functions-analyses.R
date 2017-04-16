@@ -90,7 +90,7 @@ Inv.A.domRev  <-  function(sm, h, C, delta) {
 # each parameter k, C, delta.
 Zhat.gyn  <-  function(par.list) {
 	Zhat  <-  (par.list$k + 2*par.list$C*par.list$delta - 1) / (2*(par.list$k + par.list$C*par.list$delta))
-	if(Zhat < 0 | is.na(Zhat))
+	if(Zhat < 0)
 		Zhat  <-  0
 	Zhat
 }

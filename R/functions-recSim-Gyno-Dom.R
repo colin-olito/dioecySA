@@ -404,7 +404,6 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-6, ..
 #' recursionFwdSimLoop(n = 5000, gen = 5000, sRange = c(0,1), C = 0, delta = 0, 
 #'                     hf = 0.5, hm = 0.5, r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
 #'                     seed = 3497016, threshold = 1e-7)
-
 recursionFwdSimLoop  <-  function(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0.5, 
 	                              sm.vals = c(0.05, 0.2, 0.8, 0.95), r.vals = c(0.0, 0.01, 0.02, 0.1, 0.2, 0.5), 
 	                              threshold = 1e-7) {
@@ -426,8 +425,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0
 	s.vals  <-  s.vals[-1,]
 
 	# Calculate k values
-	Ks  <-  as.numeric(rounded(rev(seq(-0.3, 0.1, length=2)),precision=3))
-	Ks  <-  Ks + invGyn(C, delta)
+	Ks  <-  invGyn(C, delta) + c(0.2, 0.1, 0, -0.1, -0.2)
 
 	#  initialize selection coeficients and storage structures
 	eqFreqs  <-  matrix(0, nrow=length(r.vals)*length(Ks)*nrow(s.vals), ncol=20)
@@ -463,15 +461,15 @@ recursionFwdSimLoop  <-  function(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0
 				if(par.list$sf < Inv.a.add(par.list$sm, par.list$C, par.list$delta) & 
 					   par.list$sf > Inv.A.add(par.list$sm, par.list$C, par.list$delta)) {
 					if(hm == 0.5 & hf == 0.5) {
-					   	qHat  <-  qHatAdd(par.list$C, par.list$delta, par.list$sf, par.list$sm)
-					   	QEs   <-  c(QE.FAA(q = qHat, C = par.list$C), QE.FAa(q = qHat, C = par.list$C), QE.Faa(q = qHat, C = par.list$C))
+					   	qhat  <-  qHatAdd(par.list$C, par.list$delta, par.list$sf, par.list$sm)
+					   	QEs   <-  c(QE.FAA(q = qhat, C = par.list$C), QE.FAa(q = qhat, C = par.list$C), QE.Faa(q = qhat, C = par.list$C))
 					   	QEs  <- QEs - 0.01
 						Fii.init    <-  as.numeric(rounded(c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0), precision = 15))
 						Gii.init    <-  as.numeric(rounded(c(      C*QEs[1],       C*0.01,       C*QEs[2],       C*0.01, 0, 0, 0,       C*QEs[3],       C*0.01, 0), precision = 15))
 					}
 					if(hf == hm & hm < 0.5 & hf < 0.5) {
-					   	qHat  <-  qHatDomRev(par.list$C, par.list$delta, par.list$sf, par.list$sm, par.list$hf)
-					   	QEs   <-  c(QE.FAA(q = qHat, C = par.list$C), QE.FAa(q = qHat, C = par.list$C), QE.Faa(q = qHat, C = par.list$C))
+					   	qhat  <-  qHatDomRev(par.list$C, par.list$delta, par.list$sf, par.list$sm, par.list$hf)
+					   	QEs   <-  c(QE.FAA(q = qhat, C = par.list$C), QE.FAa(q = qhat, C = par.list$C), QE.Faa(q = qhat, C = par.list$C))
 					   	QEs  <- QEs - 0.01
 						Fii.init    <-  as.numeric(rounded(c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0), precision = 15))
 						Gii.init    <-  as.numeric(rounded(c(      C*QEs[1],       C*0.01,       C*QEs[2],       C*0.01, 0, 0, 0,       C*QEs[3],       C*0.01, 0), precision = 15))
@@ -480,7 +478,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0
 
 				# Run simulation for given parameter values
 				res      <-  recursionFwdSim(par.list = par.list, Fii.init = Fii.init, Gii.init = Gii.init, threshold = threshold)
-browser()				
+
 				# Store equilibrium frequencies
 				eqFreqs[((i-1)*length(Ks)*nrow(s.vals)) + ((j-1)*nrow(s.vals)) + m,]  <-  res$EQ.freq
 				Zhat[((i-1)*length(Ks)*nrow(s.vals))    + ((j-1)*nrow(s.vals)) + m]   <-  res$Zhat
