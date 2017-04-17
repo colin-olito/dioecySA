@@ -365,7 +365,7 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-6, ..
 	}
 
 	# Calculate 1-locus equilibrium frequency of unisexuals
-	Zhat  <-  Zhat.gyn(par.list=par.list)
+	Zhat  <-  Zhat.gyn(par.list)
 	qHat  <-  qHatAdd(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
 
 	##  Output
@@ -429,7 +429,6 @@ recursionFwdSimLoop  <-  function(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0
 
 	#  initialize selection coeficients and storage structures
 	eqFreqs  <-  matrix(0, nrow=length(r.vals)*length(Ks)*nrow(s.vals), ncol=20)
-	Zhat     <-  rep(0, length(r.vals)*length(Ks)*nrow(s.vals))
 	qHat     <-  rep(0, length(r.vals)*length(Ks)*nrow(s.vals))
 	
 	##  Simulation Loop over values of r, sm, sf for fixed selfing rate (C)
@@ -481,7 +480,6 @@ recursionFwdSimLoop  <-  function(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0
 
 				# Store equilibrium frequencies
 				eqFreqs[((i-1)*length(Ks)*nrow(s.vals)) + ((j-1)*nrow(s.vals)) + m,]  <-  res$EQ.freq
-				Zhat[((i-1)*length(Ks)*nrow(s.vals))    + ((j-1)*nrow(s.vals)) + m]   <-  res$Zhat
 				qHat[((i-1)*length(Ks)*nrow(s.vals))    + ((j-1)*nrow(s.vals)) + m]   <-  res$qHat
 			}
 		}
@@ -501,15 +499,16 @@ recursionFwdSimLoop  <-  function(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0
 	results.df  <-  data.frame("hf"      =  rep(hf, length(r.vals)*length(Ks)*nrow(s.vals)),
 							   "hm"      =  rep(hm, length(r.vals)*length(Ks)*nrow(s.vals)),
 							   "C"       =  rep(C,   length(r.vals)*length(Ks)*nrow(s.vals)),
+							   "delta"   =  rep(delta,   length(r.vals)*length(Ks)*nrow(s.vals)),
 							   "r"       =  rs,
 							   "k"       =  ks,
 							   "sf"      =  rep(s.vals[,1], length(r.vals)*length(Ks)),
 							   "sm"      =  rep(s.vals[,2], length(r.vals)*length(Ks))
 							   )
-	results.df  <-  cbind(results.df, eqFreqs, Zhat, qHat)
-	colnames(results.df)  <-  c('hf','hm','C','r','k','sf','sm',
+	results.df  <-  cbind(results.df, eqFreqs, qHat)
+	colnames(results.df)  <-  c('hf','hm','C','delta','r','k','sf','sm',
 		                        'F.11', 'F.12', 'F.13', 'F.14', 'F.22', 'F.23', 'F.24', 'F.33', 'F.34', 'F.44', 
-	    	                    'G.11', 'G.12', 'G.13', 'G.14', 'G.22', 'G.23', 'G.24', 'G.33', 'G.34', 'G.44', 'Zhat', 'qHat')
+	    	                    'G.11', 'G.12', 'G.13', 'G.14', 'G.22', 'G.23', 'G.24', 'G.33', 'G.34', 'G.44', 'qHat')
 	
 	#  Write results.df to .txt file
 	filename  <-  paste("./output/data/simResults/gyn-dom", "_C", C, "_delta", delta, "_add", "_strgSel", ".csv", sep="")

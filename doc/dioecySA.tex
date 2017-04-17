@@ -1,207 +1,632 @@
-\documentclass[9pt,twocolumn,twoside,lineno]{gsajnl}
-% Use the documentclass option 'lineno' to view line numbers
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Preamble
+\documentclass{article}
 
-\articletype{inv} % article type
-% {inv} Investigation 
-% {gs} Genomic Selection
-% {goi} Genetics of Immunity 
-% {gos} Genetics of Sex 
-% {mp} Multiparental Populations
+%Dependencies
+\usepackage[left]{lineno}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{color,soul}
+\usepackage{ogonek}
+\usepackage{float}
 
-\title{Sexually antagonistic polymorphism and the evolution of dimorphic sexual systems from hermaphroditism}
 
-\author[$\ast$,1]{Colin Olito}
-\author[$\ast$]{Tim Connallon}
-% \author[$\dagger$]{Author Two}
-% \author[$\ddagger$]{Author Three}
-% \author[$\S$]{Author Four}
-% \author[$\ast\ast$]{Author Five}
+% Other Packages
+%\usepackage{times}
+\usepackage[sc]{mathpazo} 
+\usepackage{fullpage}
+\usepackage[authoryear,sectionbib,sort]{natbib}
+\linespread{1.7}
+\usepackage{lineno}
 
-\affil[$\ast$]{Department of Biological Sciences, Monash University, Melbourne, VIC 3800, Australia}
-% \affil[$\dagger$]{Author two affiliation}
-% \affil[$\ddagger$]{Author three affiliation}
-% \affil[$\S$]{Author four affiliation}
-% \affil[$\ast\ast$]{Author five affiliation}
+% Graphics package
+\usepackage{graphicx}
+\graphicspath{{../output/figures/}.pdf}
 
-\keywords{Keyword; Keyword2; Keyword3; ...}
+% New commands: fonts
+%\newcommand{\code}{\fontfamily{pcr}\selectfont}
+%\newcommand*\chem[1]{\ensuremath{\mathrm{#1}}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title Page
 
-\runningtitle{GENETICS Journal Template on Overleaf} % For use in the footer 
-
-\correspondingauthor{Colin Olito}
-
-\begin{abstract}
-The abstract should be written for people who may not read the entire paper, so it must stand on its own. The impression it makes usually determines whether the reader will go on to read the article, so the abstract must be engaging, clear, and concise. In addition, the abstract may be the only part of the article that is indexed in databases, so it must accurately reflect the content of the article. A well-written abstract is the  most effective way to reach intended readers, leading to more robust search, retrieval, and usage of the article. 
-
-Please see additional guidelines notes on preparing your abstract below.
-\end{abstract}
-
-\setboolean{displaycopyright}{true}
+\title{Sexually antagonistic polymorphism and the evolution of dimporphic sexual systems in hermaphrodites}
+\author{Colin Olito$^{\ast}$ \& Tim Connallon}
+\date{\today}
 
 \begin{document}
-
 \maketitle
-\thispagestyle{firststyle}
-\marginmark
-\firstpagefootnote
-\correspondingauthoraffiliation{Department of Biological Sciences, Monash University, Melbourne, VIC 3800, Australia. Email: colin.olito@gmail.com.}
-\vspace{-11pt}%
-
-\lettrine[lines=2]{\color{color2}T}{}his \textit{Genetics} journal template is provided to help you write your work in the correct journal format. Instructions for use are provided below. 
-
-\section{Guide to using this template in Overleaf}
-
-This template is provided to help you prepare your article for submission to the \textit{Genetics}.
-
-\section{Author Affiliations}
-
-For the authors' names, indicate different affiliations with the symbols: $\ast$, $\dagger$, $\ddagger$, $\S$. After four authors, the symbols double, triple, quadruple, and so forth as required.
-
-\section{Your Abstract}
-
-In addition to the guidelines provided in the example abstract above, your abstract should:
-
-\begin{itemize}
-\item provide a synopsis of the entire article;
-\item begin with the broad context of the study, followed by specific background for the study;
-\item describe the purpose, methods and procedures, core findings and results, and conclusions of the study;
-\item emphasize new or important aspects of the research;
-\item engage the broad readership of GENETICS and be understandable to a diverse audience (avoid using jargon);
-\item be a single paragraph of less than 250 words;
-\item contain the full name of the organism studied;
-\item NOT contain citations or abbreviations.
-\end{itemize}
-
-\section{Introduction}
-
-For the introduction, authors should be mindful of the broad readership of the journal. The introduction should set the stage for the importance of the work to a generalist reader and draw the reader in to the specific study. The scope and impact of the work should be clearly stated.
-
-In individual organisms where a mutant is being studied, the rationale for the study of that mutant must be clear to a geneticist not studying that particular organism. Similarly, study of particular phenotypes should be justified broadly and not on the basis of interest for that organism alone. General background on the importance of the genetic pathway and/or phenotype should be provided in a single, well-reasoned paragraph near the beginning of the introduction.
-
-Authors are encouraged to:
-
-\begin{itemize}
-\item cite the supporting literature completely rather than select a subset of citations;
-\item provide important background citations, including relevant review papers (to help orient the non-specialist reader);
-\item to cite similar work in other organisms.
-\end{itemize}
-
-\section{Materials and Methods}
-\label{sec:materials:methods}
-
-Manuscripts submitted to \textit{GENETICS} should contain a clear description of the experimental design in sufficient detail so that the experimental analysis could be repeated by another scientist. If the level of detail necessary to explain the protocol goes beyond two paragraphs, give a short description in the main body of the paper and prepare a detailed description for supporting information.  For example, details would include indicating how many individuals were used, and if applicable how individuals or groups were combined for analysis. If working with mutants indicate how many independent mutants were isolated. If working with populations indicate how samples were collected and whether they were random with respect to the target population.
 
 
-\subsection{Statistical Analysis} 
+\noindent{} Centre for Geometric Biology, School of Biological Sciences, Monash University, Victoria 3800, Australia.
+\noindent{} $^{\ast}$ Corresponding author e-mail: colin.olito@gmail.com
 
-It is important to indicate what statistical analysis has been performed; not just the name of the software and options selected, but the method and model applied. In the case of many genes being examined simultaneously, or many phenotypes, a multiple comparison correction should be used to control the type I error rate, or a rationale for not applying a correction must be provided. The type of correction applied should be clearly stated. It should also be clear whether the p-values reported are raw, or after correction. Corrected p-values are often appropriate, but raw p-values should be available in the supporting materials so that others may perform their own corrections. In large scale data exploration studies (e.g. genome wide expression studies) a clear and complete description of the replication structure must be provided. 
+\bigskip
 
-\subsection{Data Availability}
+\noindent{} \textit{Running Head}: SA polymorphism and dimorphic sexual systems
 
-At the end of the Materials and Methods section, include a statement on reagent and data availability. Please read the Data and Reagent Policy before writing the statement. Make sure to list the accession numbers or DOIs of any data you have placed in public repositories. List the file names and descriptions of any data you will upload as supplemental information. The statement should also include any applicable IRB numbers. You may include specifications for how to properly acknowledge or cite the data.
+\bigskip
 
-For example: Strains are available upon request. File S1 contains detailed descriptions of all supplemental files. File S2 contains SNP ID numbers and locations. File S3 contains genotypes for each individual. Sequence data are available at GenBank and the accession numbers are listed in File S3. Gene expression data are available at GEO with the accession number: GDS1234. Code used to generate the simulated data is provided in file S4. 
+\noindent{} \textit{Keywords}: Balancing selection, dioecy, genetic linkage, intralocus sexual conflict, sterility mutation, recombination, two-locus model
 
+\bigskip
 
-\section{Results and Discussion}
+\noindent{} \textit{Manuscript type}: Brief Communication
 
-The results and discussion should not be repetitive. The results section should give a factual presentation of the data and all tables and figures should be referenced; the discussion should not summarize the results but provide an interpretation of the results, and should clearly delineate between the findings of the particular study and the possible impact of those findings in a larger context. Authors are encouraged to cite recent work relevant to their interpretations. Present and discuss results only once, not in both the Results and Discussion sections. It is sometimes acceptable to combine results and discussion. The text should be as succinct as possible. Heed Strunk and White's dictum: "Omit needless words!"
-
-\section{Additional guidelines}
-
-\subsection{Numbers} In the text, write out numbers nine or less except as part of a date, a fraction or decimal, a percentage, or a unit of measurement. Use Arabic numbers for those larger than nine, except as the first word of a sentence; however, try to avoid starting a sentence with such a number.
-
-\subsection{Units} Use abbreviations of the customary units of measurement only when they are preceded by a number: "3 min" but "several minutes". Write "percent" as one word, except when used with a number: "several percent" but "75\%." To indicate temperature in centigrade, use ° (for example, 37°); include a letter after the degree symbol only when some other scale is intended (for example, 45°K).
-
-\subsection{Nomenclature and Italicization} Italicize names of organisms even when  when the species is not indicated.  Italicize the first three letters of the names of restriction enzyme cleavage sites, as in HindIII. Write the names of strains in roman except when incorporating specific genotypic designations. Italicize genotype names and symbols, including all components of alleles, but not when the name of a gene is the same as the name of an enzyme. Do not use "+" to indicate wild type. Carefully distinguish between genotype (italicized) and phenotype (not italicized) in both the writing and the symbolism.
-
-\subsection{Cross References}
-Use the \verb|\nameref| command with the \verb|\label| command to insert cross-references to section headings. For example, a \verb|\label| has been defined in the section \nameref{sec:materials:methods}.
-
-\section{In-text Citations}
-
-Add citations using the \verb|\citep{}| command, for example \citep{neher2013genealogies} or for multiple citations, \citep{neher2013genealogies, rodelsperger2014characterization}
-
-\section{Examples of Article Components}
-\label{sec:examples}
-
-The sections below show examples of different header levels, which you can use in the primary sections of the manuscript (Results, Discussion, etc.) to organize your content.
-
-\section{First level section header}
-
-Use this level to group two or more closely related headings in a long article.
-
-\subsection{Second level section header}
-
-Second level section text.
-
-\subsubsection{Third level section header:}
-
-Third level section text. These headings may be numbered, but only when the numbers must be cited in the text. 
-
-\section{Figures and Tables}
-
-Figures and Tables should be labelled and referenced in the standard way using the \verb|\label{}| and \verb|\ref{}| commands.
-
-\subsection{Sample Figure}
-
-Figure \ref{fig:spectrum} shows an example figure.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{example-figure}
-\caption{Example figure from \url{10.1534/genetics.114.173807}. Please include your figures in the manuscript for the review process. You can upload figures to Overleaf via the Project menu. Upon acceptance, we'll ask for your figure files to be uploaded in any of the following formats: TIFF (.tiff), JPEG (.jpg), Microsoft PowerPoint (.ppt), EPS (.eps), or Adobe Illustrator (.ai).  Images should be a minimum of 300 dpi in resolution and 500 dpi minimum if line art images.  RGB, CMYK, and Grayscale are all acceptable. Halftones should be high contrast with sharp detail, because some loss of detail and contrast is inevitable in the production process. Figures should be 10-20 cm in width and 1-25 cm in height. Graph axes must be exactly perpendicular and all lines of equal density.
-Label multiple figure parts with A, B, etc. in bolded type, and use Arrows and numbers to draw attention to areas you want to highlight. Legends should start with a brief title and should be a self-contained description of the content of the figure that provides enough detail to fully understand the data presented. All conventional symbols used to indicate figure data points are available for typesetting; unconventional symbols should not be used. Italicize all mathematical variables (both in the figure legend and figure) , genotypes, and additional symbols that are normally italicized.  
-}%
-\label{fig:spectrum}
-\end{figure}
-
-\subsection{Sample Video}
-
-Figure \ref{video:spectrum} shows how to include a video in your manuscript.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{example-figure}
-\caption{Example movie (the figure file above is used as a placeholder for this example). \textit{GENETICS} supports video and movie files that can be linked from any portion of the article - including the abstract. Acceptable formats include .asf, avi, .wav, and all types of Windows Media files.   
-}%
-\label{video:spectrum}
-\end{figure}
+\bigskip
 
 
-\subsection{Sample Table}
+% Set line number options
+\linenumbers
+\modulolinenumbers[1]
+\renewcommand\linenumberfont{\normalfont\small}
 
-Table \ref{tab:shape-functions} shows an example table. Avoid shading, color type, line drawings, graphics, or other illustrations within tables. Use tables for data only; present drawings, graphics, and illustrations as separate figures. Histograms should not be used to present data that can be captured easily in text or small tables, as they take up much more space.  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Main Text
 
-Tables numbers are given in Arabic numerals. Tables should not be numbered 1A, 1B, etc., but if necessary, interior parts of the table can be labeled A, B, etc. for easy reference in the text.  
+\newpage{}
+\section*{Abstract}
+
+\noindent{} When selection differs between males and females, pleiotropic effects among genes expressed by both sexes can result in sexually antagonistic selection (SA), where beneficial alleles for one sex are deleterious for the other. For hermaphrodites, alleles with opposing fitness effects through each sex function represent analogous genetic constraints on fitness. Recent theory based on single-locus models predicts that the maintenance of SA genetic variation should be greatly reduced in partially selfing populations. However, selfing also reduces the effective rate of recombination, which should facilitate selection on linked allelic combinations and expand opportunities for balancing selection in a multi-locus context. Here I develop a two-locus model of SA selection for simultaneous hermaphrodites, and explore the joint influence of linkage, self-fertilization, and dominance on the maintainance of SA polymorphism. I find that the effective reduction in recombination caused by selfing significantly expands the parameter space where SA polymorphism can be maintained relative to single-locus models. In particular, linkage facilitates the invasion of male-beneficial alleles, partially compensating for the ``female-bias'' in the net direction of selection created by selfing. I discuss the implications of accounting for linkage among SA loci for the maintenance of SA genetic variation and mixed mating systems in hermaphrodites.
+
+\newpage{}
 
 
-\begin{table*}[htbp]
-\centering
-\caption{\bf Students and their grades}
-\begin{tableminipage}{\textwidth}
-\begin{tabularx}{\textwidth}{XXXX}
-\hline
-Student & Grade\footnote{This is an example of a footnote in a table. Lowercase, superscript italic letters (a, b, c, etc.) are used by default. You can also use *, **, and *** to indicate conventional levels of statistical significance, explained below the table.} & Rank & Notes \\
-\hline
-Alice & 82\% & 1 & Performed very well.\\
-Bob & 65\% & 3 & Not up to his usual standard.\\
-Charlie & 73\% & 2 & A good attempt.\\
-\hline
-\end{tabularx}
-  \label{tab:shape-functions}
-\end{tableminipage}
-\end{table*}
+\section*{Introduction}
 
-\section{Sample Equation}
+Due to fundamental differences in their reproductive biology, males and females rarely share the same optimal phenotype (\citealt{Parker1979, KokkoJennions2008}). When phenotypic optima differ between males and females, pleiotropic effects among genes expressed by both sexes can result in sexually antagonistic selection (SA hereafter), where beneficial alleles for one sex have deleterious fitness effects in the other (\citealt{Kidwell1977, Rice1992, ConnClark2012}). SA alleles have been shown to play an important role in the maintenance of genetic variation in fitness, the evolution of reproductive and life-history traits, and genome evolution in a variety of theoretical and empirical contexts (\citealt{Barson2015, BondChen2009, CoxCals2010, ConnClark2012, Fry2010, Prout2000, Rice1992, RiceChipp2001}). 
 
-Let $X_1, X_2, \ldots, X_n$ be a sequence of independent and identically distributed random variables with $\text{E}[X_i] = \mu$ and $\text{Var}[X_i] = \sigma^2 < \infty$, and let
-\begin{equation}
-S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}
-      = \frac{1}{n}\sum_{i}^{n} X_i
-\label{eq:refname1}
+The existence of physically separate sexes makes the relevance of SA selection to dioecious species intuitive, and this is reflected in the traditional emphasis on SA polymorphism in this group (e.g.~\citealt{Kidwell1977, Rice1992, Prout2000, ConnClark2012}). However, alleles with opposing fitness effects through male and female sex functions represent analogous genetic constraints on fitness for hermaphrodites (\citealt{Abbott2011, JordanConn2014,Tazzyman2015}). For hermaphroditic individuals, both the male and female sex functions must be accommodated by a single phenotype, and there is ample scope for traits with a shared genetic basis to constrain fitness through each sex function (\citealt{Abbott2011, Barrett2002, Conner2006, Sicard2011}). Furthermore, fitness trade-offs between sex functions, and thus SA alleles, can have diverse consequences for the evolution of reproductive traits (e.g.~floral and inflorescence morphology) as well as sexual and mating systems in hermaphrodites (\citealt{LloydWebb1986,WebbLloyd1986, Barrett2002, Abbott2011, Charlesworth1978, HarderBarrett2006, Goodwillie2005}).
+
+The fate of SA alleles in hermaphrodites is complicated by the fact that individuals may pass on genes to subsequent generations through a combination of outcrossing and self-fertilization (\citealt{Goodwillie2005, JarneAuld2006, Igic2005, JordanConn2014}). Self-fertilization has several important theoretical consequences for the maintenance of SA genetic variation (\citealt{JordanConn2014, KimuraOhta1971}). Selfing diminishes the opportunity for balancing selection to maintain SA polymorphism, and thereby reduces the sensitivity of SA polymorphism to dominance (\citealt{JordanConn2014, Tazzyman2015}). If SA alleles influence gamete production and/or gamete quality or performance, selfing also creates a ``female-bias'' in the net direction of selection because there is reduced opportunity for selection to act via the male sex function (\citealt{Charlesworth1978, JordanConn2014}; but see \citealt{Tazzyman2015} for alternative assumptions regarding selection on selfed gametes). This skews the parameter space where SA polymorphism can be maintained towards female-beneficial alleles (\citealt{JordanConn2014}). 
+
+Self-fertilization carries with it a variety of other genomic consequences for hermaphrodites, including a reduction in the effective rate of recombination among neighboring loci (reviewed in \citealt{Wright2008}). The effect of selfing on effective recombination is of particular interest because this should drive selection on linked allelic combinations, potentially preserving polymorphisms that would otherwise experience purifying selection at a single locus (\citealt{Fisher1930}). For dioecious species, tight linkage between SA loci is predicted to expand the parameter space where SA polymorphism is maintained (\citealt{Patten2010}). Thus, for hermaphrodites there is the potential for reduced recombination to compensate for the loss in SA polymorphism due to increased selfing. However, the conditions under which each of these two countervailing effects of self-fertilization will be more influential in maintaining SA polymorphism have yet to be explored. 
+
+Here I use a two-locus model of SA selection with partial selfing to investigate the joint influence of linkage, self-fertilization, and dominance on the maintainance of SA polymorphism in hermaphroditic species. In the two-locus context, reduced effective recombination caused by selfing significantly increases the parameter space where balancing selection is predicted to maintain SA polymorphism relative to single-locus models. In particular, linkage expands the conditions where male-beneficial alleles are able to invade, partially compensating for the ``female-bias'' in selection introduced by selfing.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Model}
+
+Consider a genetic system involving two diallelic autosomal loci $\mathbf{A}$ (with alleles $A$, $a$) and $\mathbf{B}$ (with alleles $B$, $b$), that recombine at a rate $r$ in a large population of simultaneous hermaphrodites. The rate of self-fertilization ($C$) in the population is independent of the genotype at the loci in question (a `fixed' selfing model \textit{sensu} \citealt{Holden1979,CaballeroHill1992, JordanConn2014}). Generations are assumed to be discrete and non-overlapping, with selection occuring on diploid adults before fertilization. Let $x_i$ and $y_i$ denote the frequencies of the four possible haplotypes $[AB, Ab, aB, ab]$ among male and female gametes respectively. Both loci are under sexually antagonistic selection such that $A$ and $B$ represent male-beneficial alleles, while $a$ and $b$ represent female-beneficial alleles (\citealt{Kidwell1977}). The fitness of offspring formed by the union of the $i$th female and $j$th male gametic haplotypes, $w_{k,ij}$ (where $k \in [m,f]$), is assumed to equal the product of the fitnesses at $\mathbf{A}$ and $\mathbf{B}$ (Table~\ref{Table:Fitness}; parameterization follows \citealt{Patten2010}). Following convention for SA models, sex-specific selection coefficients are constrained to be $0 < s_k < 1$ (e.g.~\citealt{Kidwell1977}).
+
+The evolutionary trajectory of genotype frequencies in this scenario is described by a system of ten recursion equations (\citealt{Holden1979, JordanConn2014}). However, it is possible to approximate the evolutionary trajectories of haplotypes in this system under weak selection (See Appendix A in the Supplementary Information). For partially selfing populations under weak selection, the rate of allele frequency change due to selection should be slow relative to the rate at which genotypes approach equilibirium under non-random mating (\citealt{Nagylaki1997}). Under this assumption, it may be appropriate to use a separation of timescales (\citealt{OttoDay2007}), and calculate the quasi-equilibrium (QE) genotypic frequencies in the absence of selection. The genotypic recursions for allele frequency change across generations can then be approximated by substituting into them the QE frequencies, yielding a reduced system of four haplotype recursions. 
+
+Using this approach, I model the evolution of the four-haplotype system $q_i = [AB, Ab, aB, ab]$, where the QE adult genotypic frequencies are denoted by $\phi_{ij}$. The recursions giving the haplotype frequencies in the next generation are then
+
+\begin{align*} \label{eq:QEhapRec}
+	q'_1 &\approx (1 - C) \frac{(x_1 + y_1)}{2} + C \bigg( \frac{x_1 - r(\phi_{14} - \phi_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_2 &\approx (1 - C) \frac{(x_2 + y_2)}{2} + C \bigg( \frac{x_2 + r(\phi_{14} - \phi_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_3 &\approx (1 - C) \frac{(x_3 + y_3)}{2} + C \bigg( \frac{x_3 + r(\phi_{14} - \phi_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_4 &\approx (1 - C) \frac{(x_4 + y_4)}{2} + C \bigg( \frac{x_4 - r(\phi_{14} - \phi_{23})}{2 \overline{w}_f} \bigg), \numberthis
+\end{align*}
+
+\noindent{} where $x_i$ and $y_i$ are functions $f(C, s_k, h_k, \phi_{ij})$ describing the haplotype frequencies in male and female gametes, and $\overline{w}_f$ is the population average fitness through female function (see Appendix A in the Supplementary Information for a full development of the recursions). The QE haplotype recursions approximated deterministic simulations of the genotypic recursions very well, even under strong selection (Figs.~\ref{fig:addSim} and \ref{fig:domRevSim}; the full set of exact recursions can be found in Appendix A in the Supporting Information); I therefore focus the analysis on the analytic QE results. 
+
+To identify the parameter conditions under which balancing selection is predicted to maintain SA polymorphism, I evaluate the stability of the system of haplotype recursions, Eq(\ref{eq:QEhapRec}), for populations initially fixed for male-beneficial or female-beneficial alleles (i.e.~stability was assessed at the boundary haplotype frequences $[AB]=1$ and $[ab]=1$). For these boundary equilibria, one minus the leading eigenvalue of the Jacobian matrix, $1 - \lambda_L$, approximates the rate of change of the frequencies of rare haplotypes, and therefore whether new mutations will be able to invade (\citealt{OttoDay2007}). Balancing selection is predicted to maintain SA polymorphism when $\lambda_L > 1$ for both boundary equilibria (\citealt{Prout1968}). Three candidate leading eigenvalues emerge from the analysis (See Appendix C in the Supplementary Information). The first two describe invasion at each locus individually, and are identical functions of the sex-specific selection parameters ($s_k$, $h_k$) and the selfing rate ($C$). Balancing selection at both loci occurs whenever single-locus criteria for balancing selection are met because the selection parameters are identical for both loci (if invasion can occur at one locus, it can also occur at the other). If the two SA loci are physically linked, the conditions for balancing selection differ from the single-locus expectation. This condition is described by the third candidate leading eigenvalue, which involves the recombination rate, $r$, in addition to $s_k$, $h_k$, and $C$.
+
+I focus the analysis on representative, and biologically plausible, dominance scenarios that have been recently explored in the single-locus context (\citealt{Kidwell1977, Fry2010, Prout2000, JordanConn2014}). These correspond to: (1) additive fitness effects ($h_f = h_m = 1/2$), as is commonly observed for small to intermediate effect alleles (\citealt{AgrawalWhitlock2011}); and (2) partially recessive fitness effects yielding a ``dominance reversal'' ($h_f = h_m = 1/4$), which are commonly predicted by a variety of fitness landscape models (\citealt{Manna2011, ConnClark2014}), and are predicted to evolve under some conditions for SA alleles (\citealt{Spencer2016}).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Results}
+
+
+Consideration of invasion at a single locus provides a useful baseline for comparison with the two-locus case. Analysis of the first candidate leading eigenvalue yields the general invasion criteria at a single locus, where balancing selection requires that 
+
+\begin{equation} \label{eq:genInv}
+	\frac{s_m(C - 1)(2 h_m(C - 1) - C)}{s_m(C - 1)(2h_m(C - 1) - C) + (C + 1)(2 - C + 2h_f(C - 1))} < s_f < \frac{s_m(1 - C)(2 - C + 2 h_m (C - 1))}{(C + 1)(2 h_f(C - 1) - C)(s_m - 1)}.
 \end{equation}
-denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{n}(S_n - \mu)$ converge in distribution to a normal $\mathcal{N}(0, \sigma^2)$.
 
-\bibliography{example-bibliography}
+\noindent{} Under additive fitness effects ($h_f=h_m=1/2$), Eq(\ref{eq:genInv}) reduces to the single-locus invasion criteria given by \citet{JordanConn2014}; and reduces further under obligate outcrossing ($C=0$) to the classic dioecious result of $s_m/(1+s_m) < s_f < s_m / (1-s_m)$ (\citealt{Tazzyman2015, Patten2010, Kidwell1977}). The corresponding funnel-shaped parameter space where balancing selection at a single locus is predicted to maintain SA polymorphism is shown in Fig.~\ref{fig:funnelPlots} by the shaded regions bounded by black solid lines. 
+
+Increased self-fertilization broadens the scope for linkage to maintain SA polymorphism that would otherwise be lost in a single-locus model. Analysis of the third candidate leading eigenvalue yields invasion criteria involving both loci that are more complex than the single-locus case. However, under the simplifying assumptions of complete linkage ($r=0$) and obligate outcrossing ($C=0$), the third candidate leading eigenvalue yields invasion criteria which are algebraically equivalent to the two-locus dioecious case (Eq (11) in \citealt{Patten2010}; see Appendix C in the Supplementary Information). As in \citet{Patten2010}, under perfect linkage ($r=0$), the two-locus invasion criteria expands the parameter space conducive to balancing selection, describing a funnel-shaped region that subsumes the region described by the single-locus criteria. With weaker linkage ($0 \leq r \leq 0.5$), stronger selection is required for the two-locus invasion criteria to expand the parameter space conducive to balancing selection (Fig.~\ref{fig:funnelPlots}, greyscale lines). This is most restrictive under obligate outcrossing, where linkage must be tight ($r < 0.2$ for additive effects, $r < 0.1$ for dominance reversal), for the two-locus invasion criteria to increase SA polymorphism beyond the single-locus case (Fig.~\ref{fig:funnelPlots}A,D; \citealt{Patten2010}). If selection on individual SA loci is weak ($s_f,s_m < 0.1$), tight linkage is required to significantly expand the parameter space where balancing selection is predicted beyond that of single-locus models (Figs.~\ref{fig:wkFunnelPlots}, \ref{fig:wkPolymorhism} in the Supplementary Information). However, the magnitude of the increase is still substantial under tight linkage, particularly for additive fitness effects.
+
+Increased selfing has two important consequences in the two-locus context. As predicted for the single-locus case, selfing biases the net direction of selection towards female interests, reducing the opportunity for male-beneficial alleles to invade at a single locus (Fig.~\ref{fig:funnelPlots}B,C,E,F; \citealt{Charlesworth1978, JordanConn2014}; but see \citealt{Tazzyman2015}). However, the concomitant decrease in effective recombination among double heterozygotes partially compensates for this ``female-bias'' in selection in several ways. Overall, linkage increases the effective strength of selection at both loci, which is more permissive of balancing selection (\citealt{Patten2010}). Reduced recombination also slows the break-up of haplotypes pairing male-beneficial with male-beneficial (and female-beneficial with female-beneficial) alleles at both loci, increasing the likelihood that male-beneficial alleles at each locus are paternally inherited (and female-beneficial alleles are maternally inherited) (\citealt{Patten2010, Ubeda2010}). With higher selfing, this effectively shelters male-beneficial alleles from increased selection through the female sex function. The net effect is to expand the parameter space where balancing selection is predicted to maintain SA polymorphism, particularly for male-beneficial alleles (Fig.~\ref{fig:funnelPlots}, upper greyscale lines). The effect of reduced recombination is strongest at higher selfing rates ($C > 0.5$), where interaction between SA loci expands the parameter space where male-beneficial alleles can invade beyond the single-locus case, even under free recombination (Fig.~\ref{fig:funnelPlots}B-C,E-F, Fig.~\ref{fig:polymorphism}B,D). 
+
+Under additive fitness effects, the increase in SA polymorphism due to linkage can offset the loss in parameter space attributable to invasion at a single locus up to a selfing rate of about $C = 0.5$ (Fig.~\ref{fig:polymorphism}A). At higher selfing rates ($C > 0.5$), the total parameter space where balancing selection can occur declines, but the relative increase in SA polymorphism predicted by the two-locus model relative to the single-locus case becomes increasingly pronounced, even under free recombination (Fig.~\ref{fig:polymorphism}A,B). Under dominance reversal conditions ($h_f,h_m < 1/2$) the sex-specific fitness costs of SA alleles are partially masked, and balancing selection can maintain SA polymorphism over a broader range of parameter conditions due to net overdominance in fitness (\citealt{ConnClark2012, ConnClark2014}). As a consequence, the effect of linkage is somewhat dampened, and increased selfing always results in a decrease in the total parameter space where SA polymorphism is predicted (Fig.~\ref{fig:polymorphism}C). However, the relative increase in the two-locus relative to the single-locus case remains for higher selfing rates ($C > 0.5$), even under free recombination (Fig.~\ref{fig:polymorphism}D).
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Discussion}
+
+Accounting for linkage between SA loci yields several theoretical insights regarding the maintenance of SA polymorphism in hermaphroditic organisms. Provided that either linkage is tight or selection is strong, the reduction in the effective recombination rate due to selfing significantly expands the parameter space where balancing selection is predicted to maintain SA polymorphism beyond that of single-locus models (doubling the parameter space under some conditions). When the sex-specific fitness costs of SA alleles are partially recessive, net overdominance of heterozygotes across both sex functions allows polymorphism to be maintained over a broader range of parameter space than when fitness costs are additive. This alters relative importance of recombination and net overdominance as proximal mechanisms underlying balancing selection at multiple SA loci. However, this does not dramatically influence the role of linkage betwen SA loci in expanding SA polymorphism relative to single-locus models. Thus, although balancing selection at SA loci is least likely in highly selfing species, it may still provide a plausible mechanism, along with recurrent mutation (\citealt{JordanConn2014}), for the maintenance of genetic variation at linked SA loci in populations with intermediate to high selfing rates. 
+
+The joint influence of linkage and self-fertilization on SA polymorphism may have interesting implications for the genomic location of SA loci in hermaphrodites. On one hand, polymorphic SA genes are predicted to be more tightly clustered in the genome than expected at random because linkage facilitates SA polymorphism (\citealt{Patten2010,JordanChar2011}). The current results predict that the effect of linkage on the maintenance of SA polymorphism should be stronger in partially selfing species relative to obligately outcrossing ones. This could facilitate increased clustering of polymorphic SA genes in the genomes of partial selfers relative to outcrossers. On the other hand, the reduction in effective rates of recombination due to selfing may have the opposite effect, where interactions between more distant loci are increasingly able to facilitate balancing selection on SA alleles in selfing species. A comparison of the genomic location of SA loci in species with varying rates of self-fertilization would be an interesting direction for future empirical work, particularly given the past emphasis on dioecious species (\citealt{BondChen2009, Abbott2011}).
+
+As the frequency of self-fertilization increases, linkage among SA loci compensates for the increasing ``female-bias'' in selection and associated decrease in SA polymorphism predicted by single-locus models (\citealt{Charlesworth1978, JordanConn2014}; but see discussion of model assumptions below). This occurs primarily through an expansion of the parameter space where male-beneficial alleles are able to invade. In this way, linkage among SA loci may have bearing on the prevalence of mixed mating systems. Although many hermaphroditic plants and animals reproduce primarily through either outcrossing or selfing, a large fraction reproduce though a combination of the two (\citealt{JarneAuld2006, Goodwillie2005, Igic2005}). Various theoretical explanations have been proposed for mixed mating strategies, including (but not limited to) reproductive assurance (\citealt{Lloyd1979}), purging of deleterious alleles and reduced inbreeding depression (\citealt{LandeSchemske1985}), reproductive compensation (\citealt{HarderRoutley2007, PorcherLande2005}), and frequency dependence (\citealt{Holsinger1991}) (reviewed in \citealt{Goodwillie2005, HarderBarrett2006}). The female-bias in selection caused by increased selfing is consistent with the evolution of "selfing syndromes" (\citealt{Sicard2011,JordanConn2014}). However, the concomitant increase in the parameter space where male-beneficial alleles can invade relative to the single-locus case provides an additional mechanism for the persistence of traits promoting male gamete dispersal and performance in partially selfing populations, provided these traits are under SA selection (\citealt{Barrett2002, Goodwillie2005, HarderBarrett2006}). Given that change in SA allele frequencies is often predicted to be slow and dominated by drift (\citealt{ConnClark2011, ConnClark2012, ConnClark2014}), the loss of male-beneficial alleles may also be slow and stochastic in partially selfing species with linked SA loci, regardless of whether mixed mating is an evolutionary stable strategy.
+
+It should be noted that the increased invasion of male-beneficial alleles predicted by this model is sensitive to the assumption that selection on SA alleles influences the performance of selfed female gametes (\citealt{Tazzyman2015}). The appropriateness of this assumption depends on whether SA fitness costs are incurred primarily through differential gamete production and/or quality and performance of male and female gametes, or external factors such as conflict with mates (\citealt{Tazzyman2015}). In the absence of selection influencing the performance of selfed female gametes, there is no asymmetry in the net direction of selection, and thus no bias towards the increased invasion of male-beneficial alleles. The scope for linkage to increase SA polymorphism beyond single-locus predictions is also greatly reduced when selection does not influence the performance of selfed gametes (no expansion occurs beyond $r \approx 1/4$, even under strong selfing and additive fitness effects; Appendix C in the Supplementary Information). Thus, the mechanisms underlying SA fitness costs can be very important in determining the effect of linkage on the maintenance of SA polymorphism in hermaphrodites.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acknowledgments}
+
+The author thanks C.~Venables, J.~Cally, and T.~Connallon for helpful discussions and feedback, and two anonymous reviewers for their very helpful comments. The idea for this study was conceived during discussion among Drs.~Tim Connallon, Crispin Jordan, and Jessica K.~Abbott, and the author gratefully acknowledges their encouragement to develop it. This work was funded by a Monash University Dean's International Postgraduate Student Scholarship, and by the Monash University Centre for Geometric Biology.
+
+\newpage{}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Tables}
+\renewcommand{\thetable}{\arabic{table}}
+\setcounter{table}{0}
+
+\begin{table}[h]
+\caption{Two-locus fitness expressions for the adult female sex function ($w_{f,ij}$) and male sex function ($w_{m,ij}$). Rows and columns indicate the haplotype inherited from mothers and fathers respectively.}
+\label{Table:Fitness}
+\centering
+\begin{tabular}{l c c c c} \hline
+Haplotype & $y_1 = AB$ & $y_2 = Ab$ & $y_3 = aB$ & $y_4 = ab$ \\
+\hline
+Females & & & & \\
+$x_1 = AB$ & $(1-s_f)^2$ & $(1 - s_f)(1 - h_f s_f)$ & $(1 - s_f)(1 - h_f s_f)$ & $(1 - h_f s_f)^2$ \\
+$x_2 = Ab$ & $(1 - s_f)(1 - h_f s_f)$ & $(1-s_f)$ & $(1 - h_f s_f)^2$ & $(1 - h_f s_f)$ \\
+$x_3 = aB$ & $(1 - s_f)(1 - h_f s_f)$ & $(1 - h_f s_f)^2$ & $(1-s_f)$ & $(1 - h_f s_f)$ \\
+$x_4 = ab$ & $(1 - h_f s_f)^2$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)$ & $1$ \\
+Males & & & & \\
+$x_1 = AB$ & $1$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)^2$ \\
+$x_2 = Ab$ & $(1 - h_m s_m)$ & $(1-s_m)$ & $(1 - h_m s_m)^2$ & $(1 - s_m)(1 - h_m s_m)$ \\
+$x_3 = aB$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)^2$ & $(1-s_m)$ & $(1 - s_m)(1 - h_f s_f)$ \\
+$x_4 = ab$ & $(1 - h_m s_m)^2$ & $(1 - s_m)(1 - h_m s_m)$ & $(1-s_m)(1 - h_m s_m)$ & $(1-s_m)^2$ \\
+\hline
+\end{tabular}
+\bigskip{}
+\end{table}
+
+
+\newpage{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Figures}
+ 
+\begin{figure}[H] 
+\includegraphics[scale=0.8]{./Fig1}
+\caption{Self-fertilization increases the scope for genetic linkage to expand the parameter space where balancing selection can maintain SA polymorphism. Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--C), and dominance reversal ($h_i = 1/4$; panels D--F). In each panel, the shaded region between the black lines indicates the region of sexually antagonistic polymorphism for the single locus case; greyscale lines indicate the thresholds for invasion for female-beneficial (lower lines) and male-beneficial (upper lines) alleles at different recombination rates for the two-locus model.}
+\label{fig:funnelPlots}
+\end{figure}
+\newpage{}
+
+
+\begin{figure}[H]
+\includegraphics[scale=0.9]{./Fig2}
+\caption{The proportion of parameter space where SA polymorphism is maintained declines with increased recombination and self-fertilization (panels A,C). The increase in SA polymorphism in the two-locus model relative to the single-locus case also declines with the recombination rate, but increases with the rate of self-fertilization (panels B,D). Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--B), and dominance reversal ($h_i = 1/4$; panels C--D). Results were obtained by evaluating the leading eigenvalue of the Jacobian matrix of the haplotype recursions for populations initially fixed for the haplotypies $[AB]$ and $[ab]$ at 30,000 points distributed uniformly throughout parameter space defined by $s_m \times s_f$.}
+\label{fig:polymorphism}
+\end{figure}
+\newpage{}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Supporting Information}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Appendix A: Development of recursions, quasi-equilibrium approximations}
+\renewcommand{\theequation}{A\arabic{equation}}
+\titleformat{\subsubsection}    
+{\normalfont\fontsize{12pt}{17}\itshape}{\thesubsubsection}{12pt}{}
+
+\subsubsection*{Recursions}
+
+Consider the genetic system described in the main text. Adult genotypic frequencies formed by the union of the $i$th and $j$th haplotypes are denoted using $F_{ij}$, and the overall haplotype frequencies, $q_i$ are
+
+\begin{align*}
+	q_1 &= F_{11} + \frac{F_{12} + F_{13} + F_{14}}{2} \\
+	q_2 &= F_{22} + \frac{F_{12} + F_{23} + F_{24}}{2} \\
+	q_3 &= F_{33} + \frac{F_{13} + F_{23} + F_{34}}{2} \\
+	q_4 &= F_{44} + \frac{F_{14} + F_{24} + F_{34}}{2}. \numberthis \label{eqn}
+\end{align*} 
+
+Haplotype frequencies in female gametes are denoted $x_1 = [AB]$, $x_2 = [Ab]$, $x_3 = [aB]$, and $x_4 = [ab]$, and the corresponding frequencies in male gametes are denoted $y_1$, $y_2$, $y_3$, and $y_4$. The contribution of genotype $ij$ to the production of offspring in the next generation is denoted by $F^f_{ij}$. Given these conditions, the recursion equations for the genotypic frequencies in the next generation are (\citealt{Holden1979, JordanConn2014})
+
+\begin{align*} \label{eq:genRec}
+	F'_{11} &= (1 - C) (x_1 y_1)           + C \bigg( F^f_{11} + \frac{F^f_{12} + F^f_{13} + F^f_{14}(1 - r)^2 + F^f_{23} r^2}{4} \bigg)  \\
+	F'_{12} &= (1 - C) (x_1 y_2 + x_2 y_1) + C \bigg( \frac{F^f_{12} + F^f_{14} r(1-r) + F^f_{23} r(1-r)}{2} \bigg)  \\
+	F'_{13} &= (1 - C) (x_1 y_3 + x_3 y_1) + C \bigg( \frac{F^f_{13} + F^f_{14} r(1-r) + F^f_{23} r(1-r)}{2} \bigg)  \\
+	F'_{14} &= (1 - C) (x_1 y_4 + x_4 y_1) + C \bigg( \frac{F^f_{14} (1-r)^2 + F^f_{23} r^2}{2} \bigg)  \\
+	F'_{22} &= (1 - C) (x_2 y_2)           + C \bigg( F^f_{22} + \frac{F^f_{12} + F^f_{14} r^2 + F^f_{23} (1-r)^2 + F^f_{24}}{4} \bigg)  \\
+	F'_{23} &= (1 - C) (x_2 y_3 + x_3 y_2) + C \bigg( \frac{F^f_{14} r^2 + F^f_{23} (1-r)^2}{2} \bigg)  \\
+	F'_{24} &= (1 - C) (x_2 y_4 + x_4 y_2) + C \bigg( \frac{F^f_{24} + F^f_{14} r(1-r) + F^f_{23} r(1-r)}{2} \bigg)  \\
+	F'_{33} &= (1 - C) (x_3 y_3)           + C \bigg( F^f_{33} + \frac{F^f_{13} + F^f_{14} r^2 + F^f_{23} (1-r)^2 + F^f_{34}}{4} \bigg)  \\
+	F'_{34} &= (1 - C) (x_3 y_4 + x_4 y_3) + C \bigg( \frac{F^f_{14} r(1-r) + F^f_{23} r(1-r) + F^f_{34}}{2} \bigg)  \\
+	F'_{44} &= (1 - C) (x_4 y_4)           + C \bigg( F^f_{44} + \frac{F^f_{14} (1-r)^2 + F^f_{23} r^2 + F^f_{24} + F^f_{34}}{4} \bigg)  \numberthis
+\end{align*}
+
+\noindent{} where $x_{i}$ are
+
+\begin{align*}
+	x_1 &= \frac{2 F_{11} w_{f11} + F_{12} w_{f12} + F_{13} w_{f13} + F_{14} w_{f14}}{2 \overline{w}_f} - r \bigg( \frac{F_{14} w_{f14} - F_{23} w_{f23}}{2 \overline{w}_f} \bigg) \\
+	x_2 &= \frac{2 F_{22} w_{f22} + F_{12} w_{f12} + F_{23} w_{f23} + F_{24} w_{f24}}{2 \overline{w}_f} + r \bigg( \frac{F_{14} w_{f14} - F_{23} w_{f23}}{2 \overline{w}_f} \bigg) \\
+	x_3 &= \frac{2 F_{33} w_{f33} + F_{34} w_{f34} + F_{13} w_{f13} + F_{23} w_{f23}}{2 \overline{w}_f} + r \bigg( \frac{F_{14} w_{f14} - F_{23} w_{f23}}{2 \overline{w}_f} \bigg) \\
+	x_4 &= \frac{2 F_{44} w_{f44} + F_{32} w_{f32} + F_{14} w_{f14} + F_{24} w_{f24}}{2 \overline{w}_f} - r \bigg( \frac{F_{14} w_{f14} - F_{23} w_{f23}}{2 \overline{w}_f} \bigg), \numberthis
+\end{align*}
+
+\noindent{} $y_{i}$ are
+
+\begin{align*}
+	y_1 &= \frac{2 F_{11} w_{m11} + F_{12} w_{m12} + F_{13} w_{m13} + F_{14} w_{m14}}{2 \overline{w}_m} - r \bigg( \frac{F_{14} w_{m14} - F_{23} w_{m14}}{2 \overline{w}_m} \bigg) \\
+	y_2 &= \frac{2 F_{22} w_{m22} + F_{12} w_{m12} + F_{23} w_{m23} + F_{24} w_{m24}}{2 \overline{w}_m} + r \bigg( \frac{F_{14} w_{m14} - F_{23} w_{m23}}{2 \overline{w}_m} \bigg) \\
+	y_3 &= \frac{2 F_{33} w_{m33} + F_{34} w_{m34} + F_{13} w_{m13} + F_{23} w_{m23}}{2 \overline{w}_m} + r \bigg( \frac{F_{14} w_{m14} - F_{23} w_{m23}}{2 \overline{w}_m} \bigg) \\
+	y_4 &= \frac{2 F_{44} w_{m44} + F_{32} w_{m32} + F_{14} w_{m14} + F_{24} w_{m24}}{2 \overline{w}_m} - r \bigg( \frac{F_{14} w_{m14} - F_{23} w_{m23}}{2 \overline{w}_m} \bigg), \numberthis
+\end{align*}
+
+\noindent{} where ${w}_{k,ij}$ represent the fitness through each sex function ($k \in [m,f]$) of adults resulting from the union of the $i$th and $j$th haplotypes, and the population mean fitness through each sex function is
+
+\begin{align*}
+	\overline{w}_f = F_{11} w_{f11} + &F_{12} w_{f12} + F_{13} w_{f13} + F_{14} w_{f14} + F_{22} w_{f22} + \\ 
+				     &F_{23} w_{f23} + F_{24} w_{f24} + F_{33} w_{f33} + F_{34} w_{f34} + F_{44} w_{f44} \numberthis \\
+	\overline{w}_m = F_{11} w_{m11} + &F_{12} w_{m12} + F_{13} w_{m13} + F_{14} w_{m14} + F_{22} w_{m22} + \\
+				     &F_{23} w_{m23} + F_{24} w_{m24} + F_{33} w_{m33} + F_{34} w_{m34} + F_{44} w_{m44}. \numberthis
+\end{align*}
+
+
+Combining Eqns(A1-A6) and simplifying yields the general haplotype recursion equations: 
+
+\begin{align*} \label{eq:hapRec}
+	q'_1 &= F'_{11} + \frac{F'_{12} + F'_{13} + F'_{14}}{2} = (1 - C) \frac{(x_1 + y_1)}{2} + C \bigg( \frac{x_1 - r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_2 &= F'_{22} + \frac{F'_{12} + F'_{23} + F'_{24}}{2} = (1 - C) \frac{(x_2 + y_2)}{2} + C \bigg( \frac{x_2 + r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_3 &= F'_{33} + \frac{F'_{13} + F'_{23} + F'_{34}}{2} = (1 - C) \frac{(x_3 + y_3)}{2} + C \bigg( \frac{x_3 + r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
+	q'_4 &= F'_{44} + \frac{F'_{14} + F'_{24} + F'_{34}}{2} = (1 - C) \frac{(x_4 + y_4)}{2} + C \bigg( \frac{x_4 - r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg). \numberthis
+\end{align*}
+
+
+\subsubsection*{QE Approximations}
+
+After \citet{CaballeroHill1992}, the QE genotypic frequencies for a single locus, $\mathbf{A}$, are
+
+\begin{align*}
+	F_{AA}^* &= q^2 + \frac{C q(1 - q)}{(2 - C)} \\
+	F_{Aa}^* &= 2 q (1 - q) - \frac{2 C q(1 - q)}{(2 - C)} \\
+	F_{aa}^* &= (1 - q)^2 + \frac{C q(1 - q)}{2 - C}, \numberthis 
+\end{align*}
+
+\noindent{} where $q$ is the allele frequency and $C$ is the fixed proportion of self fertilization. We can extend these single-locus results for the two-locus model to calculate the QE adult genotypic frequencies formed by the union of the $i$th and $j$th haplotypes:
+
+\begin{align*}
+	\phi_{11} &= q_1^2 + C q_1 (1 - q_1) / (2-C)  \\
+	\phi_{12} &= 4 q_1 q_2 (1 - C) / (2-C)        \\
+	\phi_{13} &= 4 q_1 q_3 (1 - C) / (2-C)        \\
+	\phi_{14} &= 4 q_1 q_4 (1 - C) / (2-C)        \\
+	\phi_{22} &= q_2^2 + C q_2 (1 - q_2) / (2-C)  \\
+	\phi_{23} &= 4 q_2 q_3 (1 - C) / (2-C)        \\
+	\phi_{24} &= 4 q_2 q_4 (1 - C) / (2-C)        \\
+	\phi_{33} &= q_3^2 + C q_3 (1 - q_3) / (2-C)  \\
+	\phi_{34} &= 4 q_3 q_4 (1 - C) / (2-C)        \\
+	\phi_{44} &= q_4^2 + C q_4 (1 - q_4) / (2-C)  \numberthis
+\end{align*}
+
+Following standard two-locus theory for partially selfing populations (\citealt{Holden1979, OttoDay2007, JordanConn2014}), and substituting the QE genotypic frequencies, $\phi_{ij}$, yields the haplotype recursions given in Eq(\ref{eq:QEhapRec}), where $x_{i}$ are
+
+\begin{align*}
+	x_1 &= \frac{2 \phi_{11} w_{f11} + \phi_{12} w_{f12} + \phi_{13} w_{f13} + \phi_{14} w_{f14}}{2 \overline{w}_f} -
+				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \\
+	x_2 &= \frac{2 \phi_{22} w_{f22} + \phi_{12} w_{f12} + \phi_{23} w_{f23} + \phi_{24} w_{f24}}{2 \overline{w}_f} +
+				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \\ 
+	x_3 &= \frac{2 \phi_{33} w_{f33} + \phi_{34} w_{f34} + \phi_{13} w_{f13} + \phi_{23} w_{f23}}{2 \overline{w}_f} +
+				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \\
+	x_4 &= \frac{2 \phi_{44} w_{f44} + \phi_{34} w_{f34} + \phi_{13} w_{f13} + \phi_{24} w_{f24}}{2 \overline{w}_f} -
+				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \numberthis
+\end{align*}
+
+\noindent{} and $y_{i}$ are
+
+\begin{align*}
+	y_1 &= \frac{2 \phi_{11} w_{m11} + \phi_{12} w_{m12} + \phi_{13} w_{m13} + \phi_{14} w_{m14}}{2 \overline{w}_m} -
+				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \\
+	y_2 &= \frac{2 \phi_{22} w_{m22} + \phi_{12} w_{m12} + \phi_{23} w_{m23} + \phi_{24} w_{m24}}{2 \overline{w}_m} +
+				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \\
+	y_3 &= \frac{2 \phi_{33} w_{m33} + \phi_{34} w_{m34} + \phi_{13} w_{m13} + \phi_{23} w_{m23}}{2 \overline{w}_m} +
+				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \\
+	y_4 &= \frac{2 \phi_{44} w_{m44} + \phi_{34} w_{m34} + \phi_{13} w_{m13} + \phi_{24} w_{m24}}{2 \overline{w}_m} -
+				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \numberthis
+\end{align*}
+
+\noindent{} and the population mean fitness through each sex function is
+
+\begin{align*}
+	\overline{w}_f = \phi_{11} w_{f11} + &\phi_{12} w_{f12} + \phi_{13} w_{f13} + \phi_{14} w_{f14} + \phi_{22} w_{f22} + \\ 
+				     &\phi_{23} w_{f23} + \phi_{24} w_{f24} + \phi_{33} w_{f33} + \phi_{34} w_{f34} + \phi_{44} w_{f44} \numberthis \\
+	\overline{w}_m = \phi_{11} w_{m11} + &\phi_{12} w_{m12} + \phi_{13} w_{m13} + \phi_{14} w_{m14} + \phi_{22} w_{m22} + \\
+				     &\phi_{23} w_{m23} + \phi_{24} w_{m24} + \phi_{33} w_{m33} + \phi_{34} w_{m34} + \phi_{44} w_{m44}. \numberthis
+\end{align*}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Appendix B: Supplementary figures}
+\renewcommand{\theequation}{B\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand{\thefigure}{B\arabic{figure}}
+\setcounter{figure}{0}
+
+\begin{figure}[H]
+\includegraphics[scale=0.7]{./recSimFig_add}
+\caption{Haplotype recursions evaluated at QE, and the resulting invasion conditions, approximate the evolutionary trajectory of the full genotypic recursions very well under additive allelic effects, even under strong selection. Predicted regions of SA polymorphism based on deterministic simulations using the genotypic recursions Eq(\ref{eq:genRec}) are compared against the outcome of the invasion analysis for the haplotype recursions using the QE approximation (Eq \ref{eq:QEhapRec}) across a gradient of selfing ($C$) and recombination ($r$) rates. Green points indicate parameter conditions where deterministic simulations of the genotypic recursions (Sim.) and the invasion analysis based on eigenvalues for the QE haplotype approximations (Eig.) both predicted polymorphism. Red points indicate regions where the Sim.~predicted polymorphism but the Eig.~did not; and blue points indicate the opposite. The proportion of each outcome is shown in the upper left corner of each panel. Black solid lines show the invasion conditions based on the haplotype recursions using the QE approximation for the given values of $C$ and $r$, with lines drawn for both the two-locus and single-locus invasion conditions when $r > 0$.}
+\label{fig:addSim}
+\end{figure}
+\newpage{}
+
+
+\begin{figure}[H] 
+\includegraphics[scale=0.7]{./recSimFig_domRev}
+\caption{Haplotype recursions evaluated at QE, and the resulting invasion conditions, approximate the evolutionary trajectory of the full genotypic recursions very well under allelic effects resulting in dominance reversal, even under strong selection. Predicted regions of SA polymorphism based on deterministic simulations using the genotypic recursions equations (\ref{eq:genRec}) are compared against the outcome of the invasion analysis for the haplotype recursions using the QE approximation (Eq \ref{eq:QEhapRec}) across a gradient of selfing ($C$) and recombination ($r$) rates. Green points indicate parameter conditions where deterministic simulations of the genotypic recursions (Sim.) and the invasion analysis based on eigenvalues for the QE haplotype approximations (Eig.) both predicted polymorphism. Red points indicate regions where the Sim.~predicted polymorphism but the Eig.~did not; and blue points indicate the opposite. The proportion of each outcome is shown in the upper left corner of each panel. Black solid lines show the invasion conditions based on the haplotype recursions using the QE approximation for the given values of $C$ and $r$, with lines drawn for both the two-locus and single-locus invasion conditions when $r > 0$.}
+\label{fig:domRevSim}
+\end{figure}
+\newpage{}
+
+
+\begin{figure}[H]
+\includegraphics[scale=0.75]{./Fig1wk}
+\caption{Under weak selection ($s_f,s_m < 0.1$), the parameter space where sexually antagonistic polymorphism is maintained is only expanded beyond the single-locus case when there is very tight linkage ($r \approx 0$). Thus, there is little scope for self-fertilization to influence sexually antagonistic polymorphism. Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--C), and dominance reversal ($h_i = 1/4$; panels D--F). In each panel, the shaded region between the black lines indicates the region of sexually antagonistic polymorphism for the single-locus case; grey lines indicate the thresholds for invasion for female-beneficial (lower lines) and male-beneficial (upper lines) alleles under complete linkage ($r = 0$).}
+\label{fig:wkFunnelPlots}
+\end{figure}
+\newpage{}
+
+
+\begin{figure}[H]
+\includegraphics[scale=0.8]{./Fig2wk}
+\caption{Under weak selection, the proportion of parameter space where SA polymorphism is maintained again declines with increased recombination and self-fertilization (panels A,C). The increase in SA polymorphism in the two-locus model relative to the single-locus case also declines with the recombination rate, but increases with the rate of self-fertilization (panels B,D). However, these effects are limited to cases of extremely tight linkage ($r < 0.004$). Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--B), and dominance reversal ($h_i = 1/4$; panels C--D). Results were obtained by evaluating the leading eigenvalues of $\mathbf{J}$ for populations initially fixed for the haplotypies $[AB]$ and $ab$ at 30,000 points distributed uniformly throughout parameter space defined by $s_m \times s_f$, where $s_f,s_m \in [0,0.1]$}
+\label{fig:wkPolymorhism}
+\end{figure}
+\newpage{}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Appendix C: Mathematica Notebook}
+\renewcommand{\theequation}{C\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand{\thefigure}{B\arabic{figure}}
+\setcounter{figure}{0}
+
+See attached Mathematica Notebook (.nb) file.
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{}
+
+\bibitem[{Abbott(2011)Abbott}]{Abbott2011}
+Abbott, J.~K. 2011.
+\newblock Intralocus sexual conflict and sexually antagonistic genetic variation in hermaphroditic animals.
+\newblock Proc. R. Soc. B 278:161–-169.
+
+\bibitem[{Agrawal and Whitlock(2011)Agrawal and Whitlock}]{AgrawalWhitlock2011}
+Agrawal, A.~F., and M.~C. Whitlock. 2011.
+\newblock Inferences about the distribution of dominance drawn from yeast gene knockout data.
+\newblock Genetics 178:553--566.
+
+\bibitem[{Barrett(2002)Barrett}]{Barrett2002}
+Barrett, S.~C.~H. 2002.
+\newblock Sexual interference of the floral kind.
+\newblock Heredity 88:154–-159.
+
+\bibitem[{Barson et~al.(2015)Barson et al. 2015}]{Barson2015}
+Barson, N.~J. \textit{et~al}. 2015.
+\newblock Sex-dependent dominance at a single locus maintains variation in age at maturity in Atlantic salmon.
+\newblock Nature 528:405--408.
+
+\bibitem[{Bonduriansky and Chenoweth(2009)Bonduriansky and Chenoweth}]{BondChen2009}
+Bonduriansky, R. and S.~F. Chenoweth. 2009.
+\newblock intralocus sexual conflict.
+\newblock Trends in Ecology and Evolution 24:280--288.
+
+\bibitem[{Caballero and Hill(1992)Caballero and Hill}]{CaballeroHill1992}
+Caballero, A. and W.~G. Hill. 1992.
+\newblock Effects of partial inbreeding on fixation rates and variation of mutant genes.
+\newblock Genetics 131:493--507.
+
+\bibitem[{Charlesworth and Charlesworth(1978)Charlesworth and Charlesworth}]{Charlesworth1978}
+Charlesworth, D. and B. Charlesworth. 1978.
+\newblock Population genetics of partial male-sterility and the evolution of monoecy and dioecy.
+\newblock Heredity 41:137--153.
+
+\bibitem[{Connallon and Clark(2011)Connallon and Clark}]{ConnClark2011}
+Connallon, T. and A.~G. Clark. 2011.
+\newblock The resolution of sexual antagonism by gene duplication
+\newblock Genetics 187:919--937.
+
+\bibitem[{Connallon and Clark(2012)Connallon and Clark}]{ConnClark2012}
+Connallon, T. and A.~G. Clark. 2012.
+\newblock A general population genetic framework for antagonistic selection that accounts for demography and recurrent mutation.
+\newblock Genetics 190:1477--1489.
+
+\bibitem[{Connallon and Clark(2014)Connallon and Clark}]{ConnClark2014}
+Connallon, T. and A.~G. Clark. 2014b.
+\newblock Balancing selection in species with separate sexes: insights from Fisher's geometric model.
+\newblock Genetics 197:991--1006.
+
+\bibitem[{Conner(2006)Conner}]{Conner2006}
+Conner, J. 2006.
+\newblock Ecological genetics of floral evolution.
+\newblock Pp. 260-–277 in L.~D. Harder and S.~C.~H. Barrett, \textit{eds}. The ecology and evolution of flowers. Oxford Univ. Press, New York.
+
+\bibitem[{Cox and Calsbeek(2010)Cox and Calsbeek}]{CoxCals2010}
+Cox, R.~M. and R. Calsbeek. 2010.
+\newblock Cryptic sex-ratio bias provides indirect genetic benefits despite sexual conflict.
+\newblock Science 328:92--94.
+
+\bibitem[{Fisher(1930)Fisher}]{Fisher1930}
+Fisher, R.~A. 1930.
+\newblock The genetical theory of natural selection.
+\newblock Clarendon Press, Oxford, U.K.
+
+\bibitem[{Fry(2010)Fry}]{Fry2010}
+Fry, J.~D. 2010.
+\newblock The genomic location of sexually antagonistic variation: some cautionary comments.
+\newblock Evolution 64:1510-1516.
+
+\bibitem[{Goodwillie et al.(2005)Goodwillie et al.}]{Goodwillie2005}
+Goodwillie, C., S. Kalisz, and C.~G. Eckert. 2005.
+\newblock The evolutionary enigma of mixed mating systems in plants: occurrence, theoretical explanations, and empirical evidence.
+\newblock Ann. Rev. Ecol. Evol. Syst. 36:47--79.
+
+\bibitem[{Harder et al.(2007)Harder et al.}]{HarderRoutley2007}
+Harder, L.~D., S.~A. Richards, and M.~B. Routley. 2007.
+\newblock Effects of reproductive compensation, gamete discounting, and reproductive assurance on mating-system diversity in hermaphrodites.
+\newblock Evolution 62:157--172.
+
+\bibitem[{Harder and Barrett(2006)Harder and Barrett}]{HarderBarrett2006} %Need to choose chapter!
+Harder, L.~D. and S.~C.~H. Barrett. 2006.
+\newblock Ecology and evolution of flowers.
+\newblock Oxford Univ. Press, Oxford, U.K.
+
+\bibitem[{Holden(1979)Holden}]{Holden1979}
+Holden, L.~R. 1979.
+\newblock New properties of the two-locus partial selfing model with selection.
+\newblock Genetics 93:217--236.
+
+\bibitem[{Holsinger(1991)Holsinger}]{Holsinger1991}
+Holsinger, K.~E. 1991.
+\newblock Mass-action models of plant mating systems: the evolutionary stability of mixed mating systems.
+\newblock American Naturalist 138:606--622.
+
+\bibitem[{Igic and Kohn(2005)Igic and Kohn}]{Igic2005}
+Igic, B. and J.~R. Kohn. 2005.
+\newblock The distribution of plant mating systems: study bias against obligately outcrossing species.
+\newblock Evolution 60:1098--1103.
+
+\bibitem[{Jarne and Auld(2006)Jarne and Auld}]{JarneAuld2006}
+Jarne, P. and J.~R. Auld. 2006.
+\newblock Animals mix it up too: the distribution of self-fertilization among hermaphroditic animals.
+\newblock Evolution 60:1816--1824.
+
+\bibitem[{Jordan and Connallon(2014)Jordan and Connallon}]{JordanConn2014}
+Jordan, C.~Y. and T. Connallon. 2014.
+\newblock Sexually antagonistic polymorphism in simultaneous hermaphrod-\\ites.
+\newblock Evolution 68:3555--3569.
+
+\bibitem[{Jordan and Charlesworth(2011)Jordan and Charlesworth}]{JordanChar2011}
+Jordan, C.~Y. and D. Charlesworth. 2011.
+\newblock The potential for sexually antagonistic polymorphism in different genome regions.
+\newblock Evolution 66:505--516.
+
+\bibitem[{Kidwell et~al.(1977)Kidwell, Clegg, Stewart, and Prout}]{Kidwell1977}
+Kidwell, J.~F., M.~T. Clegg, F.~M. Stewart, and T. Prout. 1977.
+\newblock Regions of stable equilibria for models of differential selection in the two sexes under random mating.
+\newblock Genetics 85:171--183.
+
+\bibitem[{Kimura and Ohta(1971)Kimura and Ohta}]{KimuraOhta1971}
+Kimura, M. and T. Ohta. 1971.
+\newblock Theoretical aspects of population genetics.
+\newblock Princeton University Press, Princeton, New Jersey, USA.
+
+\bibitem[{Kokko and Jennions(2008)Kokko and Jennions}]{KokkoJennions2008}
+Kokko, H. and M.~D. Jennions. 2008.
+\newblock Parental investment, sexual selection, and sex ratios.
+\newblock J. Evol. Biol. 21:919--948.
+
+\bibitem[{Lloyd(1979)Lloyd}]{Lloyd1979}
+Lloyd, D.~G. 1979.
+\newblock Some reproductive factors affecting the selection of self-fertilization in plants.
+\newblock American Naturalist. 113:67--79.
+
+\bibitem[{Lloyd and Webb(1986)Lloyd and Webb}]{LloydWebb1986}
+Lloyd, D.~G. and C.~J. Webb. 1986.
+\newblock The avoidance of interference between the presentation of pollen and stigmas in angiosperms I. Dichogamy.
+\newblock NZ J. Bot. 24:135--162.
+
+\bibitem[{Manna et~al.(2011)Manna et~al.}]{Manna2011}
+Manna, F., G. Martin, and T. Lenormand. 2011.
+\newblock Fitness landscapes: an alternative theory for the dominance of mutation.
+\newblock Genetics 189:923--937.
+
+\bibitem[{Nagylaki(1997)Nagylaki}]{Nagylaki1997}
+Nagylaki, T. 1997.
+\newblock The diffusion model for migration and selection in a plant population.
+\newblock Journal of Mathematical Biology 35:409--431.
+
+\bibitem[{Otto and Day(2007)Otto and Day}]{OttoDay2007}
+Otto, S.~P. and T. Day. 2007.
+\newblock A biologist's guide to mathematical modeling in ecology and evolution.
+\newblock Princeton University Press, Princeton, New Jersey, USA.
+
+\bibitem[{Parker(1979)Parker}]{Parker1979}
+Parker, G.~A. 1979.
+\newblock Sexual selection and sexual conflict.
+\newblock Pp. 123--166 \textit{in} M.~S. Blum and N.~A. Blum, eds. Sexual Selection and Reproductive Competition in Insects. Academic Press.
+
+\bibitem[{Patten et~al.(2010)Patten et~al.}]{Patten2010}
+Patten, M.~M., D. Haig, and F. \'{U}beda. 2010.
+\newblock Fitness variation due to sexual antagonism and linkage disequilibrium.
+\newblock Evolution 64:3638--3642.
+
+\bibitem[{Porcher and Lande(2005)Porcher and Lande}]{PorcherLande2005}
+Porcher, E. and R. Lande. 2005.
+\newblock Reproductive compensation in the evolution of plant mating systems.
+\newblock New Phytologist 166:673--684.
+
+\bibitem[{Prout(1968)Prout}]{Prout1968}
+Prout, T. 1968.
+\newblock Sufficient conditions for multiple niche polymorphism.
+\newblock American Naturalist 102:493--496.
+
+\bibitem[{Prout(2000)Prout}]{Prout2000}
+Prout, T. 2000.
+\newblock How well does opposing selection maintain variation?
+\newblock Pp. 157--203 \textit{in} R.~S. Singh and C.~B. Kimbras, eds. Evolutionary Genetics from molecules to morphology. Cambridge University Press, Cambridge, U.K.
+
+\bibitem[{Rice(1992)Rice}]{Rice1992}
+Rice, W.~R. 1992.
+\newblock Sexually antagonistic genes: experimental evidence.
+\newblock Science 256:1436--1439.
+
+\bibitem[{Rice and Chippindale(2001)Rice and Chippindale}]{RiceChipp2001}
+Rice, W.~R. and A.~K. Chippindale. 2001.
+\newblock Intersexual ontogenetic conflict.
+\newblock Journal of evolutionary biology 14:685--693.
+
+\bibitem[{Lande and Schemske(1985)Lande and Schemske}]{LandeSchemske1985}
+Schemske, D.~W. and R. Lande. 1985.
+\newblock The evolution of self-fertilization and inbreeding depression in plants. I. Genetic Models.
+\newblock Evolution 39:24--40.
+
+\bibitem[{Sicard and Lenhard(2011)Sicard and Lenhard}]{Sicard2011}
+Sicard, A. and M. Lenhard. 2011.
+\newblock The selfing syndrome: a model for studying the genetic and evolutionary basis of morphological adaptation in plants.
+\newblock Ann. Bot. 107:1433--1443.
+
+\bibitem[{Spencer and Priest(2016)Spencer and Priest}]{Spencer2016}
+Spencer, H.~G. and N.~K. Priest. 2016.
+\newblock The evolution of sex-specific dominance in response to sexually antagonistic selection.
+\newblock The American Naturalist 187:658--666.
+
+\bibitem[{Tazzyman and Abbott(2015)Tazzyman and Abbott}]{Tazzyman2015}
+Tazzyman, S.~J. and J.~K. Abbott. 2015.
+\newblock Self-fertilization and inbreeding limit the scope for sexually antagonisitc polymorphism.
+\newblock Journal of Evolutionary Biology 28:723--729.
+
+\bibitem[{\'Ubeda et~al.(2010)\'Ubeda et~al.}]{Ubeda2010}
+\'Ubeda, F., D. Haig, and M.~M. Patten. 2010.
+\newblock Stable linkage disequilibrium owing to sexual antagonism.
+\newblock Proc.~Roy.~Soc.~B DOI:10.1098/rspb.2010.12.
+
+\bibitem[{Webb and Lloyd(1986)Webb and Lloyd}]{WebbLloyd1986}
+Webb, C.~J. and D.~G. Lloyd. 1986.
+\newblock The avoidance of interference between the presentation of pollen and stigmas in angiosperms II. Herkogamy.
+\newblock NZ J. Bot. 24:163--178.
+
+\bibitem[{Wright et~al.(2008)Wright et~al.}]{Wright2008}
+Wright, S.~I., R.~W. Ness, J.~P. Foxe, and S.~C.~H. Barrett. 2008.
+\newblock Genomic consequences of outcrossing and selfing in plants.
+\newblock Int. J. Plant Sci. 169:105--118.
+
+
+\end{thebibliography}
 
 \end{document}

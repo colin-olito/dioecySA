@@ -28,10 +28,6 @@ source('R/functions-figures.R')
 source('R/functions-recSim-Gyno-Dom.R')
 
 ######################################
-#  Strong selection (sm,sf ~ [0,1])
-######################################
-
-######################################
 #  Additive effects (hf = hm = 0.5)
 
 #  Obligate Outcrossing (C = 0)
