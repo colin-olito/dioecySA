@@ -165,6 +165,7 @@ funnelSlice  <-  function(sm, C, delta, h = 0.5) {
             }
         }
     y[y > 1]  <-  1
+    y[y < 0]  <-  0
     y
 }
 

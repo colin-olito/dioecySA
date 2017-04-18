@@ -1,6 +1,9 @@
 \documentclass[9pt,twocolumn,twoside,lineno]{gsajnl}
 % Use the documentclass option 'lineno' to view line numbers
 
+% Equation numbering
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
 \articletype{inv} % article type
 % {inv} Investigation 
 % {gs} Genomic Selection
@@ -52,21 +55,83 @@ However, sterility mutations can be viewed as a class of strongly deleterious se
 
 
 
-\section{Materials and Methods}
+\section{Models}
 \label{sec:materials:methods}
 
-Manuscripts submitted to \textit{GENETICS} should contain a clear description of the experimental design in sufficient detail so that the experimental analysis could be repeated by another scientist. If the level of detail necessary to explain the protocol goes beyond two paragraphs, give a short description in the main body of the paper and prepare a detailed description for supporting information.  For example, details would include indicating how many individuals were used, and if applicable how individuals or groups were combined for analysis. If working with mutants indicate how many independent mutants were isolated. If working with populations indicate how samples were collected and whether they were random with respect to the target population.
+Following previous population genetic models of the evolution of dimorphic sexual systems \citep{Charlesworth1978}, we model the evolution of gyno- and androdioecy from an ancestral population of simultaneous hermaphrodites via the invasion of alleles causing complete male- and female-sterility. We restrict our analyses to four scenarios of biological interest: the evolution of (1) gynodioecy via invasion of a completely dominant male-sterility allele; (2) gynodioecy via invasion of a completely recessive male-sterility allele, (3) androdioecy via the invasion of a completely dominant female-sterility allele, and finally (4) androdioecy via the invasion of a completely recessive female-sterility allele. These scenarios represent 'corner cases' for both the phenotypic effect and the dominance of the sterility mutations. Alternative models allowing for partial sterility and/or dominance will likely yield evolutionary dynamics that are intermediate to our results. Here we briefly describe the simplest case (1) upon which we base most of our analytic results, and highlight only essential differences between (1) and the other three models. A full development of all models can be found in Appendix A, and all code necessary to reproduce the analyses are available in the Online Supporting Information, and at \url{https://github.com/colin-olito/dioecySA}.
+
+\subsection{Gynodioecy}
+Consider a genetic system involving two diallelic autosomal loci, $\mathbf{A}$ (with alleles $A$, $a$) and $\mathbf{M}$ (with alleles $M_1$, $M_2$), that recombine at rate $r$ in a large population of simultaneous hermaphrodites. Let us assume that the $\mathbf{A}$ locus is under sexually antagonistic selection, with the $A$ allele having female-beneficial (male-deleterious) fitness effects, and the $a$ allele having male-beneficial (female-deleterious) fitness effects. Let us also assume that the $M_1$ allele at the $\mathbf{M}$ locus is neutral, while the $M_2$ allele causes sterility through the male sex function (e.g., via cessation of pollen production, or the production of inviable pollen), and is completely dominant to the $M_1$ allele. In this genetic system, the successful invasion of the $M_2$ allele, either alone or coupled with an allele at the $\mathbf{A}$ locus as part of a haplotype, represents the evolution of gynodioecy from simultaneous hermaphroditism. 
+
+The population rate of self-fertilization, $C$, is assumed to be independent of the genotype at the $\mathbf{A}$ locus. In contrast, the genotype at the $\mathbf{M}$ locus determines whether or not self-fertilization is possible (after \citealt{Charlesworth1978}). We also assume a constant population level of inbreeding depression, $\delta$, defined as the decrease in the probability of survival of zygotes formed by self-fertilization relative to those produced by outcrossing. As noted by \citet{Charlesworth1978}, this assumption probably represents a conservative estimate of the effects of inbreeding depression. This is because inbreeding depression generally increases with the population rate of outcrossing \citep{Charlesworth2009}, and we are exploring the invasion of a sterility allele that increases the rate of outcrossing. Generations are assumed to be non-overlapping, and the life-cycle proceeds as follows: fertilization $\rightarrow$ inbreeding depression $\rightarrow$ selection $\rightarrow$ fertilization.
+
+Let $x_i$ and $y_i$ denote the frequencies of the four possible haplotypes $[AM_1,AM_2,aM_1,aM_2]$ in female and male gametes respectively. Under some circumstances, female unisexuals carring the $M_2$ allele may be able to re-allocate resources towards ovule production that would otherwise have been used for pollen production (\citealt{Lloyd1975,Lloyd1976,Charlesworth1978}). To account for this gametic compensation, let $k$ describe the proportional increase in ovule production in females relative to hermaphrodites. The fitness of offspring resulting from the union of the i$^{th}$ female and j$^{th}$ male gametic haplotype, are denoted $w^f_{ij}$ and $w^m_{ij}$ respectively, and are assumed to be the product of the fitness at $\mathbf{A}$ and $\mathbf{M}$ (Table \ref{tab:fitness}).
+
+\begin{table*}[htbp]
+\centering
+\caption{\bf Fitness expressions for selection on diploid adults prior to reproduction ($w^f_{ij}$ for females, $w^m_{ij}$ for males).}
+\begin{tableminipage}{\textwidth}
+\begin{tabularx}{\textwidth}{XXXXX}
+\hline
+Haplotype & $y_1 = AM_1$ & $y_2 = AM_2$ & $y_3 = aM_1$ & $y_4 = aM_2$ \\
+\hline
+Female-function & & & & \\
+$x_1 = AM_1$ & $1$ & $(1 + k)$ & $(1 - h_f s_f)$        & $(1 - h_f s_f)(1 + k)$ \\
+$x_2 = AM_2$ & $-$ & $(1 + k)$ & $(1 - h_f s_f)(1 + k)$ & $(1 - h_f s_f)(1 + k)$ \\
+$x_3 = aM_1$ & $-$ & $-$       & $(1 - s_f)$            & $(1 - s_f)(1 + k)$ \\
+$x_4 = aM_2$ & $-$ & $-$       & $-$                    & $(1 - s_f)(1 + k)$ \\
+Male-function & & & & \\
+$x_1 = AM_1$ & $(1 - s_m)$ & $0$ & $(1 - h_m s_m)$ & $0$ \\
+$x_2 = AM_2$ & $-$         & $0$ & $0$             & $0$ \\
+$x_3 = aM_1$ & $-$         & $-$ & $1$             & $0$ \\
+$x_4 = aM_2$ & $-$         & $-$ & $-$             & $0$ \\
+\hline
+\end{tabularx}
+  \label{tab:fitness}
+\end{tableminipage}
+{\footnotesize Note: Rows and columns indicate the haplotype inherited from mothers and fathers respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $ij$ row/column indexing used throughout the article.}
+\end{table*}
+
+Non-independence between an individual's genotype at the $\mathbf{M}$ locus and the ability to self-fertilize complicates the derivation of recursion equations describing evolutionary change in genotype frequencies. We therefore model the change in frequency of each genotype given the mode of transmission (either self-fertilization or outcrossing). This approach yields a system of $20$ recursion equations ($10$ genotypes $\times$ two modes of transmission). However, for the case of completely a dominant $M_2$ allele, the system of recursions reduces considerably. Let $F_{ij}$ equal the frequency among zygotes of the genotype formed by the union of the \textit{i}th female and \textit{j}th male gametic haplotype via outcrossing, and $G_{ij}$ be the same for zygotes formed via self-fertilization. The genotypic frequencies in the next generation among zygotes formed by outcross fertilization are then:
+\begin{align*} \label{eq:Fprimes}
+    F'_{11} &= (x_1 y_1) (1 - S) \\
+    F'_{12} &= (x_2 y_1) (1 - S) \\
+    F'_{13} &= (x_1 y_3 + x_3 y_1) (1 - S) \\
+    F'_{14} &= (x_4 y_1) (1 - S) \\
+    F'_{22} &= 0 \\
+    F'_{23} &= (x_2 y_3) (1 - S) \\
+    F'_{24} &= 0 \\
+    F'_{33} &= (x_3 y_3) (1 - S) \\
+    F'_{34} &= (x_4 y_3) (1 - S) \\
+    F'_{44} &= 0, \numberthis
+\end{align*}
+
+\noindent where $x_{ij}$ and $y_{ij}$ are functions $f(F_{ij},G_{ij},w^f_{ij},w^m_{ij},C,\delta,r)$ describing the haplotype frequencies among ovules and pollen, and $S$ is the proportion of all ovules produced by the population that are self-fertilized. The genotypic frequencies in the next generation among zygotes formed by self-fertilization are 
+\begin{align*} \label{eq:Gprimes}
+    G'_{11} &= S (o^S_{11} + o^S_{13}/4) \\
+    G'_{13} &= S (o^S_{13}/2) \\
+    G'_{33} &= S (o^S_{33} + o^S_{13}/4), \numberthis
+\end{align*}
+
+\noindent where $o^S_{ij}$ are functions $f(F_{ij},G_{ij},w^f_{ij},C,\delta)$ describing the proportional contribution of each genotype to self-fertilized ovules. All $G'_{ij} = 0$ where $ij \neq [11,13,33]$ (see Appendix A in the Online Supporting Information for a full derivation of all recursions). 
 
 
-\subsection{Statistical Analysis} 
+\subsection{Androdioecy}
 
-It is important to indicate what statistical analysis has been performed; not just the name of the software and options selected, but the method and model applied. In the case of many genes being examined simultaneously, or many phenotypes, a multiple comparison correction should be used to control the type I error rate, or a rationale for not applying a correction must be provided. The type of correction applied should be clearly stated. It should also be clear whether the p-values reported are raw, or after correction. Corrected p-values are often appropriate, but raw p-values should be available in the supporting materials so that others may perform their own corrections. In large scale data exploration studies (e.g. genome wide expression studies) a clear and complete description of the replication structure must be provided. 
+\subsection{Analyses}
+\begin{itemize}
+	\item Gynodioecy \& Androdioecy (dominant)
+	\begin{itemize}
+		\item invasion analyses
+		\item invasion into populations at 1-locus equilibrium.
+	\end{itemize}
+	\item Gynodioecy \& Androdioecy (recessive)
+	\begin{itemize}
+		\item Deterministic simulations
+	\end{itemize}
+	
+\end{itemize}
 
-\subsection{Data Availability}
-
-At the end of the Materials and Methods section, include a statement on reagent and data availability. Please read the Data and Reagent Policy before writing the statement. Make sure to list the accession numbers or DOIs of any data you have placed in public repositories. List the file names and descriptions of any data you will upload as supplemental information. The statement should also include any applicable IRB numbers. You may include specifications for how to properly acknowledge or cite the data.
-
-For example: Strains are available upon request. File S1 contains detailed descriptions of all supplemental files. File S2 contains SNP ID numbers and locations. File S3 contains genotypes for each individual. Sequence data are available at GenBank and the accession numbers are listed in File S3. Gene expression data are available at GEO with the accession number: GDS1234. Code used to generate the simulated data is provided in file S4. 
 
 
 \section{Results and Discussion}
@@ -137,27 +202,11 @@ Figure \ref{video:spectrum} shows how to include a video in your manuscript.
 
 \subsection{Sample Table}
 
-Table \ref{tab:shape-functions} shows an example table. Avoid shading, color type, line drawings, graphics, or other illustrations within tables. Use tables for data only; present drawings, graphics, and illustrations as separate figures. Histograms should not be used to present data that can be captured easily in text or small tables, as they take up much more space.  
+Table \ref{tab:fitness} shows an example table. Avoid shading, color type, line drawings, graphics, or other illustrations within tables. Use tables for data only; present drawings, graphics, and illustrations as separate figures. Histograms should not be used to present data that can be captured easily in text or small tables, as they take up much more space.  
 
 Tables numbers are given in Arabic numerals. Tables should not be numbered 1A, 1B, etc., but if necessary, interior parts of the table can be labeled A, B, etc. for easy reference in the text.  
 
 
-\begin{table*}[htbp]
-\centering
-\caption{\bf Students and their grades}
-\begin{tableminipage}{\textwidth}
-\begin{tabularx}{\textwidth}{XXXX}
-\hline
-Student & Grade\footnote{This is an example of a footnote in a table. Lowercase, superscript italic letters (a, b, c, etc.) are used by default. You can also use *, **, and *** to indicate conventional levels of statistical significance, explained below the table.} & Rank & Notes \\
-\hline
-Alice & 82\% & 1 & Performed very well.\\
-Bob & 65\% & 3 & Not up to his usual standard.\\
-Charlie & 73\% & 2 & A good attempt.\\
-\hline
-\end{tabularx}
-  \label{tab:shape-functions}
-\end{tableminipage}
-\end{table*}
 
 \section{Sample Equation}
 

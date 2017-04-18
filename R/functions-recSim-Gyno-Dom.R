@@ -451,27 +451,54 @@ recursionFwdSimLoop  <-  function(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0
 				##  Set initial frequencies to speed up convergence. 
 				if(par.list$sf > Inv.a.add(par.list$sm, par.list$C, par.list$delta)) {
 					Fii.init    <-  c((1 - C)*0.98,0,(1 - C)*0.01,(1 - C)*0.01,0,0,0,(1 - C)*0,0,0)
-					Gii.init    <-  c((C*0.98),0,(C*0.01),(C*0.01),0,0,0,(C*0),0,0)
+					Gii.init    <-  c((C*0.98),    0,(C*0.01),    (C*0.01),    0,0,0,(C*0),    0,0)
 				}
 				if(par.list$sf < Inv.A.add(par.list$sm, par.list$C, par.list$delta)) {
 					Fii.init    <-  c((1 - C)*0,0,(1 - C)*0.01,(1 - C)*0.01,0,0,0,(1 - C)*0.98,0,0)
-					Gii.init    <-  c((C*0),0,(C*0.01),(C*0.01),0,0,0,(C*0.98),0,0)
+					Gii.init    <-  c((C*0),    0,(C*0.01),    (C*0.01),    0,0,0,(C*0.98),    0,0)
 				}
 				if(par.list$sf < Inv.a.add(par.list$sm, par.list$C, par.list$delta) & 
 					   par.list$sf > Inv.A.add(par.list$sm, par.list$C, par.list$delta)) {
 					if(hm == 0.5 & hf == 0.5) {
 					   	qhat  <-  qHatAdd(par.list$C, par.list$delta, par.list$sf, par.list$sm)
 					   	QEs   <-  c(QE.FAA(q = qhat, C = par.list$C), QE.FAa(q = qhat, C = par.list$C), QE.Faa(q = qhat, C = par.list$C))
-					   	QEs  <- QEs - 0.01
-						Fii.init    <-  as.numeric(rounded(c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0), precision = 15))
-						Gii.init    <-  as.numeric(rounded(c(      C*QEs[1],       C*0.01,       C*QEs[2],       C*0.01, 0, 0, 0,       C*QEs[3],       C*0.01, 0), precision = 15))
+					   	if(C == 0) {
+						   	QEs[QEs == max(QEs)]  <-  max(QEs) - 0.03
+							Fii.init  <-  as.numeric(rounded(c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0), precision=5))
+							Gii.init  <-  as.numeric(rounded(c(      C*QEs[1],       C*0.01,       C*QEs[2],       C*0.01, 0, 0, 0,       C*QEs[3],       C*0.01, 0), precision=5))
+							Fii.init  <-  Fii.init/sum(Fii.init, Gii.init)
+							Gii.init  <-  Gii.init/sum(Fii.init, Gii.init)
+					   	}
+					   	else {
+					   		QEs   <-  QEs/sum(QEs)
+					   	   	QEs[QEs == max(QEs)]  <-  max(QEs) - 0.03
+							Fii.init  <-  c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0)
+							Gii.init  <-  c(      C*QEs[1],       C*0.01,       C*QEs[2],       C*0.01, 0, 0, 0,       C*QEs[3],       C*0.01, 0)
+							Fii.init  <-  Fii.init/sum(Fii.init, Gii.init)
+							Gii.init  <-  Gii.init/sum(Fii.init, Gii.init)
+						}
 					}
 					if(hf == hm & hm < 0.5 & hf < 0.5) {
 					   	qhat  <-  qHatDomRev(par.list$C, par.list$delta, par.list$sf, par.list$sm, par.list$hf)
 					   	QEs   <-  c(QE.FAA(q = qhat, C = par.list$C), QE.FAa(q = qhat, C = par.list$C), QE.Faa(q = qhat, C = par.list$C))
-					   	QEs  <- QEs - 0.01
-						Fii.init    <-  as.numeric(rounded(c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0), precision = 15))
-						Gii.init    <-  as.numeric(rounded(c(      C*QEs[1],       C*0.01,       C*QEs[2],       C*0.01, 0, 0, 0,       C*QEs[3],       C*0.01, 0), precision = 15))
+					   	if(C == 0) {
+						   	QEs[QEs == max(QEs)]  <-  max(QEs) - 0.03
+							Fii.init  <-  as.numeric(rounded(c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0), precision=8))
+							Gii.init  <-  as.numeric(rounded(c(      C*QEs[1],       C*0.01,       C*QEs[2],       C*0.01, 0, 0, 0,       C*QEs[3],       C*0.01, 0), precision=8))
+							Fii.init  <-  Fii.init/sum(Fii.init, Gii.init)
+							Gii.init  <-  Gii.init/sum(Fii.init, Gii.init)
+#							Fii.init  <-  as.numeric(rounded(Fii.init), precision=5)
+#							Gii.init  <-  as.numeric(rounded(Gii.init), precision=5)
+
+					   	}
+					   	else {
+					   		QEs   <-  QEs/sum(QEs)
+					   		QEs[QEs == max(QEs)]  <-  max(QEs) - 0.03
+							Fii.init  <-  c((1 - C)*QEs[1], (1 - C)*0.01, (1 - C)*QEs[2], (1 - C)*0.01, 0, 0, 0, (1 - C)*QEs[3], (1 - C)*0.01, 0)
+							Gii.init  <-  c(      C*QEs[1],       C*0.01,       C*QEs[2],       C*0.01, 0, 0, 0,       C*QEs[3],       C*0.01, 0)
+							Fii.init  <-  Fii.init/sum(Fii.init, Gii.init)
+							Gii.init  <-  Gii.init/sum(Fii.init, Gii.init)
+						}
 					}
 				}
 
@@ -511,7 +538,12 @@ recursionFwdSimLoop  <-  function(gen = 5000, C = 0, delta = 0, hf = 0.5, hm = 0
 	    	                    'G.11', 'G.12', 'G.13', 'G.14', 'G.22', 'G.23', 'G.24', 'G.33', 'G.34', 'G.44', 'qHat')
 	
 	#  Write results.df to .txt file
-	filename  <-  paste("./output/data/simResults/gyn-dom", "_C", C, "_delta", delta, "_add", "_strgSel", ".csv", sep="")
+	if(hm == hf & hf == 0.5) {
+		filename  <-  paste("./output/data/simResults/gyn-dom", "_C", C, "_delta", delta, "_add", ".csv", sep="")
+	}
+	if(hm == hf & hf == 0.25) {
+		filename  <-  paste("./output/data/simResults/gyn-dom", "_C", C, "_delta", delta, "_domRev", ".csv", sep="")
+	}
 	write.csv(results.df, file=filename, row.names = FALSE)
 
 	#  Return results.df in case user wants it
