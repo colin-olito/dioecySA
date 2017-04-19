@@ -1,4 +1,9 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{14}
+
+\bibitem[{Agrawal {\rm and} Whitlock}(2011)]{Agrawal2011}
+{Agrawal, A.~F. {\rm and} M.~C. Whitlock}, 2011 Inferences about the
+  distribution of dominance drawn from yeast gene knockout data.
+  Proc.~Roy.~Soc.~B. {\bf 278}: 161--169.
 
 \bibitem[{Charlesworth {\rm and} Charlesworth}(1978)]{Charlesworth1978}
 {Charlesworth, B. {\rm and} D.~Charlesworth}, 1978 A model for the evolution of
@@ -8,6 +13,21 @@
 {Charlesworth, D. {\rm and} J.~Willis}, 2009 The genetics of inbreeding
   depression. Nature Reviews Genetics {\bf 10}: 783--796.
 
+\bibitem[{Connallon {\rm and} Clark}(2014)]{ConnallonClark2014}
+{Connallon, T. {\rm and} A.~Clark}, 2014 Balancing selection in species with
+  separate sexes: insights from fisher's geometric model. Genetics {\bf 197}:
+  991--1006.
+
+\bibitem[{Jordan {\rm and} Connallon}(2014)]{JordanConnallon2014}
+{Jordan, C.~Y. {\rm and} T.~Connallon}, 2014 Sexually antagonistic polymorphism
+  in simultaneous hermaphrodites. Evolution {\bf 68}: 3555--3569.
+
+\bibitem[{Kidwell {\em et~al.\/}}(1977){Kidwell, Clegg, Stewart, {\rm and}
+  Prout}]{Kidwell1977}
+{Kidwell, J.~F., M.~T. Clegg, F.~M. Stewart, {\rm and} T.~Prout}, 1977 Regions
+  of stable equilibria for models of selection in the two sexes under random
+  mating. Genetics {\bf 85}: 171--183.
+
 \bibitem[{Lloyd}(1975)]{Lloyd1975}
 {Lloyd, D.~G.}, 1975 The maintenance of gynodioecy and androdioecy in
   angiosperms. Genetica {\bf 45}: 325--339.
@@ -16,10 +36,31 @@
 {Lloyd, D.~G.}, 1976 The transmission of genes via pollen and ovules in
   gynodioecious angiosperms. Theor. Pop. Biol. {\bf 9}: 299--316.
 
+\bibitem[{Manna {\em et~al.\/}}(2011){Manna, Martin, {\rm and}
+  Lenormand}]{Manna2011}
+{Manna, F., G.~Martin, {\rm and} T.~Lenormand}, 2011 Fitness landscapes: an
+  alternative theory for the dominance of mutation. Genetics {\bf 189}:
+  923--937.
+
 \bibitem[{Neher {\rm and} Hallatschek}(2013)]{neher2013genealogies}
 {Neher, R.~A. {\rm and} O.~Hallatschek}, 2013 Genealogies of rapidly adapting
   populations. Proceedings of the National Academy of Sciences {\bf 110}:
   437--442.
+
+\bibitem[{Otto {\rm and} Day}(2007)]{OttoDay2007}
+{Otto, S. {\rm and} T.~Day}, 2007 {\em A biologist's guide to mathematical
+  modeling in ecology and evolution\/}. Princeton University Press, New Jersey,
+  USA.
+
+\bibitem[{Prout}(1968)]{Prout1968}
+{Prout, T.}, 1968 Sufficient conditions for multiple niche polymorphism.
+  American Naturalist {\bf 102}: 493--496.
+
+\bibitem[{Prout}(2000)]{Prout2000}
+{Prout, T.}, 2000 How well does opposing selection maintain variation? In {\em
+  Evolutionary genetics from molecules to morphology\/}, edited by R.~S. Singh
+  {\rm and} C.~B. Kimbras, pp. 157--203, Cambridge University Press, Cambridge,
+  U.K.
 
 \bibitem[{R{\"o}delsperger {\em et~al.\/}}(2014){R{\"o}delsperger, Neher,
   Weller, Eberhardt, Witte, Mayer, Dieterich, {\rm and}
