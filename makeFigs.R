@@ -18,6 +18,7 @@ rm(list=ls())
 library(extrafont)
 library(fontcm)
 loadfonts(quiet = TRUE)
+library(plyr)
 
 #source('paths.R')
 source('R/functions-analyses.R')
@@ -52,5 +53,24 @@ source('R/functions-figures.R')
 # Exploratory Figures
 ######################
 
-toPdf(EQInv.ObOut.Add.Gyno.Dom(), figPath(name='EQInv-ObOut-Add-Gyno-Dom.pdf'), width=6, height=10)
-embed_fonts(figPath(name='EQInv-ObOut-Add-Gyno-Dom.pdf'))
+##  Series of plots for Gynodioecy Dominant EQ invasion analyses 
+  # Obligate Outcrossing
+  toPdf(EQInv.ObOut.Add.Gyno.Dom(), figPath(name='EQInv-ObOut-Add-Gyno-Dom.pdf'), width=6, height=10)
+  embed_fonts(figPath(name='EQInv-ObOut-Add-Gyno-Dom.pdf'))
+
+  # Partial Selfing
+  toPdf(EQInv.PartSelf.Add.Gyno.Dom(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta20-strgSel-Add-EQInv.csv"), 
+     	  figPath(name='EQInv-PartSelf-Add-Gyno-Dom-C0.25-delta0.2.pdf'), width=8, height=10)
+  embed_fonts(figPath(name='EQInv-PartSelf-Add-Gyno-Dom-C0.25-delta0.2.pdf'))
+
+  toPdf(EQInv.PartSelf.Add.Gyno.Dom(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv"), 
+		  figPath(name='EQInv-PartSelf-Add-Gyno-Dom-C0.25-delta0.8.pdf'), width=8, height=10)
+  embed_fonts(figPath(name='EQInv-PartSelf-Add-Gyno-Dom-C0.25-delta0.8.pdf'))
+
+  toPdf(EQInv.PartSelf.Add.Gyno.Dom(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta20-strgSel-Add-EQInv.csv"), 
+		  figPath(name='EQInv-PartSelf-Add-Gyno-Dom-C0.75-delta0.2.pdf'), width=8, height=10)
+  embed_fonts(figPath(name='EQInv-PartSelf-Add-Gyno-Dom-C0.75-delta0.2.pdf'))
+
+  toPdf(EQInv.PartSelf.Add.Gyno.Dom(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta80-strgSel-Add-EQInv.csv"), 
+		  figPath(name='EQInv-PartSelf-Add-Gyno-Dom-C0.75-delta0.8.pdf'), width=8, height=10)
+  embed_fonts(figPath(name='EQInv-PartSelf-Add-Gyno-Dom-C0.75-delta0.8.pdf'))
