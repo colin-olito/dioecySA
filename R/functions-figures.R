@@ -1,8 +1,8 @@
 ###############
 # DEPENDENCIES
 ###############
-# library(...)
-
+library(plyr)
+library(plotrix)
 
 #######################
 # AUXILLIARY FUNCTIONS
@@ -114,8 +114,6 @@ transparentColor <- function(col, opacity=0.5) {
 }
 
 
-
-
 #' Creates a vector of sf values spaced across a slice of funnelplots for a given sm value
 #'
 #' @title Creates a vector of sf values spaced across a slice of funnelplots for a given sm value
@@ -172,14 +170,335 @@ funnelSlice  <-  function(sm, C, delta, h = 0.5) {
 
 ##############################################################
 ##############################################################
-##  Exploratory figures
+##  Final figures for paper
+
+#' Multipanel plot summarizing results for invasion of sterility alleles into 
+#' populations at 1-locus EQ for the SA locus
+#'
+#' @title Figure 1
+#' @author Colin Olito.
+#' @export
+Fig.1  <-  function() {
+
+    # Import data
+    data1  <-  read.csv("./output/data/EQInvAnalyses/Gyn-ObOut-Add-EQInv.csv", header=TRUE)
+    data2  <-  read.csv("./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv", header=TRUE)
+    data3  <-  read.csv("./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta20-strgSel-Add-EQInv.csv", header=TRUE)
+    data4  <-  read.csv("./output/data/EQInvAnalyses/And-ObOut-Add-EQInv.csv", header=TRUE)
+
+    # Calculate Pr(Inv) for each data set
+    d1  <-  ddply(data1, ~ k*r, summarize, pInv=(sum(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
+    d2  <-  ddply(data2, ~ k*r, summarize, pInv=(sum(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
+    d3  <-  ddply(data3, ~ k*r, summarize, pInv=(sum(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
+    d4  <-  ddply(data4, ~ k*r, summarize, pInv=(sum(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
+    # correct inconclusive Eigenvalue evaluations
+    d1$pInv[d1$k == max(d1$k)]  <-  1
+    d2$pInv[d2$k == max(d2$k)]  <-  1
+    d4$pInv[d4$k == max(d4$k)]  <-  1
+
+    # Color scheme
+    COLS  <-  c(transparentColor('dodgerblue4', opacity=0.75),
+                transparentColor('darkolivegreen', opacity=0.75),
+                transparentColor('tomato2', opacity=0.75),
+                transparentColor('dodgerblue2', opacity=0.75))
+    COLS.bg  <-  c(transparentColor('dodgerblue4', opacity=0.5),
+                transparentColor('darkolivegreen', opacity=0.5),
+                transparentColor('tomato2', opacity=0.5),
+                transparentColor('dodgerblue2', opacity=0.5))
+
+    # k index for easy plotting
+    ks1  <-  unique(d1$k)
+    ks2  <-  unique(d2$k)
+    ks3  <-  unique(d3$k)
+    ks4  <-  unique(d4$k)
+
+    # Set plot layout
+    layout.mat <- matrix(c(1:6), nrow=3, ncol=2, byrow=FALSE)
+    layout <- layout(layout.mat,respect=TRUE)
+
+##  Column 1: Gynodioecy
+    ##  Panel 1: Obligate Outcrossing
+        # Calculate pretty x-values for plotting
+        x  <-  unique(d1$r)
+        xgap  <-  ifelse(x>0.2,x-0.3,x)
+        xat  <-  pretty(xgap)
+        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
+        # make plot
+        par(omi=rep(0.3, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot points
+        lines(pInv[k==ks1[1]] ~ xat, col=COLS[3], lwd=2, data=d1)
+        lines(pInv[k==ks1[2]] ~ xat, col=COLS[2], lwd=2, data=d1)
+        lines(pInv[k==ks1[3]] ~ xat, col=COLS[1], lwd=2, data=d1)
+        points(pInv[k==ks1[1]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d1)
+        points(pInv[k==ks1[2]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d1)
+        points(pInv[k==ks1[3]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d1)
+        # axes
+        axis(1, las=1, at=xat, labels=NA)
+        axis(2, las=1)
+        axis.break(1,0.175)
+        axis.break(1,0.125)
+        # Plot labels etc.
+        proportionalLabel(0.5, 1.25, expression(paste("Gynodioecy")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.075, expression(paste(C," = 0")), cex=1, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.325, 0.5, expression(paste(Pr(inv))), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        legend(
+              x       =  usr[2]*0.5,
+              y       =  usr[4]*0.35,
+              legend  =  c(
+                          expression(paste(italic(k)~"="~1.0)),
+                          expression(paste(italic(k)~"="~0.875)),
+                          expression(paste(italic(k)~"="~0.75))),
+              pch     =  c(21,21,21),
+              pt.bg   =  c(COLS[1],COLS[2],COLS[3]),
+              col     =  c(COLS[1],COLS[2],COLS[3]),
+              cex     =  1,
+              xjust   =  1,
+              yjust   =  1,
+              bty     =  'n',
+              border  =  NA
+    )
+
+    ##  Panel 2: Low Selfing, High Inbreeding Depression
+        # Calculate pretty x-values for plotting
+        x  <-  unique(d2$r)
+        xgap  <-  ifelse(x>0.2,x-0.3,x)
+        xat  <-  pretty(xgap)
+        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
+        # make plot
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot points
+        lines(pInv[k==ks2[1]] ~ xat, col=COLS[4], lwd=2, data=d2)
+        lines(pInv[k==ks2[2]] ~ xat, col=COLS[3], lwd=2, data=d2)
+        lines(pInv[k==ks2[3]] ~ xat, col=COLS[2], lwd=2, data=d2)
+        lines(pInv[k==ks2[4]] ~ xat, col=COLS[1], lwd=2, data=d2)
+        points(pInv[k==ks2[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d2)
+        points(pInv[k==ks2[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d2)
+        points(pInv[k==ks2[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d2)
+        points(pInv[k==ks2[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d2)
+        # axes
+        axis(1, las=1, at=xat, labels=NA)
+        axis(2, las=1)
+        axis.break(1,0.175)
+        axis.break(1,0.125)
+        # Plot labels etc.
+        proportionalLabel(0.05, 1.075, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 4/5")), cex=1, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.325, 0.5, expression(paste(Pr(inv))), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+#        legend(
+#              x       =  usr[2]*0.45,
+#              y       =  usr[4]*0.35,
+#              legend  =  c(
+#                          expression(paste(hat(k))),
+#                          expression(paste(hat(k)-0.1)),
+#                          expression(paste(hat(k)-0.2)),
+#                          expression(paste(hat(k)-0.3))),
+#              pch     =  c(21,21,21),
+#              pt.bg   =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
+#              col     =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
+#              cex     =  1,
+#              xjust   =  1,
+#              yjust   =  1,
+#              bty     =  'n',
+#              border  =  NA
+#    )
+
+    ##  Panel 3: High Selfing, Low Inbreeding Depression
+        # Calculate pretty x-values for plotting
+        x  <-  unique(d3$r)
+        xgap  <-  ifelse(x>0.2,x-0.3,x)
+        xat  <-  pretty(xgap)
+        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
+        # make plot
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot points
+        lines(pInv[k==ks3[1]] ~ xat, col=COLS[4], lwd=2, data=d3)
+        lines(pInv[k==ks3[2]] ~ xat, col=COLS[3], lwd=2, data=d3)
+        lines(pInv[k==ks3[3]] ~ xat, col=COLS[2], lwd=2, data=d3)
+        lines(pInv[k==ks3[4]] ~ xat, col=COLS[1], lwd=2, data=d3)
+        points(pInv[k==ks3[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d3)
+        points(pInv[k==ks3[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d3)
+        points(pInv[k==ks3[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d3)
+        points(pInv[k==ks3[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d3)
+        # axes
+        axis(1, las=1, at=xat, labels=xlab)
+        axis(2, las=1)
+        axis.break(1,0.175)
+        axis.break(1,0.125)
+        # Plot labels etc.
+        proportionalLabel(0.05, 1.075, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5,  1.075, expression(paste(C," = 3/4, ",delta," = 1/5")), cex=1, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.325, 0.5, expression(paste(Pr(inv))), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(0.5, -0.3, expression(paste(italic(r))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        legend(
+              x       =  usr[2]*0.975,
+              y       =  usr[4]*1.03,
+              legend  =  c(
+                          expression(paste(hat(italic(k)))),
+                          expression(paste(hat(italic(k))-0.1)),
+                          expression(paste(hat(italic(k))-0.2)),
+                          expression(paste(hat(italic(k))-0.3))),
+              pch     =  c(21,21,21),
+              pt.bg   =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
+              col     =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
+              cex     =  1,
+              xjust   =  1,
+              yjust   =  1,
+              bty     =  'n',
+              border  =  NA
+    )
+
+##  Column 2: Androdioecy
+    ##  Panel 4: Obligate Outcrossing
+        # Calculate pretty x-values for plotting
+        x  <-  unique(d4$r)
+        xgap  <-  ifelse(x>0.2,x-0.3,x)
+        xat  <-  pretty(xgap)
+        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
+        # make plot
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot points
+        lines(pInv[k==ks1[1]] ~ xat, col=COLS[3], lwd=2, data=d4)
+        lines(pInv[k==ks1[2]] ~ xat, col=COLS[2], lwd=2, data=d4)
+        lines(pInv[k==ks1[3]] ~ xat, col=COLS[1], lwd=2, data=d4)
+        points(pInv[k==ks1[1]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d4)
+        points(pInv[k==ks1[2]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d4)
+        points(pInv[k==ks1[3]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d4)
+        # axes
+        axis(1, las=1, at=xat, labels=NA)
+        axis(2, las=1, labels=NA)
+        axis.break(1,0.175)
+        axis.break(1,0.125)
+        # Plot labels etc.
+        proportionalLabel(0.5, 1.25, expression(paste("Androdioecy")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.075, expression(paste(C," = 0")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+
+    ##  Panel 5: Low Selfing, High Inbreeding Depression
+        # Calculate pretty x-values for plotting
+        x  <-  unique(d5$r)
+        xgap  <-  ifelse(x>0.2,x-0.3,x)
+        xat  <-  pretty(xgap)
+        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
+        # make plot
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot points
+        lines(pInv[k==ks5[1]] ~ xat, col=COLS[4], lwd=2, data=d5)
+        lines(pInv[k==ks5[2]] ~ xat, col=COLS[3], lwd=2, data=d5)
+        lines(pInv[k==ks5[3]] ~ xat, col=COLS[2], lwd=2, data=d5)
+        lines(pInv[k==ks5[4]] ~ xat, col=COLS[1], lwd=2, data=d5)
+        points(pInv[k==ks5[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d5)
+        points(pInv[k==ks5[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d5)
+        points(pInv[k==ks5[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d5)
+        points(pInv[k==ks5[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d5)
+        # axes
+        axis(1, las=1, at=xat, labels=NA)
+        axis(2, las=1, labels=NA)
+        axis.break(1,0.175)
+        axis.break(1,0.125)
+        # Plot labels etc.
+        proportionalLabel(0.05, 1.075, 'E', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 0.8")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+#        legend(
+#              x       =  usr[2]*0.45,
+#              y       =  usr[4]*0.35,
+#              legend  =  c(
+#                          expression(paste(hat(k))),
+#                          expression(paste(hat(k)-0.1)),
+#                          expression(paste(hat(k)-0.2)),
+#                          expression(paste(hat(k)-0.3))),
+#              pch     =  c(21,21,21),
+#              pt.bg   =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
+#              col     =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
+#              cex     =  1,
+#              xjust   =  1,
+#              yjust   =  1,
+#              bty     =  'n',
+#              border  =  NA
+#    )
+
+    ##  Panel 6: High Selfing, Low Inbreeding Depression
+        # Calculate pretty x-values for plotting
+        x  <-  unique(d6$r)
+        xgap  <-  ifelse(x>0.2,x-0.3,x)
+        xat  <-  pretty(xgap)
+        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
+        # make plot
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot points
+        lines(pInv[k==ks6[1]] ~ xat, col=COLS[4], lwd=2, data=d6)
+        lines(pInv[k==ks6[2]] ~ xat, col=COLS[3], lwd=2, data=d6)
+        lines(pInv[k==ks6[3]] ~ xat, col=COLS[2], lwd=2, data=d6)
+        lines(pInv[k==ks6[4]] ~ xat, col=COLS[1], lwd=2, data=d6)
+        points(pInv[k==ks6[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d6)
+        points(pInv[k==ks6[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d6)
+        points(pInv[k==ks6[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d6)
+        points(pInv[k==ks6[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d6)
+        # axes
+        axis(1, las=1, at=xat, labels=xlab)
+        axis(2, las=1, labels=NA)
+        axis.break(1,0.175)
+        axis.break(1,0.125)
+        # Plot labels etc.
+        proportionalLabel(0.05, 1.075, 'F', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 0.2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, -0.35, expression(paste(italic(r))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+#        legend(
+#              x       =  usr[2]*0.45,
+#              y       =  usr[4]*0.35,
+#              legend  =  c(
+#                          expression(paste(hat(k))),
+#                          expression(paste(hat(k)-0.1)),
+#                          expression(paste(hat(k)-0.2)),
+#                          expression(paste(hat(k)-0.3))),
+#              pch     =  c(21,21,21),
+#              pt.bg   =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
+#              col     =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
+#              cex     =  1,
+#              xjust   =  1,
+#              yjust   =  1,
+#              bty     =  'n',
+#              border  =  NA
+#    )
+
+}
 
 
+
+##############################################################
+##############################################################
+##  Exploratory plots
 
 #' Exploratory plots: Invasion of dominant sterility allele into populations at 1-locus SA equilibrium. 
 #'                    -- Obligate outcrossing
 #'                    -- Additive fitness effects at SA locus
 #' @title Invasion of dominant sterility allele into populations
+#' @author Colin Olito
 #' @export
 EQInv.ObOut.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-ObOut-Add-EQInv.csv") {
 
@@ -191,7 +510,7 @@ EQInv.ObOut.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-ObOut-Add-EQIn
 
     # Calculate 1-locus SA invasion criteria to illustrate 
     # boundaries for polymorphic populations
-    sms  <-  seq(0,1,by=0.01)
+    sms  <-  seq(0,1,by=0.0001)
     Ainv  <-  Inv.A.add(sms, C=0, delta=0)
     Ainv[Ainv > 1]  <-  1.00001
     ainv  <-  Inv.a.add(sms, C=0, delta=0)
@@ -568,6 +887,7 @@ EQInv.ObOut.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-ObOut-Add-EQIn
 #'                    -- Partial Selfing
 #'                    -- Additive fitness effects at SA locus
 #' @title Invasion of dominant male sterility allele into populations
+#' @author Colin Olito
 #' @export
 EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta20-strgSel-Add-EQInv.csv") {
 

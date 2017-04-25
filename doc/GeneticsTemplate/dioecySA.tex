@@ -152,9 +152,9 @@ When the $M_2$ female-sterility allele is completely recessive, only $M_2M_2$ ho
 
 \subsection{Analyses}
 
-Our analyses address three main theoretical questions: (1) Under what parameter conditions can unisexuals invade a hermaphroditic population, when will stable polymorphism be maintained at the $\mathbf{A}$ locus, and how do these conditions differ from predictions from single-locus theory? (2) Does pre-existing SA polymorphism at the $\mathbf{A}$ locus facilitate the invasion of unisexuals? (3) How do the equilibrium frequencies of SA alleles at the $\mathbf{A}$ locus and unisexuals and differ from single-locus predictions? As in previous models of sexually antagonistic selection (e.g., \citealp{Kidwell1977,Prout2000,JordanConnallon2014}), we limit our analyses to the representative, and biologically interesting cases of additive fitness effects ($h_m = h_f = 1/2$), and dominance reversal ($h_m, h_f < 1/2$) at the $\mathbf{A}$ locus. These dominance scenarios are of particular interests because additive fitness effects are commonly observed for alleles with small to intermediate fitness effects \citep{Agrawal2011}, and dominance reversals are often predicted by fitness landscape models of dominance \citep{Manna2011, ConnallonClark2014}
+Our analyses address three main theoretical questions: (1) Under what parameter conditions can unisexuals invade hermaphroditic populations that are initially monomorphic at $\mathbf{A}$, and when will stable polymorphism be maintained at the $\mathbf{A}$ locus? (2) Does pre-existing SA polymorphism at the $\mathbf{A}$ locus facilitate the invasion of unisexuals? (3) How do the equilibrium frequencies of SA alleles at the $\mathbf{A}$ locus and unisexuals and differ from single-locus predictions? As in previous models of sexually antagonistic selection (e.g., \citealp{Kidwell1977,Prout2000,JordanConnallon2014}), we limit our analyses to the representative, and biologically interesting cases of additive fitness effects ($h_m = h_f = 1/2$), and dominance reversal ($h_m, h_f < 1/2$) at the $\mathbf{A}$ locus. These dominance scenarios are of particular interests because additive fitness effects are commonly observed for alleles with small to intermediate fitness effects \citep{Agrawal2011}, and dominance reversals are often predicted by fitness landscape models of dominance \citep{Manna2011, ConnallonClark2014}
 
-To identify the parameter conditions where balancing selection is predicted to maintain stable polymorphism at the $\mathbf{A}$ locus and unisexuals are able to invade, we evaluate the stability of the system of recursions for a populations initially fixed for the female-beneficial  or male-beneficial allele at the $\mathbf{A}$ locus, and the $M_1$ allele at the $\mathbf{M}$ locus. These conditions correspond to initial equilibrium genotypic frequencies among outcrossed and selfed zygotes of $F_{11} = (1 - C) [AAM_1M_1] = 1$, $F_{33} = (1 - C) [aaM_1M_1] = 1$, and $G_{11} = C [AAM_1M_1] = 1$, and $G_{33} = C [aaM_1M_1] = 1$. Under these initial conditions, the fate of new mutations is determined by the rate of change of the frequencies of rare genotypes, which can be approximated by one minus the leading eigenvalue of the Jacobian matrix of the system of recursions, $1 - \lambda_L$ \citep{OttoDay2007}. Balancing selection is predicted to maintain polymorphism when $\lambda_L > 1$ for both boundary equilibria \citep{Prout1968,OttoDay2007}. For the models involving dominant male- and female-sterility alleles, this analysis yields three analytically tractable candidate leading eigenvalues describing the invasion of a new mutation at each locus independently ($\lambda_\mathbf{A}$ and $\lambda_\mathbf{M}$), and the joint invasion of a double-mutant haplotype ($\lambda_\mathbf{AM}$). When sterility alleles are recessive, analysis of the eigenvalues yield inconclusive results for invasion of unisexuals because heterozygotes at the $\mathbf{M}$ locus are entirely sheltered from selection. We therefore present analytic results based on the eigenvalue analyses for the models of dominant sterility alleles only.
+To identify the parameter conditions where balancing selection is predicted to maintain stable polymorphism at the $\mathbf{A}$ locus and unisexuals are able to invade, we evaluate the stability of the system of recursions for a populations initially fixed for the female-beneficial or male-beneficial allele at the $\mathbf{A}$ locus, and the $M_1$ allele at the $\mathbf{M}$ locus. These conditions correspond to initial equilibrium genotypic frequencies among outcrossed and selfed zygotes of $F_{11} = (1 - C) [AAM_1M_1] = 1$, $F_{33} = (1 - C) [aaM_1M_1] = 1$, and $G_{11} = C [AAM_1M_1] = 1$, and $G_{33} = C [aaM_1M_1] = 1$. Under these initial conditions, the fate of new mutations is determined by the rate of change of the frequencies of rare genotypes, which can be approximated by one minus the leading eigenvalue of the Jacobian matrix of the system of recursions, $1 - \lambda_L$ \citep{OttoDay2007}. Balancing selection is predicted to maintain polymorphism when $\lambda_L > 1$ for both boundary equilibria \citep{Prout1968,OttoDay2007}. For the models involving dominant male- and female-sterility alleles, this analysis yields three analytically tractable candidate leading eigenvalues describing the invasion of a new mutation at each locus independently ($\lambda_\mathbf{A}$ and $\lambda_\mathbf{M}$), and the joint invasion of a double-mutant haplotype ($\lambda_\mathbf{AM}$). When sterility alleles are recessive, analysis of the eigenvalues yield inconclusive results for invasion of unisexuals because heterozygotes at the $\mathbf{M}$ locus are entirely sheltered from selection. We therefore present analytic results based on the eigenvalue analyses for the models of dominant sterility alleles only.
 
 To evaluate whether pre-existing SA polymorphism influences the invasion of unisexuals into a population of hermaphrodites, we evaluated whether the $M_2$ allele could invade populations initially at single-locus equilibrium for $\mathbf{A}$ and fixed for $M_1$ at $\mathbf{M}$. Specifically, we evaluated whether $\lambda_\mathbf{M} \rvert_{F^{\ast}_{ij},G^{\ast}_{ij}} > 1$ and $\lambda_\mathbf{AM} \rvert_{F^{\ast}_{ij},G^{\ast}_{ij}} > 1$, where $F^{\ast}_{ij}$ correspond to the single-locus equilibrium genotypic frequencies
 \begin{linenomath}\begin{align*}
@@ -173,7 +173,44 @@ A full development of all models can be found in Appendix A, and all code necess
 
 \section{Results}
 
-\subsection{Gynodioecy}
+\subsection{Invasion into monomorphic populations}
+
+We begin with the evolution of gynodioecy by the invasion of the dominant male-sterility allele, $M_2$, described in Eq(\ref{eq:FprGyn}) and Eq(\ref{eq:GprGyn}). For populations initially fixed for the $AAM_1M_1$ and $aaM_1M_1$ genotypes, three candidate leading eigenvalues emerged from the stability analysis that approximate the evolutionary trajectory of new mutants ($\lambda_A$, $\lambda_M$, and $\lambda_{AM}$). Solving for the conditions yielding $\lambda_A > 1$, we were able to recover the well known single-locus invasion criteria for SA alleles under obligate outcrossing \citep{Kidwell1977} and partial selfing \citep{JordanConnallon2014,Olito2017}, with either additive fitness effects, or dominance reversal. Solving for $\lambda_M > 1$ yielded the classic single-locus critera for the invasion of females into a population of hermaphrodites (Eq(4) in \citealt{Charlesworth1978a}):
+
+\begin{equation}\label{eq:1LocGyn}
+	k > 1 - 2 C \delta.
+\end{equation}
+
+\noindent The invasion conditions for a mutant haplotype bearing $M_2$ depend on whether the population is initially fixed for the female-beneficial ($A$) or male-beneficial ($a$) allele at $\mathbf{A}$. In both cases, solving $\lambda_{AM} > 1$ for $k$ yield expressions $f(C,\delta,s_f,r)$ of the same basic form as Eq(\ref{eq:1LocGyn}), in which $k$ is a decreasing function of $C \delta$. For populations initially fixed for $A$, the haplotype invasion conditions are always more restrictive (requiring larger $k$) than those described by Eq(\ref{eq:1LocGyn}), except in the limit of complete linkage and no selection against $a$ ($r=0$ and $s_f = 0$). However, for populations initially fixed for $a$, the invasion conditions become more permissive with either lower recombination, or stronger selection against $a$. Specifically, the conditions for the spread of mutant haplotypes bearing the $M_2$ allele become more permissive than Eq(\ref{eq:1LocGyn}) when 
+
+\begin{equation}\label{eq:2LocGyn}
+	\frac{2 r}{1 + r} < s_f.
+\end{equation}
+
+\noindent Eq(\ref{eq:2LocGyn}) shows that the invasion of females into a population of hermaphrodites can be quite sensitive to linkage with a nearby SA locus. When selection is relatively weak ($s_f = 0.1$), even modest linkage ($r\approx0.05$) can reduce the amount of reproductive compensation necessary for females to invade relative to the single-locus prediction. 
+
+The form of Eq(\ref{eq:2LocGyn}) also suggests that linkage with a sterility locus can influence the invasion of female-beneficial SA alleles. For example, under obligate outcrossing and additive fitness effects, the single-locus invasion condition for the female-beneficial allele, $A$, is $s_f < s_m / (1+s_m)$. Substituting Eq(\ref{eq:2LocGyn}) for $s_f$ and solving for $r$ yields
+
+\begin{equation}\label{eq:2LocGynSA}
+	r < \frac{s_m}{2 + s_m}.
+\end{equation}
+
+
+
+
+\subsection{Invasion of unisexuals into polymorphic populations}
+
+Figure \ref{fig:PrInv} shows the probability of invasion into populations initially at single-locus equilibrium....
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{Fig1}
+\caption{Invasion of unisexuals into populations with pre-existing SA polymorphism. }
+\label{fig:PrInv}
+\end{figure}
+
+
+\subsection{Equilibrium frequencies}
 
 \subsection{Androdioecy}
 
