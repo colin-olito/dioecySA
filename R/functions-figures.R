@@ -216,47 +216,52 @@ Fig.1  <-  function() {
     layout.mat <- matrix(c(1:6), nrow=3, ncol=2, byrow=FALSE)
     layout <- layout(layout.mat,respect=TRUE)
 
+
 ##  Column 1: Gynodioecy
     ##  Panel 1: Obligate Outcrossing
         # Calculate pretty x-values for plotting
         x  <-  unique(d1$r)
-        xgap  <-  ifelse(x>0.2,x-0.3,x)
-        xat  <-  pretty(xgap)
-        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
+        xat  <-  pretty(x)
+        xlab  <-  c(0.00, 0.01, 0.05, 0.10, 0.20, 0.50)
         # make plot
         par(omi=rep(0.3, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(x)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Plot points
-        lines(pInv[k==ks1[1]] ~ xat, col=COLS[3], lwd=2, data=d1)
-        lines(pInv[k==ks1[2]] ~ xat, col=COLS[2], lwd=2, data=d1)
-        lines(pInv[k==ks1[3]] ~ xat, col=COLS[1], lwd=2, data=d1)
-        points(pInv[k==ks1[1]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d1)
-        points(pInv[k==ks1[2]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d1)
-        points(pInv[k==ks1[3]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d1)
+        lines(pInv[k==ks1[1]]  ~ xat, col=COLS[4], lwd=2, data=d1)
+        lines(pInv[k==ks1[2]]  ~ xat, col=COLS[3], lwd=2, data=d1)
+        lines(pInv[k==ks1[3]]  ~ xat, col=COLS[2], lwd=2, data=d1)
+        lines(pInv[k==ks1[4]]  ~ xat, col=COLS[1], lwd=2, data=d1)
+        points(pInv[k==ks1[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d1)
+        points(pInv[k==ks1[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d1)
+        points(pInv[k==ks1[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d1)
+        points(pInv[k==ks1[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d1)
         # axes
         axis(1, las=1, at=xat, labels=NA)
         axis(2, las=1)
-        axis.break(1,0.175)
-        axis.break(1,0.125)
+        axis.break(1,0.15)
+        axis.break(1,0.25)
+        axis.break(1,0.35)
+        axis.break(1,0.45)
         # Plot labels etc.
         proportionalLabel(0.5, 1.25, expression(paste("Gynodioecy")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, 1.075, expression(paste(C," = 0")), cex=1, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.325, 0.5, expression(paste(Pr(inv))), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.325, 0.5, expression(paste(Fraction~parameter~space)), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         legend(
-              x       =  usr[2]*0.5,
-              y       =  usr[4]*0.35,
+              x       =  usr[2]*0.475,
+              y       =  usr[4]*0.4,
               legend  =  c(
-                          expression(paste(italic(k)~"="~1.0)),
-                          expression(paste(italic(k)~"="~0.875)),
-                          expression(paste(italic(k)~"="~0.75))),
-              pch     =  c(21,21,21),
-              pt.bg   =  c(COLS[1],COLS[2],COLS[3]),
-              col     =  c(COLS[1],COLS[2],COLS[3]),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%1.1)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.9)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.8)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.7))),
+              pch     =  c(21,21,21,21),
+              pt.bg   =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
+              col     =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
               cex     =  1,
               xjust   =  1,
               yjust   =  1,
@@ -267,11 +272,10 @@ Fig.1  <-  function() {
     ##  Panel 2: Low Selfing, High Inbreeding Depression
         # Calculate pretty x-values for plotting
         x  <-  unique(d2$r)
-        xgap  <-  ifelse(x>0.2,x-0.3,x)
-        xat  <-  pretty(xgap)
+        xat  <-  pretty(x)
         xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
         # make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(x)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -288,38 +292,22 @@ Fig.1  <-  function() {
         # axes
         axis(1, las=1, at=xat, labels=NA)
         axis(2, las=1)
-        axis.break(1,0.175)
-        axis.break(1,0.125)
+        axis.break(1,0.15)
+        axis.break(1,0.25)
+        axis.break(1,0.35)
+        axis.break(1,0.45)
         # Plot labels etc.
         proportionalLabel(0.05, 1.075, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 4/5")), cex=1, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.325, 0.5, expression(paste(Pr(inv))), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
-#        legend(
-#              x       =  usr[2]*0.45,
-#              y       =  usr[4]*0.35,
-#              legend  =  c(
-#                          expression(paste(hat(k))),
-#                          expression(paste(hat(k)-0.1)),
-#                          expression(paste(hat(k)-0.2)),
-#                          expression(paste(hat(k)-0.3))),
-#              pch     =  c(21,21,21),
-#              pt.bg   =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
-#              col     =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
-#              cex     =  1,
-#              xjust   =  1,
-#              yjust   =  1,
-#              bty     =  'n',
-#              border  =  NA
-#    )
+        proportionalLabel(-0.325, 0.5, expression(paste(Fraction~parameter~space)), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
 
     ##  Panel 3: High Selfing, Low Inbreeding Depression
         # Calculate pretty x-values for plotting
         x  <-  unique(d3$r)
-        xgap  <-  ifelse(x>0.2,x-0.3,x)
-        xat  <-  pretty(xgap)
+        xat  <-  pretty(x)
         xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
         # make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(x)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -334,32 +322,16 @@ Fig.1  <-  function() {
         points(pInv[k==ks3[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d3)
         points(pInv[k==ks3[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d3)
         # axes
-        axis(1, las=1, at=xat, labels=xlab)
+        axis(1, las=1, at=xat, labels=x)
         axis(2, las=1)
-        axis.break(1,0.175)
-        axis.break(1,0.125)
+        axis.break(1,0.15)
+        axis.break(1,0.25)
+        axis.break(1,0.35)
+        axis.break(1,0.45)
         # Plot labels etc.
         proportionalLabel(0.05, 1.075, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5,  1.075, expression(paste(C," = 3/4, ",delta," = 1/5")), cex=1, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.325, 0.5, expression(paste(Pr(inv))), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.5, -0.3, expression(paste(italic(r))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        legend(
-              x       =  usr[2]*0.975,
-              y       =  usr[4]*1.03,
-              legend  =  c(
-                          expression(paste(hat(italic(k)))),
-                          expression(paste(hat(italic(k))-0.1)),
-                          expression(paste(hat(italic(k))-0.2)),
-                          expression(paste(hat(italic(k))-0.3))),
-              pch     =  c(21,21,21),
-              pt.bg   =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
-              col     =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
-              cex     =  1,
-              xjust   =  1,
-              yjust   =  1,
-              bty     =  'n',
-              border  =  NA
-    )
+        proportionalLabel(-0.325, 0.5, expression(paste(Fraction~parameter~space)), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
 
 ##  Column 2: Androdioecy
     ##  Panel 4: Obligate Outcrossing
@@ -375,12 +347,12 @@ Fig.1  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Plot points
-        lines(pInv[k==ks1[1]] ~ xat, col=COLS[3], lwd=2, data=d4)
-        lines(pInv[k==ks1[2]] ~ xat, col=COLS[2], lwd=2, data=d4)
-        lines(pInv[k==ks1[3]] ~ xat, col=COLS[1], lwd=2, data=d4)
-        points(pInv[k==ks1[1]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d4)
-        points(pInv[k==ks1[2]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d4)
-        points(pInv[k==ks1[3]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d4)
+        lines(pInv[k==ks4[1]] ~ xat, col=COLS[3], lwd=2, data=d4)
+        lines(pInv[k==ks4[2]] ~ xat, col=COLS[2], lwd=2, data=d4)
+        lines(pInv[k==ks4[3]] ~ xat, col=COLS[1], lwd=2, data=d4)
+        points(pInv[k==ks4[1]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d4)
+        points(pInv[k==ks4[2]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d4)
+        points(pInv[k==ks4[3]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d4)
         # axes
         axis(1, las=1, at=xat, labels=NA)
         axis(2, las=1, labels=NA)
@@ -393,98 +365,64 @@ Fig.1  <-  function() {
 
     ##  Panel 5: Low Selfing, High Inbreeding Depression
         # Calculate pretty x-values for plotting
-        x  <-  unique(d5$r)
-        xgap  <-  ifelse(x>0.2,x-0.3,x)
-        xat  <-  pretty(xgap)
-        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
-        # make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Plot points
-        lines(pInv[k==ks5[1]] ~ xat, col=COLS[4], lwd=2, data=d5)
-        lines(pInv[k==ks5[2]] ~ xat, col=COLS[3], lwd=2, data=d5)
-        lines(pInv[k==ks5[3]] ~ xat, col=COLS[2], lwd=2, data=d5)
-        lines(pInv[k==ks5[4]] ~ xat, col=COLS[1], lwd=2, data=d5)
-        points(pInv[k==ks5[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d5)
-        points(pInv[k==ks5[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d5)
-        points(pInv[k==ks5[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d5)
-        points(pInv[k==ks5[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d5)
-        # axes
-        axis(1, las=1, at=xat, labels=NA)
-        axis(2, las=1, labels=NA)
-        axis.break(1,0.175)
-        axis.break(1,0.125)
-        # Plot labels etc.
-        proportionalLabel(0.05, 1.075, 'E', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 0.8")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-#        legend(
-#              x       =  usr[2]*0.45,
-#              y       =  usr[4]*0.35,
-#              legend  =  c(
-#                          expression(paste(hat(k))),
-#                          expression(paste(hat(k)-0.1)),
-#                          expression(paste(hat(k)-0.2)),
-#                          expression(paste(hat(k)-0.3))),
-#              pch     =  c(21,21,21),
-#              pt.bg   =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
-#              col     =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
-#              cex     =  1,
-#              xjust   =  1,
-#              yjust   =  1,
-#              bty     =  'n',
-#              border  =  NA
-#    )
+#        x  <-  unique(d5$r)
+#        xgap  <-  ifelse(x>0.2,x-0.3,x)
+#        xat  <-  pretty(xgap)
+#        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
+#        # make plot
+#        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+#        usr  <-  par('usr')
+#        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+#        plotGrid(lineCol='grey80')
+#        box()
+#        # Plot points
+#        lines(pInv[k==ks5[1]] ~ xat, col=COLS[4], lwd=2, data=d5)
+#        lines(pInv[k==ks5[2]] ~ xat, col=COLS[3], lwd=2, data=d5)
+#        lines(pInv[k==ks5[3]] ~ xat, col=COLS[2], lwd=2, data=d5)
+#        lines(pInv[k==ks5[4]] ~ xat, col=COLS[1], lwd=2, data=d5)
+#        points(pInv[k==ks5[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d5)
+#        points(pInv[k==ks5[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d5)
+#        points(pInv[k==ks5[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d5)
+#        points(pInv[k==ks5[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d5)
+#        # axes
+#        axis(1, las=1, at=xat, labels=NA)
+#        axis(2, las=1, labels=NA)
+#        axis.break(1,0.175)
+#        axis.break(1,0.125)
+#        # Plot labels etc.
+#        proportionalLabel(0.05, 1.075, 'E', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+#        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 0.8")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
-    ##  Panel 6: High Selfing, Low Inbreeding Depression
-        # Calculate pretty x-values for plotting
-        x  <-  unique(d6$r)
-        xgap  <-  ifelse(x>0.2,x-0.3,x)
-        xat  <-  pretty(xgap)
-        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
-        # make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Plot points
-        lines(pInv[k==ks6[1]] ~ xat, col=COLS[4], lwd=2, data=d6)
-        lines(pInv[k==ks6[2]] ~ xat, col=COLS[3], lwd=2, data=d6)
-        lines(pInv[k==ks6[3]] ~ xat, col=COLS[2], lwd=2, data=d6)
-        lines(pInv[k==ks6[4]] ~ xat, col=COLS[1], lwd=2, data=d6)
-        points(pInv[k==ks6[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d6)
-        points(pInv[k==ks6[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d6)
-        points(pInv[k==ks6[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d6)
-        points(pInv[k==ks6[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d6)
-        # axes
-        axis(1, las=1, at=xat, labels=xlab)
-        axis(2, las=1, labels=NA)
-        axis.break(1,0.175)
-        axis.break(1,0.125)
-        # Plot labels etc.
-        proportionalLabel(0.05, 1.075, 'F', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 0.2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.5, -0.35, expression(paste(italic(r))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-#        legend(
-#              x       =  usr[2]*0.45,
-#              y       =  usr[4]*0.35,
-#              legend  =  c(
-#                          expression(paste(hat(k))),
-#                          expression(paste(hat(k)-0.1)),
-#                          expression(paste(hat(k)-0.2)),
-#                          expression(paste(hat(k)-0.3))),
-#              pch     =  c(21,21,21),
-#              pt.bg   =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
-#              col     =  c(COLS[1],COLS[2],COLS[3],COLS[4]),
-#              cex     =  1,
-#              xjust   =  1,
-#              yjust   =  1,
-#              bty     =  'n',
-#              border  =  NA
-#    )
+#    ##  Panel 6: High Selfing, Low Inbreeding Depression
+#        # Calculate pretty x-values for plotting
+#        x  <-  unique(d6$r)
+#        xgap  <-  ifelse(x>0.2,x-0.3,x)
+#        xat  <-  pretty(xgap)
+#        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
+#        # make plot
+#        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+#        usr  <-  par('usr')
+#        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+#        plotGrid(lineCol='grey80')
+#        box()
+#        # Plot points
+#        lines(pInv[k==ks6[1]] ~ xat, col=COLS[4], lwd=2, data=d6)
+#        lines(pInv[k==ks6[2]] ~ xat, col=COLS[3], lwd=2, data=d6)
+#        lines(pInv[k==ks6[3]] ~ xat, col=COLS[2], lwd=2, data=d6)
+#        lines(pInv[k==ks6[4]] ~ xat, col=COLS[1], lwd=2, data=d6)
+#        points(pInv[k==ks6[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d6)
+#        points(pInv[k==ks6[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d6)
+#        points(pInv[k==ks6[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d6)
+#        points(pInv[k==ks6[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d6)
+#        # axes
+#        axis(1, las=1, at=xat, labels=xlab)
+#        axis(2, las=1, labels=NA)
+#        axis.break(1,0.175)
+#        axis.break(1,0.125)
+#        # Plot labels etc.
+#        proportionalLabel(0.05, 1.075, 'F', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+#        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 0.2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+#        proportionalLabel(0.5, -0.35, expression(paste(italic(r))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
 
 }
 
@@ -495,417 +433,35 @@ Fig.1  <-  function() {
 ##  Exploratory plots
 
 #' Exploratory plots: Invasion of dominant sterility allele into populations at 1-locus SA equilibrium. 
-#'                    -- Obligate outcrossing
-#'                    -- Additive fitness effects at SA locus
-#' @title Invasion of dominant sterility allele into populations
-#' @author Colin Olito
-#' @export
-EQInv.ObOut.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-ObOut-Add-EQInv.csv") {
-
-    # Import data
-    data  <-  read.csv(df, header=TRUE)
-
-    # Color scheme
-    COLS  <-  transparentColor('dodgerblue4', opacity=0.2)
-
-    # Calculate 1-locus SA invasion criteria to illustrate 
-    # boundaries for polymorphic populations
-    sms  <-  seq(0,1,by=0.0001)
-    Ainv  <-  Inv.A.add(sms, C=0, delta=0)
-    Ainv[Ainv > 1]  <-  1.00001
-    ainv  <-  Inv.a.add(sms, C=0, delta=0)
-
-    # k index for easy plotting
-    ks  <-  unique(data$k)
-
-    # Set plot layout
-    layout.mat <- matrix(c(1:15), nrow=5, ncol=3, byrow=TRUE)
-    layout <- layout(layout.mat,respect=TRUE)
-
-##  Row 1: r = 0
-    ##  Panel 1: k = 1
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==0 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==0]), precision=3)
-        # Make plot
-        par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==1 & r==0 & DiffEQInvEig != 0] ~ sm[k==1 & r==0 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(0.5, 1.25, expression(paste(italic(k), ' = ', 1)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = 0")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.05, 1.075, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-    ##  Panel 2: k = 0.875
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==0 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==0]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==ks[2] & r==0 & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==0 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(0.5, 1.25, expression(paste(italic(k), ' = ', 0.875)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 1.075, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-    ##  Panel 3: k = 0.75
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==0 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==0]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==ks[3] & r==0 & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==0 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(0.5, 1.25, expression(paste(italic(k), ' = ', 0.75)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 1.075, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-
-
-##  Row 2: r = 0.01
-    ##  Panel 4: k = 1
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.01 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.01]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==1 & r==0.01 & DiffEQInvEig != 0] ~ sm[k==1 & r==0.01 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = 0.01")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.05, 1.075, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-    ##  Panel 5: k = 0.875
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.01 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.01]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==ks[2] & r==0.01 & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==0.01 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(0.05, 1.075, 'E', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-    ##  Panel 6: k = 0.75
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.01 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.01]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==ks[3] & r==0.01 & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==0.01 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(0.05, 1.075, 'F', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-
-##  Row 3: r = 0.02
-    ##  Panel 7: k = 1
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.02 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.02]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==1 & r==0.02 & DiffEQInvEig != 0] ~ sm[k==1 & r==0.02 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = 0.02")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.05, 1.075, 'G', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-    ##  Panel 8: k = 0.875
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.02 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.02]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==ks[2] & r==0.02 & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==0.02 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(0.05, 1.075, 'H', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-    ##  Panel 9: k = 0.75
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.02 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.02]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==ks[3] & r==0.02 & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==0.02 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(0.05, 1.075, 'I', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-
-##  Row 4: r = 0.1
-    ##  Panel 10: k = 1
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.1 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.1]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==1 & r==0.1 & DiffEQInvEig != 0] ~ sm[k==1 & r==0.1 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = 0.1")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.05, 1.075, 'J', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-    ##  Panel 11: k = 0.875
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.1 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.1]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==ks[2] & r==0.1 & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==0.1 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(0.05, 1.075, 'K', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-    ##  Panel 12: k = 0.75
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.1 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.1]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==ks[3] & r==0.1 & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==0.1 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1, labels=NA)
-        axis(2, las=1)
-        proportionalLabel(0.05, 1.075, 'L', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-
-##  Row 5: r = 0.5
-    ##  Panel 13: k = 1
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.5 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.5]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==1 & r==0.5 & DiffEQInvEig != 0] ~ sm[k==1 & r==0.5 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1)
-        axis(2, las=1)
-        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = 0.5")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.5, -0.4, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 1.075, 'M', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-    ##  Panel 14: k = 0.875
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.5 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.5]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==ks[2] & r==0.5 & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==0.5 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1)
-        axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'N', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.5, -0.4, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-
-    ##  Panel 15: k = 0.75
-        # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.5 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.5]), precision=3)
-        # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Simulation points
-        points(sf[k==ks[3] & r==0.5 & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==0.5 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
-        # Overlay 1-locus invasion criteria
-        lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
-        lines(ainv ~ sms, lwd=2, col='black')
-        # axes
-        axis(1, las=1)
-        axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'O', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.5, -0.4, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
-        rm(pInv)
-}
-
-
-
-
-#' Exploratory plots: Invasion of dominant sterility allele into populations at 1-locus SA equilibrium. 
-#'                    -- Partial Selfing
 #'                    -- Additive fitness effects at SA locus
 #' @title Invasion of dominant male sterility allele into populations
 #' @author Colin Olito
 #' @export
-EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta20-strgSel-Add-EQInv.csv") {
+EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv") {
 
     # Import data
     data  <-  read.csv(df, header=TRUE)
 
     # Color scheme
-    COLS  <-  transparentColor('dodgerblue4', opacity=0.2)
+    COLS  <-  transparentColor('dodgerblue', opacity=0.2)
 
     # Calculate 1-locus SA invasion criteria to illustrate 
     # boundaries for polymorphic populations
-    sms  <-  seq(0,1,by=0.01)
-    Ainv  <-  Inv.A.add(sms, C = data$C[1], delta = data$delta[1])
-    Ainv[Ainv > 1]  <-  1.00001
-    ainv  <-  Inv.a.add(sms, C = data$C[1], delta = data$delta[1])
+    if(any(colnames(data) == "C")) {
+        sms  <-  seq(0,1,by=0.01)
+        Ainv  <-  Inv.A.add(sms, C = data$C[1], delta = data$delta[1])
+        Ainv[Ainv > 1]  <-  1.00001
+        ainv  <-  Inv.a.add(sms, C = data$C[1], delta = data$delta[1])
+    } else {
+        sms  <-  seq(0,1,by=0.01)
+        Ainv  <-  Inv.A.add(sms, C = 0, delta = 0)
+        Ainv[Ainv > 1]  <-  1.00001
+        ainv  <-  Inv.a.add(sms, C = 0, delta = 0)
+    }
 
     # k index for easy plotting
     ks  <-  unique(data$k)
+    rs  <-  unique(data$r)
 
     # Set plot layout
     layout.mat <- matrix(c(1:20), nrow=5, ncol=4, byrow=TRUE)
@@ -914,8 +470,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 ##  Row 1: r = 0
     ##  Panel 1: k = kCrit
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==0 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==0]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[1] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[1]]), precision=3)
         # Make plot
         par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -924,16 +480,17 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[1] & r==0 & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==0 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[1] & r==rs[1] & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1)
-        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.7, 1.23, substitute(k,list(k=ks[1])), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = 0")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%1.01," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.88, 1.23, substitute(k,list(k=rounded(ks[1],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.6, 0.65, substitute(r,list(r=rs[1])), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.05, 1.075, 'A', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
@@ -941,8 +498,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 2: k = kCrit - 0.1
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==0 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==0]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[1] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[1]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -950,14 +507,14 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[2] & r==0 & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==0 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[2] & r==rs[1] & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k)) - 0.1," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.9," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.88, 1.23, substitute(k,list(k=ks[2])), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
@@ -965,8 +522,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 3: k = kCrit - 0.2
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==0 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==0]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[1] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[1]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -974,22 +531,22 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[3] & r==0 & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==0 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[3] & r==rs[1] & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k)) - 0.2," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.8," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.88, 1.23, substitute(k,list(k=ks[3])), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 4: k = kCrit - 0.3
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==0 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[4] & data$r==0]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[1] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[1]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -997,14 +554,14 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[4] & r==0 & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==0 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[4] & r==rs[1] & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k)) - 0.3," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.7," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.88, 1.23, substitute(k,list(k=ks[4])), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
@@ -1013,8 +570,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 ##  Row 2: r = 0.01
     ##  Panel 5: k = kCrit
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.01 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.01]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[3] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[3]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1022,14 +579,15 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[1] & r==0.01 & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==0.01 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[1] & r==rs[3] & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1)
-        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = 0.01")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.6, 0.7, substitute(r,list(r=rs[3])), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.05, 1.075, 'E', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
@@ -1037,8 +595,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 6: k = kCrit - 0.1
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.01 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.01]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[3] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[3]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1046,7 +604,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[2] & r==0.01 & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==0.01 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[2] & r==rs[3] & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1059,8 +617,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 7: k = kCrit - 0.2
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.01 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.01]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[3] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[3]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1068,7 +626,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[3] & r==0.01 & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==0.01 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[3] & r==rs[3] & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1081,8 +639,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 8: k = kCrit - 0.3
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==0.01 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[4] & data$r==0.01]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[3] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[3]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1090,7 +648,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[4] & r==0.01 & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==0.01 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[4] & r==rs[3] & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1104,8 +662,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 ##  Row 3: r = 0.02
     ##  Panel 9: k = kCrit
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.02 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.02]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[4] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[4]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1113,14 +671,15 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[1] & r==0.02 & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==0.02 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[1] & r==rs[4] & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1)
-        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = 0.02")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.6, 0.7, substitute(r,list(r=rs[4])), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.05, 1.075, 'H', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
@@ -1128,8 +687,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 10: k = kCrit - 0.1
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.02 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.02]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[4] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[4]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1137,7 +696,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[2] & r==0.02 & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==0.02 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[2] & r==rs[4] & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1150,8 +709,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 11: k = kCrit - 0.2
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.02 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.02]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[4] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[4]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1159,7 +718,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[3] & r==0.02 & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==0.02 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[3] & r==rs[4] & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1172,8 +731,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 12: k = kCrit - 0.3
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==0.02 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[4] & data$r==0.02]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[4] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[4]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1181,7 +740,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[4] & r==0.02 & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==0.02 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[4] & r==rs[4] & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1196,8 +755,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 ##  Row 4: r = 0.1
     ##  Panel 13: k = kCrit
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.1 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.1]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[5] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[5]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1205,14 +764,15 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[1] & r==0.1 & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==0.1 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[1] & r==rs[5] & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1)
-        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = 0.1")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.6, 0.7, substitute(r,list(r=rs[5])), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.05, 1.075, 'L', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
@@ -1220,8 +780,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 14: k = kCrit - 0.1
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.1 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.1]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[5] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[5]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1229,7 +789,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[2] & r==0.1 & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==0.1 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[2] & r==rs[5] & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1242,8 +802,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 15: k = kCrit - 0.2
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.1 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.1]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[5] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[5]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1251,7 +811,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[3] & r==0.1 & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==0.1 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[3] & r==rs[5] & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1264,8 +824,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 16: k = kCrit - 0.3
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==0.1 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[4] & data$r==0.1]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[5] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[5]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1273,7 +833,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[4] & r==0.1 & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==0.1 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[4] & r==rs[5] & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1288,8 +848,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 ##  Row 5: r = 0.5
     ##  Panel 17: k = kCrit
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.5 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==0.5]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[6] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[6]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1297,14 +857,15 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[1] & r==0.5 & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==0.5 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[1] & r==rs[6] & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
         # axes
         axis(1, las=1)
         axis(2, las=1)
-        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = 0.5")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.6, 0.7, substitute(r,list(r=rs[6])), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, -0.4, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, 'P', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
@@ -1313,8 +874,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 18: k = kCrit - 0.1
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.5 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==0.5]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[6] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[6]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1322,7 +883,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[2] & r==0.5 & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==0.5 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[2] & r==rs[6] & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1336,8 +897,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 19: k = kCrit - 0.2
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.5 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==0.5]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[6] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[6]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1345,7 +906,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[3] & r==0.5 & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==0.5 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[3] & r==rs[6] & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1359,8 +920,8 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
 
     ##  Panel 20: k = kCrit - 0.3
         # Calculate proportion parameter space where sterility allele can invade
-            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==0.5 & data$DiffEQInvEig != 0]) / 
-                              length(data$DiffEQInvEig[data$k==ks[4] & data$r==0.5]), precision=3)
+            pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[6] & data$DiffEQInvEig != 0]) / 
+                              length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[6]]), precision=3)
         # Make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -1368,7 +929,7 @@ EQInv.PartSelf.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C2
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[4] & r==0.5 & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==0.5 & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sf[k==ks[4] & r==rs[6] & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')

@@ -24,6 +24,7 @@ source('R/functions-analyses.R')
 source('R/functions-figures.R')
 
 
+
 ###############
 # PAPER FIGURES
 ###############
@@ -54,26 +55,27 @@ embed_fonts(figPath(name='Fig1.pdf'))
 
 ##  Gynodioecy EQ invasion analyses exploratory plots 
   # Obligate Outcrossing
-  toPdf(EQInv.ObOut.Add(df="./output/data/EQInvAnalyses/Gyn-ObOut-Add-EQInv.csv"), 
-  	                    figPath(name='Gyn-ObOut-Add-EQInv.pdf'), width=6, height=10)
-  embed_fonts(figPath(name='Gyno-ObOut-Add-EQInv.pdf'))
+  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-ObOut-Add-EQInv.csv"), 
+  	                    figPath(name='Gyn-ObOut-Add-EQInv.pdf'), width=8, height=10)
+  embed_fonts(figPath(name='Gyn-ObOut-Add-EQInv.pdf'))
+
 
   # Partial Selfing
-  toPdf(EQInv.PartSelf.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta20-strgSel-Add-EQInv.csv"), 
-     	  figPath(name='Gyno-PartSelf-Add-EQInv-C0.25-delta0.2.pdf'), width=8, height=10)
-  embed_fonts(figPath(name='Gyno-PartSelf-Add-EQInv-C0.25-delta0.2.pdf'))
+#  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta20-strgSel-Add-EQInv.csv"), 
+#     	  figPath(name='Gyn-PartSelf-Add-EQInv-C0.25-delta0.2.pdf'), width=8, height=10)
+#  embed_fonts(figPath(name='Gyn-PartSelf-Add-EQInv-C0.25-delta0.2.pdf'))
 
-  toPdf(EQInv.PartSelf.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv"), 
-		  figPath(name='Gyno-PartSelf-Add-EQInv-C0.25-delta0.8.pdf'), width=8, height=10)
-  embed_fonts(figPath(name='Gyno-PartSelf-Add-EQInv-C0.25-delta0.8.pdf'))
+  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv"), 
+		  figPath(name='Gyn-PartSelf-Add-EQInv-C0.25-delta0.8.pdf'), width=8, height=10)
+  embed_fonts(figPath(name='Gyn-PartSelf-Add-EQInv-C0.25-delta0.8.pdf'))
 
-  toPdf(EQInv.PartSelf.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta20-strgSel-Add-EQInv.csv"), 
-		  figPath(name='Gyno-PartSelf-Add-EQInv-C0.75-delta0.2.pdf'), width=8, height=10)
-  embed_fonts(figPath(name='Gyno-PartSelf-Add-EQInv-C0.75-delta0.2.pdf'))
+  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta20-strgSel-Add-EQInv.csv"), 
+		  figPath(name='Gyn-PartSelf-Add-EQInv-C0.75-delta0.2.pdf'), width=8, height=10)
+  embed_fonts(figPath(name='Gyn-PartSelf-Add-EQInv-C0.75-delta0.2.pdf'))
 
-  toPdf(EQInv.PartSelf.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta80-strgSel-Add-EQInv.csv"), 
-		  figPath(name='Gyno-PartSelf-Add-EQInv-C0.75-delta0.8.pdf'), width=8, height=10)
-  embed_fonts(figPath(name='Gyno-PartSelf-Add-EQInv-C0.75-delta0.8.pdf'))
+#  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta80-strgSel-Add-EQInv.csv"), 
+#		  figPath(name='Gyn-PartSelf-Add-EQInv-C0.75-delta0.8.pdf'), width=8, height=10)
+#  embed_fonts(figPath(name='Gyn-PartSelf-Add-EQInv-C0.75-delta0.8.pdf'))
 
 
 ##  Androdioecy EQ invasion analyses exploratory plots 
@@ -83,18 +85,18 @@ embed_fonts(figPath(name='Fig1.pdf'))
   embed_fonts(figPath(name='Andro-ObOut-Add-EQInv.pdf'))
 
   # Partial Selfing
-  toPdf(EQInv.PartSelf.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta20-strgSel-Add-EQInv.csv"), 
+  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta20-strgSel-Add-EQInv.csv"), 
      	  figPath(name='Andro-PartSelf-Add-EQInv-C0.25-delta0.2.pdf'), width=8, height=10)
   embed_fonts(figPath(name='Andro-PartSelf-Add-EQInv-C0.25-delta0.2.pdf'))
 
-  toPdf(EQInv.PartSelf.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv"), 
+  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv"), 
 		  figPath(name='Andro-PartSelf-Add-EQInv-C0.25-delta0.8.pdf'), width=8, height=10)
   embed_fonts(figPath(name='Andro-PartSelf-Add-EQInv-C0.25-delta0.8.pdf'))
 
-  toPdf(EQInv.PartSelf.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta20-strgSel-Add-EQInv.csv"), 
+  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta20-strgSel-Add-EQInv.csv"), 
 		  figPath(name='Andro-PartSelf-Add-EQInv-C0.75-delta0.2.pdf'), width=8, height=10)
   embed_fonts(figPath(name='Andro-PartSelf-Add-EQInv-C0.75-delta0.2.pdf'))
 
-  toPdf(EQInv.PartSelf.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta80-strgSel-Add-EQInv.csv"), 
+  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta80-strgSel-Add-EQInv.csv"), 
 		  figPath(name='Andro-PartSelf-Add-EQInv-C0.75-delta0.8.pdf'), width=8, height=10)
   embed_fonts(figPath(name='Andro-PartSelf-Add-EQInv-C0.75-delta0.8.pdf'))

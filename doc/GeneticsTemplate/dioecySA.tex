@@ -175,13 +175,13 @@ A full development of all models can be found in Appendix A, and all code necess
 
 \subsection{Invasion into monomorphic populations}
 
-We begin with the evolution of gynodioecy by the invasion of the dominant male-sterility allele, $M_2$, described in Eq(\ref{eq:FprGyn}) and Eq(\ref{eq:GprGyn}). For populations initially fixed for the $AAM_1M_1$ and $aaM_1M_1$ genotypes, three candidate leading eigenvalues emerged from the stability analysis that approximate the evolutionary trajectory of new mutants ($\lambda_A$, $\lambda_M$, and $\lambda_{AM}$). Solving for the conditions yielding $\lambda_A > 1$, we were able to recover the well known single-locus invasion criteria for SA alleles under obligate outcrossing \citep{Kidwell1977} and partial selfing \citep{JordanConnallon2014,Olito2017}, with either additive fitness effects, or dominance reversal. Solving for $\lambda_M > 1$ yielded the classic single-locus critera for the invasion of females into a population of hermaphrodites (Eq(4) in \citealt{Charlesworth1978a}):
+\subsubsection{Gynodioecy:} We begin with the evolution of gynodioecy by the invasion of a dominant male-sterility allele, $M_2$, into populations initially fixed for the $AAM_1M_1$ and $aaM_1M_1$ genotypes. Solving for the conditions where $\lambda_{\mathbf{A}} > 1$, we were able to recover the well known single-locus invasion criteria for SA alleles under obligate outcrossing \citep{Kidwell1977} and partial selfing \citep{JordanConnallon2014,Olito2017}, with either additive fitness effects, or dominance reversal. Solving $\lambda_{\mathbf{M}} > 1$ for $k$ also yields the classic single-locus critera for the invasion of females into a population of hermaphrodites (Eq(4) in \citealt{Charlesworth1978a}):
 
 \begin{equation}\label{eq:1LocGyn}
-	k > 1 - 2 C \delta.
+	\hat{k} > 1 - 2 C \delta.
 \end{equation}
 
-\noindent The invasion conditions for a mutant haplotype bearing $M_2$ depend on whether the population is initially fixed for the female-beneficial ($A$) or male-beneficial ($a$) allele at $\mathbf{A}$. In both cases, solving $\lambda_{AM} > 1$ for $k$ yield expressions $f(C,\delta,s_f,r)$ of the same basic form as Eq(\ref{eq:1LocGyn}), in which $k$ is a decreasing function of $C \delta$. For populations initially fixed for $A$, the haplotype invasion conditions are always more restrictive (requiring larger $k$) than those described by Eq(\ref{eq:1LocGyn}), except in the limit of complete linkage and no selection against $a$ ($r=0$ and $s_f = 0$). However, for populations initially fixed for $a$, the invasion conditions become more permissive with either lower recombination, or stronger selection against $a$. Specifically, the conditions for the spread of mutant haplotypes bearing the $M_2$ allele become more permissive than Eq(\ref{eq:1LocGyn}) when 
+\noindent The invasion conditions for a mutant haplotype bearing $M_2$ depend on whether the population is initially fixed for the female-beneficial ($A$) or male-beneficial ($a$) allele at $\mathbf{A}$. In both cases, solving $\lambda_{\mathbf{AM}} > 1$ for $k$ yield expressions $f(C,\delta,s_f,r)$ of the same basic form as Eq(\ref{eq:1LocGyn}), in which $k$ is a decreasing function of $C \delta$. For populations initially fixed for $A$, the haplotype invasion conditions are always more restrictive (requiring larger $k$) than those described by Eq(\ref{eq:1LocGyn}), except in the limit of complete linkage and no selection against $a$ ($r \rightarrow 0$ and $s_f \rightarrow  0$). In contrast, for populations initially fixed for the male-beneficial allele, $a$, the invasion conditions become more permissive with either lower recombination, or stronger selection against $a$. Specifically, the conditions for the spread of mutant $AM_1$ haplotypes become more permissive than Eq(\ref{eq:1LocGyn}) when 
 
 \begin{equation}\label{eq:2LocGyn}
 	\frac{2 r}{1 + r} < s_f.
@@ -189,13 +189,35 @@ We begin with the evolution of gynodioecy by the invasion of the dominant male-s
 
 \noindent Eq(\ref{eq:2LocGyn}) shows that the invasion of females into a population of hermaphrodites can be quite sensitive to linkage with a nearby SA locus. When selection is relatively weak ($s_f = 0.1$), even modest linkage ($r\approx0.05$) can reduce the amount of reproductive compensation necessary for females to invade relative to the single-locus prediction. 
 
-The form of Eq(\ref{eq:2LocGyn}) also suggests that linkage with a sterility locus can influence the invasion of female-beneficial SA alleles. For example, under obligate outcrossing and additive fitness effects, the single-locus invasion condition for the female-beneficial allele, $A$, is $s_f < s_m / (1+s_m)$. Substituting Eq(\ref{eq:2LocGyn}) for $s_f$ and solving for $r$ yields
+Linkage with a male-sterility locus also influences the invasion of female-beneficial SA alleles. For example, under obligate outcrossing and additive fitness effects, the single-locus invasion condition for the female-beneficial allele, $A$, is $s_f < s_m / (1+s_m)$ (\citealt{Kidwell1977}; also from $\lambda_{\mathbf{A}}$). Substituting for $s_f$ in Eq(\ref{eq:2LocGyn}) and solving for $r$ yields
 
 \begin{equation}\label{eq:2LocGynSA}
 	r < \frac{s_m}{2 + s_m}.
 \end{equation}
 
+\noindent By the same method, the criteria for the invasion of a female-beneficial allele under partial selfing and additive fitness effects will become more permissive than the single-locus criteria when 
 
+\begin{equation}\label{eq:2LocGynSApartSelf}
+	r < \frac{s_m (1 - C)}{2 + s_m +C (2 - s_m - 4 \delta)}.
+\end{equation}
+
+\noindent Inspection of Eq(\ref{eq:2LocGynSApartSelf}) shows that the scope for linkage between the SA locus and the sterility locus to expand the parameter space where the female-beneficial allele can invade is reduced with higher selfing (larger $C$), but that this can be compensated somewhat by inbreeding depression (larger $\delta$). This outcome arises directly from the increasing "female bias" in selection caused by selfing. With higher selfing, there is simply less parameter space where linkage with a male-sterility locus can expand the facilitate the invasion of the female-beneficial allele \citep{JordanConnallon2014,Olito2017}.
+
+\subsubsection{Androdioecy:} As for the previous model, we performed a stability analysis for the model for the evolution of androdioecy via the invasion of a dominant female-sterility allele, $M_2$, into populations initially fixed for the $AAM_1M_1$ and $aaM_1M_1$ genotypes. As before, analysis of $\lambda_{\mathbf{A}}$ recovered the single-locus invasion criteria for SA alleles under obligate outcrossing and partial selfing under both additive fitness effects and dominance reversal conditions. Likewise, solving $\lambda_{\mathbf{M}} > 1$ for $k$ yielded the familiar invasion criteria for males into a population of hermaphrodites (Eq(8) in \citealt{Charlesworth1978a}):
+
+\begin{equation}\label{eq:1LocAndro}
+	\hat{k} > \frac{1 + C (1 - 2 \delta)}{(1 - C)}.
+\end{equation}
+
+\noindent Not surprisingly, the invasion conditions for mutant haplotypes bearing $M_2$ again depended on the initial fixed genotype of the hermaphrodite population, and solving $\lambda_{\mathbf{AM}} > 1$ for $k$ yields expressions $f(C,\delta,s_m,r)$ of the same form as Eq(\ref{eq:1LocAndro}). Mirroring the results of previous model, the conditions satisfying $\lambda_{\mathbf{AM}} > 1$ for the invasion of a mutant haplotype were always more restrictive than Eq(\ref{eq:1LocAndro}) when the population was initially fixed for the male-beneficial allele ($a$; except when $s_m \rightarrow 0$ and $r \rightarrow 0$), and more permissive for populations initially fixed for the female-beneficial allele ($A$). In fact, replacing $s_f$ with $s_m$ in Eq(\ref{eq:2LocGyn}) gives the conditions under which invasion of males via the spread of mutant $aM_1$ haplotypes become more permissive than the single locus criteria described by Eq(\ref{eq:1LocAndro}). Thus, although the conditions necessary for the evolution of androdioecy are more restrictive than for gynodioecy overall, the scope for linkage with another SA locus to facilitate the invasion of female-sterility alleles is the same as for male-sterility alleles. 
+
+The effect of linkage with a female-sterility locus on the invasion of male-beneficial SA alleles is nearly identical for the case of obligate outcrossing due to the symmetry of the single-locus SA invasion conditions. In this case, substituting $s_m$ in for $s_f$ in Eq(\ref{eq:2LocGynSA}) gives the conditions where invasion male-beneficial alleles becomes more permissive than the single-locus predictions. However, the case is altered subtantially for partially selfing populations. For example, assuming additive fitness effects, invasion of male-beneficial alleles at an SA locus linked to a female-sterility locus becomes more permissive than Eq(\ref{eq:1LocAndro}) when
+
+\begin{equation}\label{eq:2LocAndroSApartSelf}
+	r < \frac{s_f + s_f C (1 - 2 \delta)}{2 + s_f - 2 C + s_f C (1 - 2 \delta)}.
+\end{equation}
+
+\noindent Eq(\ref{eq:2LocAndroSApartSelf}) increases with both $C$ and $s_f$ such that, for $C > 1/3$, there is always some expansion of the parameter space where male-beneficial alleles can invade beyond the single-locus expectation, even under free-recombination with the female-sterility locus ($r = 1/2$). 
 
 
 \subsection{Invasion of unisexuals into polymorphic populations}
