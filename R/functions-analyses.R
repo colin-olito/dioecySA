@@ -88,7 +88,14 @@ Inv.A.domRev  <-  function(sm, h, C, delta) {
 # Single-locus sterility allele equilibrium frequencies, Eqs.5 & 9 in Charlesworth & Charlesworth (1978).
 # Designed for use with recursion simulations, so takes par.list as argument rather than separate args for
 # each parameter k, C, delta.
-Zhat.gyn  <-  function(par.list) {
+Zhat.gyn  <-  function(k, C, delta) {
+	Zhat  <-  (k + 2*C*delta - 1) / (2*(k + C*delta))
+	if(Zhat < 0) {
+		Zhat  <-  0
+	}
+	Zhat
+}
+Zhat.gyn.list  <-  function(par.list) {
 	Zhat  <-  (par.list$k + 2*par.list$C*par.list$delta - 1) / (2*(par.list$k + par.list$C*par.list$delta))
 	if(Zhat < 0) {
 		Zhat  <-  0
@@ -96,7 +103,14 @@ Zhat.gyn  <-  function(par.list) {
 	Zhat
 }
 
-Zhat.and  <-  function(par.list) {
+Zhat.and  <-  function(k, C, delta) {
+	Zhat  <-  ((1 + k)*(1 - C) - 2*(1 - C*delta)) / (2*k*(1 - C*delta))
+	if(Zhat < 0){
+		Zhat  <-  0
+	}
+	Zhat
+}
+Zhat.and.list  <-  function(par.list) {
 	Zhat  <-  ((1 + par.list$k)*(1 - par.list$C) - 2*(1 - par.list$C*par.list$delta)) / (2*par.list$k*(1 - par.list$C*par.list$delta))
 	if(Zhat < 0){
 		Zhat  <-  0
@@ -109,6 +123,51 @@ Zhat.and  <-  function(par.list) {
 invGyn  <-  function(C, delta) {
 	1 - 2*C*delta
 }
+
 invAnd  <-  function(C, delta) {
 	(1 + C - 2*C*delta) / (1 - C)
+}
+
+#############################################################
+# Functions to account for C*delta correlation for recursion 
+# simulation figures.
+
+L.phenom  <- function(C, a) {
+	((a*(1 - C))/(C + a*(1 - C)))
+}
+
+deltaC  <-  function(dStar = 1, C = 0, a = 1, b = 0.5) {
+	dStar*(1 - b*(1 - L.phenom(C,a)))
+}
+
+
+#' Weak selection approximation for equal frequencies of A and a alleles at SA locus under additive fitness effects
+#' 
+#' @title Weak selection approximation for equal frequencies of A and a alleles at SA locus 
+#' @param sm Selection coefficient through male sex function
+#' @param C Population selfing rate
+#' @param delta Population inbreeding depression
+#' @return Returns a single value for the corresponding value of sf
+#' @seealso `qHatAdd`
+#' @export
+#' @author Colin Olito.
+#'
+equalPQ.add  <-  function(sm, C, delta) {
+	(sm - C*sm)/(1 + C - C*sm - 2*C*delta + C*sm*delta)
+}
+
+
+#' Weak selection approximation for equal frequencies of A and a alleles at SA locus under dominance reversal fitness effects
+#' 
+#' @title Weak selection approximation for equal frequencies of A and a alleles at SA locus 
+#' @param sm Selection coefficient through male sex function
+#' @param C Population selfing rate
+#' @param delta Population inbreeding depression
+#' @return Returns a single value for the corresponding value of sf
+#' @seealso `qHatDomRev`
+#' @export
+#' @author Colin Olito.
+#'
+equalPQ.domRev  <-  function(sm, C, delta) {
+	((C - 1)*sm)/(-1 - C + 2*C*delta)
 }

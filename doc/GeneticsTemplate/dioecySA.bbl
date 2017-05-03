@@ -1,4 +1,4 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{32}
 
 \bibitem[{Agrawal {\rm and} Whitlock}(2011)]{Agrawal2011}
 {Agrawal, A.~F. {\rm and} M.~C. Whitlock}, 2011 Inferences about the
@@ -112,6 +112,10 @@
 {Manna, F., G.~Martin, {\rm and} T.~Lenormand}, 2011 Fitness landscapes: an
   alternative theory for the dominance of mutation. Genetics {\bf 189}:
   923--937.
+
+\bibitem[{Ohta {\rm and} Cockerham}(1974)]{OhtaCockerham1974}
+{Ohta, T. {\rm and} C.~C. Cockerham}, 1974 Detrimental genes with partial
+  selfing and effects on a neutral locus. Genet.~Res.~Camb. {\bf 23}: 191--200.
 
 \bibitem[{Olito}(2017)]{Olito2017}
 {Olito, C.}, 2017 Consequences of genetic linkage for the maintenance of

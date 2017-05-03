@@ -152,12 +152,12 @@ When the $M_2$ female-sterility allele is completely recessive, only $M_2M_2$ ho
 
 \subsection{Analyses}
 
-Our analyses address three main theoretical questions: (1) Under what parameter conditions can unisexuals invade hermaphroditic populations that are initially monomorphic at $\mathbf{A}$, and when will stable polymorphism be maintained at the $\mathbf{A}$ locus? (2) Does pre-existing SA polymorphism at the $\mathbf{A}$ locus facilitate the invasion of unisexuals? (3) How do the equilibrium frequencies of SA alleles at the $\mathbf{A}$ locus and unisexuals and differ from single-locus predictions? As in previous models of sexually antagonistic selection (e.g., \citealp{Kidwell1977,Prout2000,JordanConnallon2014}), we limit our analyses to the representative, and biologically interesting cases of additive fitness effects ($h_m = h_f = 1/2$), and dominance reversal ($h_m, h_f < 1/2$) at the $\mathbf{A}$ locus. These dominance scenarios are of particular interests because additive fitness effects are commonly observed for alleles with small to intermediate fitness effects \citep{Agrawal2011}, and dominance reversals are often predicted by fitness landscape models of dominance \citep{Manna2011, ConnallonClark2014}
+Our analyses address three main theoretical questions: (1) Under what parameter conditions can unisexuals invade a population of hermaphrodites that is initially monomorphic at $\mathbf{A}$, and when will stable polymorphism be maintained at the $\mathbf{A}$ locus? (2) Does pre-existing SA polymorphism at the $\mathbf{A}$ locus facilitate the invasion of unisexuals? (3) How do the equilibrium frequencies of SA alleles at the $\mathbf{A}$ locus and unisexuals and differ from single-locus predictions? As in previous models of sexually antagonistic selection (e.g., \citealp{Kidwell1977,Prout2000,JordanConnallon2014}), we limit our analyses to the representative, and biologically interesting cases of additive fitness effects ($h_m = h_f = 1/2$), and dominance reversal ($h_m, h_f < 1/2$) at the $\mathbf{A}$ locus. These dominance scenarios are of particular interests because additive fitness effects are commonly observed for alleles with small to intermediate fitness effects \citep{Agrawal2011}, and dominance reversals are often predicted by fitness landscape models of dominance \citep{Manna2011, ConnallonClark2014}
 
 To identify the parameter conditions where balancing selection is predicted to maintain stable polymorphism at the $\mathbf{A}$ locus and unisexuals are able to invade, we evaluate the stability of the system of recursions for a populations initially fixed for the female-beneficial or male-beneficial allele at the $\mathbf{A}$ locus, and the $M_1$ allele at the $\mathbf{M}$ locus. These conditions correspond to initial equilibrium genotypic frequencies among outcrossed and selfed zygotes of $F_{11} = (1 - C) [AAM_1M_1] = 1$, $F_{33} = (1 - C) [aaM_1M_1] = 1$, and $G_{11} = C [AAM_1M_1] = 1$, and $G_{33} = C [aaM_1M_1] = 1$. Under these initial conditions, the fate of new mutations is determined by the rate of change of the frequencies of rare genotypes, which can be approximated by one minus the leading eigenvalue of the Jacobian matrix of the system of recursions, $1 - \lambda_L$ \citep{OttoDay2007}. Balancing selection is predicted to maintain polymorphism when $\lambda_L > 1$ for both boundary equilibria \citep{Prout1968,OttoDay2007}. For the models involving dominant male- and female-sterility alleles, this analysis yields three analytically tractable candidate leading eigenvalues describing the invasion of a new mutation at each locus independently ($\lambda_\mathbf{A}$ and $\lambda_\mathbf{M}$), and the joint invasion of a double-mutant haplotype ($\lambda_\mathbf{AM}$). When sterility alleles are recessive, analysis of the eigenvalues yield inconclusive results for invasion of unisexuals because heterozygotes at the $\mathbf{M}$ locus are entirely sheltered from selection. We therefore present analytic results based on the eigenvalue analyses for the models of dominant sterility alleles only.
 
-To evaluate whether pre-existing SA polymorphism influences the invasion of unisexuals into a population of hermaphrodites, we evaluated whether the $M_2$ allele could invade populations initially at single-locus equilibrium for $\mathbf{A}$ and fixed for $M_1$ at $\mathbf{M}$. Specifically, we evaluated whether $\lambda_\mathbf{M} \rvert_{F^{\ast}_{ij},G^{\ast}_{ij}} > 1$ and $\lambda_\mathbf{AM} \rvert_{F^{\ast}_{ij},G^{\ast}_{ij}} > 1$, where $F^{\ast}_{ij}$ correspond to the single-locus equilibrium genotypic frequencies
-\begin{linenomath}\begin{align*}
+To evaluate whether pre-existing SA polymorphism influences the invasion of unisexuals into populations of hermaphrodites, we evaluated whether the $M_2$ allele could invade populations initially at single-locus equilibrium for $\mathbf{A}$ and fixed for $M_1$ at $\mathbf{M}$. Specifically, we evaluated whether $\lambda_\mathbf{M} \rvert_{F^{\ast}_{ij},G^{\ast}_{ij}} > 1$ and $\lambda_\mathbf{AM} \rvert_{F^{\ast}_{ij},G^{\ast}_{ij}} > 1$, where $F^{\ast}_{ij}$ correspond to the single-locus equilibrium genotypic frequencies
+\begin{linenomath}\begin{align*} \label{eq:SA1locEQ}
 	F^{\ast}_{11} &= (1 - C)[AAM_1M_1],& G^{\ast}_{11} &= C[AAM_1M_1]  \\
 	F^{\ast}_{13} &= (1 - C)[AaM_1M_1],& G^{\ast}_{13} &= C[AaM_1M_1] \\
 	F^{\ast}_{33} &= (1 - C)[aaM_1M_1],& G^{\ast}_{33} &= C[aaM_1M_1] \numberthis \\
@@ -165,10 +165,16 @@ To evaluate whether pre-existing SA polymorphism influences the invasion of unis
 
 \noindent and all other $F^{\ast}_{ij} = G^{\ast}_{ij} =0$. Under obligate outcrossing, analytic solutions are possible for the the single-locus allele frequencies at $\mathbf{A}$ among males and females ($\hat{p}_f,\hat{p}_m$; \citealt{Kidwell1977}). This is not possible in the case of dominance reversal. However, under complete dominance reversal ($h_f = h_m = 0$), the single-locus allele frequency of $A$ can be approximated by $\hat{p}_{DR} \approx s_m / (s_f + s_m)$ under obligate outcrossing. In the case of partial selfing, we instead make a weak selection approximation for $\hat{p}$ ($s_m,s_f \ll 1$; after \citealt{JordanConnallon2014}), which we then use to calculate $F^{\ast}_{ij}$ and $G^{\ast}_{ij}$. In both cases, the approximations perform remarkably well, even under relatively strong selection (e.g., $s_f,s_m < 0.5$; \citealt{ConnallonJordan2016,Olito2017}). 
 
-To determine the equilibrium frequencies of $M_2$, unisexuals, and the SA alleles at $\mathbf{A}$ for each model, we performed deterministic simulations of the recursions $F'_{ij},G'_{ij}$ under a variety of representative parameter conditions (see \hl{Appendix C} in the Online Supplementary Information). We compare our results with the exact single-locus equilibrium frequencies of sterility alleles and unisexuals described in \citet{Charlesworth1978a}, and the exact and approximate SA equilibrium frequencies $F^{\ast}_{ij}$ described above \citep{Kidwell1977,JordanConnallon2014,ConnallonJordan2016}. 
+To determine the equilibrium frequencies of $M_2$, unisexuals, and the SA alleles at $\mathbf{A}$ for each model, we performed deterministic simulations of the recursions $F'_{ij},G'_{ij}$ under a variety of representative parameter conditions (see \hl{Appendix C} in the Online Supporting Information). Here we compare the equilbrium frequencies of $M_2$ and unisexuals from our models with the corresponding exact single-locus equilibrium frequencies ($\hat{Z}$ in \citealt{Charlesworth1978a}) for the case of complete linkage between the $\mathbf{A}$ and $\mathbf{M}$ loci. We focus on complete linkage for two reasons. First, this represents the parameter conditions where our model predictions should differ most from those of single-locus models. With higher rates of recombination, our model results converge on single-locus predictions. Second, complete linkage represents the plausible biological scenario where multiple SA loci, including a sex-specific sterility locus, are involved in a chromosomal inversion \citep{LeeKelly2015}.
+
+In single-locus models, equilibrium frequencies of sterility alleles and unisexuals are determined largely by the compound parameter $C \delta$ \citep{Charlesworth1978a}. However, if inbreeding depression is caused primarily by recessive deleterious mutations, as current data suggest \citep{Charlesworth2009}, $C$ and $\delta$ should covary negatively because higher selfing rates more effectively purge deleterious recessives. In the simplest case, the genetic load due to deleterious recessive mutations at a single locus in a completely selfing population should be half that of a randomly mating outcrossing population ($\mu$ versus $2 \mu$, where $\mu$ is the genome-wide mutation rate) \citep{OhtaCockerham1974}. To account for possible covariance between $C$ and $\delta$, and thereby explore more biologically meaninful parameter space, we constrain inbreeding depression for our simulations to be a function of the selfing rate: $\delta = \delta^\ast(1 - C/2)$, where $\delta^\ast$ represents the hypothetical severity of inbreeding depression if selfing were enforced on a completely outcrossing population ($\delta^\ast \in [0,1]$). More complex expressions for $\delta$ yielded qualitatively similar results (See \hl{Appendix X} in the Online Supporting Information). 
+
+Finally, it was important to account for the fact that the parameters $C$ and $\delta$ also influence the parameter space where SA polymorphism is maintained, as well as the equilibrium frequencies of the SA alleles at $\mathbf{A}$ \citep{JordanConnallon2014,Olito2017}. We therefore ran simulations using values of $s_f$ and $s_m$ that are predicted to yield single-locus equilibrium frequencies of the two SA alleles of $1/2$ ($p = [A]$; $q = [a]$, $p=q=1/2$).
+
+
 
 \subsection{Data availability}
-A full development of all models can be found in Appendix A, and all code necessary to reproduce the analyses are available in the Online Supporting Information, and at \url{https://github.com/colin-olito/dioecySA}.
+A full development of all models can be found in \hl{Appendix A}, and all code necessary to reproduce the analyses are available in the Online Supporting Information, and at \url{https://github.com/colin-olito/dioecySA}.
 
 
 \section{Results}
@@ -222,19 +228,33 @@ The effect of linkage with a female-sterility locus on the invasion of male-bene
 
 \subsection{Invasion of unisexuals into polymorphic populations}
 
-Figure \ref{fig:PrInv} shows the probability of invasion into populations initially at single-locus equilibrium....
+The fate of new sterility mutations in populations with that are initially polymorphic at $\mathbf{A}$ is influenced by the degree of reproductive compensation ($k$), the rate of recombination ($r$), and the selfing rate ($C$). Unisexuals are always able to invade polymorphic populations if either Eq(\ref{eq:1LocGyn}) (for gynodioecy) or Eq(\ref{eq:1LocAndro}) (for androdioecy) are satisfied (\ref{fig:PrInv}; light blue lines). Unisexuals can still invade when $k < \hat{k}$, provided there is some linkage between $\mathbf{A}$ and $\mathbf{M}$. For example, under obligate outcrossing and tight linkage, unisexuals can successfully invade a polymorphic population across $\approx 50\%$ of relevant parameter space (defined by $s_f \times s_m$ where $F^{\ast}_{ij} > 0$), despite a 30\% reduction in ovule or pollen production relative to hermaphrodites (\ref{fig:PrInv}A,D). With smaller reductions in gamete production relative to hermaphrodites, unisexuals can invade across a greater fraction of parameter space, even when linkage is quite weak (e.g., $\approx 60\%$ when $r = 0.2$). 
+
+The patterns of unisexual invasion are very similar if the population selfing rate is relatively low ($C = 1/4$) and inbreeding depression is relatively high ($\delta = 4/5$) (\ref{fig:PrInv}B,E). This makes sense, as under these conditions the majority of offspring are produced through outcrossing rather than selfing. However, for populations with relatively high selfing rates ($C = 3/4$) and low inbreeding depression ($\delta = 1/5$), unisexuals can only invade over a very small fraction of parameter space when $k < \hat{k}$, and invasion requires tight linkage between $\mathbf{A}$ and $\mathbf{M}$ (\ref{fig:PrInv}C,F). \hl{The difference between Gyno- and Andro- models is also greatest under high selfing and low inbreeding depression \ldots}
+
+Dominance reversal results? Fig. 2?
+
+For both models, the loss of parameter space where unisexuals are able to invade is not random. With increasing loose weak between $\mathbf{A}$ and $\mathbf{M}$, invasion of unisexuals requires stronger SA selection coefficients that must also be increasingly biased toward the gender of the invading unisexuals. Hence, the invasion of male-sterility alleles requires strong female-baised selection, while the invasion of female-sterility alleles requires strong male-biased selection (see Figures \hl{SX--SX} in the Online Supporting Information). 
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{Fig1}
-\caption{Invasion of unisexuals into populations with pre-existing SA polymorphism. }
+\caption{Invasion of unisexuals into populations with pre-existing SA polymorphism. Plots show the fraction of parameter space (defined by $s_f \times s_m | F^{\ast}_{ij},G^{\ast}_{ij} > 0$ where $s_f,s_m \in [0,1/2]$) where a dominant sex-specific sterility allele at $\mathbf{M}$, can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$), plotted as a function of the recombination rate $r$. Panels A--C show results from the model of gynodioecy via invasion of a male-sterility allele, while planels D-F show results for the model of androdioecy via invasion of a female-sterility allele. For each panel, results are shown for different values of reproductive compensation, $k$, chosen to be a fraction of the single-locus invasion critera for $M_2$ defined by Eq(\ref{eq:1LocGyn}) and Eq(\ref{eq:1LocAndro}). Hence, the orange, green, and dark blue lines show scenarios where unisexuals experience a decrease in fitness relative to hermaphrodites of 10, 20, and 30\%. Results were obtained by evaluating the three candidate leading eigenvalues ($\lambda_{\mathbf{A}}$,$\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space.}
 \label{fig:PrInv}
 \end{figure}
 
 
 \subsection{Equilibrium frequencies}
 
-\subsection{Androdioecy}
+Blah Blah Blah...
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{Fig2}
+\caption{Equilibrium frequencies of unisexuals compared with single-locus predictions. Results are shown for the models of the evolution of gyno- and androdioecy via invasion of dominant sex-specific sterility alleles. Plots show the deviation of the equilibrium frequency of females predicted by the two-locus model recursion simulations from the exact single-locus equilibrium frequency ($\hat{Z}$ in \citealt{Charlesworth1978a}). Results are plotted for three different levels of reproductive compensation, calculated as a fraction of the single-locus invasion criteria for $M_2$ defined by Eq(\ref{eq:1LocGyn}). $\hat{Z} = 0$ for $k < \hat{k}$; thus the results for $k = \hat{k} \times 0.8$ (orange line) also represent absolute frequencies of females.}
+\label{fig:eqFem}
+\end{figure}
+
 
 \section{Discussion}
 
@@ -262,31 +282,10 @@ The sections below show examples of different header levels, which you can use i
 
 Figures and Tables should be labelled and referenced in the standard way using the \verb|\label{}| and \verb|\ref{}| commands.
 
-\subsection{Sample Figure}
+\subsection{Sample Figure caption}
 
-Figure \ref{fig:spectrum} shows an example figure.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{example-figure}
-\caption{Example figure from \url{10.1534/genetics.114.173807}. Please include your figures in the manuscript for the review process. You can upload figures to Overleaf via the Project menu. Upon acceptance, we'll ask for your figure files to be uploaded in any of the following formats: TIFF (.tiff), JPEG (.jpg), Microsoft PowerPoint (.ppt), EPS (.eps), or Adobe Illustrator (.ai).  Images should be a minimum of 300 dpi in resolution and 500 dpi minimum if line art images.  RGB, CMYK, and Grayscale are all acceptable. Halftones should be high contrast with sharp detail, because some loss of detail and contrast is inevitable in the production process. Figures should be 10-20 cm in width and 1-25 cm in height. Graph axes must be exactly perpendicular and all lines of equal density.
+Example figure from \url{10.1534/genetics.114.173807}. Please include your figures in the manuscript for the review process. You can upload figures to Overleaf via the Project menu. Upon acceptance, we'll ask for your figure files to be uploaded in any of the following formats: TIFF (.tiff), JPEG (.jpg), Microsoft PowerPoint (.ppt), EPS (.eps), or Adobe Illustrator (.ai).  Images should be a minimum of 300 dpi in resolution and 500 dpi minimum if line art images.  RGB, CMYK, and Grayscale are all acceptable. Halftones should be high contrast with sharp detail, because some loss of detail and contrast is inevitable in the production process. Figures should be 10-20 cm in width and 1-25 cm in height. Graph axes must be exactly perpendicular and all lines of equal density.
 Label multiple figure parts with A, B, etc. in bolded type, and use Arrows and numbers to draw attention to areas you want to highlight. Legends should start with a brief title and should be a self-contained description of the content of the figure that provides enough detail to fully understand the data presented. All conventional symbols used to indicate figure data points are available for typesetting; unconventional symbols should not be used. Italicize all mathematical variables (both in the figure legend and figure) , genotypes, and additional symbols that are normally italicized.  
-}%
-\label{fig:spectrum}
-\end{figure}
-
-\subsection{Sample Video}
-
-Figure \ref{video:spectrum} shows how to include a video in your manuscript.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\linewidth]{example-figure}
-\caption{Example movie (the figure file above is used as a placeholder for this example). \textit{GENETICS} supports video and movie files that can be linked from any portion of the article - including the abstract. Acceptable formats include .asf, avi, .wav, and all types of Windows Media files.   
-}%
-\label{video:spectrum}
-\end{figure}
-
 
 \subsection{Sample Table}
 
@@ -294,17 +293,6 @@ Table \ref{tab:fitness} shows an example table. Avoid shading, color type, line 
 
 Tables numbers are given in Arabic numerals. Tables should not be numbered 1A, 1B, etc., but if necessary, interior parts of the table can be labeled A, B, etc. for easy reference in the text.  
 
-
-
-\section{Sample Equation}
-
-Let $X_1, X_2, \ldots, X_n$ be a sequence of independent and identically distributed random variables with $\text{E}[X_i] = \mu$ and $\text{Var}[X_i] = \sigma^2 < \infty$, and let
-\begin{equation}
-S_n = \frac{X_1 + X_2 + \cdots + X_n}{n}
-      = \frac{1}{n}\sum_{i}^{n} X_i
-\label{eq:refname1}
-\end{equation}
-denote their mean. Then as $n$ approaches infinity, the random variables $\sqrt{n}(S_n - \mu)$ converge in distribution to a normal $\mathcal{N}(0, \sigma^2)$.
 
 \bibliography{dioecySA-bibliography}
 
