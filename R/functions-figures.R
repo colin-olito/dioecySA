@@ -182,8 +182,8 @@ Fig.1  <-  function() {
 
     # Import data
     data1  <-  read.csv("./output/data/EQInvAnalyses/Gyn-ObOut-Add-EQInv.csv", header=TRUE)
-    data2  <-  read.csv("./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv", header=TRUE)
-    data3  <-  read.csv("./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta20-strgSel-Add-EQInv.csv", header=TRUE)
+    data2  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-strgSel-Add-EQInv.csv", header=TRUE)
+    data3  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-strgSel-Add-EQInv.csv", header=TRUE)
     data4  <-  read.csv("./output/data/EQInvAnalyses/And-ObOut-Add-EQInv.csv", header=TRUE)
 
     # k index for easy plotting
@@ -226,7 +226,7 @@ Fig.1  <-  function() {
         xat  <-  pretty(x)
         xlab  <-  c(0.00, 0.01, 0.05, 0.10, 0.20, 0.50)
         # make plot
-        par(omi=rep(0.3, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
+        par(omi=rep(0.3, 4), mar = c(3.5,3.5,0.5,0.5), bty='o', xaxt='s', yaxt='s')
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(x)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
@@ -293,14 +293,14 @@ Fig.1  <-  function() {
         points(pInv[k==ks2[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d2)
         points(pInv[k==ks2[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d2)
         # axes
-        axis(1, las=1, at=xat, labels=NA)
+        axis(1, las=1, at=xat, labels=x)
         axis(2, las=1)
         axis.break(1,0.15)
         axis.break(1,0.25)
         axis.break(1,0.35)
         axis.break(1,0.45)
         # Plot labels etc.
-        proportionalLabel(0.05, 1.075, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 4/5")), cex=1, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.325, 0.5, expression(paste(Fraction~of~parameter~space)), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
 
@@ -332,7 +332,7 @@ Fig.1  <-  function() {
         axis.break(1,0.35)
         axis.break(1,0.45)
         # Plot labels etc.
-        proportionalLabel(0.05, 1.075, 'C', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(C))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5,  1.075, expression(paste(C," = 3/4, ",delta," = 1/5")), cex=1, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.325, 0.5, expression(paste(Fraction~of~parameter~space)), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, -0.3, expression(paste(italic(r))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
@@ -364,7 +364,7 @@ Fig.1  <-  function() {
         axis.break(1,0.125)
         # Plot labels etc.
         proportionalLabel(0.5, 1.25, expression(paste("Androdioecy")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 1.075, 'D', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, 1.075, expression(paste(C," = 0")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
     ##  Panel 5: Low Selfing, High Inbreeding Depression
@@ -394,7 +394,7 @@ Fig.1  <-  function() {
 #        axis.break(1,0.175)
 #        axis.break(1,0.125)
 #        # Plot labels etc.
-#        proportionalLabel(0.05, 1.075, 'E', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+#        proportionalLabel(0.05, 1.075, expression(paste(bold())), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 #        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 0.8")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
 #    ##  Panel 6: High Selfing, Low Inbreeding Depression
@@ -424,7 +424,7 @@ Fig.1  <-  function() {
 #        axis.break(1,0.175)
 #        axis.break(1,0.125)
 #        # Plot labels etc.
-#        proportionalLabel(0.05, 1.075, 'F', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+#        proportionalLabel(0.05, 1.075, expression(paste(bold())), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 #        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 0.2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 #        proportionalLabel(0.5, -0.35, expression(paste(italic(r))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
 
@@ -440,7 +440,8 @@ Fig.1  <-  function() {
 Fig.2  <-  function() {
 
     # Import data
-    data  <-  read.csv(file="./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.05_add.csv", header=TRUE)
+    data  <-  read.csv(file="./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.4_add.csv", header=TRUE)
+    data2  <-  read.csv(file="./output/data/simResults/and-dom_dStar0.8_a1_sm0.4_add.csv", header=TRUE)
 
     # Calculate equilibrium frequencies of M2, females, A, a
     data$q.m2        <-  (data$'F.12'/2) + (data$'F.14'/2) + data$'F.22' + (data$'F.23'/2) + data$'F.24' + (data$'F.34'/2) + data$'F.44' + 
@@ -451,15 +452,23 @@ Fig.2  <-  function() {
                          data$'G.11' + data$'G.12' + (data$'G.13'/2) + (data$'G.14'/2) + data$'G.22' + (data$'G.23'/2) + (data$'G.24'/2)
     data$q.a         <-  (data$'F.13'/2) + (data$'F.14'/2) + (data$'F.23'/2) + (data$'F.24'/2) + data$'F.33' + data$'F.34' + data$'F.44' + 
                          (data$'G.13'/2) + (data$'G.14'/2) + (data$'G.23'/2) + (data$'G.24'/2) + data$'G.33' + data$'G.34' + data$'G.44' 
-    data$femRelFreq  <-  (data$females - data$ZHat)
+    data$diffFemales  <-  (data$females - data$ZHat)
 
-    # Selecting variable to plot
+   # Calculate equilibrium frequencies of M2, males, A, a
+    data2$q.m2        <-  (data2$'F.12'/2) + (data2$'F.14'/2) + data2$'F.22' + (data2$'F.23'/2) + data2$'F.24' + (data2$'F.34'/2) + data2$'F.44' + 
+                         (data2$'G.12'/2) + (data2$'G.14'/2) + data2$'G.22' + (data2$'G.23'/2) + data2$'G.24' + (data2$'G.34'/2) + data2$'G.44'
+    data2$males     <-  data2$'F.12' + data2$'F.14' + data2$'F.22' + data2$'F.23' + data2$'F.24' + data2$'F.34' + data2$'F.44' + 
+                         data2$'G.12' + data2$'G.14' + data2$'G.22' + data2$'G.23' + data2$'G.24' + data2$'G.34' + data2$'G.44'
+    data2$p.A         <-  data2$'F.11' + data2$'F.12' + (data2$'F.13'/2) + (data2$'F.14'/2) + data2$'F.22' + (data2$'F.23'/2) + (data2$'F.24'/2) + 
+                         data2$'G.11' + data2$'G.12' + (data2$'G.13'/2) + (data2$'G.14'/2) + data2$'G.22' + (data2$'G.23'/2) + (data2$'G.24'/2)
+    data2$q.a         <-  (data2$'F.13'/2) + (data2$'F.14'/2) + (data2$'F.23'/2) + (data2$'F.24'/2) + data2$'F.33' + data2$'F.34' + data2$'F.44' + 
+                         (data2$'G.13'/2) + (data2$'G.14'/2) + (data2$'G.23'/2) + (data2$'G.24'/2) + data2$'G.33' + data2$'G.34' + data2$'G.44' 
+    data2$diffMales  <-  (data2$males - data2$ZHat)
 
     # Color scheme
     COLS  <-  c(transparentColor('dodgerblue', opacity=0.8),
-                transparentColor('dodgerblue4', opacity=0.8),
-#               transparentColor('darkolivegreen', opacity=0.8),
-                transparentColor('tomato', opacity=0.8))
+                transparentColor('tomato', opacity=0.8),
+                transparentColor('dodgerblue4', opacity=0.8))
 
     # k index for easy plotting
     rs  <-  unique(data$r)
@@ -469,20 +478,20 @@ Fig.2  <-  function() {
     layout.mat <- matrix(c(1:4), nrow=2, ncol=2, byrow=TRUE)
     layout <- layout(layout.mat,respect=TRUE)
 
-##  Column 1: 
-    # Panel 1: r = 0
+##  Row 1: 
+    # Panel 1: r = 0.0
     dat  <-  subset(data, data$r == rs[1])
         par(omi=c(0.5, 0.5, 0.6, 0.5), mar = c(2.6,2.6,2.6,2.6), bty='o', xaxt='s', yaxt='s')
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$femRelFreq),max(data$femRelFreq)), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffFemales),max(data$diffFemales)), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Equilibrium frequencies for different 
         abline(h=0, lwd=2, col='black')
-        lines(femRelFreq[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(femRelFreq[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(femRelFreq[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+        lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1,labels=NA)
         axis(2, las=1)
@@ -490,14 +499,33 @@ Fig.2  <-  function() {
         proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = 0.0")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.35, 0.5, expression(paste(Delta," Female frequency")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+    rm(dat)
+
+    # Panel 2: r = 0.1
+    dat  <-  subset(data, data$r == rs[3])
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffFemales),max(data$diffFemales)), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Equilibrium frequencies for different values of k
+        abline(h=0, lwd=2, col='black')
+        lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+        lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        # axes
+        axis(1, las=1,labels=NA)
+        axis(2, las=1,labels=NA)
+        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = ", 0.1)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         #legend
         legend(
               x       =  usr[2]*0.975,
               y       =  usr[4],
               legend  =  c(
-                          expression(paste(italic(k)~"="~italic(hat(k))%*%1.5)),
                           expression(paste(italic(k)~"="~italic(hat(k))%*%1.1)),
-                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.8))),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.95)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.9))),
               lty     =  c(1,1,1),
               lwd     =  c(2,2,2),
               col     =  c(COLS[1],COLS[2],COLS[3]),
@@ -509,40 +537,19 @@ Fig.2  <-  function() {
     )
     rm(dat)
 
-    # Panel 2: r = 0.1
-    dat  <-  subset(data, data$r == rs[4])
-dat$femRelFreq[dat$k==ks[1]][1]  <-  1.43e-1
-dat$femRelFreq[dat$k==ks[1]][2]  <-  1.35e-1
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$femRelFreq),max(data$femRelFreq)), ylab='', xlab='', cex.lab=1.2)
-        usr  <-  par('usr')
-        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-        plotGrid(lineCol='grey80')
-        box()
-        # Equilibrium frequencies for different values of k
-        abline(h=0, lwd=2, col='black')
-        lines(femRelFreq[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(femRelFreq[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(femRelFreq[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
-        # axes
-        axis(1, las=1,labels=NA)
-        axis(2, las=1,labels=NA)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = ", 0.1)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-    rm(dat)
-
-##  Column 2: 
+##  Row 2: 
     # Panel 3: r = 0.0
-    dat  <-  subset(data, data$r == rs[1])
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$femRelFreq),max(data$femRelFreq)), ylab='', xlab='', cex.lab=1.2)
+    dat  <-  subset(data2, data2$r == rs[1])
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data2$diffMales),max(data2$diffMales)), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Equilibrium frequencies for different values of k
         abline(h=0, lwd=2, col='black')
-#        lines(femRelFreq[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-#        lines(femRelFreq[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-#        lines(femRelFreq[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+        lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+        lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, las=1)
@@ -554,17 +561,17 @@ dat$femRelFreq[dat$k==ks[1]][2]  <-  1.35e-1
     rm(dat)
 
     # Panel 4: r = 0.1
-    dat  <-  subset(data, data$r == rs[4])
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$femRelFreq),max(data$femRelFreq)), ylab='', xlab='', cex.lab=1.2)
+    dat  <-  subset(data2, data2$r == rs[3])
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data2$diffMales),max(data2$diffMales)), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Equilibrium frequencies for different values of k
         abline(h=0, lwd=2, col='black')
-#        lines(femRelFreq[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-#        lines(femRelFreq[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-#        lines(femRelFreq[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+        lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+        lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, labels=NA)
@@ -572,8 +579,6 @@ dat$femRelFreq[dat$k==ks[1]][2]  <-  1.35e-1
         proportionalLabel(0.05, 1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, -0.3, expression(paste(italic(C))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
     rm(dat)
-
-
 }
 
 
@@ -586,7 +591,7 @@ dat$femRelFreq[dat$k==ks[1]][2]  <-  1.35e-1
 #' @title Invasion of dominant male sterility allele into populations
 #' @author Colin Olito
 #' @export
-EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv") {
+EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv", wkSel=FALSE) {
 
     # Import data
     data  <-  read.csv(df, header=TRUE)
@@ -594,15 +599,20 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
     # Color scheme
     COLS  <-  transparentColor('dodgerblue', opacity=0.2)
 
+    # set plot limits for weak or strong selection
+    if(wkSel)
+        lims  <-  c(0,0.5)
+    else(lims  <-  c(0,1))
+
     # Calculate 1-locus SA invasion criteria to illustrate 
     # boundaries for polymorphic populations
     if(any(colnames(data) == "C")) {
-        sms  <-  seq(0,1,by=0.01)
+        sms  <-  seq(lims[1], lims[2], by=0.01)
         Ainv  <-  Inv.A.add(sms, C = data$C[1], delta = data$delta[1])
         Ainv[Ainv > 1]  <-  1.00001
         ainv  <-  Inv.a.add(sms, C = data$C[1], delta = data$delta[1])
     } else {
-        sms  <-  seq(0,1,by=0.01)
+        sms  <-  seq(lims[1], lims[2], by=0.01)
         Ainv  <-  Inv.A.add(sms, C = 0, delta = 0)
         Ainv[Ainv > 1]  <-  1.00001
         ainv  <-  Inv.a.add(sms, C = 0, delta = 0)
@@ -623,7 +633,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
                               length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[1]]), precision=3)
         # Make plot
         par(omi=rep(0.3, 4), mar = c(3,3,0.75,0.5), bty='o', xaxt='s', yaxt='s')
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -650,7 +660,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[1] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[1]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -674,7 +684,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[1] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[1]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -697,7 +707,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[1] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[1]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -722,7 +732,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[3] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[3]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -747,7 +757,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[3] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[3]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -769,7 +779,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[3] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[3]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -791,7 +801,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[3] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[3]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -814,7 +824,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[4] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[4]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -839,7 +849,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[4] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[4]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -861,7 +871,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[4] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[4]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -883,7 +893,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[4] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[4]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -907,7 +917,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[5] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[5]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -932,7 +942,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[5] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[5]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -954,7 +964,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[5] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[5]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -976,7 +986,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[5] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[5]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -1000,7 +1010,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[6] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[6]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -1026,7 +1036,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[6] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[2] & data$r==rs[6]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -1049,7 +1059,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[6] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[3] & data$r==rs[6]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -1072,7 +1082,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[6] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[4] & data$r==rs[6]]), precision=3)
         # Make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,1), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')

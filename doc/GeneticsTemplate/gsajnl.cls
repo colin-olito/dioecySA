@@ -34,6 +34,7 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage{url}
 \RequirePackage[colorlinks=true, allcolors=blue]{hyperref}
+%\RequirePackage[colorlinks=true, allcolors=blue,draft=true]{hyperref}
 \RequirePackage{lettrine}
 
 \newcommand{\watermarkfont}{\color{black50}\normalfont\fontsize{10}{12}\selectfont}
