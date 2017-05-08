@@ -23,9 +23,10 @@
 
 # Single-locus SA equilibrium allele frequencies
 qHatAdd  <-  function(C, delta, sf, sm) {
-	qHat  <-  ((sf - sm + sf*sm) + C*(sf + sm - sf*sm - 2*sf*delta)) / (2*(sf*sm - C*sf*sm*delta))
-	if(qHat < 0 | qHat > 1 | is.nan(qHat) | is.na(qHat))
-		qHat  <-  0
+#	qHat  <-  ((sf - sm + sf*sm) + C*(sf + sm - sf*sm - 2*sf*delta)) / (2*(sf*sm - C*sf*sm*delta))
+	qHat  <-  (sf - sm + sf*sm + C*(sf + sm - sf*sm - 2*sf*delta)) /(2*(sf*sm - C*sf*sm*delta))
+# 	if(qHat < 0 | qHat > 1 | is.nan(qHat) | is.na(qHat))
+#		qHat  <-  0
 	qHat
 }
 qHatDomRev  <-  function(C, delta, sf, sm, h) {
@@ -155,7 +156,6 @@ deltaC  <-  function(dStar = 1, C = 0, a = 1, b = 0.5) {
 equalPQ.add  <-  function(sm, C, delta) {
 	(sm - C*sm)/(1 + C - C*sm - 2*C*delta + C*sm*delta)
 }
-
 
 #' Weak selection approximation for equal frequencies of A and a alleles at SA locus under dominance reversal fitness effects
 #' 
