@@ -3,8 +3,8 @@
 #
 #  R code to run deterministic simulations of the
 #  genotypic frequency recursions for the model of 
-#  Gynodioecy via the invasion of a Completely 
-#  Dominant male sterility allele
+#  Androdioecy via the invasion of a Completely 
+#  Dominant female sterility alleles
 #
 #  Appendix XXX:
 #  
@@ -23,7 +23,7 @@ rm(list=ls())
 ##  Dependencies
 source('R/functions-analyses.R')
 source('R/functions-figures.R')
-source('R/functions-recSim-Gyno-Dom.R')
+source('R/functions-recSim-Andro-Dom.R')
 
 ######################################
 #  Additive effects (hf = hm = 0.5)
@@ -63,6 +63,7 @@ source('R/functions-recSim-Gyno-Dom.R')
 
 ######################################
 #  Dominance Reversal (hf = hm = 0.25)
+
 
 #  Linear C-delta relation
 	# dStar = 0.8
