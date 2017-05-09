@@ -358,18 +358,18 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-7, ..
 
 	##  Fitness Expression Matrices
 	Wf.mat   <-  matrix(
-						c(1, (1 + par.list$k), (1 - par.list$hf*par.list$sf),                  (1 - par.list$hf*par.list$sf)*(1 + par.list$k),
-                          0, (1 + par.list$k), (1 - par.list$hf*par.list$sf)*(1 + par.list$k), (1 - par.list$hf*par.list$sf)*(1 + par.list$k),
-                          0, 0,                (1 - par.list$sf),                              (1 - par.list$sf)*(1 + par.list$k),
-                          0, 0,                0,                                              (1 - par.list$sf)*(1 + par.list$k)), 
+						c(1,                1, (1 - par.list$hf*par.list$sf), (1 - par.list$hf*par.list$sf),
+                          0, (1 + par.list$k), (1 - par.list$hf*par.list$sf), (1 - par.list$hf*par.list$sf)*(1 + par.list$k),
+                          0,                0,             (1 - par.list$sf), (1 - par.list$sf),
+                          0,                0,                             0, (1 - par.list$sf)*(1 + par.list$k)), 
 						nrow=4, byrow=TRUE
 						)
 	
 	Wm.mat   <-  matrix(
-						c((1 - par.list$sm), 0, (1 - par.list$hm*par.list$sm), 0,
-                          0,                 0, 0,                             0,
-                          0,                 0, 1,                             0,
-                          0,                 0, 0,                             0), 
+						c((1 - par.list$sm), (1 - par.list$sm), (1 - par.list$hm*par.list$sm), (1 - par.list$hm*par.list$sm),
+                                          0, (1 - par.list$sm), (1 - par.list$hm*par.list$sm), (1 - par.list$hm*par.list$sm),
+                                          0,                 0,                             1, 1,
+                                          0,                 0,                             0, 1), 
 						nrow=4, byrow=TRUE
 						)	
 
@@ -567,10 +567,10 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 	
 	#  Write results.df to .txt file
 	if(hm == hf & hf == 0.5) {
-		filename  <-  paste("./output/data/simResults/gyn-rec", "_dStar", dStar, "_a", a, "_sm", sm, "_add", ".csv", sep="")
+		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_add", ".csv", sep="")
 	}
 	if(hm == hf & hf == 0.25) {
-		filename  <-  paste("./output/data/simResults/gyn-rec", "_dStar", dStar, "_a", a, "_sm", sm, "_domRev", ".csv", sep="")
+		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_domRev", ".csv", sep="")
 	}
 	write.csv(results.df, file=filename, row.names = FALSE)
 
@@ -593,7 +593,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 #' @author Colin Olito
 #' @export
 #' 
-gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.1_add.csv") {
+gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_add.csv") {
 
     # Import data
     data  <-  read.csv(df, header=TRUE)

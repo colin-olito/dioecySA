@@ -219,4 +219,4 @@ source('R/functions-recSim-Gyno-Rec.R')
   	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'), width=6, height=6)
   embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'))
 
-gynRecRecPlots(df = "./output/data/simResults/gyn-rec_dStar0.8_a1_sm0.4_add.csv")
+gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_add.csv")

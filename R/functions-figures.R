@@ -255,13 +255,13 @@ Fig.1  <-  function() {
         proportionalLabel(-0.325, 0.5, expression(paste(Fraction~of~parameter~space)), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         #legend
         legend(
-              x       =  usr[2]*0.475,
-              y       =  usr[4]*0.4,
+              x       =  usr[2]*0.48,
+              y       =  usr[4]*0.39,
               legend  =  c(
                           expression(paste(italic(k)~"="~italic(hat(k))%*%1.1)),
-                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.9)),
-                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.8)),
-                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.7))),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.99)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.95)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.9))),
               pch     =  c(21,21,21,21),
               pt.bg   =  c(COLS[4],COLS[3],COLS[2],COLS[1]),
               col     =  c(COLS[4],COLS[3],COLS[2],COLS[1]),
@@ -489,9 +489,9 @@ Fig.2  <-  function() {
         box()
         # Equilibrium frequencies for different 
         abline(h=0, lwd=2, col='black')
-        lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=3, col=COLS[1], cex=1, data=dat)
+        lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=3, col=COLS[2], cex=1, data=dat)
+        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=3, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1,labels=NA)
         axis(2, las=1)
@@ -510,9 +510,9 @@ Fig.2  <-  function() {
         box()
         # Equilibrium frequencies for different values of k
         abline(h=0, lwd=2, col='black')
-        lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=3, col=COLS[1], cex=1, data=dat)
+        lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=3, col=COLS[2], cex=1, data=dat)
+        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=3, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1,labels=NA)
         axis(2, las=1,labels=NA)
@@ -547,9 +547,9 @@ Fig.2  <-  function() {
         box()
         # Equilibrium frequencies for different values of k
         abline(h=0, lwd=2, col='black')
-        lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=3, col=COLS[1], cex=1, data=dat)
+        lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=3, col=COLS[2], cex=1, data=dat)
+        lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=3, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, las=1)
@@ -569,9 +569,9 @@ Fig.2  <-  function() {
         box()
         # Equilibrium frequencies for different values of k
         abline(h=0, lwd=2, col='black')
-        lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=3, col=COLS[1], cex=1, data=dat)
+        lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=3, col=COLS[2], cex=1, data=dat)
+        lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=3, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, labels=NA)

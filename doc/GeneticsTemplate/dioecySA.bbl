@@ -1,4 +1,4 @@
-\begin{thebibliography}{32}
+\begin{thebibliography}{33}
 
 \bibitem[{Agrawal {\rm and} Whitlock}(2011)]{Agrawal2011}
 {Agrawal, A.~F. {\rm and} M.~C. Whitlock}, 2011 Inferences about the
@@ -65,10 +65,6 @@
   separate sexes: insights from fisher's geometric model. Genetics {\bf 197}:
   991--1006.
 
-\bibitem[{Connallon {\rm and} Jordan}(2016)]{ConnallonJordan2016}
-{Connallon, T. {\rm and} C.~Y. Jordan}, 2016 Accumulation of deleterious
-  mutations near sexually antagonistic genes. G3 {\bf 6}: 2273--2280.
-
 \bibitem[{Darwin}(1877)]{Darwin1877}
 {Darwin, C.}, 1877 {\em The different forms of flowers on plants of the same
   species\/}. John Murray, London.
@@ -82,6 +78,11 @@
 \bibitem[{Jordan {\rm and} Connallon}(2014)]{JordanConnallon2014}
 {Jordan, C.~Y. {\rm and} T.~Connallon}, 2014 Sexually antagonistic polymorphism
   in simultaneous hermaphrodites. Evolution {\bf 68}: 3555--3569.
+
+\bibitem[{K{\"a}fer {\em et~al.\/}}(2017){K{\"a}fer, Marais, {\rm and}
+  Pannell}]{KaferPannell2017}
+{K{\"a}fer, J., G.~A.~B. Marais, {\rm and} J.~R. Pannell}, 2017 On the rarity
+  of dioecy in flowering plants. Molecular Ecology {\bf 26}: 1225--1241.
 
 \bibitem[{Kidwell {\em et~al.\/}}(1977){Kidwell, Clegg, Stewart, {\rm and}
   Prout}]{Kidwell1977}
@@ -141,6 +142,11 @@
   Evolutionary genetics from molecules to morphology\/}, edited by R.~S. Singh
   {\rm and} C.~B. Kimbras, pp. 157--203, Cambridge University Press, Cambridge,
   U.K.
+
+\bibitem[{Renner}(2014)]{Renner2014}
+{Renner, S.}, 2014 The relative and absolute frequencies of angiosperm sexual
+  systems: dioecy, monoecy, gynodioecy, and an updated online database.
+  American Journal of Botany {\bf 101}: 1588--1596.
 
 \bibitem[{Sakai {\rm and} Weller}(1999)]{SakaiWeller1999}
 {Sakai, A.~K. {\rm and} S.~G. Weller}, 1999 Gender and sexual dimorphism in
