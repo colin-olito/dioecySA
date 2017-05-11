@@ -67,7 +67,7 @@ embed_fonts(figPath(name='Fig2.pdf'))
 	# Androdioecy
 	  # Obligate Outcrossing
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/And-wksel-ObOut-Add-EQInv.csv", wkSel=TRUE), 
-	  	          figPath(name='FigS4-Andro-obOut-funnel.pdf'), width=8, height=10)
+	  	          figPath(name='FigS4-Andro-obOut-funnel.pdf'), width=9, height=10)
 	  embed_fonts(figPath(name='FigS4-Andro-obOut-funnel.pdf'))
 	
 	  # Low selfing, High Inbreeding Depression
@@ -76,7 +76,7 @@ embed_fonts(figPath(name='Fig2.pdf'))
 	  embed_fonts(figPath(name='FigS5-Andro-C25-d80-funnel.pdf'))
 	
 	  # High selfing, Low Inbreeding Depression
-	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-Add-EQInv.csv", wkSel=TRUE), 
+	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/And-wksel-partSelf-C75-delta20-Add-EQInv.csv", wkSel=TRUE), 
 			      figPath(name='FigS6-Andro-C75-d20-funnel.pdf'), width=9, height=10)
 	  embed_fonts(figPath(name='FigS6-Andro-C75-d20-funnel.pdf'))
 

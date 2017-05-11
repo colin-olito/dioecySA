@@ -186,7 +186,7 @@ Fig.1  <-  function() {
     data3  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-Add-EQInv.csv", header=TRUE)
     data4  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-ObOut-Add-EQInv.csv", header=TRUE)
     data5  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-partSelf-C25-delta80-Add-EQInv.csv", header=TRUE)
-#    data6  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-partSelf-C75-delta20-strgSel-Add-EQInv.csv", header=TRUE)
+    data6  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-partSelf-C75-delta20-Add-EQInv.csv", header=TRUE)
 
     # k index for easy plotting
     ks1  <-  unique(data1$k) 
@@ -194,7 +194,7 @@ Fig.1  <-  function() {
     ks3  <-  unique(data3$k)
     ks4  <-  unique(data4$k)
     ks5  <-  unique(data5$k)
-    ks6  <-  unique(data3$k)
+    ks6  <-  unique(data6$k)
 
     # Calculate Pr(Inv) for each data set
     d1  <-  ddply(data1, ~ k*r, summarize, pInv=(length(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
@@ -202,6 +202,7 @@ Fig.1  <-  function() {
     d3  <-  ddply(data3, ~ k*r, summarize, pInv=(length(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
     d4  <-  ddply(data4, ~ k*r, summarize, pInv=(length(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
     d5  <-  ddply(data5, ~ k*r, summarize, pInv=(length(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
+    d6  <-  ddply(data6, ~ k*r, summarize, pInv=(length(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
 
     # Color scheme
     COLS  <-  c(transparentColor('dodgerblue4', opacity=0.75),
@@ -370,9 +371,9 @@ Fig.1  <-  function() {
 
     ##  Panel 5: Low Selfing, High Inbreeding Depression
         # Calculate pretty x-values for plotting
-        x  <-  unique(d3$r)
+        x  <-  unique(d5$r)
         xat  <-  pretty(x)
-        xlab  <-  c(0.00, 0.01, 0.05, 0.10, 0.20, 0.50)
+        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
         # make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(x)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -400,9 +401,8 @@ Fig.1  <-  function() {
         proportionalLabel(0.5, 1.075, expression(paste(C," = ",0.25,", ",delta," = 0.8")), cex=1, adj=c(0.5, 0.5), xpd=NA)
 
     ##  Panel 6: High Selfing, Low Inbreeding Depression
-        x     <-  unique(d3$r)
+        x     <-  unique(d6$r)
         xat   <-  pretty(x)
-        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
         # make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(x)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
@@ -410,14 +410,14 @@ Fig.1  <-  function() {
         plotGrid(lineCol='grey80')
         box()
         # Plot points
-        lines(pInv[k==ks6[1]] ~ xat, col=COLS[4], lwd=2, data=d3)
-        lines(pInv[k==ks6[2]] ~ xat, col=COLS[3], lwd=2, data=d3)
-        lines(pInv[k==ks6[3]] ~ xat, col=COLS[2], lwd=2, data=d3)
-        lines(pInv[k==ks6[4]] ~ xat, col=COLS[1], lwd=2, data=d3)
-        points(pInv[k==ks6[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d3)
-        points(pInv[k==ks6[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d3)
-        points(pInv[k==ks6[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d3)
-        points(pInv[k==ks6[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d3)
+        lines(pInv[k==ks6[1]] ~ xat, col=COLS[4], lwd=2, data=d6)
+        lines(pInv[k==ks6[2]] ~ xat, col=COLS[3], lwd=2, data=d6)
+        lines(pInv[k==ks6[3]] ~ xat, col=COLS[2], lwd=2, data=d6)
+        lines(pInv[k==ks6[4]] ~ xat, col=COLS[1], lwd=2, data=d6)
+        points(pInv[k==ks6[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d6)
+        points(pInv[k==ks6[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d6)
+        points(pInv[k==ks6[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d6)
+        points(pInv[k==ks6[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d6)
         # axes
         axis(1, las=1, at=xat, labels=x)
         axis(2, las=1, labels=NA)
@@ -634,7 +634,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
             pInv  <-  rounded(length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[1] & data$DiffEQInvEig != 0]) / 
                               length(data$DiffEQInvEig[data$k==ks[1] & data$r==rs[1]]), precision=3)
         # Make plot
-        par(omi=rep(0.3, 4), mar = c(3,3,0.75,0.5), bty='o', xaxt='s', yaxt='s')
+        par(omi=rep(0.4, 4), mar = c(3,3,0.75,0.5), bty='o', xaxt='s', yaxt='s')
         plot(NA, axes=FALSE, type='n', main='',xlim = lims, ylim = lims, ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
@@ -654,7 +654,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         proportionalLabel(-0.6, 0.65, substitute(r,list(r=rs[1])), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.05, 1.075, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 2: k = kCrit - 0.1
@@ -677,8 +677,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.9," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.88, 1.23, substitute(k,list(k=rounded(ks[2],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 1.075, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 3: k = kCrit - 0.2
@@ -701,7 +701,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.8," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.88, 1.23, substitute(k,list(k=rounded(ks[3],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(C))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 4: k = kCrit - 0.3
@@ -724,7 +725,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.7," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.88, 1.23, substitute(k,list(k=rounded(ks[4],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
 
@@ -750,8 +752,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.6, 0.7, substitute(r,list(r=rs[3])), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.05, 1.075, 'E', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(E))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 6: k = kCrit - 0.1
@@ -772,8 +774,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'F', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(F))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 7: k = kCrit - 0.2
@@ -794,8 +796,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'G', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(G))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 8: k = kCrit - 0.3
@@ -816,8 +818,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'G', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(H))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
 ##  Row 3: r = 0.02
@@ -841,9 +843,9 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         axis(2, las=1)
         proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.6, 0.7, substitute(r,list(r=rs[4])), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(I))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.05, 1.075, 'H', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 10: k = kCrit - 0.1
@@ -864,8 +866,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'I', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(J))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 11: k = kCrit - 0.2
@@ -886,8 +888,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'J', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(K))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 12: k = kCrit - 0.3
@@ -908,8 +910,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'K', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(L))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
 
@@ -935,8 +937,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.6, 0.7, substitute(r,list(r=rs[5])), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.05, 1.075, 'L', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(M))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 14: k = kCrit - 0.1
@@ -957,8 +959,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'M', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(N))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 15: k = kCrit - 0.2
@@ -979,8 +981,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'N', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(O))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 16: k = kCrit - 0.3
@@ -1001,10 +1003,9 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'O', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(P))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
-
 
 ##  Row 5: r = 0.5
     ##  Panel 17: k = kCrit
@@ -1029,8 +1030,8 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         proportionalLabel(-0.6, 0.7, substitute(r,list(r=rs[6])), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.4, 0.5, expression(paste(italic(s[f]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, -0.4, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 1.075, 'P', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(Q))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 18: k = kCrit - 0.1
@@ -1051,9 +1052,9 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'Q', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(R))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, -0.4, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 19: k = kCrit - 0.2
@@ -1074,9 +1075,9 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'R', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(S))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, -0.4, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
     ##  Panel 20: k = kCrit - 0.3
@@ -1097,9 +1098,9 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.05, 1.075, 'S', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(T))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, -0.4, expression(paste(italic(s[m]))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
+        proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
 }
