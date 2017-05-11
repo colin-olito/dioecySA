@@ -73,16 +73,16 @@ OTot  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 
 # Total ovule used for self-fertilization
 OsTot  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
-	par.list$C * (FA.11(Fii, Gii, par.list)*Wf.mat[1,1] + FA.12(Fii, Gii, par.list)*Wf.mat[1,2] + FA.13(Fii, Gii, par.list)*Wf.mat[1,3] + 
-		          FA.14(Fii, Gii, par.list)*Wf.mat[1,4] + FA.23(Fii, Gii, par.list)*Wf.mat[2,3] + FA.33(Fii, Gii, par.list)*Wf.mat[3,3] + 
-		          FA.34(Fii, Gii, par.list)*Wf.mat[3,4])
+	par.list$C*(FA.11(Fii, Gii, par.list)*Wf.mat[1,1] + FA.12(Fii, Gii, par.list)*Wf.mat[1,2] + FA.13(Fii, Gii, par.list)*Wf.mat[1,3] + 
+		        FA.14(Fii, Gii, par.list)*Wf.mat[1,4] + FA.23(Fii, Gii, par.list)*Wf.mat[2,3] + FA.33(Fii, Gii, par.list)*Wf.mat[3,3] + 
+		        FA.34(Fii, Gii, par.list)*Wf.mat[3,4])
 }
 
 # Total ovules used for outcrossing
 OxTot  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 		(1 - par.list$C)*(FA.11(Fii, Gii, par.list)*Wf.mat[1,1] + FA.12(Fii, Gii, par.list)*Wf.mat[1,2] + FA.13(Fii, Gii, par.list)*Wf.mat[1,3] + 
-		          FA.14(Fii, Gii, par.list)*Wf.mat[1,4] + FA.23(Fii, Gii, par.list)*Wf.mat[2,3] + FA.33(Fii, Gii, par.list)*Wf.mat[3,3] + 
-		          FA.34(Fii, Gii, par.list)*Wf.mat[3,4]) +
+		                  FA.14(Fii, Gii, par.list)*Wf.mat[1,4] + FA.23(Fii, Gii, par.list)*Wf.mat[2,3] + FA.33(Fii, Gii, par.list)*Wf.mat[3,3] + 
+		                  FA.34(Fii, Gii, par.list)*Wf.mat[3,4]) +
 		(FA.22(Fii, Gii, par.list)*Wf.mat[2,2] + FA.24(Fii, Gii, par.list)*Wf.mat[2,4] + FA.44(Fii, Gii, par.list)*Wf.mat[4,4])
 }
 
@@ -164,25 +164,25 @@ PxTot  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
 
 # Frequency of pollen/sperm | Outcrossing genotype
 px.11  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
-	(FA.11(Fii, Gii, par.list)* Wm.mat[1,1]) / PxTot(Fii, Gii, par.list, Wm.mat)
+	(FA.11(Fii, Gii, par.list)*Wm.mat[1,1]) / PxTot(Fii, Gii, par.list, Wm.mat)
 }
 px.12  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
-	(FA.12(Fii, Gii, par.list)* Wm.mat[1,2]) / PxTot(Fii, Gii, par.list, Wm.mat)
+	(FA.12(Fii, Gii, par.list)*Wm.mat[1,2]) / PxTot(Fii, Gii, par.list, Wm.mat)
 }
 px.13  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
-	(FA.13(Fii, Gii, par.list)* Wm.mat[1,3]) / PxTot(Fii, Gii, par.list, Wm.mat)
+	(FA.13(Fii, Gii, par.list)*Wm.mat[1,3]) / PxTot(Fii, Gii, par.list, Wm.mat)
 }
 px.14  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
-	(FA.14(Fii, Gii, par.list)* Wm.mat[1,4]) / PxTot(Fii, Gii, par.list, Wm.mat)
+	(FA.14(Fii, Gii, par.list)*Wm.mat[1,4]) / PxTot(Fii, Gii, par.list, Wm.mat)
 }
 px.23  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
-	(FA.23(Fii, Gii, par.list)* Wm.mat[2,3]) / PxTot(Fii, Gii, par.list, Wm.mat)
+	(FA.23(Fii, Gii, par.list)*Wm.mat[2,3]) / PxTot(Fii, Gii, par.list, Wm.mat)
 }
 px.33  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
-	(FA.33(Fii, Gii, par.list)* Wm.mat[3,3]) / PxTot(Fii, Gii, par.list, Wm.mat)
+	(FA.33(Fii, Gii, par.list)*Wm.mat[3,3]) / PxTot(Fii, Gii, par.list, Wm.mat)
 }
 px.34  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
-	(FA.34(Fii, Gii, par.list)* Wm.mat[3,4]) / PxTot(Fii, Gii, par.list, Wm.mat)
+	(FA.34(Fii, Gii, par.list)*Wm.mat[3,4]) / PxTot(Fii, Gii, par.list, Wm.mat)
 }
 
 # Linkage Disequilibrium among ovules (convenience function for outcross haplotype frequency equations)
@@ -276,7 +276,7 @@ Gpr.11  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm
 	S(Fii, Gii, par.list, Wf.mat);
 }
 Gpr.12  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm.mat,...) {
-	((os.11(Fii, Gii, par.list, Wf.mat) + os.14(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)) + os.23(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)))/2)*S(Fii, Gii, par.list, Wf.mat)
+	((os.12(Fii, Gii, par.list, Wf.mat) + os.14(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)) + os.23(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)))/2) * S(Fii, Gii, par.list, Wf.mat)
 }
 Gpr.13  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm.mat,...) {
 	((os.13(Fii, Gii, par.list, Wf.mat) + os.14(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)) + os.23(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)))/2) * S(Fii, Gii, par.list, Wf.mat);
@@ -299,7 +299,7 @@ Gpr.33  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm
 	S(Fii, Gii, par.list, Wf.mat);
 }
 Gpr.34  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm.mat,...) {
-	((os.14(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)) + os.23(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)))/2) * S(Fii, Gii, par.list, Wf.mat);
+	((os.14(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)) + os.23(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)) + os.34(Fii, Gii, par.list, Wf.mat))/2) * S(Fii, Gii, par.list, Wf.mat);
 }
 Gpr.44  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm.mat,...) {
     0
@@ -367,9 +367,9 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-7, ..
 	
 	Wm.mat   <-  matrix(
 						c((1 - par.list$sm), (1 - par.list$sm), (1 - par.list$hm*par.list$sm), (1 - par.list$hm*par.list$sm),
-                                          0, (1 - par.list$sm), (1 - par.list$hm*par.list$sm), (1 - par.list$hm*par.list$sm),
-                                          0,                 0,                             1, 1,
-                                          0,                 0,                             0, 1), 
+                                          0,                 0, (1 - par.list$hm*par.list$sm),                             0,
+                                          0,                 0,                             1,                             1,
+                                          0,                 0,                             0,                             0), 
 						nrow=4, byrow=TRUE
 						)	
 
@@ -459,7 +459,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 			  convergence, and thus how long the simulations take')
 
 	# Calculate Cs, deltas, sfs 
-	Cs  <-  seq(0,0.9,by=0.05)
+	Cs  <-  seq(0,0.9,by=0.1)
 	Ds  <-  deltaC(dStar=dStar, C=Cs, a=a, b=b)
 
 	if(hf == hm & hm == 0.5) {
@@ -513,14 +513,15 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 					   	}
 				   	if(par.list$C == 0) {
 						QEs[QEs == max(QEs)]  <-  max(QEs) - 0.01
-						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0, 0.01, 0, QEs[3], 0, 0), digits=5)
+#						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0, 0.01, 0, QEs[3], 0, 0), digits=5) #f23
+						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0.01, 0, 0, QEs[3], 0, 0), digits=5) #f14
 						Gii.init  <-  rep(0,10)
 				   	}
 				   	else {
 				   		QEs   <-  QEs/sum(QEs)
 				   	   	QEs[QEs == max(QEs)][1]  <-  max(QEs) - 0.01
-						Fii.init  <-  round(c((1 - par.list$C)*QEs[1], 0, (1 - par.list$C)*QEs[2], 0, 0, (1 - par.list$C)*0.01, 0, (1 - par.list$C)*QEs[3], 0, 0), digits=6)
-						Gii.init  <-  round(c(par.list$C*QEs[1], 0, par.list$C*QEs[2], 0, 0, par.list$C*0.01, 0, par.list$C*QEs[3], 0, 0), digits=6)
+						Fii.init  <-  round(c((1 - par.list$C)*QEs[1], 0, (1 - par.list$C)*QEs[2], 0, (1 - par.list$C)*0.01, 0, 0, (1 - par.list$C)*QEs[3], 0, 0), digits=6)
+						Gii.init  <-  round(c(      par.list$C*QEs[1], 0,       par.list$C*QEs[2], 0,       par.list$C*0.01, 0, 0,       par.list$C*QEs[3], 0, 0), digits=6)
 					}
 					if(sum(Fii.init,Gii.init) != 1) {
 						Fii.init  <-  Fii.init/sum(Fii.init, Gii.init)

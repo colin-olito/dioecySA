@@ -50,35 +50,35 @@ embed_fonts(figPath(name='Fig2.pdf'))
 # Figs. S1-S6 -- Funnel plots for invasion into initially polymorphic populations
 	# Gynodioecy
 	  # Obligate Outcrossing
-	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wkSel-ObOut-Add-EQInv.csv"), 
-	  	                    figPath(name='FigS1.pdf'), width=8, height=10)
-	  embed_fonts(figPath(name='FigS1.pdf'))
+	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-ObOut-Add-EQInv.csv", wkSel = TRUE), 
+	  	          figPath(name='FigS1-Gyno-obOut-funnel.pdf'), width=8, height=10)
+	  embed_fonts(figPath(name='FigS1-Gyno-obOut-funnel.pdf'))
 	
 	  # Low selfing, High Inbreeding Depression
-	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-strgSel-Add-EQInv.csv", wkSel = TRUE), 
-			  figPath(name='FigS2.pdf'), width=9, height=10)
-	  embed_fonts(figPath(name='FigS2.pdf'))
+	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-Add-EQInv.csv", wkSel = TRUE), 
+			      figPath(name='FigS2-Gyno-C25-d80-funnel.pdf'), width=9, height=10)
+	  embed_fonts(figPath(name='FigS2-Gyno-C25-d80-funnel.pdf'))
 	
 	  # High selfing, Low Inbreeding Depression
-	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-strgSel-Add-EQInv.csv", wkSel=TRUE), 
-			  figPath(name='FigS3.pdf'), width=9, height=10)
-	  embed_fonts(figPath(name='FigS3.pdf'))
+	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-Add-EQInv.csv", wkSel=TRUE), 
+			      figPath(name='FigS3-Gyno-C75-d20-funnel.pdf'), width=9, height=10)
+	  embed_fonts(figPath(name='FigS3-Gyno-C75-d20-funnel.pdf'))
 
 	# Androdioecy
 	  # Obligate Outcrossing
-	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-ObOut-Add-EQInv.csv"), 
-	  	                    figPath(name='FigS1.pdf'), width=8, height=10)
-	  embed_fonts(figPath(name='FigS4.pdf'))
+	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/And-wksel-ObOut-Add-EQInv.csv", wkSel=TRUE), 
+	  	          figPath(name='FigS4-Andro-obOut-funnel.pdf'), width=8, height=10)
+	  embed_fonts(figPath(name='FigS4-Andro-obOut-funnel.pdf'))
 	
 	  # Low selfing, High Inbreeding Depression
-	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-strgSel-Add-EQInv.csv", wkSel = TRUE), 
-			  figPath(name='FigS2.pdf'), width=9, height=10)
-	  embed_fonts(figPath(name='FigS5.pdf'))
+	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/And-wksel-partSelf-C25-delta80-Add-EQInv.csv", wkSel = TRUE), 
+			      figPath(name='FigS5-Andro-C25-d80-funnel.pdf'), width=9, height=10)
+	  embed_fonts(figPath(name='FigS5-Andro-C25-d80-funnel.pdf'))
 	
 	  # High selfing, Low Inbreeding Depression
-	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-strgSel-Add-EQInv.csv", wkSel=TRUE), 
-			  figPath(name='FigS3.pdf'), width=9, height=10)
-	  embed_fonts(figPath(name='FigS6.pdf'))
+	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-Add-EQInv.csv", wkSel=TRUE), 
+			      figPath(name='FigS6-Andro-C75-d20-funnel.pdf'), width=9, height=10)
+	  embed_fonts(figPath(name='FigS6-Andro-C75-d20-funnel.pdf'))
 
 
 

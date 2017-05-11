@@ -181,27 +181,27 @@ funnelSlice  <-  function(sm, C, delta, h = 0.5) {
 Fig.1  <-  function() {
 
     # Import data
-    data1  <-  read.csv("./output/data/EQInvAnalyses/Gyn-ObOut-Add-EQInv.csv", header=TRUE)
-    data2  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-strgSel-Add-EQInv.csv", header=TRUE)
-    data3  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-strgSel-Add-EQInv.csv", header=TRUE)
-    data4  <-  read.csv("./output/data/EQInvAnalyses/And-ObOut-Add-EQInv.csv", header=TRUE)
+    data1  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-ObOut-Add-EQInv.csv", header=TRUE)
+    data2  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-Add-EQInv.csv", header=TRUE)
+    data3  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-Add-EQInv.csv", header=TRUE)
+    data4  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-ObOut-Add-EQInv.csv", header=TRUE)
+    data5  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-partSelf-C25-delta80-Add-EQInv.csv", header=TRUE)
+#    data6  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-partSelf-C75-delta20-strgSel-Add-EQInv.csv", header=TRUE)
 
     # k index for easy plotting
     ks1  <-  unique(data1$k) 
     ks2  <-  unique(data2$k)
     ks3  <-  unique(data3$k)
     ks4  <-  unique(data4$k)
-    rs  <-  unique(data1$r)
+    ks5  <-  unique(data5$k)
+    ks6  <-  unique(data3$k)
 
     # Calculate Pr(Inv) for each data set
     d1  <-  ddply(data1, ~ k*r, summarize, pInv=(length(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
     d2  <-  ddply(data2, ~ k*r, summarize, pInv=(length(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
     d3  <-  ddply(data3, ~ k*r, summarize, pInv=(length(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
     d4  <-  ddply(data4, ~ k*r, summarize, pInv=(length(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
-
-    # correct inconclusive Eigenvalue evaluations
-#    d2$pInv[d2$k == max(d2$k)]  <-  1
-#    d4$pInv[d4$k == max(d4$k)]  <-  1
+    d5  <-  ddply(data5, ~ k*r, summarize, pInv=(length(DiffEQInvEig[DiffEQInvEig != 0])/length(DiffEQInvEig)))
 
     # Color scheme
     COLS  <-  c(transparentColor('dodgerblue4', opacity=0.75),
@@ -213,11 +213,9 @@ Fig.1  <-  function() {
                 transparentColor('tomato2', opacity=0.5),
                 transparentColor('dodgerblue2', opacity=0.5))
 
-
     # Set plot layout
     layout.mat <- matrix(c(1:6), nrow=3, ncol=2, byrow=FALSE)
     layout <- layout(layout.mat,respect=TRUE)
-
 
 ##  Column 1: Gynodioecy
     ##  Panel 1: Obligate Outcrossing
@@ -274,8 +272,8 @@ Fig.1  <-  function() {
 
     ##  Panel 2: Low Selfing, High Inbreeding Depression
         # Calculate pretty x-values for plotting
-        x  <-  unique(d2$r)
-        xat  <-  pretty(x)
+        x     <-  unique(d2$r)
+        xat   <-  pretty(x)
         xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
         # make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(x)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -301,13 +299,13 @@ Fig.1  <-  function() {
         axis.break(1,0.45)
         # Plot labels etc.
         proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 4/5")), cex=1, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.075, expression(paste(C," = ",0.25,", ",delta," = 0.8")), cex=1, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.325, 0.5, expression(paste(Fraction~of~parameter~space)), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
 
     ##  Panel 3: High Selfing, Low Inbreeding Depression
         # Calculate pretty x-values for plotting
-        x  <-  unique(d3$r)
-        xat  <-  pretty(x)
+        x     <-  unique(d3$r)
+        xat   <-  pretty(x)
         xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
         # make plot
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(x)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
@@ -333,7 +331,7 @@ Fig.1  <-  function() {
         axis.break(1,0.45)
         # Plot labels etc.
         proportionalLabel(0.05, 1.075, expression(paste(bold(C))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.5,  1.075, expression(paste(C," = 3/4, ",delta," = 1/5")), cex=1, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5,  1.075, expression(paste(C," = ",0.75,", ",delta, " = ",0.2)), cex=1, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.325, 0.5, expression(paste(Fraction~of~parameter~space)), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, -0.3, expression(paste(italic(r))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
 
@@ -341,92 +339,96 @@ Fig.1  <-  function() {
     ##  Panel 4: Obligate Outcrossing
         # Calculate pretty x-values for plotting
         x  <-  unique(d4$r)
-        xgap  <-  ifelse(x>0.2,x-0.3,x)
-        xat  <-  pretty(xgap)
-        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
+        xat  <-  pretty(x)
+        xlab  <-  c(0.00, 0.01, 0.05, 0.10, 0.20, 0.50)
         # make plot
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(x)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Plot points
-        lines(pInv[k==ks4[1]] ~ xat, col=COLS[3], lwd=2, data=d4)
-        lines(pInv[k==ks4[2]] ~ xat, col=COLS[2], lwd=2, data=d4)
-        lines(pInv[k==ks4[3]] ~ xat, col=COLS[1], lwd=2, data=d4)
-        points(pInv[k==ks4[1]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d4)
-        points(pInv[k==ks4[2]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d4)
-        points(pInv[k==ks4[3]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d4)
+        lines(pInv[k==ks1[1]]  ~ xat, col=COLS[4], lwd=2, data=d4)
+        lines(pInv[k==ks1[2]]  ~ xat, col=COLS[3], lwd=2, data=d4)
+        lines(pInv[k==ks1[3]]  ~ xat, col=COLS[2], lwd=2, data=d4)
+        lines(pInv[k==ks1[4]]  ~ xat, col=COLS[1], lwd=2, data=d4)
+        points(pInv[k==ks1[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d4)
+        points(pInv[k==ks1[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d4)
+        points(pInv[k==ks1[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d4)
+        points(pInv[k==ks1[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d4)
         # axes
         axis(1, las=1, at=xat, labels=NA)
         axis(2, las=1, labels=NA)
-        axis.break(1,0.175)
-        axis.break(1,0.125)
+        axis.break(1,0.15)
+        axis.break(1,0.25)
+        axis.break(1,0.35)
+        axis.break(1,0.45)
         # Plot labels etc.
         proportionalLabel(0.5, 1.25, expression(paste("Androdioecy")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.5, 1.075, expression(paste(C," = 0")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.075, expression(paste(C," = 0")), cex=1, adj=c(0.5, 0.5), xpd=NA)
 
     ##  Panel 5: Low Selfing, High Inbreeding Depression
         # Calculate pretty x-values for plotting
-#        x  <-  unique(d5$r)
-#        xgap  <-  ifelse(x>0.2,x-0.3,x)
-#        xat  <-  pretty(xgap)
-#        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
-#        # make plot
-#        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-#        usr  <-  par('usr')
-#        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-#        plotGrid(lineCol='grey80')
-#        box()
-#        # Plot points
-#        lines(pInv[k==ks5[1]] ~ xat, col=COLS[4], lwd=2, data=d5)
-#        lines(pInv[k==ks5[2]] ~ xat, col=COLS[3], lwd=2, data=d5)
-#        lines(pInv[k==ks5[3]] ~ xat, col=COLS[2], lwd=2, data=d5)
-#        lines(pInv[k==ks5[4]] ~ xat, col=COLS[1], lwd=2, data=d5)
-#        points(pInv[k==ks5[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d5)
-#        points(pInv[k==ks5[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d5)
-#        points(pInv[k==ks5[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d5)
-#        points(pInv[k==ks5[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d5)
-#        # axes
-#        axis(1, las=1, at=xat, labels=NA)
-#        axis(2, las=1, labels=NA)
-#        axis.break(1,0.175)
-#        axis.break(1,0.125)
-#        # Plot labels etc.
-#        proportionalLabel(0.05, 1.075, expression(paste(bold())), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-#        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 0.8")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        x  <-  unique(d3$r)
+        xat  <-  pretty(x)
+        xlab  <-  c(0.00, 0.01, 0.05, 0.10, 0.20, 0.50)
+        # make plot
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(x)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot points
+        lines(pInv[k==ks5[1]]  ~ xat, col=COLS[4], lwd=2, data=d5)
+        lines(pInv[k==ks5[2]]  ~ xat, col=COLS[3], lwd=2, data=d5)
+        lines(pInv[k==ks5[3]]  ~ xat, col=COLS[2], lwd=2, data=d5)
+        lines(pInv[k==ks5[4]]  ~ xat, col=COLS[1], lwd=2, data=d5)
+        points(pInv[k==ks5[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d5)
+        points(pInv[k==ks5[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d5)
+        points(pInv[k==ks5[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d5)
+        points(pInv[k==ks5[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d5)
+        # axes
+        axis(1, las=1, at=xat, labels=x)
+        axis(2, las=1, labels=NA)
+        axis.break(1,0.15)
+        axis.break(1,0.25)
+        axis.break(1,0.35)
+        axis.break(1,0.45)
+        # Plot labels etc.
+        proportionalLabel(0.05, 1.075, expression(paste(bold(E))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.075, expression(paste(C," = ",0.25,", ",delta," = 0.8")), cex=1, adj=c(0.5, 0.5), xpd=NA)
 
-#    ##  Panel 6: High Selfing, Low Inbreeding Depression
-#        # Calculate pretty x-values for plotting
-#        x  <-  unique(d6$r)
-#        xgap  <-  ifelse(x>0.2,x-0.3,x)
-#        xat  <-  pretty(xgap)
-#        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
-#        # make plot
-#        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(xgap)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
-#        usr  <-  par('usr')
-#        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
-#        plotGrid(lineCol='grey80')
-#        box()
-#        # Plot points
-#        lines(pInv[k==ks6[1]] ~ xat, col=COLS[4], lwd=2, data=d6)
-#        lines(pInv[k==ks6[2]] ~ xat, col=COLS[3], lwd=2, data=d6)
-#        lines(pInv[k==ks6[3]] ~ xat, col=COLS[2], lwd=2, data=d6)
-#        lines(pInv[k==ks6[4]] ~ xat, col=COLS[1], lwd=2, data=d6)
-#        points(pInv[k==ks6[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d6)
-#        points(pInv[k==ks6[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d6)
-#        points(pInv[k==ks6[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d6)
-#        points(pInv[k==ks6[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d6)
-#        # axes
-#        axis(1, las=1, at=xat, labels=xlab)
-#        axis(2, las=1, labels=NA)
-#        axis.break(1,0.175)
-#        axis.break(1,0.125)
+    ##  Panel 6: High Selfing, Low Inbreeding Depression
+        x     <-  unique(d3$r)
+        xat   <-  pretty(x)
+        xlab  <-  c(0.00, 0.01, 0.02, 0.10, 0.50)
+        # make plot
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,max(x)), ylim = c(0,1), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Plot points
+        lines(pInv[k==ks6[1]] ~ xat, col=COLS[4], lwd=2, data=d3)
+        lines(pInv[k==ks6[2]] ~ xat, col=COLS[3], lwd=2, data=d3)
+        lines(pInv[k==ks6[3]] ~ xat, col=COLS[2], lwd=2, data=d3)
+        lines(pInv[k==ks6[4]] ~ xat, col=COLS[1], lwd=2, data=d3)
+        points(pInv[k==ks6[1]] ~ xat, pch=21, col=COLS[4], cex=1, bg=COLS.bg[4], data=d3)
+        points(pInv[k==ks6[2]] ~ xat, pch=21, col=COLS[3], cex=1, bg=COLS.bg[3], data=d3)
+        points(pInv[k==ks6[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d3)
+        points(pInv[k==ks6[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d3)
+        # axes
+        axis(1, las=1, at=xat, labels=x)
+        axis(2, las=1, labels=NA)
+        axis.break(1,0.15)
+        axis.break(1,0.25)
+        axis.break(1,0.35)
+        axis.break(1,0.45)
 #        # Plot labels etc.
-#        proportionalLabel(0.05, 1.075, expression(paste(bold())), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-#        proportionalLabel(0.5, 1.075, expression(paste(C," = 1/4, ",delta," = 0.2")), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-#        proportionalLabel(0.5, -0.35, expression(paste(italic(r))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(F))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5,  1.075, expression(paste(C," = ",0.75,", ",delta, " = ",0.2)), cex=1, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, -0.35, expression(paste(italic(r))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
 
 }
 
@@ -674,7 +676,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.9," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.88, 1.23, substitute(k,list(k=ks[2])), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.88, 1.23, substitute(k,list(k=rounded(ks[2],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, 'B', cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
@@ -698,7 +700,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.8," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.88, 1.23, substitute(k,list(k=ks[3])), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.88, 1.23, substitute(k,list(k=rounded(ks[3],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
@@ -721,7 +723,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.7," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.88, 1.23, substitute(k,list(k=ks[4])), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.88, 1.23, substitute(k,list(k=rounded(ks[4],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.5, adj=c(0, 0.5), xpd=NA)
         rm(pInv)
 
