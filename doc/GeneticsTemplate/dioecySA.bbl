@@ -1,4 +1,4 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{37}
 
 \bibitem[{Agrawal {\rm and} Whitlock}(2011)]{Agrawal2011}
 {Agrawal, A.~F. {\rm and} M.~C. Whitlock}, 2011 Inferences about the
@@ -31,6 +31,12 @@
 \bibitem[{Charlesworth {\rm and} Charlesworth}(1978{a})]{Charlesworth1978a}
 {Charlesworth, B. {\rm and} D.~Charlesworth}, 1978{a} A model for the evolution
   of dioecy and gynodioecy. American Naturalist {\bf 112}: 975--997.
+
+\bibitem[{Charlesworth}(1985)]{Charlesworth1985}
+{Charlesworth, D.}, 1985 Distribution of dioecy and self-incompatibility in
+  angiosperms. In {\em Evolution: Essays in honor of John Maynard Smith\/},
+  edited by P.~J. Greenwood {\rm and} M.~Slatkin, pp. 237--268, Cambridge
+  University Press, Cambridge, U.~K.
 
 \bibitem[{Charlesworth}(1999)]{Charlesworth1999}
 {Charlesworth, D.}, 1999 Theories of the evolution of dioecy. In {\em Gender
@@ -147,10 +153,21 @@
   {\rm and} C.~B. Kimbras, pp. 157--203, Cambridge University Press, Cambridge,
   U.K.
 
+\bibitem[{Qiu {\em et~al.\/}}(2013){Qiu, Bergero, {\rm and}
+  Charlesworth}]{Qiuetal2013}
+{Qiu, S., R.~Bergero, {\rm and} D.~Charlesworth}, 2013 Testing for the
+  footprint of sexually antagonistic polymorphisms in the pseudoautosomal
+  region of a plant sex chromosome pair. Genetics {\bf 194}: 663--672.
+
 \bibitem[{Renner}(2014)]{Renner2014}
 {Renner, S.}, 2014 The relative and absolute frequencies of angiosperm sexual
   systems: dioecy, monoecy, gynodioecy, and an updated online database.
   American Journal of Botany {\bf 101}: 1588--1596.
+
+\bibitem[{Rice}(1987)]{Rice1987}
+{Rice, W.~R.}, 1987 The accumulation of sexually antagonistic genes as a
+  selective agent promoting the evolution of reduced recombination between
+  primitive sex chromosomes. Evolution {\bf 41}: 911--914.
 
 \bibitem[{Sakai {\rm and} Weller}(1999)]{SakaiWeller1999}
 {Sakai, A.~K. {\rm and} S.~G. Weller}, 1999 Gender and sexual dimorphism in

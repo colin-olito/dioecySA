@@ -27,8 +27,8 @@ source('R/functions-figures.R')
 # PAPER FIGURES
 ###############
 
-toPdf(Fig.1(), figPath(name='Fig1.pdf'), width=5, height=7.75)
-embed_fonts(figPath(name='Fig1.pdf'))
+toPdf(Fig.1(), figPath(name='Fig1alt.pdf'), width=5, height=7.75)
+embed_fonts(figPath(name='Fig1alt.pdf'))
 
 toPdf(Fig.2(), figPath(name='Fig2.pdf'), width=7, height=7)
 embed_fonts(figPath(name='Fig2.pdf'))
@@ -219,4 +219,4 @@ source('R/functions-recSim-Gyno-Rec.R')
   	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'), width=6, height=6)
   embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'))
 
-gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_add.csv")
+gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_addtest.csv")
