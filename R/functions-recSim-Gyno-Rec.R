@@ -80,9 +80,9 @@ OsTot  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 
 # Total ovules used for outcrossing
 OxTot  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
-		(1 - par.list$C)*(FA.11(Fii, Gii, par.list)*Wf.mat[1,1] + FA.12(Fii, Gii, par.list)*Wf.mat[1,2] + FA.13(Fii, Gii, par.list)*Wf.mat[1,3] + 
-		                  FA.14(Fii, Gii, par.list)*Wf.mat[1,4] + FA.23(Fii, Gii, par.list)*Wf.mat[2,3] + FA.33(Fii, Gii, par.list)*Wf.mat[3,3] + 
-		                  FA.34(Fii, Gii, par.list)*Wf.mat[3,4]) +
+	(1 - par.list$C)*(FA.11(Fii, Gii, par.list)*Wf.mat[1,1] + FA.12(Fii, Gii, par.list)*Wf.mat[1,2] + FA.13(Fii, Gii, par.list)*Wf.mat[1,3] + 
+	                  FA.14(Fii, Gii, par.list)*Wf.mat[1,4] + FA.23(Fii, Gii, par.list)*Wf.mat[2,3] + FA.33(Fii, Gii, par.list)*Wf.mat[3,3] + 
+	                  FA.34(Fii, Gii, par.list)*Wf.mat[3,4]) +
 		(FA.22(Fii, Gii, par.list)*Wf.mat[2,2] + FA.24(Fii, Gii, par.list)*Wf.mat[2,4] + FA.44(Fii, Gii, par.list)*Wf.mat[4,4])
 }
 
@@ -285,13 +285,13 @@ Gpr.14  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm
 	((os.14(Fii, Gii, par.list, Wf.mat)*((1 - par.list$r)^2) + os.23(Fii, Gii, par.list, Wf.mat)*(par.list$r^2))/2) * S(Fii, Gii, par.list, Wf.mat);
 }
 Gpr.22  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm.mat,...) {
-	0
+	 ((os.12(Fii, Gii, par.list, Wf.mat) + os.13(Fii, Gii, par.list, Wf.mat) + os.14(Fii, Gii, par.list, Wf.mat)*(par.list$r^2) + os.23(Fii, Gii, par.list, Wf.mat)*((1 - par.list$r)^2))/4) * S(Fii, Gii, par.list, Wf.mat);
 }
 Gpr.23  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm.mat,...) {
 	((os.14(Fii, Gii, par.list, Wf.mat)*(par.list$r^2) + os.23(Fii, Gii, par.list, Wf.mat)*((1 - par.list$r)^2))/2) * S(Fii, Gii, par.list, Wf.mat);
 }
 Gpr.24  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm.mat,...) {
-	0
+	((os.14(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)) + os.23(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)))/2) * S(Fii, Gii, par.list, Wf.mat);
 }
 Gpr.33  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm.mat,...) {
 	(os.33(Fii, Gii, par.list, Wf.mat) + ((os.13(Fii, Gii, par.list, Wf.mat) + os.34(Fii, Gii, par.list, Wf.mat) + 
@@ -302,7 +302,8 @@ Gpr.34  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm
 	((os.14(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)) + os.23(Fii, Gii, par.list, Wf.mat)*(par.list$r*(1 - par.list$r)) + os.34(Fii, Gii, par.list, Wf.mat))/2) * S(Fii, Gii, par.list, Wf.mat);
 }
 Gpr.44  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm.mat,...) {
-    0
+	((os.34(Fii, Gii, par.list, Wf.mat) + os.14(Fii, Gii, par.list, Wf.mat)*((1 - par.list$r)^2) + os.23(Fii, Gii, par.list, Wf.mat)*(par.list$r^2))/4) * 
+	S(Fii, Gii, par.list, Wf.mat);
 }
 
 
@@ -513,15 +514,14 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 					   	}
 				   	if(par.list$C == 0) {
 						QEs[QEs == max(QEs)]  <-  max(QEs) - 0.01
-#						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0, 0.01, 0, QEs[3], 0, 0), digits=5) #f23
-						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0.01, 0, 0, QEs[3], 0, 0), digits=5) #f14
+						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0, 0.01, 0, QEs[3], 0, 0), digits=6) 
 						Gii.init  <-  rep(0,10)
 				   	}
 				   	else {
 				   		QEs   <-  QEs/sum(QEs)
 				   	   	QEs[QEs == max(QEs)][1]  <-  max(QEs) - 0.01
-						Fii.init  <-  round(c((1 - par.list$C)*QEs[1], 0, (1 - par.list$C)*QEs[2], 0, (1 - par.list$C)*0.01, 0, 0, (1 - par.list$C)*QEs[3], 0, 0), digits=6)
-						Gii.init  <-  round(c(      par.list$C*QEs[1], 0,       par.list$C*QEs[2], 0,       par.list$C*0.01, 0, 0,       par.list$C*QEs[3], 0, 0), digits=6)
+						Fii.init  <-  round(c((1 - par.list$C)*QEs[1], 0, (1 - par.list$C)*QEs[2], 0, 0, (1 - par.list$C)*0.01, 0, (1 - par.list$C)*QEs[3], 0, 0), digits=6)
+						Gii.init  <-  round(c(      par.list$C*QEs[1], 0,       par.list$C*QEs[2], 0, 0,       par.list$C*0.01, 0,       par.list$C*QEs[3], 0, 0), digits=6)
 					}
 					if(sum(Fii.init,Gii.init) != 1) {
 						Fii.init  <-  Fii.init/sum(Fii.init, Gii.init)
@@ -530,6 +530,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 
 		 		# Run simulation for given parameter values
 				res  <-  recursionFwdSim(par.list = par.list, Fii.init = Fii.init, Gii.init = Gii.init, threshold = threshold)
+#if(m==3) browser()
 
 				# Store equilibrium frequencies
 				eqFreqs[((i-1)*nrow(Ks)*length(Cs)) + ((j-1)*length(Cs)) + m,]  <-  res$EQ.freq
@@ -568,7 +569,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 	
 	#  Write results.df to .txt file
 	if(hm == hf & hf == 0.5) {
-		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_add", ".csv", sep="")
+		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_add", "test.csv", sep="")
 	}
 	if(hm == hf & hf == 0.25) {
 		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_domRev", ".csv", sep="")
@@ -594,7 +595,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 #' @author Colin Olito
 #' @export
 #' 
-gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_add.csv") {
+gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_addtest.csv") {
 
     # Import data
     data  <-  read.csv(df, header=TRUE)
