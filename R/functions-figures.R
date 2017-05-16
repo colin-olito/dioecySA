@@ -186,7 +186,7 @@ Fig.1  <-  function() {
     data3  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-Add-EQInv.csv", header=TRUE)
     data4  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-ObOut-Add-EQInv.csv", header=TRUE)
     data5  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-partSelf-C25-delta80-Add-EQInv.csv", header=TRUE)
-    data6  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-partSelf-C75-delta20-Add-EQInv.csv", header=TRUE)
+    data6  <-  read.csv("./output/data/EQInvAnalyses/And-wksel2-partSelf-C75-delta20-Add-EQInv.csv", header=TRUE)
 
     # k index for easy plotting
     ks1  <-  unique(data1$k) 
@@ -390,7 +390,7 @@ Fig.1  <-  function() {
         points(pInv[k==ks5[3]] ~ xat, pch=21, col=COLS[2], cex=1, bg=COLS.bg[2], data=d5)
         points(pInv[k==ks5[4]] ~ xat, pch=21, col=COLS[1], cex=1, bg=COLS.bg[1], data=d5)
         # axes
-        axis(1, las=1, at=xat, labels=x)
+        axis(1, las=1, at=xat, labels=NA)
         axis(2, las=1, labels=NA)
         axis.break(1,0.15)
         axis.break(1,0.25)
@@ -648,7 +648,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1)
-        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%1.01," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%1.1," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.88, 1.23, substitute(k,list(k=rounded(ks[1],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.6, 0.5, expression(paste(italic(r), " = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(-0.6, 0.65, substitute(r,list(r=rs[1])), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
@@ -675,7 +675,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.9," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.99," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.88, 1.23, substitute(k,list(k=rounded(ks[2],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
@@ -699,7 +699,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.8," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.95," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.88, 1.23, substitute(k,list(k=rounded(ks[3],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(C))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
@@ -723,7 +723,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.7," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.25, expression(paste(hat(italic(k))%*%0.90," = ")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.88, 1.23, substitute(k,list(k=rounded(ks[4],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 0.95, substitute("Pr(inv) ="~p, list(p = pInv)), cex=0.75, adj=c(0, 0.5), xpd=NA)
