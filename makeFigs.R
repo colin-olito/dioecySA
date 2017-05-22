@@ -27,8 +27,8 @@ source('R/functions-figures.R')
 # PAPER FIGURES
 ###############
 
-toPdf(Fig.1(), figPath(name='Fig1alt.pdf'), width=5, height=7.75)
-embed_fonts(figPath(name='Fig1alt.pdf'))
+toPdf(Fig.1(), figPath(name='Fig1.pdf'), width=5, height=7.75)
+embed_fonts(figPath(name='Fig1.pdf'))
 
 toPdf(Fig.2(), figPath(name='Fig2.pdf'), width=7, height=7)
 embed_fonts(figPath(name='Fig2.pdf'))
@@ -47,7 +47,7 @@ embed_fonts(figPath(name='Fig2.pdf'))
 # Supplementary Figures
 ########################
 
-# Figs. S1-S6 -- Funnel plots for invasion into initially polymorphic populations
+## Figs. S1-S6 -- Funnel plots for invasion into initially polymorphic populations
 	# Gynodioecy
 	  # Obligate Outcrossing
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-ObOut-Add-EQInv.csv", wkSel = TRUE), 
@@ -80,6 +80,8 @@ embed_fonts(figPath(name='Fig2.pdf'))
 			      figPath(name='FigS6-Andro-C75-d20-funnel.pdf'), width=9, height=10)
 	  embed_fonts(figPath(name='FigS6-Andro-C75-d20-funnel.pdf'))
 
+
+## Figs. S7-S12 -- Equilibrium frequency plots showing effects of non-linear C*delta function and stronger selfing (from deterministic simulations)
 
 
 ######################
@@ -176,13 +178,6 @@ source('R/functions-recSim-Gyno-Dom.R')
   embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_domRev.pdf'))
 
 
-
-gynDomRecPlots(df = "./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.4_add.csv")
-gynDomRecPlots(df = "./output/data/simResults/gyn-dom_dStar0.8_a0.2_sm0.4_add.csv")
-gynDomRecPlots(df = "./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.4_domRev.csv")
-
-
-
 ############################################################
 ##  Androdioecy dominant simulation plots
 source('R/functions-recSim-Gyno-Dom.R')
@@ -201,22 +196,16 @@ source('R/functions-recSim-Gyno-Dom.R')
 
 
 
-andDomRecPlots(df = "./output/data/simResults/and-dom_dStar0.8_a1_sm0.4_add.csv")
-
-
-andDomRecPlots(df = "./output/data/simResults/and-dom_dStar0.8_a1_sm0.4_domRev.csv")
-
-
-
-
 ############################################################
 ##  Gynodioecy dominant simulation plots
 source('R/functions-recSim-Gyno-Rec.R')
 
 # Additive fitness effects
-  # sm = 0.4
-  toPdf(gynDomRecPlots(df = "./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.4_add.csv"), 
-  	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'), width=6, height=6)
-  embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'))
+  # sm = 0.1
+  toPdf(gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv"), 
+  	                    figPath(name='Gyn-rec-Recursion-dStar0.8_a1_sm0.1_add.pdf'), width=6, height=6)
+  embed_fonts(figPath(          name='Gyn-rec-Recursion-dStar0.8_a1_sm0.1_add.pdf'))
 
-gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_addtest.csv")
+gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv")
+gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.3_add.csv")
+gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_add.csv")

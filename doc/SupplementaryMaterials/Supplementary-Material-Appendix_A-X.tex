@@ -1,0 +1,647 @@
+% Preamble
+\documentclass{article}
+
+%Dependencies
+\usepackage[left]{lineno}
+%\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{color,soul}
+%\usepackage{times}
+\usepackage[sc]{mathpazo} %Like Palatino with extensive math support
+\linespread{1.25}
+% Default margins are too wide all the way around. I reset them here
+\usepackage{fullpage}
+
+
+% Fonts and language
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[english]{babel}
+\RequirePackage{amsmath,amsfonts,amssymb}
+\RequirePackage{mathpazo}
+\RequirePackage[scaled]{helvet}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{url}
+\RequirePackage[colorlinks=true, allcolors=blue]{hyperref}
+%\RequirePackage[colorlinks=true, allcolors=blue,draft=true]{hyperref}
+\RequirePackage{lettrine}
+
+% Graphics, tables and other formatting
+\RequirePackage{graphicx,xcolor}
+\RequirePackage{colortbl}
+\RequirePackage{booktabs}
+\RequirePackage{tikz}
+\RequirePackage{algorithm}
+\RequirePackage[noend]{algpseudocode}
+\RequirePackage{changepage}
+\RequirePackage[labelfont={bf,sf},%
+                labelsep=space,%
+                figurename=Figure,%
+                singlelinecheck=off,%
+                justification=RaggedRight]{caption}
+%\setlength{\columnsep}{24pt} % Distance between the two columns of text
+\setlength{\parindent}{12pt} % Paragraph indent
+
+% Bibliography
+\usepackage{natbib} \bibpunct{(}{)}{;}{author-year}{}{,}
+\bibliographystyle{genetics}
+\addto{\captionsenglish}{\renewcommand{\refname}{Literature Cited}}
+\setlength{\bibsep}{0.0pt}
+
+% Running headers
+\usepackage{fancyhdr}
+\setlength{\headheight}{28pt}
+
+% Graphics package
+\usepackage{graphicx}
+\graphicspath{{../../output/figures/}.pdf}
+
+% New commands: fonts
+%\newcommand{\code}{\fontfamily{pcr}\selectfont}
+%\newcommand*\chem[1]{\ensuremath{\mathrm{#1}}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+%% Other Options
+
+% Change subsection numbering
+\renewcommand\thesubsection{\arabic{subsection})}
+\renewcommand\thesubsubsection{}
+
+% Subsubsection Title Formatting
+\titleformat{\subsubsection}    
+{\normalfont\fontsize{12pt}{17}\itshape}{\thesubsubsection}{12pt}{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Supplementary Material (Appendices A -- \hl{X}) for: Sexually antagonistic polymorphism and the evolution of dimporphic sexual systems in hermaphrodites. \textit{Genetics}}
+
+\author{Colin Olito \& Tim Connallon}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\noindent{} School of Biological Sciences, Monash University, Melbourne, VIC 3800, Australia.
+\bigskip
+
+\noindent{} Corresponding author e-mail: \url{colin.olito@gmail.com}
+\bigskip
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Running Header
+\pagestyle{fancyplain}
+\makeatother
+\lhead{\textit{Supplement to Olito \& Connallon. SA polymorphism and dimorphic sexual systems. \textit{Genetics}.\\}}
+%\rhead{\textit{Sex antagonistic selection on phenology}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\headheight}{12pt}
+
+
+\subsection*{Appendix A: Development of the recursions}
+\renewcommand{\theequation}{A\arabic{equation}}
+\titleformat{\subsubsection}    
+{\normalfont\fontsize{12pt}{17}\itshape}{\thesubsubsection}{12pt}{}
+
+%\setcounter{subsection}{0}  % reset counter 
+%\setcounter{equation}{0}  % reset counter 
+
+Here, we fully develop the system of genotype $\times$ transmission mode recursion equations underlying each of the four models described in the main text: the evolution of gynodioecy via invasion of a (1) completely dominant, or (2) completely recessive male-sterility allele; and the evolution of androdioecy via the invasion of a (3) completely dominant or (4) completely recessive female-sterility allele. We start by briefly re-iterating the main assumptions of the models. We then describe the calculation of adult frequencies after inbreeding depression, as this this the same for all four models. We then walk through the derivation of each of the four models in turn. Where possible, we highlight only essential differences between models rather than re-deriving identical equations. \bigskip
+
+\subsection*{Assumptions}
+
+Consider the genetic system described in the main text -- two diallelic autosomal loci, $\mathbf{A}$ (with alleles $A$, $a$) and $\mathbf{M}$ (with alleles $M_1$, $M_2$), that recombine at rate $r$ in a large population of simultaneous hermaphrodites. We assume that the $\mathbf{A}$ locus is under sexually antagonistic selection, with the $A$ allele having female-beneficial (male-deleterious) fitness effects, and the $a$ allele having male-beneficial (female-deleterious) fitness effects. At the $\mathbf{M}$ locus, the $M_1$ allele is neutral, while the $M_2$ allele represents a sex-specific sterility mutation causing complete loss of fertility (e.g., via cessation of production, or the production of inviable pollen or ovules). The population rate of self-fertilization, $C$, is assumed to be independent of the genotype at the $\mathbf{A}$ locus, while the genotype at the $\mathbf{M}$ locus determines whether or not a genotype is capable of self-fertilization. We also assume a constant population level of inbreeding depression, $\delta$. We assume that a vanishingly small amount of pollen is adequate for successful self-fertilization. Generations are assumed to be non-overlapping, and the life-cycle for all models proceeds as follows: fertilization $\rightarrow$ inbreeding depression $\rightarrow$ selection $\rightarrow$ fertilization.
+
+\subsection*{Adult genotypic frequencies after inbreeding depression}
+
+There are four possible combinations of alleles at the $\mathbf{A}$ and $\mathbf{M}$ loci that can be found on any chromosome: $A M_1$, $A M_2$, $a M_1$, and $a M_2$. Let $x_i$ and $y_i$ denote the haplotype frequencies $[AM_1,AM_2,aM_1,aM_2]$ in female and male gametes respectively. The calculation of adult genotypic frequencies after inbreeding is identical for all models. Let $F_{ij}$ denote the frequency among offspring of the genotype formed by the union of the \textit{i}th female and \textit{j}th male gametic haplotype via outcrossing. Similarly, let $G_{ij}$ denote the frequency among offspring of the genotype formed by the union of the \textit{i}th female and \textit{j}th male gametic haplotype via self-fertilization. The frequency of each genotype among adults after inbreeding depression, $F^A_{ij}$, will then be:
+\begin{equation} \label{eq:AdultFreq}
+	F^A_{ij} = \frac{F_{ij} + G_{ij}(1 - \delta)}{\overline{D}},
+\end{equation}
+
+\noindent where 
+\begin{equation} \label{eq:Dbar}
+\overline{D} = \sum_{i=1}^{4}\sum_{j=i}^{4} F_{ij} + \sum_{i=1}^{4}\sum_{j=i}^{4} G_{ij}(1 - \delta).
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Gynodioecy via dominant male-sterility mutation}
+
+For the model of the evolution of gynodioecy via the invasion of a completely dominant male-sterility mutation at $\mathbf{M}$, the successful invasion of the $M_2$ allele, either alone or coupled with an allele at the $\mathbf{A}$ locus as a haplotype, represents the evolution of gynodioecy from simultaneous hermaphroditism. The fitness expressions for adult genotype $ij$ through the female and male sex-function can be expressed in $4 \times 4$ matrices, with elements $w^f_{ij}$ (for female-function), and $w^m_{ij}$ (for male-function), yielding Table 1 from the main text:
+
+\begin{table}[ht!]
+\caption{Fitness expressions for diploid adults prior to reproduction for the model of a dominant male-sterility mutation ($w^f_{ij}$ denotes fitness effects through the female sex-function , $w^m_{ij}$ for male sex-function).}
+\centering
+\begin{tabular}{l c c c c} \hline
+Haplotype & $y_1 = AM_1$ & $y_2 = AM_2$ & $y_3 = aM_1$ & $y_4 = aM_2$ \\
+\hline
+Female-function & & & & \\
+$x_1 = AM_1$ & $1$ & $(1 + k)$ & $(1 - h_f s_f)$        & $(1 - h_f s_f)(1 + k)$ \\
+$x_2 = AM_2$ & $-$ & $(1 + k)$ & $(1 - h_f s_f)(1 + k)$ & $(1 - h_f s_f)(1 + k)$ \\
+$x_3 = aM_1$ & $-$ & $-$       & $(1 - s_f)$            & $(1 - s_f)(1 + k)$ \\
+$x_4 = aM_2$ & $-$ & $-$       & $-$                    & $(1 - s_f)(1 + k)$ \\
+Male-function & & & & \\
+$y_1 = AM_1$ & $(1 - s_m)$ & $0$ & $(1 - h_m s_m)$ & $0$ \\
+$y_2 = AM_2$ & $-$         & $0$ & $0$             & $0$ \\
+$y_3 = aM_1$ & $-$         & $-$ & $1$             & $0$ \\
+$y_4 = aM_2$ & $-$         & $-$ & $-$             & $0$ \\
+\hline
+\end{tabular}
+\bigskip{} \\
+{\footnotesize Note: Rows and columns indicate the haplotype inherited from mothers and fathers respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $ij$ row/column indexing used throughout the article.}
+\end{table}
+
+\noindent The total number of ovules produced by the population at reproduction will be proportional to
+\begin{equation} 
+O_T = \sum_{i=1}^{4}\sum_{j=i}^{4} F^A_{ij} w^f_{ij}.
+\end{equation}
+
+\noindent Because $M_2$ is assumed to be completely dominant, only those genotypes that are homozygous for $M_1$ are phenotypically hermaphrodite, and therefore able to self-fertilize. The proportion of ovules that are self-fertilized will therefore be proportional to
+\begin{equation} 
+S = C \bigg( \frac{F^A_{11} w^f_{11} + F^A_{13} w^f_{13} + F^A_{33} w^f_{33}}{O_T}\bigg).
+\end{equation}
+
+\noindent The proportion of ovules fertilized via outcrossing is the complement of $S$, and will be proportional to
+\begin{equation} 
+(1 - S) = \bigg( \frac{(1 - C)(F^A_{11} w^f_{11} + F^A_{13} w^f_{13} + F^A_{33} w^f_{33}) + U}{O_T}\bigg),
+\end{equation}
+
+\noindent where $U = F^A_{12} w^f_{12} + F^A_{14} w^f_{14} + F^A_{22} w^f_{22} + F^A_{23} w^f_{23} + F^A_{24} w^f_{24} + F^A_{34} w^f_{34} + F^A_{44} w^f_{44}$ is the total frequency of unisexual females (all genotypes either heterozygous or homozygous for $M_2$). 
+
+Only the three genotypes that are homozygous for $M_1$ are phenotypically hermaphrodite and able to self-fertilize. The proportional contribution of self-fertilized offspring by each of these genotypes are then:
+\begin{align*} \label{eq:DomSelfOvules}
+    o^S_{11} &= C \bigg(\frac{F^A_{11} w^f_{11}}{O^S_T} \bigg) \\
+    o^S_{13} &= C \bigg(\frac{F^A_{13} w^f_{13}}{O^S_T} \bigg) \\
+    o^S_{33} &= C \bigg(\frac{F^A_{33} w^f_{33}}{O^S_T} \bigg), \numberthis
+\end{align*}
+
+\noindent where $O^S_T = C(F^A_{11} w^f_{11} + F^A_{13} w^f_{13} + F^A_{33} w^f_{33})$, and simplify down to the relative genotypic frequencies after selection. $o^S_{ij} = 0$ for all genotypes that are phenotypically unisexual (female). The relevant genotypic recursions (Eq(2) in the main text) describing the frequency in the next generation of each genotype among zygotes derived from self-fertilization are then:
+\begin{align*} \label{eq:DomSelfRecs}
+    G'_{11} &= S (o^S_{11} + o^S_{13}/4) \\
+    G'_{13} &= S (o^S_{13}/2) \\
+    G'_{33} &= S (o^S_{33} + o^S_{13}/4), \numberthis
+\end{align*}
+
+\noindent and all $G'_{ij} = 0$ where $ij \neq [11,13,33]$.
+
+The genotypic frequency recursions for offpsring derived via outcrossing follows similar logic. The proporitonal contribution of each genotype to the pool of outcrossed ovules are
+\begin{align*}
+    o^X_{11} &= (1 - C) (F^A_{11} w^f_{11})/O^X_T \\
+    o^X_{12} &= (F^A_{12} w^f_{12})/O^X_T \\
+    o^X_{13} &= (1 - C) (F^A_{13} w^f_{13})/O^X_T \\
+    o^X_{14} &= (F^A_{14} w^f_{14})/O^X_T \\
+    o^X_{22} &= (F^A_{22} w^f_{22})/O^X_T \\
+    o^X_{23} &= (F^A_{23} w^f_{23})/O^X_T \\
+    o^X_{24} &= (F^A_{24} w^f_{24})/O^X_T \\
+    o^X_{33} &= (1 - C) (F^A_{33} w^f_{33})/O^X_T \\
+    o^X_{34} &= (F^A_{34} w^f_{34})/O^X_T \\
+    o^X_{44} &= (F^A_{44} w^f_{44})/O^X_T, \numberthis
+\end{align*}
+
+\noindent where $O^X_T = (1 - S)O_T$. Only those genotypes that are phenotypically hermaphrodite are able to sire outcross offspring. The proportional contribution of each genotype  that is phenotypically hermaphrodite to the pool of outcrossed pollen is equal to the relative genotypic frequencies after selection:
+\begin{align*}
+    p^X_{11} &= (F^A_{11} w^m_{11}) / P^X_T \\
+    p^X_{13} &= (F^A_{13} w^m_{13}) / P^X_T \\
+    p^X_{33} &= (F^A_{33} w^m_{33}) / P^X_T, \numberthis
+\end{align*}
+
+\noindent where $P^X_T = F^A_{11} w^m_{11} + F^A_{13} w^m_{13} + F^A_{33} w^m_{33}$. From the relative genotypic contributions to the pool of outcrossed ovules ($o^X_{ij}$) and pollen ($p^X_{ij}$), we can then calculate the haplotype frequencies among outcrossed ovules ($x_i$) and pollen ($y_i$) following standard two-locus theory. The haplotype frequencies among outcrossed ovules, $x_i$, are
+\begin{align*} 
+    x_{1} &= o^X_{11} + \frac{o^X_{12} + o^X_{13} + o^X_{14}}{2} - r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg)  \\
+    x_{2} &= o^X_{22} + \frac{o^X_{12} + o^X_{23} + o^X_{24}}{2} + r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg)  \\
+    x_{3} &= o^X_{33} + \frac{o^X_{13} + o^X_{23} + o^X_{34}}{2} + r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg)  \\
+    x_{4} &= o^X_{44} + \frac{o^X_{14} + o^X_{24} + o^X_{34}}{2} - r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg),  \numberthis
+\end{align*}
+
+\noindent and the haplotype frequencies among the pool of outcrossed pollen, $y_i$, are
+\begin{align*} 
+    y_{1} &= p^X_{11} + p^X_{13}/2  \\
+    y_{2} &= 0  \\
+    y_{3} &= p^X_{33} + p^X_{13}/2  \\
+    y_{4} &= 0.  \numberthis
+\end{align*}
+
+\noindent The genotypic recursions describing the frequency in the next generation of each genotype among zygotes derived from outcrossing are calculated from these haplotype frequences as:
+\begin{align*} 
+     F'_{11} &= (1 - S) (x_1 y_1)  \\
+    F'_{12} &= (1 - S) (x_2 y_1)  \\
+    F'_{13} &= (1 - S) (x_1 y_3 + x_3 y_1)  \\
+    F'_{14} &= (1 - S) (x_4 y_1)  \\
+    F'_{22} &= 0 \\
+    F'_{23} &= (1 - S) (x_2 y_3)  \\
+    F'_{24} &= 0 \\
+    F'_{33} &= (1 - S) (x_3 y_3)  \\
+    F'_{34} &= (1 - S) (x_4 y_3)  \\
+    F'_{44} &= 0. \numberthis
+\end{align*}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage{}
+\subsection*{Gynodioecy via recessive male-sterility mutation}
+
+For the model of the evolution of gynodioecy via the invasion of a completely recessive male-sterility mutation at $\mathbf{M}$, only genotypes that are homozygous for the $M_2$ allele are phenotypically female. As described above, the adult genotypic frequencies, $F^A_{ij}$, are described by Equations \ref{eq:AdultFreq} and \ref{eq:Dbar}. Now, the fitness expressions associated with each $F^A_{ij}$ through the female and male sex-function are:
+
+\begin{table}[ht!]
+\caption{Fitness expressions for diploid adults prior to reproduction for the model of a recessive male-sterility mutation ($w^f_{ij}$ denotes fitness effects through the female sex-function, $w^m_{ij}$ for male sex-function).}
+\centering
+\begin{tabular}{l c c c c} \hline
+Haplotype & $y_1 = AM_1$ & $y_2 = AM_2$ & $y_3 = aM_1$ & $y_4 = aM_2$ \\
+\hline
+Female-function & & & & \\
+$x_1 = AM_1$ & $1$ & $1$       & $(1 - h_f s_f)$ & $(1 - h_f s_f)$        \\
+$x_2 = AM_2$ & $-$ & $(1 + k)$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)(1 + k)$ \\
+$x_3 = aM_1$ & $-$ & $-$       & $(1 - s_f)$     & $(1 - s_f)$            \\
+$x_4 = aM_2$ & $-$ & $-$       & $-$             & $(1 - s_f)(1 + k)$     \\
+Male-function & & & & \\
+$y_1 = AM_1$ & $(1 - s_m)$ & $(1 - s_m)$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)$ \\
+$y_2 = AM_2$ & $-$         & $0$         & $(1 - h_m s_m)$ & $0$             \\
+$y_3 = aM_1$ & $-$         & $-$         & $1$             & $1$             \\
+$y_4 = aM_2$ & $-$         & $-$         & $-$             & $0$             \\
+\hline
+\end{tabular}
+\bigskip{} \\
+{\footnotesize Note: Rows and columns indicate the haplotype inherited from mothers and fathers respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $ij$ row/column indexing used throughout the article.}
+\end{table}
+
+
+\noindent The total number of ovules produced by the population at reproduction will again be proportional to
+\begin{equation} 
+O_T = \sum_{i=1}^{4}\sum_{j=i}^{4} F^A_{ij} w^f_{ij}.
+\end{equation}
+
+\noindent Since the $M_2$ allele is now assumed to be completely recessive, all genotypes not homozygous for $M_2$ are phenotypically hermaphrodite, and therefore able to self-fertilize. The proportion of ovules that are self-fertilized will therefore be proportional to
+\begin{equation} 
+S = C \bigg( \frac{F^A_{11} w^f_{11} + F^A_{12} w^f_{12} + F^A_{13} w^f_{13} + F^A_{14} w^f_{14} +
+                   F^A_{23} w^f_{23} + F^A_{33} w^f_{33} + F^A_{34} w^f_{34}}{O_T}\bigg),
+\end{equation}
+
+\noindent and the proportion of ovules fertilized via outcrossing is the complement of $S$:
+\begin{equation} 
+(1 - S) = \bigg( \frac{(1 - C)(F^A_{11} w^f_{11} + F^A_{12} w^f_{12} + F^A_{13} w^f_{13} + F^A_{14} w^f_{14} +
+                   F^A_{23} w^f_{23} + F^A_{33} w^f_{33} + F^A_{34} w^f_{34}) + U}{O_T}\bigg),
+\end{equation}
+
+\noindent where $U = F^A_{22} w^f_{22} + F^A_{24} w^f_{24} + F^A_{44} w^f_{44}$ is the total frequency of all unisexual females (all genotypes homozygous for $M_2$). 
+
+The proportional contribution of each genotype to the pool of self-fertilized offspring is then:
+\begin{align*} \label{eq:RecSelfOvules}
+    o^S_{11} &= C \bigg(\frac{F^A_{11} w^f_{11}}{O^S_T} \bigg) \\
+    o^S_{12} &= C \bigg(\frac{F^A_{12} w^f_{12}}{O^S_T} \bigg) \\
+    o^S_{13} &= C \bigg(\frac{F^A_{13} w^f_{13}}{O^S_T} \bigg) \\
+    o^S_{14} &= C \bigg(\frac{F^A_{14} w^f_{14}}{O^S_T} \bigg) \\
+    o^S_{23} &= C \bigg(\frac{F^A_{23} w^f_{23}}{O^S_T} \bigg) \\
+    o^S_{33} &= C \bigg(\frac{F^A_{33} w^f_{33}}{O^S_T} \bigg) \\
+    o^S_{34} &= C \bigg(\frac{F^A_{34} w^f_{34}}{O^S_T} \bigg), \numberthis
+\end{align*}
+
+\noindent where $o^S_{ij} = 0$ where $ij \in [22,24,44]$, and $O^S_T = S \times O_T$. The resulting genotypic recursions describing the frequency in the next generation of each genotype among zygotes derived from self-fertilization are then:
+\begin{align*} \label{eq:RecSelfRecs}
+    G'_{11} &= S \Big(o^S_{11} + \frac{o^S_{12} + o^S_{13} + o^S_{14}(1-r)^2 + o^S_{23}r^2}{4} \Big) \\
+    G'_{12} &= S \Big( \frac{o^S_{12} + o^S_{14}r(1-r) + o^S_{23}r(1-r)}{2} \Big) \\
+    G'_{13} &= S \Big( \frac{o^S_{13} + o^S_{14}r(1-r) + o^S_{23}r(1-r)}{2} \Big) \\
+    G'_{14} &= S \Big( \frac{o^S_{14}(1-r)^2 + o^S_{23}r^2}{2} \Big) \\
+    G'_{22} &= S \Big( \frac{o^S_{12} + o^S_{13} + o^S_{14}r^2 + o^S_{23}(1-r)^2}{4} \Big) \\
+    G'_{23} &= S \Big( \frac{o^S_{14}r^2 + o^S_{23}(1-r)^2}{2} \Big) \\
+    G'_{24} &= S \Big( \frac{o^S_{14}r(1-r) + o^S_{23}r(1-r)}{2} \Big) \\
+    G'_{33} &= S \Big(o^S_{33} + \frac{o^S_{13} + o^S_{14}r^2 + o^S_{23}(1-r)^2 + o^S_{34}}{4} \Big) \\
+    G'_{34} &= S \Big( \frac{o^S_{14}r(1-r) + o^S_{23}r(1-r) + o^S_{34}}{2} \Big) \\
+    G'_{44} &= S \Big( \frac{o^S_{34} + o^S_{14}(1-r)^2 + o^S_{23}r^2}{4} \Big). \numberthis
+\end{align*}
+
+The genotypic frequency recursions for offpsring derived via outcrossing are derived in similar fashion. The proporitonal contribution of each genotype to the pool of outcrossed ovules are
+\begin{align*}
+    o^X_{11} &= (1 - C) (F^A_{11} w^f_{11})/O^X_T \\
+    o^X_{12} &= (1 - C) (F^A_{12} w^f_{12})/O^X_T \\
+    o^X_{13} &= (1 - C) (F^A_{13} w^f_{13})/O^X_T \\
+    o^X_{14} &= (1 - C) (F^A_{14} w^f_{14})/O^X_T \\
+    o^X_{22} &= (F^A_{22} w^f_{22})/O^X_T \\
+    o^X_{23} &= (1 - C) (F^A_{23} w^f_{23})/O^X_T \\
+    o^X_{24} &= (F^A_{24} w^f_{24})/O^X_T \\
+    o^X_{33} &= (1 - C) (F^A_{33} w^f_{33})/O^X_T \\
+    o^X_{34} &= (1 - C) (F^A_{34} w^f_{34})/O^X_T \\
+    o^X_{44} &= (F^A_{44} w^f_{44})/O^X_T, \numberthis
+\end{align*}
+
+\noindent where $O^X_T = (1 - S)O_T$. The proportional contribution of each genotype that is phenotypically hermaphrodite to the pool of outcrossed pollen is equal to the relative genotypic frequencies after selection:
+\begin{align*}
+    p^X_{11} &= (F^A_{11} w^f_{11}) / P^X_T \\
+    p^X_{12} &= (F^A_{12} w^f_{12}) / P^X_T \\
+    p^X_{13} &= (F^A_{13} w^f_{13}) / P^X_T \\
+    p^X_{14} &= (F^A_{14} w^f_{14}) / P^X_T \\
+    p^X_{23} &= (F^A_{23} w^f_{23}) / P^X_T \\
+    p^X_{34} &= (F^A_{34} w^f_{34}) / P^X_T, \numberthis
+\end{align*}
+
+\noindent where $p^X_{ij} = 0$ where $ij \in [22,24,44]$, and $P^X_T = \sum_{i=1}^{4}\sum_{j=i}^{4} p^X_{ij}$. The haplotype frequencies among outcrossed ovules ($x_i$) are then:
+\begin{align*} 
+    x_{1} &= o^X_{11} + \frac{o^X_{12} + o^X_{13} + o^X_{14}}{2} - r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg)  \\
+    x_{2} &= o^X_{22} + \frac{o^X_{12} + o^X_{23} + o^X_{24}}{2} + r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg)  \\
+    x_{3} &= o^X_{33} + \frac{o^X_{13} + o^X_{23} + o^X_{34}}{2} + r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg)  \\
+    x_{4} &= o^X_{44} + \frac{o^X_{14} + o^X_{24} + o^X_{34}}{2} - r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg),  \numberthis
+\end{align*}
+
+\noindent and the haplotype frequencies among the pool of outcrossed pollen ($y_i$) are:
+\begin{align*} 
+    y_{1} &= p^X_{11} + \frac{p^X_{12} + p^X_{13} + p^X_{14}}{2} - r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg)  \\
+    y_{2} &= \frac{p^X_{12} p^X_{23}}{2} + r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg) \\
+    y_{3} &= p^X_{33} + \frac{p^X_{13} + p^X_{23} + p^X_{34}}{2} + r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg)  \\
+    y_{4} &= \frac{p^X_{14} p^X_{34}}{2} - r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg).  \numberthis
+\end{align*}
+
+\noindent The genotypic recursions describing the frequency in the next generation of each genotype among zygotes derived from outcrossing are calculated from these haplotype frequences as:
+\begin{align*} \label{eq:GynRecOutRecs}
+    F'_{11} &= (1 - S) (x_1 y_1)  \\
+    F'_{12} &= (1 - S) (x_1 y_2 + x_2 y_1)  \\
+    F'_{13} &= (1 - S) (x_1 y_3 + x_3 y_1)  \\
+    F'_{14} &= (1 - S) (x_1 y_4 + x_4 y_1)  \\
+    F'_{22} &= (1 - S) (x_2 y_2) \\
+    F'_{23} &= (1 - S) (x_2 y_3 + x_3 y_2)  \\
+    F'_{24} &= (1 - S) (x_2 y_4 + x_4 y_2) \\
+    F'_{33} &= (1 - S) (x_3 y_3)  \\
+    F'_{34} &= (1 - S) (x_3 y_4 + x_4 y_3)  \\
+    F'_{44} &= (1 - S) (x_4 y_4). \numberthis
+\end{align*}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage{}
+\subsection*{Androdioecy via dominant female-sterility mutation}
+
+The model of Androdioecy via the invasion of a dominant female-sterility mutation is very similar in structure to the model of gynodioecy via a dominant male-sterility mutation. Adult genotypic frequencies again follow equations \ref{eq:AdultFreq} and \ref{eq:Dbar}. With a dominant female-sterility mutation, any genotype carrying the $M_2$ allele will be phenotypically male. The fitness expressions corresponding to each $F^A_{ij}$ are:
+
+
+\begin{table}[ht!]
+\caption{Fitness expressions for diploid adults prior to reproduction for the model of a dominant female-sterility mutation ($w^f_{ij}$ denotes fitness effects through the female sex-function , $w^m_{ij}$ for male sex-function).}
+\centering
+\begin{tabular}{l c c c c} \hline
+Haplotype & $y_1 = AM_1$ & $y_2 = AM_2$ & $y_3 = aM_1$ & $y_4 = aM_2$ \\
+\hline
+Female-function & & & & \\
+$x_1 = AM_1$ & $1$ & $0$ & $(1 - h_f s_f)$ & $0$ \\
+$x_2 = AM_2$ & $-$ & $0$ & $0$             & $0$ \\
+$x_3 = aM_1$ & $-$ & $-$ & $(1 - s_f)$     & $0$ \\
+$x_4 = aM_2$ & $-$ & $-$ & $-$             & $0$ \\
+Male-function & & & & \\
+$y_1 = AM_1$ & $(1 - s_m)$ & $(1 - s_m)(1 + k)$ & $(1 - h_m s_m)$        & $(1 - h_m s_m)(1 + k)$ \\
+$y_2 = AM_2$ & $-$         & $(1 - s_m)(1 + k)$ & $(1 - h_m s_m)(1 + k)$ & $(1 - h_m s_m)(1 + k)$ \\
+$y_3 = aM_1$ & $-$         & $-$                & $1$                    & $(1 + k)$              \\
+$y_4 = aM_2$ & $-$         & $-$                & $-$                    & $(1 + k)$              \\
+\hline
+\end{tabular}
+\bigskip{} \\
+{\footnotesize Note: Rows and columns indicate the haplotype inherited from mothers and fathers respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $ij$ row/column indexing used throughout the article.}
+\end{table}
+
+\noindent Because only phenotypically hermaphroditic individuals can produce ovules, the total number of ovules produced by the population at reproduction will be proportional to
+\begin{equation} 
+O_T = F^A_{11} w^f_{11} + F^A_{13} w^f_{13} + F^A_{33} w^f_{33}.
+\end{equation}
+
+\noindent The proportion of ovules that are self-fertilized will therefore be proportional to
+\begin{equation} 
+S = \frac{C (O_T)}{O_T},
+\end{equation}
+
+\noindent and the proportion of ovules fertilized via outcrossing is the complement of $S$:
+\begin{equation} 
+(1 - S) = \frac{(1 - C)O_T}{O_T}.
+\end{equation}
+
+Because only those genotypes homozygous for $M_1$ can self-fertilize, the structure of the recursions for selfed zygotes are the same as for the model of gynodioecy via invasion of a dominant male-sterility mutation. That is, the proportional contribution of each adult genotype to the pool of selfed ovules, $o^S_{ij}$ follow Eq(\ref{eq:DomSelfOvules}), and the resulting recursions, $G'_{ij}$ follow Eq(\ref{eq:DomSelfRecs}). However, the case is altered for outcrossed offspring. The proportional contributions to the pool of outcrossed ovules for each genotype are:
+
+\begin{align*}
+    o^X_{11} &= (1 - C) (F^A_{11} w^f_{11})/O^X_T \\
+    o^X_{13} &= (1 - C) (F^A_{13} w^f_{13})/O^X_T \\
+    o^X_{33} &= (1 - C) (F^A_{33} w^f_{33})/O^X_T, \numberthis
+\end{align*}
+
+\noindent where $O^X_T = (1 - S)O_T$. The proportional contribution of each genotype to the pool of outcrossed pollen after selection is:
+\begin{align*}
+    p^X_{11} &= (F^A_{11} w^f_{11}) / P^X_T \\
+    p^X_{12} &= (F^A_{12} w^f_{12}) / P^X_T \\
+    p^X_{13} &= (F^A_{13} w^f_{13}) / P^X_T \\
+    p^X_{14} &= (F^A_{14} w^f_{14}) / P^X_T \\
+    p^X_{22} &= (F^A_{22} w^f_{22}) / P^X_T \\
+    p^X_{23} &= (F^A_{23} w^f_{23}) / P^X_T \\
+    p^X_{24} &= (F^A_{24} w^f_{24}) / P^X_T \\
+    p^X_{33} &= (F^A_{33} w^f_{33}) / P^X_T \\
+    p^X_{34} &= (F^A_{34} w^f_{34}) / P^X_T \\
+    p^X_{44} &= (F^A_{44} w^f_{44}) / P^X_T, \numberthis
+\end{align*}
+
+\noindent where $P^X_T = \sum_{i=1}^{4}\sum_{j=i}^{4} p^X_{ij}$. The resulting haplotype frequencies among outcrossed ovules ($x_i$) and pollen ($y_i$) are then:
+\begin{align*} 
+    x_{1} &= o^X_{11} + o^X_{13}/2  \\
+    x_{2} &= 0  \\
+    x_{3} &= o^X_{33} + o^X_{13}/2  \\
+    x_{4} &= 0.  \numberthis
+\end{align*}
+
+\noindent and the haplotype frequencies among the pool of outcrossed pollen are
+\begin{align*} 
+    x_{1} &= p^X_{11} + \frac{p^X_{12} + p^X_{13} + p^X_{14}}{2} - r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg)  \\
+    x_{2} &= p^X_{22} + \frac{p^X_{12} + p^X_{23} + p^X_{24}}{2} + r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg)  \\
+    x_{3} &= p^X_{33} + \frac{p^X_{13} + p^X_{23} + p^X_{34}}{2} + r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg)  \\
+    x_{4} &= p^X_{44} + \frac{p^X_{14} + p^X_{24} + p^X_{34}}{2} - r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg),  \numberthis
+\end{align*}
+
+\noindent The genotypic recursions describing the frequency in the next generation of each genotype among zygotes derived from outcrossing are calculated from these haplotype frequences as:
+\begin{align*} 
+    F'_{11} &= (1 - S) (x_1 y_1)  \\
+    F'_{12} &= (1 - S) (x_1 y_2)  \\
+    F'_{13} &= (1 - S) (x_1 y_3 + x_3 y_1)  \\
+    F'_{14} &= (1 - S) (x_1 y_4)  \\
+    F'_{22} &= 0 \\
+    F'_{23} &= (1 - S) (x_3 y_2)  \\
+    F'_{24} &= 0 \\
+    F'_{33} &= (1 - S) (x_3 y_3)  \\
+    F'_{34} &= (1 - S) (x_3 y_4)  \\
+    F'_{44} &= 0. \numberthis
+\end{align*}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage{}
+\subsection*{Androdioecy via recessive female-sterility mutation}
+
+For the model of the evolution of androdieocy via the invasion of a completely recessive female-sterility mutation at $\mathbf{M}$, only genotypes homozygous for the $M_2$ allele are phenotypically male. Again, the adult genotypic frequencies, $F^A_{ij}$, are described by Equations \ref{eq:AdultFreq} and \ref{eq:Dbar}. Now, the fitness expressions associated with each $F^A_{ij}$ through the female and male sex-function are:
+
+\begin{table}[ht!]
+\caption{Fitness expressions for diploid adults prior to reproduction for the model of a recessive female-sterility mutation ($w^f_{ij}$ denotes fitness effects through the female sex-function, $w^m_{ij}$ for male sex-function).}
+\centering
+\begin{tabular}{l c c c c} \hline
+Haplotype & $y_1 = AM_1$ & $y_2 = AM_2$ & $y_3 = aM_1$ & $y_4 = aM_2$ \\
+\hline
+Female-function & & & & \\
+$x_1 = AM_1$ & $1$ & $1$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)$ \\
+$x_2 = AM_2$ & $-$ & $0$ & $(1 - h_f s_f)$ & $0$             \\
+$x_3 = aM_1$ & $-$ & $-$ & $(1 - s_f)$     & $(1 - s_f)$     \\
+$x_4 = aM_2$ & $-$ & $-$ & $-$             & $0$             \\
+Male-function & & & & \\
+$y_1 = AM_1$ & $(1 - s_m)$ & $(1 - s_m)$        & $(1 - h_m s_m)$ & $(1 - h_m s_m)$        \\
+$y_2 = AM_2$ & $-$         & $(1 - s_m)(1 + k)$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)(1 + k)$ \\
+$y_3 = aM_1$ & $-$         & $-$                & $1$             & $1$                    \\
+$y_4 = aM_2$ & $-$         & $-$                & $-$             & $(1 + k)$              \\
+\hline
+\end{tabular}
+\bigskip{} \\
+{\footnotesize Note: Rows and columns indicate the haplotype inherited from mothers and fathers respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $ij$ row/column indexing used throughout the article.}
+\end{table}
+
+
+\noindent Only individuals not homozygous for $M_2$ are phenotypically hermaphrodite, and thus able to produce ovules. The total number of ovules produced by the population at reproduction is therefore proportional to
+\begin{equation} 
+O_T = F^A_{11} w^f_{11} + F^A_{12} w^f_{12} + F^A_{13} w^f_{13} + F^A_{14} w^f_{14} + F^A_{23} w^f_{23} + F^A_{33} w^f_{33} + F^A_{34} w^f_{34}.
+\end{equation}
+
+\noindent The proportion of ovules that are self-fertilized will therefore be proportional to
+\begin{equation} 
+S = \frac{C(O_T)}{O_T},
+\end{equation}
+
+\noindent and the proportion of ovules fertilized via outcrossing is the complement of $S$:
+\begin{equation} 
+(1 - S) = \frac{(1 - C)O_T}{O_T}.
+\end{equation}
+
+As before, the structure of the equations describing genotypic frequency change among selfed offspring for the model of androdioecy via a recessive female-sterility mutation are similar to the model of gynodioecy via a recessive male-sterility mutation. The proportional contribution of self-fertilized offspring by each of the phenotypically hermaphrodite genotypes, $o^S_{ij}$, follows Eq(\ref{eq:RecSelfOvules}), and the genotypic recursions for self-fertilized zygotes, $G'_{ij}$ follow Eq(\ref{eq:RecSelfRecs}).
+
+The genotypic frequency recursions for offpsring derived via outcrossing proceeds as follows. The proportional contribution of each genotype to the pool of outcrossed ovules are
+\begin{align*}
+    o^X_{11} &= (1 - C) (F^A_{11} w^f_{11})/O^X_T \\
+    o^X_{12} &= (1 - C) (F^A_{12} w^f_{12})/O^X_T \\
+    o^X_{13} &= (1 - C) (F^A_{13} w^f_{13})/O^X_T \\
+    o^X_{14} &= (1 - C) (F^A_{14} w^f_{14})/O^X_T \\
+    o^X_{23} &= (1 - C) (F^A_{23} w^f_{23})/O^X_T \\
+    o^X_{33} &= (1 - C) (F^A_{33} w^f_{33})/O^X_T \\
+    o^X_{34} &= (1 - C) (F^A_{34} w^f_{34})/O^X_T, \numberthis
+\end{align*}
+
+\noindent where $o^X_{ij} = 0$ where $ij \in [22,24,44]$, and $O^X_T = (1 - S)O_T$. The proportional contribution of each genotype that is phenotypically hermaphrodite to the pool of outcrossed pollen is equal to the relative genotypic frequencies after selection:
+\begin{align*}
+    p^X_{11} &= (F^A_{11} w^f_{11}) / P^X_T \\
+    p^X_{12} &= (F^A_{12} w^f_{12}) / P^X_T \\
+    p^X_{13} &= (F^A_{13} w^f_{13}) / P^X_T \\
+    p^X_{14} &= (F^A_{14} w^f_{14}) / P^X_T \\
+    p^X_{22} &= (F^A_{22} w^f_{22}) / P^X_T \\
+    p^X_{23} &= (F^A_{23} w^f_{23}) / P^X_T \\
+    p^X_{22} &= (F^A_{24} w^f_{24}) / P^X_T \\
+    p^X_{34} &= (F^A_{34} w^f_{34}) / P^X_T \\
+    p^X_{44} &= (F^A_{44} w^f_{44}) / P^X_T , \numberthis
+\end{align*}
+
+\noindent where $P^X_T = \sum_{i=1}^{4}\sum_{j=i}^{4} p^X_{ij}$. The haplotype frequencies among outcrossed ovules ($x_i$) are then:
+\begin{align*} 
+    x_{1} &= o^X_{11} + \frac{o^X_{12} + o^X_{13} + o^X_{14}}{2} - r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg)  \\
+    x_{2} &= \frac{o^X_{12} o^X_{23}}{2} + r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg) \\
+    x_{3} &= o^X_{33} + \frac{o^X_{13} + o^X_{23} + o^X_{34}}{2} + r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg)  \\
+    x_{4} &= \frac{o^X_{14} o^X_{34}}{2} - r \bigg( \frac{o^X_{14} - o^X_{23}}{2} \bigg).  \numberthis
+\end{align*}
+
+\noindent and the haplotype frequencies among the pool of outcrossed pollen ($y_i$) are:
+\begin{align*} 
+    y_{1} &= p^X_{11} + \frac{p^X_{12} + p^X_{13} + p^X_{14}}{2} - r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg)  \\
+    y_{2} &= p^X_{22} + \frac{p^X_{12} + p^X_{23} + p^X_{24}}{2} + r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg)  \\
+    y_{3} &= p^X_{33} + \frac{p^X_{13} + p^X_{23} + p^X_{34}}{2} + r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg)  \\
+    y_{4} &= p^X_{44} + \frac{p^X_{14} + p^X_{24} + p^X_{34}}{2} - r \bigg( \frac{p^X_{14} - p^X_{23}}{2} \bigg),  \numberthis
+\end{align*}
+
+\noindent The genotypic recursions describing the frequency in the next generation of each genotype among zygotes derived from outcrossing are calculated from these haplotype frequences following Eq(\ref{eq:GynRecOutRecs}).
+
+\newpage{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Appendix B: Supplementary figures}
+\renewcommand{\theequation}{B\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{figure}{0}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.7]{./FigS1-Gyno-obOut-funnel}
+\caption{Gynodioecy, dominant, obligate outcrossing... }
+\label{fig:GynObOutFunnel}
+\end{figure}
+\newpage{}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.7]{./FigS2-Gyno-C25-d80-funnel}
+\caption{Gynodioecy, dominant, low selfing, high inbreeding depression...}
+\label{fig:GynC25d80Funnel}
+\end{figure}
+\newpage{}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.7]{./FigS3-Gyno-C75-d20-funnel}
+\caption{Gynodioecy, dominant, high selfing, low inbreeding depression...}
+\label{fig:GynC75d20Funnel}
+\end{figure}
+\newpage{}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.7]{./FigS4-Andro-obOut-funnel}
+\caption{Androdioecy, dominant, obligate outcrossing... }
+\label{fig:AndroObOutFunnel}
+\end{figure}
+\newpage{}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.7]{./FigS5-Andro-C25-d80-funnel}
+\caption{Androdioecy, dominant, low selfing, high inbreeding depression...}
+\label{fig:AndC25d80Funnel}
+\end{figure}
+\newpage{}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.7]{./FigS6-Andro-C75-d20-funnel}
+\caption{Androdioecy, dominant, high selfing, low inbreeding depression...}
+\label{fig:AndC75d20Funnel}
+\end{figure}
+\newpage{}
+
+
+%\newpage
+%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%
+%\newpage{}
+%\bibliography{dioecySA-Supplements-bibliography}
+
+\end{document}

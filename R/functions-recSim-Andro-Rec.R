@@ -1,8 +1,8 @@
 #####################################################
 #  Necessary functions for deterministic simulation
 #  of genotypic frequency recursions for a model of
-#  the evolution of gynodioecy via invasion of a
-#  completely RECESSIVE male sterility allele 
+#  the evolution of ANDRODIOECY via invasion of a
+#  completely RECESSIVE FEMALE sterility allele 
 #
 #  Author: Colin Olito
 #
@@ -66,10 +66,10 @@ FA.44  <-  function(Fii, Gii, par.list, ...) {
 # Total ovules produced 
 OTot  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 	FA.11(Fii, Gii, par.list)*Wf.mat[1,1] + FA.12(Fii, Gii, par.list)*Wf.mat[1,2] + FA.13(Fii, Gii, par.list)*Wf.mat[1,3] + 
-	FA.14(Fii, Gii, par.list)*Wf.mat[1,4] + FA.22(Fii, Gii, par.list)*Wf.mat[2,2] + FA.23(Fii, Gii, par.list)*Wf.mat[2,3] +
-	FA.24(Fii, Gii, par.list)*Wf.mat[2,4] + FA.33(Fii, Gii, par.list)*Wf.mat[3,3] + FA.34(Fii, Gii, par.list)*Wf.mat[3,4] + 
-	FA.44(Fii, Gii, par.list)*Wf.mat[4,4]
+	FA.14(Fii, Gii, par.list)*Wf.mat[1,4] + FA.23(Fii, Gii, par.list)*Wf.mat[2,3] + FA.33(Fii, Gii, par.list)*Wf.mat[3,3] + 
+	FA.34(Fii, Gii, par.list)*Wf.mat[3,4]
 }
+
 
 # Total ovule used for self-fertilization
 OsTot  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
@@ -82,8 +82,7 @@ OsTot  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 OxTot  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 	(1 - par.list$C)*(FA.11(Fii, Gii, par.list)*Wf.mat[1,1] + FA.12(Fii, Gii, par.list)*Wf.mat[1,2] + FA.13(Fii, Gii, par.list)*Wf.mat[1,3] + 
 	                  FA.14(Fii, Gii, par.list)*Wf.mat[1,4] + FA.23(Fii, Gii, par.list)*Wf.mat[2,3] + FA.33(Fii, Gii, par.list)*Wf.mat[3,3] + 
-	                  FA.34(Fii, Gii, par.list)*Wf.mat[3,4]) +
-		(FA.22(Fii, Gii, par.list)*Wf.mat[2,2] + FA.24(Fii, Gii, par.list)*Wf.mat[2,4] + FA.44(Fii, Gii, par.list)*Wf.mat[4,4])
+	                  FA.34(Fii, Gii, par.list)*Wf.mat[3,4])
 }
 
 # Proportion of all ovules that are self-fertilized
@@ -134,23 +133,14 @@ ox.13  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 ox.14  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 	(1 - par.list$C)*(FA.14(Fii, Gii, par.list)*Wf.mat[1,4]) / OxTot(Fii, Gii, par.list, Wf.mat)
 }
-ox.22  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
-	(FA.22(Fii, Gii, par.list)*Wf.mat[2,2]) / OxTot(Fii, Gii, par.list, Wf.mat)
-}
 ox.23  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 	(1 - par.list$C)*(FA.23(Fii, Gii, par.list)*Wf.mat[2,3]) / OxTot(Fii, Gii, par.list, Wf.mat)
-}
-ox.24  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
-	(FA.24(Fii, Gii, par.list)*Wf.mat[2,4]) / OxTot(Fii, Gii, par.list, Wf.mat)
 }
 ox.33  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 	(1 - par.list$C)*(FA.33(Fii, Gii, par.list)*Wf.mat[3,3]) / OxTot(Fii, Gii, par.list, Wf.mat)
 }
 ox.34  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 	(1 - par.list$C)*(FA.34(Fii, Gii, par.list)*Wf.mat[3,4]) / OxTot(Fii, Gii, par.list, Wf.mat)
-}
-ox.44  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
-	(FA.44(Fii, Gii, par.list)*Wf.mat[4,4]) / OxTot(Fii, Gii, par.list, Wf.mat)
 }
 
 # Total pollen used for outcrossing (proportional to) the total amont of pollen 
@@ -159,7 +149,8 @@ ox.44  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
 PxTot  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
 	FA.11(Fii, Gii, par.list)*Wm.mat[1,1] + FA.12(Fii, Gii, par.list)*Wm.mat[1,2] + FA.13(Fii, Gii, par.list)*Wm.mat[1,3] + 
 	FA.14(Fii, Gii, par.list)*Wm.mat[1,4] + FA.23(Fii, Gii, par.list)*Wm.mat[2,3] + FA.33(Fii, Gii, par.list)*Wm.mat[3,3] + 
-	FA.34(Fii, Gii, par.list)*Wm.mat[3,4]
+	FA.34(Fii, Gii, par.list)*Wm.mat[3,4] + 
+	(FA.22(Fii, Gii, par.list)*Wm.mat[2,2] + FA.24(Fii, Gii, par.list)*Wm.mat[2,4] + FA.44(Fii, Gii, par.list)*Wm.mat[4,4])
 }
 
 # Frequency of pollen/sperm | Outcrossing genotype
@@ -175,14 +166,23 @@ px.13  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
 px.14  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
 	(FA.14(Fii, Gii, par.list)*Wm.mat[1,4]) / PxTot(Fii, Gii, par.list, Wm.mat)
 }
+px.22  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
+	(FA.22(Fii, Gii, par.list)*Wm.mat[2,2]) / PxTot(Fii, Gii, par.list, Wm.mat)
+}
 px.23  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
 	(FA.23(Fii, Gii, par.list)*Wm.mat[2,3]) / PxTot(Fii, Gii, par.list, Wm.mat)
+}
+px.24  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
+	(FA.24(Fii, Gii, par.list)*Wm.mat[2,4]) / PxTot(Fii, Gii, par.list, Wm.mat)
 }
 px.33  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
 	(FA.33(Fii, Gii, par.list)*Wm.mat[3,3]) / PxTot(Fii, Gii, par.list, Wm.mat)
 }
 px.34  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
 	(FA.34(Fii, Gii, par.list)*Wm.mat[3,4]) / PxTot(Fii, Gii, par.list, Wm.mat)
+}
+px.44  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
+	(FA.44(Fii, Gii, par.list)*Wm.mat[4,4]) / PxTot(Fii, Gii, par.list, Wm.mat)
 }
 
 # Linkage Disequilibrium among ovules (convenience function for outcross haplotype frequency equations)
@@ -199,33 +199,32 @@ LDy  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
 ## Haplotype frequency change among outcrossed gametes
 
 # Ovules
-x1  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
-	((2*ox.11(Fii, Gii, par.list, Wf.mat) + ox.12(Fii, Gii, par.list, Wf.mat) + ox.13(Fii, Gii, par.list, Wf.mat) + ox.14(Fii, Gii, par.list, Wf.mat))/2) - LDx(Fii, Gii, par.list, Wf.mat)
+x1  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
+	((2*ox.11(Fii, Gii, par.list, Wm.mat) + ox.12(Fii, Gii, par.list, Wm.mat) + ox.13(Fii, Gii, par.list, Wm.mat) + ox.14(Fii, Gii, par.list, Wm.mat))/2) - LDy(Fii, Gii, par.list, Wm.mat)
 }
-x2  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
-	((2*ox.22(Fii, Gii, par.list, Wf.mat) + ox.12(Fii, Gii, par.list, Wf.mat) + ox.23(Fii, Gii, par.list, Wf.mat) + ox.24(Fii, Gii, par.list, Wf.mat))/2) + LDx(Fii, Gii, par.list, Wf.mat)
+x2  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
+	((ox.12(Fii, Gii, par.list, Wm.mat) + ox.23(Fii, Gii, par.list, Wm.mat))/2) + LDy(Fii, Gii, par.list, Wm.mat)
 }
-x3  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
-	((2*ox.33(Fii, Gii, par.list, Wf.mat) + ox.13(Fii, Gii, par.list, Wf.mat) + ox.23(Fii, Gii, par.list, Wf.mat) + ox.34(Fii, Gii, par.list, Wf.mat))/2) + LDx(Fii, Gii, par.list, Wf.mat)
+x3  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
+	((2*ox.33(Fii, Gii, par.list, Wm.mat) + ox.13(Fii, Gii, par.list, Wm.mat) + ox.23(Fii, Gii, par.list, Wm.mat) + ox.34(Fii, Gii, par.list, Wm.mat))/2) + LDy(Fii, Gii, par.list, Wm.mat)
 }
-x4  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
-	((2*ox.44(Fii, Gii, par.list, Wf.mat) + ox.14(Fii, Gii, par.list, Wf.mat) + ox.24(Fii, Gii, par.list, Wf.mat) + ox.34(Fii, Gii, par.list, Wf.mat))/2) - LDx(Fii, Gii, par.list, Wf.mat)
+x4  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
+	((ox.14(Fii, Gii, par.list, Wm.mat) + ox.34(Fii, Gii, par.list, Wm.mat))/2) - LDy(Fii, Gii, par.list, Wm.mat)
 }
 
 # Pollen/Sperm
-y1  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
-	((2*px.11(Fii, Gii, par.list, Wm.mat) + px.12(Fii, Gii, par.list, Wm.mat) + px.13(Fii, Gii, par.list, Wm.mat) + px.14(Fii, Gii, par.list, Wm.mat))/2) - LDy(Fii, Gii, par.list, Wm.mat)
+y1  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
+	((2*px.11(Fii, Gii, par.list, Wf.mat) + px.12(Fii, Gii, par.list, Wf.mat) + px.13(Fii, Gii, par.list, Wf.mat) + px.14(Fii, Gii, par.list, Wf.mat))/2) - LDx(Fii, Gii, par.list, Wf.mat)
 }
-y2  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
-	((px.12(Fii, Gii, par.list, Wm.mat) + px.23(Fii, Gii, par.list, Wm.mat))/2) + LDy(Fii, Gii, par.list, Wm.mat)
+y2  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
+	((2*px.22(Fii, Gii, par.list, Wf.mat) + px.12(Fii, Gii, par.list, Wf.mat) + px.23(Fii, Gii, par.list, Wf.mat) + px.24(Fii, Gii, par.list, Wf.mat))/2) + LDx(Fii, Gii, par.list, Wf.mat)
 }
-y3  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
-	((2*px.33(Fii, Gii, par.list, Wm.mat) + px.13(Fii, Gii, par.list, Wm.mat) + px.23(Fii, Gii, par.list, Wm.mat) + px.34(Fii, Gii, par.list, Wm.mat))/2) + LDy(Fii, Gii, par.list, Wm.mat)
+y3  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
+	((2*px.33(Fii, Gii, par.list, Wf.mat) + px.13(Fii, Gii, par.list, Wf.mat) + px.23(Fii, Gii, par.list, Wf.mat) + px.34(Fii, Gii, par.list, Wf.mat))/2) + LDx(Fii, Gii, par.list, Wf.mat)
 }
-y4  <-  function(Fii, Gii, par.list, Wm.mat, ...) {
-	((px.14(Fii, Gii, par.list, Wm.mat) + px.34(Fii, Gii, par.list, Wm.mat))/2) - LDy(Fii, Gii, par.list, Wm.mat)
+y4  <-  function(Fii, Gii, par.list, Wf.mat, ...) {
+	((2*px.44(Fii, Gii, par.list, Wf.mat) + px.14(Fii, Gii, par.list, Wf.mat) + px.24(Fii, Gii, par.list, Wf.mat) + px.34(Fii, Gii, par.list, Wf.mat))/2) - LDx(Fii, Gii, par.list, Wf.mat)
 }
-
 
 #######################################################
 ## Genotypic frequency x transmission mode recursions
@@ -269,6 +268,7 @@ Fpr.44  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm
 	(x4(Fii, Gii, par.list, Wf.mat)*y4(Fii, Gii, par.list, Wm.mat))*(1 - S(Fii, Gii, par.list, Wf.mat));
 }
 
+
 # Genotypic frequency recursions for offspring produced by self-fertlization
 Gpr.11  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm.mat,...) {
 	(os.11(Fii, Gii, par.list, Wf.mat) + ((os.12(Fii, Gii, par.list, Wf.mat) + os.13(Fii, Gii, par.list, Wf.mat) + 
@@ -302,8 +302,6 @@ Gpr.34  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm
 Gpr.44  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm.mat,...) {
 	((os.34(Fii, Gii, par.list, Wf.mat) + os.14(Fii, Gii, par.list, Wf.mat)*((1 - par.list$r)^2) + os.23(Fii, Gii, par.list, Wf.mat)*(par.list$r^2))/4) * S(Fii, Gii, par.list, Wf.mat);
 }
-
-
 
 
 ################################################################################################
@@ -356,18 +354,18 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-7, ..
 
 	##  Fitness Expression Matrices
 	Wf.mat   <-  matrix(
-						c(1,                1, (1 - par.list$hf*par.list$sf), (1 - par.list$hf*par.list$sf),
-                          0, (1 + par.list$k), (1 - par.list$hf*par.list$sf), (1 - par.list$hf*par.list$sf)*(1 + par.list$k),
-                          0,                0,             (1 - par.list$sf), (1 - par.list$sf),
-                          0,                0,                             0, (1 - par.list$sf)*(1 + par.list$k)), 
+						c(1, 1, (1 - par.list$hf*par.list$sf), (1 - par.list$hf*par.list$sf),
+                          0, 0, (1 - par.list$hf*par.list$sf),                             0,
+                          0, 0,             (1 - par.list$sf),             (1 - par.list$sf),
+                          0, 0,                             0,                             0), 
 						nrow=4, byrow=TRUE
 						)
 	
 	Wm.mat   <-  matrix(
-						c((1 - par.list$sm), (1 - par.list$sm), (1 - par.list$hm*par.list$sm), (1 - par.list$hm*par.list$sm),
-                                          0,                 0, (1 - par.list$hm*par.list$sm),                             0,
-                                          0,                 0,                             1,                             1,
-                                          0,                 0,                             0,                             0), 
+						c((1 - par.list$sm),                  (1 - par.list$sm), (1 - par.list$hm*par.list$sm),                  (1 - par.list$hm*par.list$sm),
+                                          0, (1 - par.list$sm)*(1 + par.list$k), (1 - par.list$hm*par.list$sm), (1 - par.list$hm*par.list$sm)*(1 + par.list$k),
+                                          0,                                  0,                             1,                                              1,
+                                          0,                                  0,                             0,                              (1 + par.list$k)), 
 						nrow=4, byrow=TRUE
 						)	
 
@@ -400,7 +398,7 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-7, ..
 	}
 
 	# Calculate 1-locus equilibrium frequency of unisexuals
-	Zhat  <-  Zhat.gyn.list(par.list)
+	Zhat  <-  Zhat.and.list(par.list)
 	qHat  <-  qHatAdd(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
 
 	##  Output
@@ -413,6 +411,8 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-7, ..
  				 )
 	return(res)
 }
+
+
 
 
 
@@ -568,16 +568,17 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 	
 	#  Write results.df to .txt file
 	if(hm == hf & hf == 0.5) {
-		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_add", ".csv", sep="")
+		filename  <-  paste("./output/data/simResults/and-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_add", ".csv", sep="")
 	}
 	if(hm == hf & hf == 0.25) {
-		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_domRev", ".csv", sep="")
+		filename  <-  paste("./output/data/simResults/and-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_domRev", ".csv", sep="")
 	}
 	write.csv(results.df, file=filename, row.names = FALSE)
 
 	#  Return results.df in case user wants it
 	return(results.df)
 }
+
 
 
 
@@ -599,15 +600,15 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
     # Import data
     data  <-  read.csv(df, header=TRUE)
 
-	# Calculate equilibrium frequencies of M2, females, A, a
+	# Calculate equilibrium frequencies of M2, Males, A, a
 	data$q.m2        <-  (data$'F.12'/2) + (data$'F.14'/2) + data$'F.22' + (data$'F.23'/2) + data$'F.24' + (data$'F.34'/2) + data$'F.44' + 
 	                     (data$'G.12'/2) + (data$'G.14'/2) + data$'G.22' + (data$'G.23'/2) + data$'G.24' + (data$'G.34'/2) + data$'G.44'
-	data$females     <-  data$'F.22' + data$'F.24' + data$'F.44' + data$'G.22' + data$'G.24' + data$'G.44'
+	data$Males       <-  data$'F.22' + data$'F.24' + data$'F.44' + data$'G.22' + data$'G.24' + data$'G.44'
 	data$p.A         <-  data$'F.11' + data$'F.12' + (data$'F.13'/2) + (data$'F.14'/2) + data$'F.22' + (data$'F.23'/2) + (data$'F.24'/2) + 
 	                     data$'G.11' + data$'G.12' + (data$'G.13'/2) + (data$'G.14'/2) + data$'G.22' + (data$'G.23'/2) + (data$'G.24'/2)
 	data$q.a         <-  (data$'F.13'/2) + (data$'F.14'/2) + (data$'F.23'/2) + (data$'F.24'/2) + data$'F.33' + data$'F.34' + data$'F.44' + 
 	                     (data$'G.13'/2) + (data$'G.14'/2) + (data$'G.23'/2) + (data$'G.24'/2) + data$'G.33' + data$'G.34' + data$'G.44' 
-	data$diffFemales  <-  (data$females - data$ZHat)
+	data$diffMales   <-  (data$Males - data$ZHat)
 
     # Color scheme
     COLS  <-  c(transparentColor('dodgerblue', opacity=0.8),
@@ -626,16 +627,16 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
     # Panel 1: r = 0
     dat  <-  subset(data, data$r == rs[1])
         par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffFemales),max(data$diffFemales)), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffMales),max(data$diffMales)), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Equilibrium frequencies for different 
         abline(h=0, lwd=2, col='black')
-        lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+        lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+        lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1,labels=NA)
         axis(2, las=1)
@@ -664,16 +665,16 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
 
     # Panel 2: r = 0.01
     dat  <-  subset(data, data$r == rs[2])
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffFemales),max(data$diffFemales)), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffMales),max(data$diffMales)), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Equilibrium frequencies for different 
         abline(h=0, lwd=2, col='black')
-        lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+        lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+        lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1,labels=NA)
         axis(2, las=1,labels=NA)
@@ -685,16 +686,16 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
 ##  Row 2: 
     # Panel 3: r = 0.05
     dat  <-  subset(data, data$r == rs[3])
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffFemales),max(data$diffFemales)), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffMales),max(data$diffMales)), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Equilibrium frequencies for different 
         abline(h=0, lwd=2, col='black')
-        lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+        lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+        lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, las=1)
@@ -707,16 +708,16 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
 
     # Panel 4: r = 0.1
     dat  <-  subset(data, data$r == rs[4])
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffFemales),max(data$diffFemales)), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffMales),max(data$diffMales)), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Equilibrium frequencies for different 
         abline(h=0, lwd=2, col='black')
-        lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+        lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+        lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, las=1, labels=NA)

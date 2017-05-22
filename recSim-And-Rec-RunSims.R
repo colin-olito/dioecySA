@@ -3,8 +3,8 @@
 #
 #  R code to run deterministic simulations of the
 #  genotypic frequency recursions for the model of 
-#  Gynodioecy via the invasion of a Completely 
-#  RECESSIVE male sterility allele
+#  ANDRODIOECY via the invasion of a Completely 
+#  RECESSIVE FEMALE sterility allele
 #
 #  Appendix XXX:
 #  
@@ -13,7 +13,7 @@
 #         hermaphrodites
 #
 #  
-#  Authors: Colin Olito, Tim Connallon
+#  Author: Colin Olito
 #
 #  NOTES:  
 #          
@@ -23,7 +23,7 @@ rm(list=ls())
 ##  Dependencies
 source('R/functions-analyses.R')
 source('R/functions-figures.R')
-source('R/functions-recSim-Gyno-Rec.R')
+source('R/functions-recSim-Andro-Rec.R')
 
 ######################################
 #  Additive effects (hf = hm = 0.5)
