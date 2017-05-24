@@ -399,7 +399,12 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-7, ..
 
 	# Calculate 1-locus equilibrium frequency of unisexuals
 	Zhat  <-  Zhat.and.list(par.list)
-	qHat  <-  qHatAdd(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
+	if(par.list$hf == par.list$hf & par.list$hf == 0.5) {
+		qHat  <-  qHatAdd(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
+	}
+	if(par.list$hf == par.list$hf & par.list$hf == 0.25) {
+		qHat  <-  qHatDomRev(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
+	}
 
 	##  Output
 	res  <-  list(
@@ -472,7 +477,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 	# Calculate k values
 	Ks     <-  matrix(0, nrow=length(kMult), ncol=length(Cs))
 	for(i in 1:nrow(Ks)){
-    	Ks[i,]  <-  invGyn(Cs, Ds) * kMult[i]
+    	Ks[i,]  <-  invAnd(Cs, Ds) * kMult[i]
     }
 
 	#  initialize storage structures
@@ -512,15 +517,15 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 					   	QEs   <-  c(QE.FAA(q = qhat, C = par.list$C), QE.FAa(q = qhat, C = par.list$C), QE.Faa(q = qhat, C = par.list$C))
 					   	}
 				   	if(par.list$C == 0) {
-						QEs[QEs == max(QEs)]  <-  max(QEs) - 0.02
-						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0.02, 0, 0, QEs[3], 0, 0), digits=8) 
+						QEs[QEs == max(QEs)]  <-  max(QEs) - 0.01
+						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0.01, 0, 0, 0, QEs[3], 0, 0), digits=8) 
 						Gii.init  <-  rep(0,10)
 				   	}
 				   	if(par.list$C != 0) {
 				   		QEs   <-  QEs/sum(QEs)
 				   	   	QEs[QEs == max(QEs)][1]  <-  max(QEs) - 0.01
-						Fii.init  <-  round(c((1 - par.list$C)*QEs[1], 0, (1 - par.list$C)*QEs[2], 0, 0, (1 - par.list$C)*0.01, 0, (1 - par.list$C)*QEs[3], 0, 0), digits=8)
-						Gii.init  <-  round(c(      par.list$C*QEs[1], 0,       par.list$C*QEs[2], 0, 0,       par.list$C*0.01, 0,       par.list$C*QEs[3], 0, 0), digits=8)
+						Fii.init  <-  round(c((1 - par.list$C)*QEs[1], 0, (1 - par.list$C)*QEs[2], (1 - par.list$C)*0.01, 0, 0, 0, (1 - par.list$C)*QEs[3], 0, 0), digits=8)
+						Gii.init  <-  round(c(      par.list$C*QEs[1], 0,       par.list$C*QEs[2],       par.list$C*0.01, 0, 0, 0,       par.list$C*QEs[3], 0, 0), digits=8)
 					}
 					if(sum(Fii.init,Gii.init) != 1) {
 						Fii.init  <-  Fii.init/sum(Fii.init, Gii.init)
@@ -591,11 +596,11 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 #'                    -- Additive fitness effects at SA locus
 #' @title Invasion of dominant male sterility allele into populations
 #' @param df .csv file with data output from recursion simulations.
-#' @examples gynDomRecPlots(df = "./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.5_add.csv")
+#' @examples andRecRecPlots(df = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.5_add.csv")
 #' @author Colin Olito
 #' @export
 #' 
-gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_addtest.csv") {
+andRecRecPlots  <-  function(df = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.4_addtest.csv") {
 
     # Import data
     data  <-  read.csv(df, header=TRUE)
@@ -643,7 +648,7 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
         proportionalLabel(0.5, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.65, 1.1, substitute(r,list(r=rounded(rs[1],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(-0.35, 0.5, expression(paste(Delta," Female frequency")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.35, 0.5, expression(paste(Delta," Male frequency")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         #legend
         legend(
               x       =  usr[2]*0.975,
@@ -699,7 +704,7 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
         # axes
         axis(1, las=1)
         axis(2, las=1)
-        proportionalLabel(-0.35, 0.5, expression(paste(Delta," Female frequency")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(-0.35, 0.5, expression(paste(Delta," Male frequency")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.65, 1.1, substitute(r,list(r=rounded(rs[3],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(C))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)

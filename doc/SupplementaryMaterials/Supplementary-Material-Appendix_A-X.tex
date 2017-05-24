@@ -119,7 +119,7 @@ Consider the genetic system described in the main text -- two diallelic autosoma
 
 \subsection*{Adult genotypic frequencies after inbreeding depression}
 
-There are four possible combinations of alleles at the $\mathbf{A}$ and $\mathbf{M}$ loci that can be found on any chromosome: $A M_1$, $A M_2$, $a M_1$, and $a M_2$. Let $x_i$ and $y_i$ denote the haplotype frequencies $[AM_1,AM_2,aM_1,aM_2]$ in female and male gametes respectively. The calculation of adult genotypic frequencies after inbreeding is identical for all models. Let $F_{ij}$ denote the frequency among offspring of the genotype formed by the union of the \textit{i}th female and \textit{j}th male gametic haplotype via outcrossing. Similarly, let $G_{ij}$ denote the frequency among offspring of the genotype formed by the union of the \textit{i}th female and \textit{j}th male gametic haplotype via self-fertilization. The frequency of each genotype among adults after inbreeding depression, $F^A_{ij}$, will then be:
+There are four possible combinations of alleles at the $\mathbf{A}$ and $\mathbf{M}$ loci that can be found on any chromosome: $A M_1$, $A M_2$, $a M_1$, and $a M_2$. Let $x_i$ and $y_i$ denote the haplotype frequencies $[AM_1,AM_2,aM_1,aM_2]$ in female and male gametes respectively. The calculation of adult genotypic frequencies after inbreeding is identical for all models. Let $F_{ij}$ denote the frequency among offspring of the genotype formed by the union of the \textit{i}th and \textit{j}th gametic haplotypes via outcrossing. Similarly, let $G_{ij}$ denote the frequency among offspring of the genotype formed by the union of the \textit{i}th and \textit{j}th gametic haplotype via self-fertilization. We assume no parent-of-origin effects on fitness, and so index the ten possible pairs of gametic haplotypes where $i \geq j$ hereafter. The frequency of each genotype among adults after inbreeding depression, $F^A_{ij}$, will then be:
 \begin{equation} \label{eq:AdultFreq}
 	F^A_{ij} = \frac{F_{ij} + G_{ij}(1 - \delta)}{\overline{D}},
 \end{equation}
@@ -138,22 +138,22 @@ For the model of the evolution of gynodioecy via the invasion of a completely do
 \caption{Fitness expressions for diploid adults prior to reproduction for the model of a dominant male-sterility mutation ($w^f_{ij}$ denotes fitness effects through the female sex-function , $w^m_{ij}$ for male sex-function).}
 \centering
 \begin{tabular}{l c c c c} \hline
-Haplotype & $y_1 = AM_1$ & $y_2 = AM_2$ & $y_3 = aM_1$ & $y_4 = aM_2$ \\
+Haplotype & $ AM_1$ & $ AM_2$ & $ aM_1$ & $ aM_2$ \\
 \hline
 Female-function & & & & \\
-$x_1 = AM_1$ & $1$ & $(1 + k)$ & $(1 - h_f s_f)$        & $(1 - h_f s_f)(1 + k)$ \\
-$x_2 = AM_2$ & $-$ & $(1 + k)$ & $(1 - h_f s_f)(1 + k)$ & $(1 - h_f s_f)(1 + k)$ \\
-$x_3 = aM_1$ & $-$ & $-$       & $(1 - s_f)$            & $(1 - s_f)(1 + k)$ \\
-$x_4 = aM_2$ & $-$ & $-$       & $-$                    & $(1 - s_f)(1 + k)$ \\
+$ AM_1$ & $1$ & $(1 + k)$ & $(1 - h_f s_f)$        & $(1 - h_f s_f)(1 + k)$ \\
+$ AM_2$ & $-$ & $(1 + k)$ & $(1 - h_f s_f)(1 + k)$ & $(1 - h_f s_f)(1 + k)$ \\
+$ aM_1$ & $-$ & $-$       & $(1 - s_f)$            & $(1 - s_f)(1 + k)$ \\
+$ aM_2$ & $-$ & $-$       & $-$                    & $(1 - s_f)(1 + k)$ \\
 Male-function & & & & \\
-$y_1 = AM_1$ & $(1 - s_m)$ & $0$ & $(1 - h_m s_m)$ & $0$ \\
-$y_2 = AM_2$ & $-$         & $0$ & $0$             & $0$ \\
-$y_3 = aM_1$ & $-$         & $-$ & $1$             & $0$ \\
-$y_4 = aM_2$ & $-$         & $-$ & $-$             & $0$ \\
+$ AM_1$ & $(1 - s_m)$ & $0$ & $(1 - h_m s_m)$ & $0$ \\
+$ AM_2$ & $-$         & $0$ & $0$             & $0$ \\
+$ aM_1$ & $-$         & $-$ & $1$             & $0$ \\
+$ aM_2$ & $-$         & $-$ & $-$             & $0$ \\
 \hline
 \end{tabular}
 \bigskip{} \\
-{\footnotesize Note: Rows and columns indicate the haplotype inherited from mothers and fathers respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $ij$ row/column indexing used throughout the article.}
+{\footnotesize Note: Rows and columns indicate the \textit{i}th and \textit{j}th gametic haplotype respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $i \geq j$ row/column indexing used throughout the article.}
 \end{table}
 
 \noindent The total number of ovules produced by the population at reproduction will be proportional to
@@ -257,22 +257,22 @@ For the model of the evolution of gynodioecy via the invasion of a completely re
 \caption{Fitness expressions for diploid adults prior to reproduction for the model of a recessive male-sterility mutation ($w^f_{ij}$ denotes fitness effects through the female sex-function, $w^m_{ij}$ for male sex-function).}
 \centering
 \begin{tabular}{l c c c c} \hline
-Haplotype & $y_1 = AM_1$ & $y_2 = AM_2$ & $y_3 = aM_1$ & $y_4 = aM_2$ \\
+Haplotype & $ AM_1$ & $ AM_2$ & $ aM_1$ & $ aM_2$ \\
 \hline
 Female-function & & & & \\
-$x_1 = AM_1$ & $1$ & $1$       & $(1 - h_f s_f)$ & $(1 - h_f s_f)$        \\
-$x_2 = AM_2$ & $-$ & $(1 + k)$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)(1 + k)$ \\
-$x_3 = aM_1$ & $-$ & $-$       & $(1 - s_f)$     & $(1 - s_f)$            \\
-$x_4 = aM_2$ & $-$ & $-$       & $-$             & $(1 - s_f)(1 + k)$     \\
+$ AM_1$ & $1$ & $1$       & $(1 - h_f s_f)$ & $(1 - h_f s_f)$        \\
+$ AM_2$ & $-$ & $(1 + k)$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)(1 + k)$ \\
+$ aM_1$ & $-$ & $-$       & $(1 - s_f)$     & $(1 - s_f)$            \\
+$ aM_2$ & $-$ & $-$       & $-$             & $(1 - s_f)(1 + k)$     \\
 Male-function & & & & \\
-$y_1 = AM_1$ & $(1 - s_m)$ & $(1 - s_m)$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)$ \\
-$y_2 = AM_2$ & $-$         & $0$         & $(1 - h_m s_m)$ & $0$             \\
-$y_3 = aM_1$ & $-$         & $-$         & $1$             & $1$             \\
-$y_4 = aM_2$ & $-$         & $-$         & $-$             & $0$             \\
+$ AM_1$ & $(1 - s_m)$ & $(1 - s_m)$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)$ \\
+$ AM_2$ & $-$         & $0$         & $(1 - h_m s_m)$ & $0$             \\
+$ aM_1$ & $-$         & $-$         & $1$             & $1$             \\
+$ aM_2$ & $-$         & $-$         & $-$             & $0$             \\
 \hline
 \end{tabular}
 \bigskip{} \\
-{\footnotesize Note: Rows and columns indicate the haplotype inherited from mothers and fathers respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $ij$ row/column indexing used throughout the article.}
+{\footnotesize Note: Rows and columns indicate the \textit{i}th and \textit{j}th gametic haplotype respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $i \geq j$ row/column indexing used throughout the article.}
 \end{table}
 
 
@@ -391,22 +391,22 @@ The model of Androdioecy via the invasion of a dominant female-sterility mutatio
 \caption{Fitness expressions for diploid adults prior to reproduction for the model of a dominant female-sterility mutation ($w^f_{ij}$ denotes fitness effects through the female sex-function , $w^m_{ij}$ for male sex-function).}
 \centering
 \begin{tabular}{l c c c c} \hline
-Haplotype & $y_1 = AM_1$ & $y_2 = AM_2$ & $y_3 = aM_1$ & $y_4 = aM_2$ \\
+Haplotype & $ AM_1$ & $ AM_2$ & $ aM_1$ & $ aM_2$ \\
 \hline
 Female-function & & & & \\
-$x_1 = AM_1$ & $1$ & $0$ & $(1 - h_f s_f)$ & $0$ \\
-$x_2 = AM_2$ & $-$ & $0$ & $0$             & $0$ \\
-$x_3 = aM_1$ & $-$ & $-$ & $(1 - s_f)$     & $0$ \\
-$x_4 = aM_2$ & $-$ & $-$ & $-$             & $0$ \\
+$ AM_1$ & $1$ & $0$ & $(1 - h_f s_f)$ & $0$ \\
+$ AM_2$ & $-$ & $0$ & $0$             & $0$ \\
+$ aM_1$ & $-$ & $-$ & $(1 - s_f)$     & $0$ \\
+$ aM_2$ & $-$ & $-$ & $-$             & $0$ \\
 Male-function & & & & \\
-$y_1 = AM_1$ & $(1 - s_m)$ & $(1 - s_m)(1 + k)$ & $(1 - h_m s_m)$        & $(1 - h_m s_m)(1 + k)$ \\
-$y_2 = AM_2$ & $-$         & $(1 - s_m)(1 + k)$ & $(1 - h_m s_m)(1 + k)$ & $(1 - h_m s_m)(1 + k)$ \\
-$y_3 = aM_1$ & $-$         & $-$                & $1$                    & $(1 + k)$              \\
-$y_4 = aM_2$ & $-$         & $-$                & $-$                    & $(1 + k)$              \\
+$ AM_1$ & $(1 - s_m)$ & $(1 - s_m)(1 + k)$ & $(1 - h_m s_m)$        & $(1 - h_m s_m)(1 + k)$ \\
+$ AM_2$ & $-$         & $(1 - s_m)(1 + k)$ & $(1 - h_m s_m)(1 + k)$ & $(1 - h_m s_m)(1 + k)$ \\
+$ aM_1$ & $-$         & $-$                & $1$                    & $(1 + k)$              \\
+$ aM_2$ & $-$         & $-$                & $-$                    & $(1 + k)$              \\
 \hline
 \end{tabular}
 \bigskip{} \\
-{\footnotesize Note: Rows and columns indicate the haplotype inherited from mothers and fathers respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $ij$ row/column indexing used throughout the article.}
+{\footnotesize Note: Rows and columns indicate the \textit{i}th and \textit{j}th gametic haplotype respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $i \geq j$ row/column indexing used throughout the article.}
 \end{table}
 
 \noindent Because only phenotypically hermaphroditic individuals can produce ovules, the total number of ovules produced by the population at reproduction will be proportional to
@@ -489,22 +489,22 @@ For the model of the evolution of androdieocy via the invasion of a completely r
 \caption{Fitness expressions for diploid adults prior to reproduction for the model of a recessive female-sterility mutation ($w^f_{ij}$ denotes fitness effects through the female sex-function, $w^m_{ij}$ for male sex-function).}
 \centering
 \begin{tabular}{l c c c c} \hline
-Haplotype & $y_1 = AM_1$ & $y_2 = AM_2$ & $y_3 = aM_1$ & $y_4 = aM_2$ \\
+Haplotype & $ AM_1$ & $ AM_2$ & $ aM_1$ & $ aM_2$ \\
 \hline
 Female-function & & & & \\
-$x_1 = AM_1$ & $1$ & $1$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)$ \\
-$x_2 = AM_2$ & $-$ & $0$ & $(1 - h_f s_f)$ & $0$             \\
-$x_3 = aM_1$ & $-$ & $-$ & $(1 - s_f)$     & $(1 - s_f)$     \\
-$x_4 = aM_2$ & $-$ & $-$ & $-$             & $0$             \\
+$ AM_1$ & $1$ & $1$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)$ \\
+$ AM_2$ & $-$ & $0$ & $(1 - h_f s_f)$ & $0$             \\
+$ aM_1$ & $-$ & $-$ & $(1 - s_f)$     & $(1 - s_f)$     \\
+$ aM_2$ & $-$ & $-$ & $-$             & $0$             \\
 Male-function & & & & \\
-$y_1 = AM_1$ & $(1 - s_m)$ & $(1 - s_m)$        & $(1 - h_m s_m)$ & $(1 - h_m s_m)$        \\
-$y_2 = AM_2$ & $-$         & $(1 - s_m)(1 + k)$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)(1 + k)$ \\
-$y_3 = aM_1$ & $-$         & $-$                & $1$             & $1$                    \\
-$y_4 = aM_2$ & $-$         & $-$                & $-$             & $(1 + k)$              \\
+$ AM_1$ & $(1 - s_m)$ & $(1 - s_m)$        & $(1 - h_m s_m)$ & $(1 - h_m s_m)$        \\
+$ AM_2$ & $-$         & $(1 - s_m)(1 + k)$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)(1 + k)$ \\
+$ aM_1$ & $-$         & $-$                & $1$             & $1$                    \\
+$ aM_2$ & $-$         & $-$                & $-$             & $(1 + k)$              \\
 \hline
 \end{tabular}
 \bigskip{} \\
-{\footnotesize Note: Rows and columns indicate the haplotype inherited from mothers and fathers respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $ij$ row/column indexing used throughout the article.}
+{\footnotesize Note: Rows and columns indicate the \textit{i}th and \textit{j}th gametic haplotype respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $i \geq j$ row/column indexing used throughout the article.}
 \end{table}
 
 

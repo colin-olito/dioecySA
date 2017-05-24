@@ -51,7 +51,7 @@ embed_fonts(figPath(name='Fig2.pdf'))
 	# Gynodioecy
 	  # Obligate Outcrossing
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-ObOut-Add-EQInv.csv", wkSel = TRUE), 
-	  	          figPath(name='FigS1-Gyno-obOut-funnel.pdf'), width=8, height=10)
+	  	          figPath(name='FigS1-Gyno-obOut-funnel.pdf'), width=9, height=10)
 	  embed_fonts(figPath(name='FigS1-Gyno-obOut-funnel.pdf'))
 	
 	  # Low selfing, High Inbreeding Depression
@@ -76,7 +76,7 @@ embed_fonts(figPath(name='Fig2.pdf'))
 	  embed_fonts(figPath(name='FigS5-Andro-C25-d80-funnel.pdf'))
 	
 	  # High selfing, Low Inbreeding Depression
-	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/And-wksel-partSelf-C75-delta20-Add-EQInv.csv", wkSel=TRUE), 
+	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/And-wksel2-partSelf-C75-delta20-Add-EQInv.csv", wkSel=TRUE), 
 			      figPath(name='FigS6-Andro-C75-d20-funnel.pdf'), width=9, height=10)
 	  embed_fonts(figPath(name='FigS6-Andro-C75-d20-funnel.pdf'))
 
@@ -97,9 +97,6 @@ embed_fonts(figPath(name='Fig2.pdf'))
 
 
   # Partial Selfing
-#  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta20-strgSel-Add-EQInv.csv"), 
-#     	  figPath(name='Gyn-PartSelf-Add-EQInv-C0.25-delta0.2.pdf'), width=8, height=10)
-#  embed_fonts(figPath(name='Gyn-PartSelf-Add-EQInv-C0.25-delta0.2.pdf'))
 
   # Low selfing, High Inbreeding Depression
   toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv", wkSel = FALSE), 
@@ -119,9 +116,6 @@ embed_fonts(figPath(name='Fig2.pdf'))
 		  figPath(name='Gyn-wkSel-PartSelf-Add-EQInv-C0.75-delta0.2.pdf'), width=9, height=10)
   embed_fonts(figPath(name='Gyn-wkSel-PartSelf-Add-EQInv-C0.75-delta0.2.pdf'))
 
-#  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta80-strgSel-Add-EQInv.csv"), 
-#		  figPath(name='Gyn-PartSelf-Add-EQInv-C0.75-delta0.8.pdf'), width=8, height=10)
-#  embed_fonts(figPath(name='Gyn-PartSelf-Add-EQInv-C0.75-delta0.8.pdf'))
 
 #######################################################
 ##  Androdioecy EQ invasion analyses exploratory plots 
@@ -131,9 +125,6 @@ embed_fonts(figPath(name='Fig2.pdf'))
   embed_fonts(figPath(name='Andro-ObOut-Add-EQInv.pdf'))
 
   # Partial Selfing
-#  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta20-strgSel-Add-EQInv.csv"), 
-#     	  figPath(name='Andro-PartSelf-Add-EQInv-C0.25-delta0.2.pdf'), width=8, height=10)
-#  embed_fonts(figPath(name='Andro-PartSelf-Add-EQInv-C0.25-delta0.2.pdf'))
 
   # Low selfing, High Inbreeding Depression
   toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80-strgSel-Add-EQInv.csv"), 
@@ -145,10 +136,6 @@ embed_fonts(figPath(name='Fig2.pdf'))
 		  figPath(name='Andro-PartSelf-Add-EQInv-C0.75-delta0.2.pdf'), width=8, height=10)
   embed_fonts(figPath(name='Andro-PartSelf-Add-EQInv-C0.75-delta0.2.pdf'))
 
-#  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-partSelf-C75-delta80-strgSel-Add-EQInv.csv"), 
-#		  figPath(name='Andro-PartSelf-Add-EQInv-C0.75-delta0.8.pdf'), width=8, height=10)
-#  embed_fonts(figPath(name='Andro-PartSelf-Add-EQInv-C0.75-delta0.8.pdf'))
-
 
 ############################################################
 ##  Gynodioecy dominant simulation plots
@@ -157,13 +144,8 @@ source('R/functions-recSim-Gyno-Dom.R')
 # Additive fitness effects
   # sm = 0.4
   toPdf(gynDomRecPlots(df = "./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.4_add.csv"), 
-  	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'), width=6, height=6)
-  embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'))
-
-  # sm = 0.3
-  toPdf(gynDomRecPlots(df = "./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.3_add.csv"), 
-  	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'), width=6, height=6)
-  embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'))
+  	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.4_add.pdf'), width=6, height=6)
+  embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.4_add.pdf'))
 
   # sm = 0.1
   toPdf(gynDomRecPlots(df = "./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.1_add.csv"), 
@@ -173,9 +155,14 @@ source('R/functions-recSim-Gyno-Dom.R')
 
 # Dominance Reversal
   # sm = 0.4
-  toPdf(gynDomRecPlots(df = "./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.5_domRev.csv"), 
-  	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_domRev.pdf'), width=6, height=6)
-  embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_domRev.pdf'))
+  toPdf(gynDomRecPlots(df = "./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.4_domRev.csv"), 
+  	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.4_domRev.pdf'), width=6, height=6)
+  embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.4_domRev.pdf'))
+
+  # sm = 0.1
+  toPdf(gynDomRecPlots(df = "./output/data/simResults/gyn-dom_dStar0.8_a1_sm0.1_domRev.csv"), 
+  	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.1_domRev.pdf'), width=6, height=6)
+  embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.1_domRev.pdf'))
 
 
 ############################################################
@@ -185,19 +172,18 @@ source('R/functions-recSim-Gyno-Dom.R')
 # Additive fitness effects
   # sm = 0.4
   toPdf(andDomRecPlots(df = "./output/data/simResults/and-dom_dStar0.8_a1_sm0.4_add.csv"), 
-  	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'), width=6, height=6)
-  embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_add.pdf'))
+  	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.4_add.pdf'), width=6, height=6)
+  embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.4_add.pdf'))
 
 # Dominance Reversal
   # sm = 0.4
-  toPdf(andDomRecPlots(df = "./output/data/simResults/and-dom_dStar0.8_a1_sm0.5_domRev.csv"), 
-  	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_domRev.pdf'), width=6, height=6)
-  embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.5_domRev.pdf'))
-
+  toPdf(andDomRecPlots(df = "./output/data/simResults/and-dom_dStar0.8_a1_sm0.4_domRev.csv"), 
+  	                    figPath(name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.4_domRev.pdf'), width=6, height=6)
+  embed_fonts(figPath(          name='Gyn-Dom-Recursion-dStar0.8_a1_sm0.4_domRev.pdf'))
 
 
 ############################################################
-##  Gynodioecy dominant simulation plots
+##  Gynodioecy recessive simulation plots
 source('R/functions-recSim-Gyno-Rec.R')
 
 # Additive fitness effects
@@ -207,5 +193,18 @@ source('R/functions-recSim-Gyno-Rec.R')
   embed_fonts(figPath(          name='Gyn-rec-Recursion-dStar0.8_a1_sm0.1_add.pdf'))
 
 gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv")
-gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.3_add.csv")
 gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_add.csv")
+
+
+############################################################
+##  Androdioecy recessive simulation plots
+source('R/functions-recSim-Andro-Rec.R')
+
+# Additive fitness effects
+  # sm = 0.1
+  toPdf(andRecRecPlots(df = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_add.csv"), 
+  	                    figPath(name='And-rec-Recursion-dStar0.8_a1_sm0.1_add.pdf'), width=6, height=6)
+  embed_fonts(figPath(          name='And-rec-Recursion-dStar0.8_a1_sm0.1_add.pdf'))
+
+andRecRecPlots(df = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_add.csv")
+andRecRecPlots(df = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.4_add.csv")

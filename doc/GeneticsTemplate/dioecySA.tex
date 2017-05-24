@@ -72,7 +72,7 @@ Consider a genetic system involving two diallelic autosomal loci, $\mathbf{A}$ (
 
 The population rate of self-fertilization, $C$, is assumed to be independent of the genotype at the $\mathbf{A}$ locus. By definition, the genotype at the $\mathbf{M}$ locus determines whether or not self-fertilization is possible (after \citealt{Charlesworth1978a}). Let us also assume a constant population level of inbreeding depression, $\delta$, defined as the decrease in the probability of survival of zygotes formed by self-fertilization relative to those produced by outcrossing. As noted by \citet{Charlesworth1978a}, this assumption only holds for populations at equilibrium, but probably represents a conservative estimate of the effects of inbreeding depression. Generations are assumed to be non-overlapping, and the life-cycle proceeds as follows: fertilization $\rightarrow$ inbreeding depression $\rightarrow$ selection $\rightarrow$ fertilization.
 
-Let $x_i$ and $y_i$ denote the frequencies of the four possible haplotypes $[AM_1,AM_2,aM_1,aM_2]$ in female and male gametes respectively. Under some circumstances, female unisexuals carring the $M_2$ allele may be able to re-allocate resources towards ovule production that would otherwise have been used for pollen production (\citealt{Lloyd1975,Lloyd1976,Charlesworth1978a}). To account for such reproductive compensation, let $k$ describe the proportional increase in ovule production in females relative to hermaphrodites. The fitness of offspring resulting from the union of the $i^{th}$ female and $j^{th}$ male gametic haplotype, are denoted $w^f_{ij}$ and $w^m_{ij}$ respectively, and are assumed to be the product of the fitness expressions for $\mathbf{A}$ and $\mathbf{M}$ (Table~\ref{tab:fitness}).
+Let $x_i$ and $y_i$ denote the frequencies of the four possible haplotypes $[AM_1,AM_2,aM_1,aM_2]$ in female and male gametes respectively. Under some circumstances, female unisexuals carring the $M_2$ allele may be able to re-allocate resources towards ovule production that would otherwise have been used for pollen production (\citealt{Lloyd1975,Lloyd1976,Charlesworth1978a}). To account for such reproductive compensation, let $k$ describe the proportional increase in ovule production in females relative to hermaphrodites. The fitness of offspring resulting from the union of the $i^{th}$ and $j^{th}$ gametic haplotypes, are denoted $w^f_{ij}$ and $w^m_{ij}$ respectively, and are assumed to be the product of the fitness expressions for $\mathbf{A}$ and $\mathbf{M}$ (Table~\ref{tab:fitness}). We assume no parent-of-origin effects on fitness, and so index the ten possible pairs of gametic haplotypes where $i \geq j$ hereafter.
 
 \begin{table*}[htbp]
 \centering
@@ -80,23 +80,23 @@ Let $x_i$ and $y_i$ denote the frequencies of the four possible haplotypes $[AM_
 \begin{tableminipage}{\textwidth}
 \begin{tabularx}{\textwidth}{XXXXX}
 \hline
-Haplotype & $y_1 = AM_1$ & $y_2 = AM_2$ & $y_3 = aM_1$ & $y_4 = aM_2$ \\
+Haplotype & $ AM_1$ & $ AM_2$ & $ aM_1$ & $ aM_2$ \\
 \hline
 Female sex-function & & & & \\
-$x_1 = AM_1$ & $1$ & $(1 + k)$ & $(1 - h_f s_f)$        & $(1 - h_f s_f)(1 + k)$ \\
-$x_2 = AM_2$ & $-$ & $(1 + k)$ & $(1 - h_f s_f)(1 + k)$ & $(1 - h_f s_f)(1 + k)$ \\
-$x_3 = aM_1$ & $-$ & $-$       & $(1 - s_f)$            & $(1 - s_f)(1 + k)$ \\
-$x_4 = aM_2$ & $-$ & $-$       & $-$                    & $(1 - s_f)(1 + k)$ \\
+$ AM_1$ & $1$ & $(1 + k)$ & $(1 - h_f s_f)$        & $(1 - h_f s_f)(1 + k)$ \\
+$ AM_2$ & $-$ & $(1 + k)$ & $(1 - h_f s_f)(1 + k)$ & $(1 - h_f s_f)(1 + k)$ \\
+$ aM_1$ & $-$ & $-$       & $(1 - s_f)$            & $(1 - s_f)(1 + k)$ \\
+$ aM_2$ & $-$ & $-$       & $-$                    & $(1 - s_f)(1 + k)$ \\
 Male sex-function & & & & \\
-$x_1 = AM_1$ & $(1 - s_m)$ & $0$ & $(1 - h_m s_m)$ & $0$ \\
-$x_2 = AM_2$ & $-$         & $0$ & $0$             & $0$ \\
-$x_3 = aM_1$ & $-$         & $-$ & $1$             & $0$ \\
-$x_4 = aM_2$ & $-$         & $-$ & $-$             & $0$ \\
+$ AM_1$ & $(1 - s_m)$ & $0$ & $(1 - h_m s_m)$ & $0$ \\
+$ AM_2$ & $-$         & $0$ & $0$             & $0$ \\
+$ aM_1$ & $-$         & $-$ & $1$             & $0$ \\
+$ aM_2$ & $-$         & $-$ & $-$             & $0$ \\
 \hline
 \end{tabularx}
   \label{tab:fitness}
 \end{tableminipage}
-{\footnotesize Note: Rows and columns indicate the haplotype inherited from mothers and fathers respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $ij$ row/column indexing used throughout the article.}
+{\footnotesize Note: Rows and columns indicate the \textit{i}th and \textit{j}th gametic haplotype respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $i \geq j$ row/column indexing used throughout the article.}
 \end{table*}
 
 
@@ -166,7 +166,7 @@ To evaluate whether pre-existing SA polymorphism influences the invasion of unis
 
 To determine the equilibrium frequencies of SA alleles, $M_2$, and unisexuals invading polymorphic populations, we performed deterministic simulations of the recursions $F'_{ij},~G'_{ij}$ using the initial genotypic frequencies described by Eq(\ref{eq:SA1locEQ}) under a variety of parameter conditions (see \hl{Appendix X} in the Online Supporting Information). We focus our analysis on the comparison of equilbrium frequencies of unisexuals from our models with the corresponding exact single-locus equilibrium frequencies, $\hat{Z}$, given by \citet{Charlesworth1978a} for cases of relatively tight linkage between the $\mathbf{A}$ and $\mathbf{M}$ ($r\leq 0.1$). We emphasize tight linkage for two reasons. First, this represents the parameter conditions where our model predictions should differ most from those of single-locus models; with higher recombination, the predictions from the one- and two-locus models converge. Second, tight or complete linkage should approximate the biologically plausible scenario where SA loci, including a sex-specific sterility locus, are involved in a chromosomal inversion \citep{LeeKelly2015}.
 
-In single-locus models of gynodioecy and androdioecy, the equilibrium frequency of unisexuals is determined by the reproductive compensation term, $k$, and the compound parameter $C \delta$ \citep{Charlesworth1978a}. However, if inbreeding depression is caused primarily by recessive deleterious mutations, as current data suggest \citep{Charlesworth2009}, there should be strong negative covariance between $C$ and $\delta$ as increased selfing more effectively purges deleterious recessives. In the simplest case, the mutation load due to deleterious recessive mutations at a single locus in a completely selfing population should be roughly half that of a randomly mating outcrossing population ($\mu$ versus $2 \mu$, where $\mu$ is the genome-wide mutation rate; \citealt{OhtaCockerham1974}). To account for negative covariance between $C$ and $\delta$, and thereby explore more biologically meaningful parameter space, we constrain inbreeding depression for our simulations to be a function of the selfing rate: $\delta = \delta^\ast(1 - C/2)$, where $\delta^\ast$ represents the hypothetical severity of inbreeding depression if selfing were enforced on a completely outcrossing population ($\delta^\ast \in [0,1]$). More complex expressions for $\delta$ yielded qualitatively similar results (See \hl{Appendix X} in the Online Supporting Information). 
+In single-locus models of gynodioecy and androdioecy, the equilibrium frequency of unisexuals is determined by the reproductive compensation term, $k$, and the compound parameter $C \delta$ \citep{Charlesworth1978a}. However, if inbreeding depression is caused primarily by recessive deleterious mutations, as current data suggest \citep{Charlesworth2009}, there should be strong negative covariance between $C$ and $\delta$ as increased selfing more effectively purges deleterious recessives. In the simplest case, the mutation load due to deleterious recessive mutations at a single locus in a completely selfing population should be roughly half that of a randomly mating outcrossing population ($\mu$ versus $2 \mu$, where $\mu$ is the genome-wide mutation rate; \citealt{OhtaCockerham1974}). To account for negative covariance between $C$ and $\delta$, and thereby explore more biologically meaningful parameter space, we constrain inbreeding depression for our simulations to be a function of the selfing rate: $\delta = \delta^\ast(1 - C/2)$, where $\delta^\ast$ represents the hypothetical severity of inbreeding depression if selfing were enforced on a completely outcrossing population ($\delta^\ast \in [0,1]$). More complex expressions for $\delta$ yielded qualitatively similar results (See \hl{Appendix B} in the Online Supporting Information). 
 
 Finally, it was important to account for the fact that $C$ and $\delta$ also influence the maintenance of SA polymorphism and the equilibrium frequencies of the SA alleles at $\mathbf{A}$ \citep{JordanConnallon2014,Olito2017}. We therefore ran simulations using values of $s_f$ and $s_m$ corresponding to single-locus equilibrium frequencies of $1/2$ for the two SA alleles ($p = [A]$, $q = [a]$; $p=q=1/2$). Thus, our simulations explore the invasion of the male- or female-sterility allele, $M_2$, into hermaphroditic populations initially at highly polymorphic single-locus equilibrium at $\mathbf{A}$.
 

@@ -401,6 +401,12 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-7, ..
 
 	# Calculate 1-locus equilibrium frequency of unisexuals
 	Zhat  <-  Zhat.gyn.list(par.list)
+	if(par.list$hf == par.list$hf & par.list$hf == 0.5) {
+		qHat  <-  qHatAdd(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
+	}
+	if(par.list$hf == par.list$hf & par.list$hf == 0.25) {
+		qHat  <-  qHatDomRev(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
+	}
 	qHat  <-  qHatAdd(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
 
 	##  Output
@@ -513,7 +519,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 					   	}
 				   	if(par.list$C == 0) {
 						QEs[QEs == max(QEs)]  <-  max(QEs) - 0.02
-						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0.02, 0, 0, QEs[3], 0, 0), digits=8) 
+						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0, 0.02, 0, QEs[3], 0, 0), digits=8) 
 						Gii.init  <-  rep(0,10)
 				   	}
 				   	if(par.list$C != 0) {

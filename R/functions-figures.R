@@ -442,19 +442,8 @@ Fig.1  <-  function() {
 Fig.2  <-  function() {
 
     # Import data
-    data  <-  read.csv(file="./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_add.csv", header=TRUE)
-    data2  <-  read.csv(file="./output/data/simResults/and-dom_dStar0.8_a1_sm0.4_add.csv", header=TRUE)
-
-#    # Calculate equilibrium frequencies of M2, females, A, a
-#    data$q.m2        <-  (data$'F.12'/2) + (data$'F.14'/2) + data$'F.22' + (data$'F.23'/2) + data$'F.24' + (data$'F.34'/2) + data$'F.44' + 
-#                         (data$'G.12'/2) + (data$'G.14'/2) + data$'G.22' + (data$'G.23'/2) + data$'G.24' + (data$'G.34'/2) + data$'G.44'
-#    data$females     <-  data$'F.12' + data$'F.14' + data$'F.22' + data$'F.23' + data$'F.24' + data$'F.34' + data$'F.44' + 
-#                         data$'G.12' + data$'G.14' + data$'G.22' + data$'G.23' + data$'G.24' + data$'G.34' + data$'G.44'
-#    data$p.A         <-  data$'F.11' + data$'F.12' + (data$'F.13'/2) + (data$'F.14'/2) + data$'F.22' + (data$'F.23'/2) + (data$'F.24'/2) + 
-#                         data$'G.11' + data$'G.12' + (data$'G.13'/2) + (data$'G.14'/2) + data$'G.22' + (data$'G.23'/2) + (data$'G.24'/2)
-#    data$q.a         <-  (data$'F.13'/2) + (data$'F.14'/2) + (data$'F.23'/2) + (data$'F.24'/2) + data$'F.33' + data$'F.34' + data$'F.44' + 
-#                         (data$'G.13'/2) + (data$'G.14'/2) + (data$'G.23'/2) + (data$'G.24'/2) + data$'G.33' + data$'G.34' + data$'G.44' 
-#    data$diffFemales  <-  (data$females - data$ZHat)
+    data   <-  read.csv(file="./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_add.csv", header=TRUE)
+    data2  <-  read.csv(file="./output/data/simResults/and-recess_dStar0.8_a1_sm0.4_add.csv", header=TRUE)
 
     # Calculate equilibrium frequencies of M2, females, A, a
     data$q.m2        <-  (data$'F.12'/2) + (data$'F.14'/2) + data$'F.22' + (data$'F.23'/2) + data$'F.24' + (data$'F.34'/2) + data$'F.44' + 
@@ -469,13 +458,12 @@ Fig.2  <-  function() {
    # Calculate equilibrium frequencies of M2, males, A, a
     data2$q.m2        <-  (data2$'F.12'/2) + (data2$'F.14'/2) + data2$'F.22' + (data2$'F.23'/2) + data2$'F.24' + (data2$'F.34'/2) + data2$'F.44' + 
                          (data2$'G.12'/2) + (data2$'G.14'/2) + data2$'G.22' + (data2$'G.23'/2) + data2$'G.24' + (data2$'G.34'/2) + data2$'G.44'
-    data2$males     <-  data2$'F.12' + data2$'F.14' + data2$'F.22' + data2$'F.23' + data2$'F.24' + data2$'F.34' + data2$'F.44' + 
-                         data2$'G.12' + data2$'G.14' + data2$'G.22' + data2$'G.23' + data2$'G.24' + data2$'G.34' + data2$'G.44'
+    data2$Males       <-  data2$'F.22' + data2$'F.24' + data2$'F.44' + data2$'G.22' + data2$'G.24' + data2$'G.44'
     data2$p.A         <-  data2$'F.11' + data2$'F.12' + (data2$'F.13'/2) + (data2$'F.14'/2) + data2$'F.22' + (data2$'F.23'/2) + (data2$'F.24'/2) + 
                          data2$'G.11' + data2$'G.12' + (data2$'G.13'/2) + (data2$'G.14'/2) + data2$'G.22' + (data2$'G.23'/2) + (data2$'G.24'/2)
     data2$q.a         <-  (data2$'F.13'/2) + (data2$'F.14'/2) + (data2$'F.23'/2) + (data2$'F.24'/2) + data2$'F.33' + data2$'F.34' + data2$'F.44' + 
                          (data2$'G.13'/2) + (data2$'G.14'/2) + (data2$'G.23'/2) + (data2$'G.24'/2) + data2$'G.33' + data2$'G.34' + data2$'G.44' 
-    data2$diffMales  <-  (data2$males - data2$ZHat)
+    data2$diffMales   <-  (data2$Males - data2$ZHat)
 
     # Color scheme
     COLS  <-  c(transparentColor('dodgerblue', opacity=0.8),
@@ -511,27 +499,10 @@ Fig.2  <-  function() {
         proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = 0.0")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.35, 0.5, expression(paste(Delta," Female frequency")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        #legend
-        legend(
-              x       =  usr[2]*0.6,
-              y       =  usr[4]*0.35,
-              legend  =  c(
-                          expression(paste(italic(k)~"="~italic(hat(k))%*%1.1)),
-                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.95)),
-                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.9))),
-              lty     =  c(1,1,1),
-              lwd     =  c(3,3,3),
-              col     =  c(COLS[1],COLS[2],COLS[3]),
-              cex     =  1,
-              xjust   =  1,
-              yjust   =  1,
-              bty     =  'n',
-              border  =  NA
-    )
     rm(dat)
 
     # Panel 2: r = 0.1
-    dat  <-  subset(data, data$r == rs[4])
+    dat  <-  subset(data, data$r == rs[3])
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffFemales),max(data$diffFemales)), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
@@ -545,8 +516,25 @@ Fig.2  <-  function() {
         # axes
         axis(1, las=1,labels=NA)
         axis(2, las=1,labels=NA)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = ", 0.1)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = ", 0.05)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        # legend
+        legend(
+              x       =  usr[2],
+              y       =  usr[4],
+              legend  =  c(
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%1.1)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.95)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.9))),
+              lty     =  c(1,1,1),
+              lwd     =  c(3,3,3),
+              col     =  c(COLS[1],COLS[2],COLS[3]),
+              cex     =  1,
+              xjust   =  1,
+              yjust   =  1,
+              bty     =  'n',
+              border  =  NA
+    )
     rm(dat)
     rm(rs)
     rm(ks)
@@ -577,7 +565,7 @@ Fig.2  <-  function() {
     rm(dat)
 
     # Panel 4: r = 0.1
-    dat  <-  subset(data2, data2$r == rs[3])
+    dat  <-  subset(data2, data2$r == rs[2])
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data2$diffMales),max(data2$diffMales)), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
@@ -591,7 +579,7 @@ Fig.2  <-  function() {
         # axes
         axis(1, las=1)
         axis(2, labels=NA)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = ", 0.1)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = ", 0.05)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, -0.3, expression(paste(italic(C))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
     rm(dat)
