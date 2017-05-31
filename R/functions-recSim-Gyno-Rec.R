@@ -407,7 +407,6 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-7, ..
 	if(par.list$hf == par.list$hf & par.list$hf == 0.25) {
 		qHat  <-  qHatDomRev(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
 	}
-	qHat  <-  qHatAdd(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
 
 	##  Output
 	res  <-  list(

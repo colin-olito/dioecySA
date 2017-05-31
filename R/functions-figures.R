@@ -181,7 +181,7 @@ funnelSlice  <-  function(sm, C, delta, h = 0.5) {
 Fig.1  <-  function() {
 
     # Import data
-    data1  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-ObOut-Add-EQInv.csv", header=TRUE)
+    data1  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel2-ObOut-Add-EQInv.csv", header=TRUE)
     data2  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-Add-EQInv.csv", header=TRUE)
     data3  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-Add-EQInv.csv", header=TRUE)
     data4  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-ObOut-Add-EQInv.csv", header=TRUE)
@@ -442,8 +442,8 @@ Fig.1  <-  function() {
 Fig.2  <-  function() {
 
     # Import data
-    data   <-  read.csv(file="./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_add.csv", header=TRUE)
-    data2  <-  read.csv(file="./output/data/simResults/and-recess_dStar0.8_a1_sm0.4_add.csv", header=TRUE)
+    data   <-  read.csv(file="./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv", header=TRUE)
+    data2  <-  read.csv(file="./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_add.csv", header=TRUE)
 
     # Calculate equilibrium frequencies of M2, females, A, a
     data$q.m2        <-  (data$'F.12'/2) + (data$'F.14'/2) + data$'F.22' + (data$'F.23'/2) + data$'F.24' + (data$'F.34'/2) + data$'F.44' + 
@@ -491,6 +491,7 @@ Fig.2  <-  function() {
         abline(h=0, lwd=2, col='black')
         lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=3, col=COLS[1], cex=1, data=dat)
         lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=3, col=COLS[2], cex=1, data=dat)
+        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=3, col=COLS[3], cex=1, data=dat)
         lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=3, col=COLS[3], cex=1, data=dat)
         # axes
         axis(1, las=1,labels=NA)
