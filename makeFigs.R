@@ -15,7 +15,7 @@
 
 rm(list=ls())
 
-library(extrafont)
+library(extrafontdb)
 library(fontcm)
 loadfonts(quiet = TRUE)
 
@@ -192,7 +192,10 @@ source('R/functions-recSim-Gyno-Rec.R')
   	                    figPath(name='Gyn-rec-Recursion-dStar0.8_a1_sm0.1_add.pdf'), width=6, height=6)
   embed_fonts(figPath(          name='Gyn-rec-Recursion-dStar0.8_a1_sm0.1_add.pdf'))
 
-
+gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv")
+gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_domRev.csv")
+gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a0.2_sm0.1_add.csv")
+gynRecRecPlots(df = "./output/data/simResults/gyn-recess_dStar0.8_a0.2_sm0.1_domRev.csv")
 ############################################################
 ##  Androdioecy recessive simulation plots
 source('R/functions-recSim-Andro-Rec.R')
@@ -202,3 +205,9 @@ source('R/functions-recSim-Andro-Rec.R')
   toPdf(andRecRecPlots(df = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_add.csv"), 
   	                    figPath(name='And-rec-Recursion-dStar0.8_a1_sm0.1_add.pdf'), width=6, height=6)
   embed_fonts(figPath(          name='And-rec-Recursion-dStar0.8_a1_sm0.1_add.pdf'))
+
+
+andRecRecPlots(df = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_add.csv")
+andRecRecPlots(df = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_domRev.csv")
+andRecRecPlots(df = "./output/data/simResults/and-recess_dStar0.8_a0.2_sm0.1_add.csv")
+andRecRecPlots(df = "./output/data/simResults/and-recess_dStar0.8_a0.2_sm0.1_domRev.csv")
