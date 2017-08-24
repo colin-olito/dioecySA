@@ -15,7 +15,7 @@
 
 rm(list=ls())
 
-library(extrafontdb)
+library(extrafont)
 library(fontcm)
 loadfonts(quiet = TRUE)
 
@@ -30,8 +30,17 @@ source('R/functions-figures.R')
 toPdf(Fig.1(), figPath(name='Fig1.pdf'), width=5, height=7.75)
 embed_fonts(figPath(name='Fig1.pdf'))
 
+toPdf(Fig2Alt(dfGyn = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv",
+              dfAnd = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_add.csv"), 
+              figPath(name='Fig2Alt.pdf'), width=7, height=7)
+embed_fonts(figPath(name='Fig2Alt.pdf'))
+
 toPdf(Fig.2(), figPath(name='Fig2.pdf'), width=7, height=7)
 embed_fonts(figPath(name='Fig2.pdf'))
+
+toPdf(Fig3Alt(), 
+            figPath(name='Fig3Alt.pdf'), width=7, height=7)
+embed_fonts(figPath(name='Fig3Alt.pdf'))
 
 #toPdf(Fig.2wk(), figPath(name='Fig2wk.pdf'), width=7, height=7)
 #embed_fonts(figPath(name='Fig2wk.pdf'))
