@@ -599,7 +599,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 #' @author Colin Olito
 #' @export
 #' 
-gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_addtest.csv") {
+gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv") {
 
     # Import data
     data  <-  read.csv(df, header=TRUE)
@@ -617,6 +617,8 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
     # Color scheme
     COLS  <-  c(transparentColor('dodgerblue', opacity=0.8),
     	        transparentColor('dodgerblue4', opacity=0.8),
+    	        transparentColor('darkolivegreen', opacity=0.8),
+    	        transparentColor('tomato3', opacity=0.8),
     	        transparentColor('tomato', opacity=0.8))
 
     # k index for easy plotting
@@ -631,7 +633,7 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
     # Panel 1: r = 0
     dat  <-  subset(data, data$r == rs[1])
         par(omi=rep(0.5, 4), mar = c(3,3,0.5,0.5), bty='o', xaxt='s', yaxt='s')
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffFemales),max(data$diffFemales)), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffFemales),max(data$diffFemales)+0.02), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -641,30 +643,15 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
         lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
         lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
         lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffFemales[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
+        lines(diffFemales[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
         # axes
         axis(1, las=1,labels=NA)
         axis(2, las=1)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.65, 1.1, substitute(r,list(r=rounded(rs[1],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.45, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.675, 1.1, substitute(r,list(r=rounded(rs[1],precision=3))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.35, 0.5, expression(paste(Delta," Female frequency")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        #legend
-        legend(
-              x       =  usr[2]*0.975,
-              y       =  usr[4],
-              legend  =  c(
-                          expression(paste(italic(k)~"="~italic(hat(k))%*%1.1)),
-                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.95)),
-                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.90))),
-              lty     =  c(1,1,1),
-              lwd     =  c(2,2,2),
-              col     =  c(COLS[1],COLS[2],COLS[3]),
-              cex     =  1,
-              xjust   =  1,
-              yjust   =  1,
-              bty     =  'n',
-              border  =  NA
-    )
     rm(dat)
 
     # Panel 2: r = 0.01
@@ -679,12 +666,33 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
         lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
         lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
         lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffFemales[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
+        lines(diffFemales[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
         # axes
         axis(1, las=1,labels=NA)
         axis(2, las=1,labels=NA)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.65, 1.1, substitute(r,list(r=rounded(rs[2],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.45, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.675, 1.1, substitute(r,list(r=rounded(rs[2],precision=3))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        #legend
+        legend(
+              x       =  usr[2]*0.975,
+              y       =  usr[4],
+              legend  =  c(
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%1.1)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.975)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.95)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.925)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.9))),
+              lty     =  1,
+              lwd     =  2,
+              col     =  c(COLS[1],COLS[2],COLS[3],COLS[4],COLS[5]),
+              cex     =  1,
+              xjust   =  1,
+              yjust   =  1,
+              bty     =  'n',
+              border  =  NA
+    )
     rm(dat)
 
 ##  Row 2: 
@@ -700,12 +708,14 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
         lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
         lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
         lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffFemales[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
+        lines(diffFemales[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, las=1)
         proportionalLabel(-0.35, 0.5, expression(paste(Delta," Female frequency")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.65, 1.1, substitute(r,list(r=rounded(rs[3],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.45, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.675, 1.1, substitute(r,list(r=rounded(rs[3],precision=3))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(C))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, -0.35, expression(paste(italic(C))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
     rm(dat)
@@ -722,11 +732,13 @@ gynRecRecPlots  <-  function(df = "./output/data/simResults/gyn-recess_dStar0.8_
         lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
         lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
         lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+        lines(diffFemales[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
+        lines(diffFemales[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, las=1, labels=NA)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.65, 1.1, substitute(r,list(r=rounded(rs[4],precision=2))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.45, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.675, 1.1, substitute(r,list(r=rounded(rs[4],precision=3))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, -0.35, expression(paste(italic(C))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
     rm(dat)

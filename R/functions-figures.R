@@ -181,7 +181,7 @@ funnelSlice  <-  function(sm, C, delta, h = 0.5) {
 Fig.1  <-  function() {
 
     # Import data
-    data1  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel2-ObOut-Add-EQInv.csv", header=TRUE)
+    data1  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-ObOut-Add-EQInv.csv", header=TRUE)
     data2  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-Add-EQInv.csv", header=TRUE)
     data3  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-Add-EQInv.csv", header=TRUE)
     data4  <-  read.csv("./output/data/EQInvAnalyses/And-wksel-ObOut-Add-EQInv.csv", header=TRUE)
@@ -434,6 +434,126 @@ Fig.1  <-  function() {
 
 
 
+#' Multipanel plot comparing 2-locus recursion simulation results
+#' with 1-locus predictions
+#'
+#' @title Figure 2
+#' @author Colin Olito.
+#' @export
+Fig2Alt  <-  function(dfGyn, dfAnd) {
+    # Import data
+    dataG  <-  read.csv(dfGyn, header=TRUE)
+    dataA  <-  read.csv(dfAnd, header=TRUE)
+
+    # Calculate equilibrium frequencies of M2, females, A, a
+    dataG$q.m2        <-  (dataG$'F.12'/2) + (dataG$'F.14'/2) + dataG$'F.22' + (dataG$'F.23'/2) + dataG$'F.24' + (dataG$'F.34'/2) + dataG$'F.44' + 
+                         (dataG$'G.12'/2) + (dataG$'G.14'/2) + dataG$'G.22' + (dataG$'G.23'/2) + dataG$'G.24' + (dataG$'G.34'/2) + dataG$'G.44'
+    dataG$females     <-  dataG$'F.22' + dataG$'F.24' + dataG$'F.44' + dataG$'G.22' + dataG$'G.24' + dataG$'G.44'
+    dataG$p.A         <-  dataG$'F.11' + dataG$'F.12' + (dataG$'F.13'/2) + (dataG$'F.14'/2) + dataG$'F.22' + (dataG$'F.23'/2) + (dataG$'F.24'/2) + 
+                         dataG$'G.11' + dataG$'G.12' + (dataG$'G.13'/2) + (dataG$'G.14'/2) + dataG$'G.22' + (dataG$'G.23'/2) + (dataG$'G.24'/2)
+    dataG$q.a         <-  (dataG$'F.13'/2) + (dataG$'F.14'/2) + (dataG$'F.23'/2) + (dataG$'F.24'/2) + dataG$'F.33' + dataG$'F.34' + dataG$'F.44' + 
+                         (dataG$'G.13'/2) + (dataG$'G.14'/2) + (dataG$'G.23'/2) + (dataG$'G.24'/2) + dataG$'G.33' + dataG$'G.34' + dataG$'G.44' 
+    dataG$diffFemales  <-  (dataG$females - dataG$ZHat)
+
+    # Calculate equilibrium frequencies of M2, males, A, a
+    dataA$q.m2        <-  (dataA$'F.12'/2) + (dataA$'F.14'/2) + dataA$'F.22' + (dataA$'F.23'/2) + dataA$'F.24' + (dataA$'F.34'/2) + dataA$'F.44' + 
+                         (dataA$'G.12'/2) + (dataA$'G.14'/2) + dataA$'G.22' + (dataA$'G.23'/2) + dataA$'G.24' + (dataA$'G.34'/2) + dataA$'G.44'
+    dataA$males     <-  dataA$'F.22' + dataA$'F.24' + dataA$'F.44' + dataA$'G.22' + dataA$'G.24' + dataA$'G.44'
+    dataA$p.A         <-  dataA$'F.11' + dataA$'F.12' + (dataA$'F.13'/2) + (dataA$'F.14'/2) + dataA$'F.22' + (dataA$'F.23'/2) + (dataA$'F.24'/2) + 
+                         dataA$'G.11' + dataA$'G.12' + (dataA$'G.13'/2) + (dataA$'G.14'/2) + dataA$'G.22' + (dataA$'G.23'/2) + (dataA$'G.24'/2)
+    dataA$q.a         <-  (dataA$'F.13'/2) + (dataA$'F.14'/2) + (dataA$'F.23'/2) + (dataA$'F.24'/2) + dataA$'F.33' + dataA$'F.34' + dataA$'F.44' + 
+                         (dataA$'G.13'/2) + (dataA$'G.14'/2) + (dataA$'G.23'/2) + (dataA$'G.24'/2) + dataA$'G.33' + dataA$'G.34' + dataA$'G.44' 
+    dataA$diffMales  <-  (dataA$males - dataA$ZHat)
+
+    # Color scheme
+    COLS  <-  c(transparentColor('dodgerblue', opacity=0.8),
+                transparentColor('dodgerblue4', opacity=0.8),
+                transparentColor('darkolivegreen', opacity=0.8),
+                transparentColor('tomato3', opacity=0.8),
+                transparentColor('tomato', opacity=0.8))
+
+    # k index for easy plotting
+    rs  <-  unique(dataG$r)
+    ks  <-  unique(dataG$k)
+
+    # Set plot layout
+    layout.mat <- matrix(c(1:2), nrow=1, ncol=2, byrow=TRUE)
+    layout <- layout(layout.mat,respect=TRUE)
+
+### Equilibrium Female Frequencies
+##  Panel 1: 
+    dat  <-  subset(dataG, dataG$k == ks[1])
+        par(omi=rep(0.3, 4), mar = c(3.5,3.5,2,2), bty='o', xaxt='s', yaxt='s')
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(dataG$females),max(dataG$females)), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Equilibrium frequencies for different 
+        lines(ZHat[r==rs[1]] ~ C[r==rs[1]], lwd=2, col='black', cex=1, data=dat)
+        lines(females[r==rs[1]] ~ C[r==rs[1]], lwd=2, col='grey70', lty=2, cex=1, data=dat)
+        lines(females[r==rs[2]] ~ C[r==rs[2]], lwd=2, col='grey60', lty=2, cex=1, data=dat)
+        lines(females[r==rs[3]] ~ C[r==rs[3]], lwd=2, col='grey50', lty=2, cex=1, data=dat)
+        lines(females[r==rs[4]] ~ C[r==rs[4]], lwd=2, col='grey40', lty=2, cex=1, data=dat)
+        # axes
+        axis(1, las=1)
+        axis(2, las=1)
+        proportionalLabel(0.5, 1.25, expression(paste("Gynodioecy")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, -0.3, expression(paste(italic(C))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.35, 0.5, expression(paste("Eq. female frequency")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        #legend
+        legend(
+              x       =  usr[2]*0.99,
+              y       =  usr[4],
+              legend  =  c(
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%1.1)),
+                          expression(paste("1 locus"))),
+              lty     =  c(2,1),
+              lwd     =  2,
+              col     =  'black',
+              cex     =  0.75,
+              xjust   =  1,
+              yjust   =  1,
+              bty     =  'n',
+              border  =  NA
+    )
+    proportionalLabel(0.275, 0.95, expression(paste(italic(r)~"="~0.0)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.165, 0.8, expression(paste(italic(r)~"="~0.005)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.15, 0.67, expression(paste(italic(r)~"="~0.01)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.15, 0.53, expression(paste(italic(r)~"="~0.05)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    rm(dat)
+
+### Equilibrium Male Frequencies
+##  Panel 2: 
+    dat  <-  subset(dataA, dataA$k == ks[1])
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(dataA$males),max(dataA$males)), ylab='', xlab='', cex.lab=1.2)
+        usr  <-  par('usr')
+        rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
+        plotGrid(lineCol='grey80')
+        box()
+        # Equilibrium frequencies for different 
+        lines(ZHat[r==rs[1]] ~ C[r==rs[1]], lwd=2, col='black', cex=1, data=dat)
+        lines(males[r==rs[1]] ~ C[r==rs[1]], lwd=2, col='grey70', lty=2, cex=1, data=dat)
+        lines(males[r==rs[2]] ~ C[r==rs[2]], lwd=2, col='grey60', lty=2, cex=1, data=dat)
+        lines(males[r==rs[3]] ~ C[r==rs[3]], lwd=2, col='grey50', lty=2, cex=1, data=dat)
+        lines(males[r==rs[4]] ~ C[r==rs[4]], lwd=2, col='grey40', lty=2, cex=1, data=dat)
+        # axes
+        axis(1, las=1)
+        axis(2, las=1)
+        proportionalLabel(0.5, 1.25, expression(paste("Androdioecy")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(-0.35, 0.5, expression(paste("Eq. male frequency")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
+        proportionalLabel(0.5, -0.3, expression(paste(italic(C))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.32, 0.95, expression(paste(italic(r)~"="~0.0)),   cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.165, 0.78, expression(paste(italic(r)~"="~0.005)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.15, 0.68, expression(paste(italic(r)~"="~0.01)),  cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.15, 0.55, expression(paste(italic(r)~"="~0.05)),  cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    rm(dat)
+}
+
+
+
 #' Multipanel plot summarizing results recursion simulations
 #'
 #' @title Figure 2
@@ -466,9 +586,11 @@ Fig.2  <-  function() {
     data2$diffMales   <-  (data2$Males - data2$ZHat)
 
     # Color scheme
-    COLS  <-  c(transparentColor('dodgerblue', opacity=0.8),
-                transparentColor('tomato', opacity=0.8),
-                transparentColor('dodgerblue4', opacity=0.8))
+     COLS  <-  c(transparentColor('dodgerblue', opacity=0.8),
+                transparentColor('dodgerblue4', opacity=0.8),
+                transparentColor('darkolivegreen', opacity=0.8),
+                transparentColor('tomato3', opacity=0.8),
+                transparentColor('tomato', opacity=0.8))
 
     # k index for easy plotting
     rs  <-  unique(data$r)
@@ -492,7 +614,8 @@ Fig.2  <-  function() {
         lines(diffFemales[k==ks[1]] ~ C[k==ks[1]], lwd=3, col=COLS[1], cex=1, data=dat)
         lines(diffFemales[k==ks[2]] ~ C[k==ks[2]], lwd=3, col=COLS[2], cex=1, data=dat)
         lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=3, col=COLS[3], cex=1, data=dat)
-        lines(diffFemales[k==ks[3]] ~ C[k==ks[3]], lwd=3, col=COLS[3], cex=1, data=dat)
+        lines(diffFemales[k==ks[4]] ~ C[k==ks[4]], lwd=3, col=COLS[4], cex=1, data=dat)
+        lines(diffFemales[k==ks[5]] ~ C[k==ks[5]], lwd=3, col=COLS[5], cex=1, data=dat)
         # axes
         axis(1, las=1,labels=NA)
         axis(2, las=1)
@@ -502,8 +625,8 @@ Fig.2  <-  function() {
         proportionalLabel(-0.35, 0.5, expression(paste(Delta," Female frequency")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
     rm(dat)
 
-    # Panel 2: r = 0.1
-    dat  <-  subset(data, data$r == rs[3])
+    # Panel 2: r = 0.05
+    dat  <-  subset(data, data$r == rs[2])
         plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$diffFemales),max(data$diffFemales)), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
@@ -517,19 +640,21 @@ Fig.2  <-  function() {
         # axes
         axis(1, las=1,labels=NA)
         axis(2, las=1,labels=NA)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = ", 0.05)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = ", 0.005)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         # legend
         legend(
-              x       =  usr[2],
+              x       =  usr[2]*0.975,
               y       =  usr[4],
               legend  =  c(
                           expression(paste(italic(k)~"="~italic(hat(k))%*%1.1)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.975)),
                           expression(paste(italic(k)~"="~italic(hat(k))%*%0.95)),
+                          expression(paste(italic(k)~"="~italic(hat(k))%*%0.925)),
                           expression(paste(italic(k)~"="~italic(hat(k))%*%0.9))),
-              lty     =  c(1,1,1),
-              lwd     =  c(3,3,3),
-              col     =  c(COLS[1],COLS[2],COLS[3]),
+              lty     =  1,
+              lwd     =  2,
+              col     =  c(COLS[1],COLS[2],COLS[3],COLS[4],COLS[5]),
               cex     =  1,
               xjust   =  1,
               yjust   =  1,
@@ -555,6 +680,8 @@ Fig.2  <-  function() {
         lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=3, col=COLS[1], cex=1, data=dat)
         lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=3, col=COLS[2], cex=1, data=dat)
         lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=3, col=COLS[3], cex=1, data=dat)
+        lines(diffMales[k==ks[4]] ~ C[k==ks[4]], lwd=3, col=COLS[4], cex=1, data=dat)
+        lines(diffMales[k==ks[5]] ~ C[k==ks[5]], lwd=3, col=COLS[5], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, las=1)
@@ -577,10 +704,12 @@ Fig.2  <-  function() {
         lines(diffMales[k==ks[1]] ~ C[k==ks[1]], lwd=3, col=COLS[1], cex=1, data=dat)
         lines(diffMales[k==ks[2]] ~ C[k==ks[2]], lwd=3, col=COLS[2], cex=1, data=dat)
         lines(diffMales[k==ks[3]] ~ C[k==ks[3]], lwd=3, col=COLS[3], cex=1, data=dat)
+        lines(diffMales[k==ks[4]] ~ C[k==ks[4]], lwd=3, col=COLS[4], cex=1, data=dat)
+        lines(diffMales[k==ks[5]] ~ C[k==ks[5]], lwd=3, col=COLS[5], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, labels=NA)
-        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = ", 0.05)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.5, 1.1, expression(paste(italic(r)," = ", 0.005)), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(D))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.5, -0.3, expression(paste(italic(C))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
     rm(dat)
