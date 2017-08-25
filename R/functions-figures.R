@@ -484,7 +484,7 @@ Fig2Alt  <-  function(dfGyn, dfAnd) {
 ##  Panel 1: 
     dat  <-  subset(dataG, dataG$k == ks[1])
         par(omi=rep(0.3, 4), mar = c(3.5,3.5,2,2), bty='o', xaxt='s', yaxt='s')
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(dataG$females),max(dataG$females)), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(0,max(dataG$females)*1.1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -518,16 +518,16 @@ Fig2Alt  <-  function(dfGyn, dfAnd) {
               bty     =  'n',
               border  =  NA
     )
-    proportionalLabel(0.275, 0.95, expression(paste(italic(r)~"="~0.0)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
-    proportionalLabel(0.165, 0.78, expression(paste(italic(r)~"="~0.005)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
-    proportionalLabel(0.15, 0.66, expression(paste(italic(r)~"="~0.01)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
-    proportionalLabel(0.15, 0.53, expression(paste(italic(r)~"="~0.05)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.115, 0.92, expression(paste(italic(r)~"="~0.0)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.165, 0.709, expression(paste(italic(r)~"="~0.005)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.15, 0.6, expression(paste(italic(r)~"="~0.01)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.15, 0.482, expression(paste(italic(r)~"="~0.05)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
     rm(dat)
 
 ### Equilibrium Male Frequencies
 ##  Panel 2: 
     dat  <-  subset(dataA, dataA$k == ks[1])
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(dataA$males),max(dataA$males)), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(0,max(dataA$males)*1.1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -545,10 +545,10 @@ Fig2Alt  <-  function(dfGyn, dfAnd) {
         proportionalLabel(-0.35, 0.5, expression(paste("Eq. male frequency")), cex=1.2, adj=c(0.5, 0.5), xpd=NA, srt=90)
         proportionalLabel(0.5, -0.3, expression(paste(italic(C))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
-    proportionalLabel(0.32, 0.95, expression(paste(italic(r)~"="~0.0)),   cex=0.75, adj=c(0.5, 0.5), xpd=NA)
-    proportionalLabel(0.165, 0.78, expression(paste(italic(r)~"="~0.005)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
-    proportionalLabel(0.15, 0.68, expression(paste(italic(r)~"="~0.01)),  cex=0.75, adj=c(0.5, 0.5), xpd=NA)
-    proportionalLabel(0.15, 0.55, expression(paste(italic(r)~"="~0.05)),  cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.115, 0.92, expression(paste(italic(r)~"="~0.0)),   cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.165, 0.705, expression(paste(italic(r)~"="~0.005)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.15, 0.618, expression(paste(italic(r)~"="~0.01)),  cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.15, 0.505, expression(paste(italic(r)~"="~0.05)),  cex=0.75, adj=c(0.5, 0.5), xpd=NA)
     rm(dat)
 }
 
@@ -783,7 +783,7 @@ Fig3Alt  <-  function() {
         axis(2, las=1)
         proportionalLabel(1.2, 1.25, expression(paste("Gynodioecy")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.45, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.675, 1.1, substitute(r,list(r=rounded(rs[1],precision=1))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.635, 1.11, substitute(r,list(r=rounded(rs[1],precision=1))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(A))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(-0.35, 0.5, expression(paste("Eq. female frequency")), cex=1.5, adj=c(0.5, 0.5), xpd=NA, srt=90)
     rm(dat)
@@ -806,7 +806,7 @@ Fig3Alt  <-  function() {
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
         proportionalLabel(0.45, 1.1, expression(paste(italic(r)," =")), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
-        proportionalLabel(0.675, 1.1, substitute(r,list(r=rounded(rs[2],precision=3))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
+        proportionalLabel(0.675, 1.11, substitute(r,list(r=rounded(rs[2],precision=3))), cex=1.5, adj=c(0.5, 0.5), xpd=NA)
         proportionalLabel(0.05, 1.075, expression(paste(bold(B))), cex=1.2, adj=c(0.5, 0.5), xpd=NA)
         #legend
         legend(

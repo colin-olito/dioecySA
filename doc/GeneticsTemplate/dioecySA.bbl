@@ -1,4 +1,4 @@
-\begin{thebibliography}{39}
+\begin{thebibliography}{43}
 
 \bibitem[{Agrawal {\rm and} Whitlock}(2011)]{Agrawal2011}
 {Agrawal, A.~F. {\rm and} M.~C. Whitlock}, 2011 Inferences about the
@@ -22,6 +22,10 @@
 {Bachtrog, D., J.~E. Mank, C.~L. Peichel, M.~Kirkpatrick, S.~P. Otto, {\em
   et~al.\/}}, 2014 Sex determination: why so many ways of doing it? PLoS
   Biology {\bf 12}: e1001899.
+
+\bibitem[{Barrett}(2010)]{Barrett2010}
+{Barrett, S. C.~H.}, 2010 Darwin's legacy: the forms, function, and sexual
+  diversity of flowers. Phil.~Trans.~Roy.~Soc.~B. {\bf 365}: 351--368.
 
 \bibitem[{Barson {\em et~al.\/}}(2015){Barson, Ayanat, Hindar, Baranski,
   Bolstad, Fiske, Jacq, Jensen, Johnston, Karlsson, Kent, Moen, Niemel\"{a},
@@ -72,15 +76,24 @@
 {Charlesworth, D. {\rm and} J.~Willis}, 2009 The genetics of inbreeding
   depression. Nature Reviews Genetics {\bf 10}: 783--796.
 
-\bibitem[{Connallon {\rm and} Clark}(2012)]{ConnallonClark2012}
-{Connallon, T. {\rm and} A.~Clark}, 2012 A general population genetic framework
-  for antagonistic selection that accounts for demography and recurrent
-  mutation. Genetics {\bf 190}: 1477--1489.
-
 \bibitem[{Connallon {\rm and} Clark}(2014)]{ConnallonClark2014}
 {Connallon, T. {\rm and} A.~Clark}, 2014 Balancing selection in species with
   separate sexes: insights from fisher's geometric model. Genetics {\bf 197}:
   991--1006.
+
+\bibitem[{Connallon {\rm and} Clark}(2010)]{ConnallonClark2010}
+{Connallon, T. {\rm and} A.~G. Clark}, 2010 Sex linkage, sex-specific
+  selection, and the role of recombination in the evolution of sexually
+  dimorphic gene expression. Evolution {\bf 64}: 3417--3442.
+
+\bibitem[{Connallon {\rm and} Clark}(2012)]{ConnallonClark2012}
+{Connallon, T. {\rm and} A.~G. Clark}, 2012 A general population genetic
+  framework for antagonistic selection that accounts for demography and
+  recurrent mutation. Genetics {\bf 190}: 1477--1489.
+
+\bibitem[{Connallon {\rm and} Jordan}(2016)]{ConnallonJordan2016}
+{Connallon, T. {\rm and} C.~Y. Jordan}, 2016 Accumulation of deleterious
+  mutations near sexually antagonistic genes. G3 {\bf 6}: 2273--2280.
 
 \bibitem[{Darwin}(1877)]{Darwin1877}
 {Darwin, C.}, 1877 {\em The different forms of flowers on plants of the same
@@ -191,6 +204,11 @@
   Patten}]{UbedaPatten2010}
 {\'{U}beda, F., D.~Haig, {\rm and} M.~Patten}, 2010 Stable linkage
   disequilibrium owing to sexual antagonism. Proc.~Roy.~Soc.~B pp. 1--8.
+
+\bibitem[{Weinreich {\rm and} Chao}(2005)]{WeinreichChao2005}
+{Weinreich, D.~M. {\rm and} L.~Chao}, 2005 Rapid evolutionary escape by large
+  populations from local fitness peaks is likely in nature. Evolution {\bf 59}:
+  1175--1182.
 
 \bibitem[{Westergaard}(1958)]{Westergaard1958}
 {Westergaard, M.}, 1958 The mechanism of sex determination in dioecious
