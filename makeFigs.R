@@ -32,7 +32,7 @@ embed_fonts(figPath(name='Fig1.pdf'))
 
 toPdf(Fig2Alt(dfGyn = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv",
               dfAnd = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_add.csv"), 
-              figPath(name='Fig2Alt.pdf'), width=7, height=7)
+              figPath(name='Fig2Alt.pdf'), width=7, height=4)
 embed_fonts(figPath(name='Fig2Alt.pdf'))
 
 toPdf(Fig.2(), figPath(name='Fig2.pdf'), width=7, height=7)
@@ -41,15 +41,6 @@ embed_fonts(figPath(name='Fig2.pdf'))
 toPdf(Fig3Alt(), 
             figPath(name='Fig3Alt.pdf'), width=7, height=7)
 embed_fonts(figPath(name='Fig3Alt.pdf'))
-
-#toPdf(Fig.2wk(), figPath(name='Fig2wk.pdf'), width=7, height=7)
-#embed_fonts(figPath(name='Fig2wk.pdf'))
-
-#toPdf(recSimFig_add(), figPath(name='recSimFig_add.pdf'), width=7, height=7)
-#embed_fonts(figPath(name='recSimFig_add.pdf'))
-
-#toPdf(recSimFig_domRev(), figPath(name='recSimFig_domRev.pdf'), width=7, height=7)
-#embed_fonts(figPath(name='recSimFig_domRev.pdf'))
 
 
 ########################
@@ -65,12 +56,12 @@ embed_fonts(figPath(name='Fig3Alt.pdf'))
 	
 	  # Low selfing, High Inbreeding Depression
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-Add-EQInv.csv", wkSel = TRUE), 
-			      figPath(name='FigS2-Gyno-C25-d80-funnel.pdf'), width=9, height=10)
+			          figPath(name='FigS2-Gyno-C25-d80-funnel.pdf'), width=9, height=10)
 	  embed_fonts(figPath(name='FigS2-Gyno-C25-d80-funnel.pdf'))
 	
 	  # High selfing, Low Inbreeding Depression
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-Add-EQInv.csv", wkSel=TRUE), 
-			      figPath(name='FigS3-Gyno-C75-d20-funnel.pdf'), width=9, height=10)
+			          figPath(name='FigS3-Gyno-C75-d20-funnel.pdf'), width=9, height=10)
 	  embed_fonts(figPath(name='FigS3-Gyno-C75-d20-funnel.pdf'))
 
 	# Androdioecy
@@ -81,17 +72,19 @@ embed_fonts(figPath(name='Fig3Alt.pdf'))
 	
 	  # Low selfing, High Inbreeding Depression
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/And-wksel-partSelf-C25-delta80-Add-EQInv.csv", wkSel = TRUE), 
-			      figPath(name='FigS5-Andro-C25-d80-funnel.pdf'), width=9, height=10)
+			          figPath(name='FigS5-Andro-C25-d80-funnel.pdf'), width=9, height=10)
 	  embed_fonts(figPath(name='FigS5-Andro-C25-d80-funnel.pdf'))
 	
 	  # High selfing, Low Inbreeding Depression
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/And-wksel2-partSelf-C75-delta20-Add-EQInv.csv", wkSel=TRUE), 
-			      figPath(name='FigS6-Andro-C75-d20-funnel.pdf'), width=9, height=10)
+			          figPath(name='FigS6-Andro-C75-d20-funnel.pdf'), width=9, height=10)
 	  embed_fonts(figPath(name='FigS6-Andro-C75-d20-funnel.pdf'))
 
 
-## Figs. S7-S12 -- Equilibrium frequency plots showing effects of non-linear C*delta function and stronger selfing (from deterministic simulations)
-
+## Fig. S7 -- Equilibrium frequency plots showing effects of non-linear C*delta function and stronger selfing (from deterministic simulations)
+toPdf(compareCDelta(), 
+            figPath(name='FigS7-compareCdelta.pdf'), width=7, height=4)
+embed_fonts(figPath(name='FigS7-compareCdelta.pdf'))
 
 ######################
 # Exploratory Figures
