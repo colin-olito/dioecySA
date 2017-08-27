@@ -15,6 +15,8 @@
 \linespread{1.25}
 % Default margins are too wide all the way around. I reset them here
 \usepackage{fullpage}
+% Force figures to be in correct section
+\usepackage{placeins}
 
 
 % Fonts and language
@@ -94,13 +96,13 @@
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Running Header
-\pagestyle{fancyplain}
-\makeatother
-\lhead{\textit{Supplement to Olito \& Connallon. SA polymorphism and dimorphic sexual systems. \textit{Genetics}.\\}}
+%\pagestyle{fancyplain}
+%\makeatother
+%\lhead{\textit{Supplement to Olito \& Connallon. SA polymorphism and dimorphic sexual systems. \textit{Genetics}.\\}}
 %\rhead{\textit{Sex antagonistic selection on phenology}}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\addtolength{\headheight}{12pt}
+%\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0pt}
+%\addtolength{\headheight}{12pt}
 
 
 \subsection*{Appendix A: Development of the recursions}
@@ -115,7 +117,7 @@ Here, we fully develop the system of genotype $\times$ transmission mode recursi
 
 \subsection*{Assumptions}
 
-Consider the genetic system described in the main text -- two diallelic autosomal loci, $\mathbf{A}$ (with alleles $A$, $a$) and $\mathbf{M}$ (with alleles $M_1$, $M_2$), that recombine at rate $r$ in a large population of simultaneous hermaphrodites. We assume that the $\mathbf{A}$ locus is under sexually antagonistic selection, with the $A$ allele having female-beneficial (male-deleterious) fitness effects, and the $a$ allele having male-beneficial (female-deleterious) fitness effects. At the $\mathbf{M}$ locus, the $M_1$ allele is neutral, while the $M_2$ allele represents a sex-specific sterility mutation causing complete loss of fertility (e.g., via cessation of production, or the production of inviable pollen or ovules). The population rate of self-fertilization, $C$, is assumed to be independent of the genotype at the $\mathbf{A}$ locus, while the genotype at the $\mathbf{M}$ locus determines whether or not a genotype is capable of self-fertilization. We also assume a constant population level of inbreeding depression, $\delta$. We assume that a vanishingly small amount of pollen is adequate for successful self-fertilization. Generations are assumed to be non-overlapping, and the life-cycle for all models proceeds as follows: fertilization $\rightarrow$ inbreeding depression $\rightarrow$ selection $\rightarrow$ fertilization.
+Consider the genetic system described in the main text -- two diallelic autosomal loci, $\mathbf{A}$ (with alleles $A$, $a$) and $\mathbf{M}$ (with alleles $M_1$, $M_2$), that recombine at rate $r$ per meiosis, in a large, initially hermaphroditic, population. Assume that the $\mathbf{A}$ locus is under sexually antagonistic selection, with the $A$ allele having female-beneficial (male-deleterious) fitness effects, and the $a$ allele having male-beneficial (female-deleterious) fitness effects. Assume also that the $M_1$ allele at the $\mathbf{M}$ locus has a relative fitness of $1$ for both sex-functions, while the $M_2$ allele causes complete sterility through one sex function (e.g., via cessation of production, or the production of inviable pollen or ovules). The population rate of self-fertilization, $C$, is assumed to be independent of the genotype at the $\mathbf{A}$ locus, while the genotype at the $\mathbf{M}$ locus determines whether or not a genotype is capable of self-fertilization. We also assume a constant population level of inbreeding depression, $\delta$, and that a vanishingly small amount of pollen is adequate for successful self-fertilization. Generations are assumed to be non-overlapping, and the life-cycle for all models proceeds as follows: fertilization $\rightarrow$ inbreeding depression $\rightarrow$ selection $\rightarrow$ fertilization.
 
 \subsection*{Adult genotypic frequencies after inbreeding depression}
 
@@ -590,58 +592,93 @@ The genotypic frequency recursions for offpsring derived via outcrossing proceed
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.7]{./FigS1-Gyno-obOut-funnel}
-\caption{Gynodioecy, dominant, obligate outcrossing... }
+\includegraphics[scale=0.6]{./FigS1-Gyno-obOut-funnel}
+\caption{Invasion of dominant male-sterility mutations into populations with segregating SA variation under obligate outcrossing. Plots show the regions of parameter space (defined by $s_f \times s_m | F^{\ast}_{ij},G^{\ast}_{ij} > 0$ and $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$, can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the three candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $\lambda_{\mathbf{M}} - 1 > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:GynObOutFunnel}
 \end{figure}
 \newpage{}
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.7]{./FigS2-Gyno-C25-d80-funnel}
-\caption{Gynodioecy, dominant, low selfing, high inbreeding depression...}
+\includegraphics[scale=0.6]{./FigS2-Gyno-C25-d80-funnel}
+\caption{Invasion of dominant male-sterility mutations into populations with segregating SA variation under conditions of low selfing ($C = 0.25$) and high inbreeding depression ($\delta = 0.8$). Plots show the regions of parameter space (defined by $s_f \times s_m | F^{\ast}_{ij},G^{\ast}_{ij} > 0$ and $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$, can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the three candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $\lambda_{\mathbf{M}} - 1 > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:GynC25d80Funnel}
 \end{figure}
 \newpage{}
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.7]{./FigS3-Gyno-C75-d20-funnel}
-\caption{Gynodioecy, dominant, high selfing, low inbreeding depression...}
+\includegraphics[scale=0.6]{./FigS3-Gyno-C75-d20-funnel}
+\caption{Invasion of dominant male-sterility mutations into populations with segregating SA variation under conditions of high selfing ($C = 0.75$) and low inbreeding depression ($\delta = 0.2$). Plots show the regions of parameter space (defined by $s_f \times s_m | F^{\ast}_{ij},G^{\ast}_{ij} > 0$ and $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$, can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the three candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $\lambda_{\mathbf{M}} - 1 > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:GynC75d20Funnel}
 \end{figure}
 \newpage{}
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.7]{./FigS4-Andro-obOut-funnel}
-\caption{Androdioecy, dominant, obligate outcrossing... }
+\includegraphics[scale=0.6]{./FigS4-Andro-obOut-funnel}
+\caption{Invasion of dominant female-sterility mutations into populations with segregating SA variation under obligate outcrossing. Plots show the regions of parameter space (defined by $s_f \times s_m | F^{\ast}_{ij},G^{\ast}_{ij} > 0$ and $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$, can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the three candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $\lambda_{\mathbf{M}} - 1 > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:AndroObOutFunnel}
 \end{figure}
 \newpage{}
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.7]{./FigS5-Andro-C25-d80-funnel}
-\caption{Androdioecy, dominant, low selfing, high inbreeding depression...}
+\includegraphics[scale=0.6]{./FigS5-Andro-C25-d80-funnel}
+\caption{Invasion of dominant female-sterility mutations into populations with segregating SA variation under conditions of low selfing ($C = 0.25$) and high inbreeding depression ($\delta = 0.8$). Plots show the regions of parameter space (defined by $s_f \times s_m | F^{\ast}_{ij},G^{\ast}_{ij} > 0$ and $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$, can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the three candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $\lambda_{\mathbf{M}} - 1 > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:AndC25d80Funnel}
 \end{figure}
 \newpage{}
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.7]{./FigS6-Andro-C75-d20-funnel}
-\caption{Androdioecy, dominant, high selfing, low inbreeding depression...}
+\includegraphics[scale=0.6]{./FigS6-Andro-C75-d20-funnel}
+\caption{Invasion of dominant female-sterility mutations into populations with segregating SA variation under conditions of high selfing ($C = 0.75$) and low inbreeding depression ($\delta = 0.2$). Plots show the regions of parameter space (defined by $s_f \times s_m | F^{\ast}_{ij},G^{\ast}_{ij} > 0$ and $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$, can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the three candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $\lambda_{\mathbf{M}} - 1 > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:AndC75d20Funnel}
 \end{figure}
 \newpage{}
 
+\FloatBarrier
 
-%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Appendix C: Alternative relations between the selfing rate and inbreeding depression}
+\renewcommand{\theequation}{C\arabic{equation}}
+\setcounter{equation}{0}
+%\renewcommand{\thefigure}{S\arabic{figure}}
+%\setcounter{figure}{0}
+
+As explained in the main text, we attempted to account for negative covariance between $C$ and $\delta$ in our deterministic simulations, as might be expected if inbreeding depression is caused by recessive deleterious mutations \citep{Charlesworth2009}. We did this by constraining inbreeding depression to follow a simple linear function of the selfing rate $\delta = \delta^\ast(1 - C/2)$, where $\delta^\ast$ represents the hypothetical severity of inbreeding depression if selfing were enforced on a completely outcrossing population ($\delta^\ast \in [0,1]$). Here we briefly address the consequences of relaxing this assumption.
+
+In the simplest case, the mutation load due to deleterious recessive mutations at a single locus in a completely selfing population should be roughly half that of a randomly mating outcrossing population ($\mu$ versus $2 \mu$, where $\mu$ is the genome-wide mutation rate; \citealt{OhtaCockerham1974}). Moreover, the single-locus mutation load is predicted to follow a negative decelerating curve as a function of the population selfing rate \citep{OhtaCockerham1974}. To capture these main features, first we define a simple function describing the mutation load due to recessive deleterious mutations,
+
+\begin{equation}\label{eq:Load}
+    L = \frac{a (1 - C)}{C + a (1 - C)},
+\end{equation}
+
+\noindent where $C$ is the population selfing rate, and $a$ is a shape parameter determining the curvature of the line. When $a = 1$, Eq(\ref{eq:Load}) yields a straight line. For $a < 1$ the function is concave up (Fig.~\ref{fig:Cdelta}A), and for $a > 1$ it is concave downward. We then incorporate Eq(\ref{eq:Load}) into a simple expression for inbreeding depression,
+
+\begin{equation}\label{eq:ID}
+    \delta = \delta^{\ast} - \delta^{\ast} b (1 - L),
+\end{equation}
+
+\noindent where $\delta^\ast$ represents the hypothetical severity of inbreeding depression in an obligately outcrossing population ($\delta^\ast \in [0,1]$), and $b$ is a shape parameter determining how far $\delta$ will drop relative to $\delta^{\ast}$ under complete selfing ($C = 1$). This flexible function allows us to define an initial level of inbreeding depression under obligate outcrossing ($\delta^\ast$), how far inbreeding depression will decline under complete selfing ($b$), and the curvature of the line connecting these two endpoints ($a$). Given that in a completely selfing population $L$ is expected to be roughly half that in an obligately outcrossing one, we constrain $b$ to equal $1/2$. Note that when $a=1$ and $b=1/2$, Eq(\ref{eq:ID}) yields $\delta = \delta^\ast(1 - C/2)$, as defined in the main text. Altering the curvature of Eq(\ref{eq:Load}) to be concave upward has only a minor effect on the results, and does not alter the main conclusions from our simulations (fig.~\ref{fig:Cdelta}B).
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=\linewidth]{./FigS7-compareCdelta}
+\caption{Comparison of linear versus non-linear relations between the hermaphrodite selfing rate, $C$, and inbreeding depression, $\delta$. Panel (A) shows the linear ($a=1$; solid line) vs.~non-linear ($a=0.2$; dashed line) functions for $\delta$. In both cases, we assume that inbreeding depression in a completely selfing population will be half that of an obligately outcrossing one ($b=0.5$ for both lines). Panel (B) shows similar simulation results to those presented in Fig.~2 of the main text -- equilibrium frequencies of unisexual females compared with single-locus predictions when reproductive compensation is above the single-locus threshold (i.e., $k > \hat{k}$). Results are shown for the model of gynodioecy via invasion of a recessive male-sterility allele, with additive fitness effects at $\mathbf{A}$ ($h_f = h_m = 0.5$), using a selection coefficient of $s_m = 0.4$., and the same linear (solid lines) vs.~nonlinear (dashed lines) functions of inbreeding depression as shown in panel (A).}
+\label{fig:Cdelta}
+\end{figure}
+
+
+
+\clearpage
+
 %%%%%%%%%%%%%%%%%%%%%
 % Bibliography
 %%%%%%%%%%%%%%%%%%%%%
-%\newpage{}
-%\bibliography{dioecySA-Supplements-bibliography}
+\bibliography{dioecySA-Supplements-bibliography}
+
+
 
 \end{document}

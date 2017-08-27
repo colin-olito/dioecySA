@@ -1,3 +1,11 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{2}
+
+\bibitem[{Charlesworth {\rm and} Willis}(2009)]{Charlesworth2009}
+{Charlesworth, D. {\rm and} J.~Willis}, 2009 The genetics of inbreeding
+  depression. Nature Reviews Genetics {\bf 10}: 783--796.
+
+\bibitem[{Ohta {\rm and} Cockerham}(1974)]{OhtaCockerham1974}
+{Ohta, T. {\rm and} C.~C. Cockerham}, 1974 Detrimental genes with partial
+  selfing and effects on a neutral locus. Genet.~Res.~Camb. {\bf 23}: 191--200.
 
 \end{thebibliography}
