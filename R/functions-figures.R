@@ -1424,7 +1424,7 @@ invGynNonLin  <-  invGyn(C = C, delta = nonLinDelta) * 1.1
 Zhat.gyn.lin  <-  c()
 Zhat.gyn.nonlin  <-  c()
     for(i in 1:length(C)) {
-        Zhat.gyn.lin[i]     <-  Zhat.gyn(k = invGynLin[i], C = C[i], delta = linDelta[i])
+        Zhat.gyn.lin[i]     <-  Zhat.gyn(k = invGynLin[i],    C = C[i], delta = linDelta[i])
         Zhat.gyn.nonlin[i]  <-  Zhat.gyn(k = invGynNonLin[i], C = C[i], delta = nonLinDelta[i])
     } 
 
@@ -1469,8 +1469,8 @@ Zhat.gyn.nonlin  <-  c()
 
 
     # Import data
-    data   <-  read.csv(file="./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.4_add.csv", header=TRUE)
-    data2  <-  read.csv(file="./output/data/simResults/gyn-recess_dStar0.8_a0.2_sm0.4_add.csv", header=TRUE)
+    data   <-  read.csv(file="./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv", header=TRUE)
+    data2  <-  read.csv(file="./output/data/simResults/gyn-recess_dStar0.8_a0.2_sm0.1_add.csv", header=TRUE)
 
     # Calculate equilibrium frequencies of M2, females, A, a
     data$q.m2         <-  (data$'F.12'/2) + (data$'F.14'/2) + data$'F.22' + (data$'F.23'/2) + data$'F.24' + (data$'F.34'/2) + data$'F.44' + 
@@ -1506,7 +1506,7 @@ Zhat.gyn.nonlin  <-  c()
     dat1  <-  subset(data, data$k == ks[1])
     dat2  <-  subset(data2, data2$k == ks[1])
 
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(0,0.22), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(0,0.11), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
@@ -1544,10 +1544,10 @@ Zhat.gyn.nonlin  <-  c()
               bty     =  'n',
               border  =  NA
     )
-    proportionalLabel(0.115, 0.93, expression(paste(italic(r)~"="~0.0)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
-    proportionalLabel(0.165, 0.68, expression(paste(italic(r)~"="~0.005)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
-    proportionalLabel(0.15, 0.58, expression(paste(italic(r)~"="~0.01)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
-    proportionalLabel(0.15, 0.42, expression(paste(italic(r)~"="~0.05)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
-    proportionalLabel(0.15, 0.26, expression(paste("1 locus")), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.115, 0.91, expression(paste(italic(r)~"="~0.0)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.165, 0.71, expression(paste(italic(r)~"="~0.005)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.15, 0.6005, expression(paste(italic(r)~"="~0.01)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.15, 0.48, expression(paste(italic(r)~"="~0.05)), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
+    proportionalLabel(0.15, 0.33, expression(paste("1 locus")), cex=0.75, adj=c(0.5, 0.5), xpd=NA)
 
 }
