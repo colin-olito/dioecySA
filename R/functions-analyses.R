@@ -83,6 +83,12 @@ Inv.a.domRev  <-  function(sm, h, C, delta) {
 Inv.A.domRev  <-  function(sm, h, C, delta) {
 	((-1 + C)*(-C + 2*(-1 + C)*h)*sm) / (2 + 2*h*(-1 + sm) + (C^2)*(-1 + 2*h)*(1 + sm - 2*delta) + C*(1 + sm - 4*h*sm + 4*(-1 + h)*delta))
 }
+Inv.a.compDomRev  <-  function(sm, C, delta) {
+	((C - 2)*(C - 1)*sm)/(C*(sm - 1)*(C*(2*delta - 1) - 1))
+}
+Inv.A.compDomRev  <-  function(sm, C, delta) {
+	((C - 1)*C*sm)/(-2 + (C - 1)*C*(sm + 1) - 2*(C - 2)*C*delta)
+}
 
 #############################################################
 # Relevant equations from Charlesworth & Charlesworth (1978)

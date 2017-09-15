@@ -48,6 +48,7 @@ embed_fonts(figPath(name='Fig3Alt.pdf'))
 ########################
 
 ## Figs. S1-S6 -- Funnel plots for invasion into initially polymorphic populations
+# ADDITIVE SA FITNESS EFFECTS
 	# Gynodioecy
 	  # Obligate Outcrossing
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-ObOut-Add-EQInv.csv", wkSel = TRUE), 
@@ -85,6 +86,37 @@ embed_fonts(figPath(name='Fig3Alt.pdf'))
 toPdf(compareCDelta(), 
             figPath(name='FigS7-compareCdelta.pdf'), width=7, height=4)
 embed_fonts(figPath(name='FigS7-compareCdelta.pdf'))
+
+
+## Figs. S8 -- Fraction of parameter space where sterility alleles can invade initially polymorphic populations
+##             under COMPLETE DOMINACE REVERSAL at the SA locus
+toPdf(
+  Fig.S8.compDomRev(), 
+            figPath(name='FigS8.pdf'), width=5, height=7.75)
+embed_fonts(figPath(name='FigS8.pdf'))
+
+
+## Figs. S9-S14 -- Funnel plots for invasion into initially polymorphic populations
+# COMPLETE DOMINACE REVERSAL FOR SA FITNESS EFFECTS
+  # Gynodioecy
+    # Obligate Outcrossing
+    toPdf(
+      EQInv.domRev(df="./output/data/EQInvAnalyses/Gyn-wksel-ObOut-CompleteDomRev-EQInv.csv", wkSel = TRUE), 
+                figPath(name='FigS9-Gyno-domRev-obOut-funnel.pdf'), width=9, height=10)
+    embed_fonts(figPath(name='FigS9-Gyno-domRev-obOut-funnel.pdf'))
+
+    # Low selfing, High Inbreeding Depression
+    toPdf(
+      EQInv.domRev(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-CompleteDomRev-EQInv.csv", wkSel = TRUE)
+                figPath(name='FigS10-Gyno-domRev-C25-d80-funnel.pdf'), width=9, height=10)
+    embed_fonts(figPath(name='FigS10-Gyno-domRev-C25-d80-funnel.pdf'))
+
+    # High selfing, Low Inbreeding Depression
+    toPdf(
+      EQInv.domRev(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-CompleteDomRev-EQInv.csv", wkSel = TRUE)
+                figPath(name='FigS11-Gyno-domRev-C75-d20-funnel.pdf'), width=9, height=10)
+    embed_fonts(figPath(name='FigS11-Gyno-domRev-C75-d20-funnel.pdf'))
+
 
 ######################
 # Exploratory Figures
