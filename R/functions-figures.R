@@ -1671,7 +1671,7 @@ Fig.S8.compDomRev  <-  function() {
 #' @title Invasion of dominant male sterility allele into populations
 #' @author Colin Olito
 #' @export
-EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-CompleteDomRev-EQInv.csv", wkSel=FALSE) {
+EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-CompleteDomRev-EQInv.csv", wkSel=FALSE) {
 
     # Import data
     data  <-  read.csv(df, header=TRUE)
@@ -1718,7 +1718,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[1] & r==rs[1] & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[1] & r==rs[1] & DiffEQInvEig != 0] ~ sf[k==ks[1] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1745,7 +1745,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[2] & r==rs[1] & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[2] & r==rs[1] & DiffEQInvEig != 0] ~ sf[k==ks[2] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1769,7 +1769,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[3] & r==rs[1] & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[3] & r==rs[1] & DiffEQInvEig != 0] ~ sf[k==ks[3] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1793,7 +1793,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[4] & r==rs[1] & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[4] & r==rs[1] & DiffEQInvEig != 0] ~ sf[k==ks[4] & r==rs[1] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1819,7 +1819,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[1] & r==rs[3] & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[1] & r==rs[3] & DiffEQInvEig != 0] ~ sf[k==ks[1] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1844,7 +1844,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[2] & r==rs[3] & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[2] & r==rs[3] & DiffEQInvEig != 0] ~ sf[k==ks[2] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1866,7 +1866,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[3] & r==rs[3] & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[3] & r==rs[3] & DiffEQInvEig != 0] ~ sf[k==ks[3] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1888,7 +1888,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[4] & r==rs[3] & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[4] & r==rs[3] & DiffEQInvEig != 0] ~ sf[k==ks[4] & r==rs[3] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1911,7 +1911,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[1] & r==rs[4] & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[1] & r==rs[4] & DiffEQInvEig != 0] ~ sf[k==ks[1] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1936,7 +1936,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[2] & r==rs[4] & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[2] & r==rs[4] & DiffEQInvEig != 0] ~ sf[k==ks[2] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1958,7 +1958,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[3] & r==rs[4] & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[3] & r==rs[4] & DiffEQInvEig != 0] ~ sf[k==ks[3] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -1980,7 +1980,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[4] & r==rs[4] & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[4] & r==rs[4] & DiffEQInvEig != 0] ~ sf[k==ks[4] & r==rs[4] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -2004,7 +2004,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[1] & r==rs[5] & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[1] & r==rs[5] & DiffEQInvEig != 0] ~ sf[k==ks[1] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -2029,7 +2029,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[2] & r==rs[5] & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[2] & r==rs[5] & DiffEQInvEig != 0] ~ sf[k==ks[2] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -2051,7 +2051,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[3] & r==rs[5] & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[3] & r==rs[5] & DiffEQInvEig != 0] ~ sf[k==ks[3] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -2073,7 +2073,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[4] & r==rs[5] & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[4] & r==rs[5] & DiffEQInvEig != 0] ~ sf[k==ks[4] & r==rs[5] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -2096,7 +2096,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[1] & r==rs[6] & DiffEQInvEig != 0] ~ sm[k==ks[1] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[1] & r==rs[6] & DiffEQInvEig != 0] ~ sf[k==ks[1] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -2122,7 +2122,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[2] & r==rs[6] & DiffEQInvEig != 0] ~ sm[k==ks[2] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[2] & r==rs[6] & DiffEQInvEig != 0] ~ sf[k==ks[2] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -2145,7 +2145,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[3] & r==rs[6] & DiffEQInvEig != 0] ~ sm[k==ks[3] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[3] & r==rs[6] & DiffEQInvEig != 0] ~ sf[k==ks[3] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')
@@ -2168,7 +2168,7 @@ EQInv.domRev  <-  function(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C7
         plotGrid(lineCol='grey80')
         box()
         # Simulation points
-        points(sf[k==ks[4] & r==rs[6] & DiffEQInvEig != 0] ~ sm[k==ks[4] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
+        points(sm[k==ks[4] & r==rs[6] & DiffEQInvEig != 0] ~ sf[k==ks[4] & r==rs[6] & DiffEQInvEig != 0], pch=21, col=NA, cex=1, bg=COLS, data=data)
         # Overlay 1-locus invasion criteria
         lines(Ainv[Ainv<=1] ~ sms[Ainv<=1], lwd=2, col='black')
         lines(ainv ~ sms, lwd=2, col='black')

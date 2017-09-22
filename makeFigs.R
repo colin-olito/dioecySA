@@ -107,13 +107,13 @@ embed_fonts(figPath(name='FigS8.pdf'))
 
     # Low selfing, High Inbreeding Depression
     toPdf(
-      EQInv.domRev(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-CompleteDomRev-EQInv.csv", wkSel = TRUE)
+      EQInv.domRev(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-CompleteDomRev-EQInv.csv", wkSel = TRUE),
                 figPath(name='FigS10-Gyno-domRev-C25-d80-funnel.pdf'), width=9, height=10)
     embed_fonts(figPath(name='FigS10-Gyno-domRev-C25-d80-funnel.pdf'))
 
     # High selfing, Low Inbreeding Depression
     toPdf(
-      EQInv.domRev(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-CompleteDomRev-EQInv.csv", wkSel = TRUE)
+      EQInv.domRev(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-CompleteDomRev-EQInv2.csv", wkSel = TRUE),
                 figPath(name='FigS11-Gyno-domRev-C75-d20-funnel.pdf'), width=9, height=10)
     embed_fonts(figPath(name='FigS11-Gyno-domRev-C75-d20-funnel.pdf'))
 
