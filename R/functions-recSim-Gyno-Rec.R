@@ -319,8 +319,8 @@ Gpr.44  <-  function(Fii, Gii, par.list = par.list, Wf.mat = Wf.mat, Wm.mat = Wm
 #'				   gen    =  5000,
 #'				   C      =  0,
 #'                 delta  =  0,
-#'				   sm     =  0.7,
-#'				   sf     =  0.7,
+#'				   sm     =  0.1,
+#'				   sf     =  0.1,
 #'				   hm     =  1/2,
 #'				   hf     =  1/2,
 #'                 k      =  1,
@@ -397,6 +397,7 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-7, ..
 	}
 	if(i == par.list$gen) {
 		print('Warning: maximum runtime reached. Results may not represent equilibrium frequencies')
+		print(paste("k = ", par.list$k,"r = ", par.list$r))
 	}
 
 	# Calculate 1-locus equilibrium frequency of unisexuals
@@ -405,7 +406,7 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-7, ..
 		qHat  <-  qHatAdd(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
 	}
 	if(par.list$hf == par.list$hf & par.list$hf == 0.25) {
-		qHat  <-  qHatDomRev(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm)
+		qHat  <-  qHatDomRev(C = par.list$C, delta = par.list$delta, sf = par.list$sf, sm = par.list$sm, h = par.list$hf)
 	}
 
 	##  Output
@@ -464,7 +465,8 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 			  convergence, and thus how long the simulations take')
 
 	# Calculate Cs, deltas, sfs 
-	Cs  <-  seq(0, 0.9, by = resolution)
+#	Cs  <-  seq(0, 0.9, by = resolution)
+	Cs  <-  0
 	Ds  <-  deltaC(dStar = dStar, C=Cs, a=a, b=b)
 
 	if(hf == hm & hm == 0.5) {
@@ -518,14 +520,14 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 					   	}
 				   	if(par.list$C == 0) {
 						QEs[QEs == max(QEs)]  <-  max(QEs) - 0.02
-						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0, 0.02, 0, QEs[3], 0, 0), digits=8) 
+						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0.02, 0, 0, QEs[3], 0, 0), digits=8) 
 						Gii.init  <-  rep(0,10)
 				   	}
 				   	if(par.list$C != 0) {
 				   		QEs   <-  QEs/sum(QEs)
-				   	   	QEs[QEs == max(QEs)][1]  <-  max(QEs) - 0.01
-						Fii.init  <-  round(c((1 - par.list$C)*QEs[1], 0, (1 - par.list$C)*QEs[2], 0, 0, (1 - par.list$C)*0.01, 0, (1 - par.list$C)*QEs[3], 0, 0), digits=8)
-						Gii.init  <-  round(c(      par.list$C*QEs[1], 0,       par.list$C*QEs[2], 0, 0,       par.list$C*0.01, 0,       par.list$C*QEs[3], 0, 0), digits=8)
+				   	   	QEs[QEs == max(QEs)][1]  <-  max(QEs) - 0.02
+						Fii.init  <-  round(c((1 - par.list$C)*QEs[1], 0, (1 - par.list$C)*QEs[2], 0, (1 - par.list$C)*0.02, 0, 0, (1 - par.list$C)*QEs[3], 0, 0), digits=8)
+						Gii.init  <-  round(c(      par.list$C*QEs[1], 0,       par.list$C*QEs[2], 0,       par.list$C*0.02, 0, 0,       par.list$C*QEs[3], 0, 0), digits=8)
 					}
 					if(sum(Fii.init,Gii.init) != 1) {
 						Fii.init  <-  Fii.init/sum(Fii.init, Gii.init)
@@ -573,10 +575,10 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 	
 	#  Write results.df to .txt file
 	if(hm == hf & hf == 0.5) {
-		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_add", ".csv", sep="")
+		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_r", r.vals, "_add", ".csv", sep="")
 	}
 	if(hm == hf & hf == 0.25) {
-		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_domRev", ".csv", sep="")
+		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_r", r.vals, "_domRev", ".csv", sep="")
 	}
 	write.csv(results.df, file=filename, row.names = FALSE)
 

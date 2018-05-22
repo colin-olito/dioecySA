@@ -721,42 +721,70 @@ Fig.2  <-  function() {
 #' @title Figure 3 alternate
 #' @author Colin Olito.
 #' @export
-Fig3Alt  <-  function() {
+#Fig3Alt  <-  function(df1 = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv", 
+#                      df2 = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_add.csv") {
+Fig3Alt  <-  function(df1 = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_r0_add.csv", 
+                      df2 = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_r0.005_add.csv", 
+                      df3 = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_r0_add.csv",
+                      df4 = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_r0.005_add.csv") {
 
     # Import data
-    data   <-  read.csv(file="./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv", header=TRUE)
-    data2  <-  read.csv(file="./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_add.csv", header=TRUE)
+    data1   <-  read.csv(file=df1, header=TRUE)
+    data2  <-  read.csv(file=df2, header=TRUE)
+    data3  <-  read.csv(file=df3, header=TRUE)
+    data4  <-  read.csv(file=df4, header=TRUE)
 
     # Calculate equilibrium frequencies of M2, females, A, a
-    data$q.m2        <-  (data$'F.12'/2) + (data$'F.14'/2) + data$'F.22' + (data$'F.23'/2) + data$'F.24' + (data$'F.34'/2) + data$'F.44' + 
-                         (data$'G.12'/2) + (data$'G.14'/2) + data$'G.22' + (data$'G.23'/2) + data$'G.24' + (data$'G.34'/2) + data$'G.44'
-    data$females     <-  data$'F.22' + data$'F.24' + data$'F.44' + data$'G.22' + data$'G.24' + data$'G.44'
-    data$p.A         <-  data$'F.11' + data$'F.12' + (data$'F.13'/2) + (data$'F.14'/2) + data$'F.22' + (data$'F.23'/2) + (data$'F.24'/2) + 
-                         data$'G.11' + data$'G.12' + (data$'G.13'/2) + (data$'G.14'/2) + data$'G.22' + (data$'G.23'/2) + (data$'G.24'/2)
-    data$q.a         <-  (data$'F.13'/2) + (data$'F.14'/2) + (data$'F.23'/2) + (data$'F.24'/2) + data$'F.33' + data$'F.34' + data$'F.44' + 
-                         (data$'G.13'/2) + (data$'G.14'/2) + (data$'G.23'/2) + (data$'G.24'/2) + data$'G.33' + data$'G.34' + data$'G.44' 
-    data$diffFemales  <-  (data$females - data$ZHat)
+    data1$q.m2        <-  (data1$'F.12'/2) + (data1$'F.14'/2) + data1$'F.22' + (data1$'F.23'/2) + data1$'F.24' + (data1$'F.34'/2) + data1$'F.44' + 
+                         (data1$'G.12'/2) + (data1$'G.14'/2) + data1$'G.22' + (data1$'G.23'/2) + data1$'G.24' + (data1$'G.34'/2) + data1$'G.44'
+    data1$females     <-  data1$'F.22' + data1$'F.24' + data1$'F.44' + data1$'G.22' + data1$'G.24' + data1$'G.44'
+    data1$p.A         <-  data1$'F.11' + data1$'F.12' + (data1$'F.13'/2) + (data1$'F.14'/2) + data1$'F.22' + (data1$'F.23'/2) + (data1$'F.24'/2) + 
+                         data1$'G.11' + data1$'G.12' + (data1$'G.13'/2) + (data1$'G.14'/2) + data1$'G.22' + (data1$'G.23'/2) + (data1$'G.24'/2)
+    data1$q.a         <-  (data1$'F.13'/2) + (data1$'F.14'/2) + (data1$'F.23'/2) + (data1$'F.24'/2) + data1$'F.33' + data1$'F.34' + data1$'F.44' + 
+                         (data1$'G.13'/2) + (data1$'G.14'/2) + (data1$'G.23'/2) + (data1$'G.24'/2) + data1$'G.33' + data1$'G.34' + data1$'G.44' 
+    data1$diffFemales  <-  (data1$females - data1$ZHat)
 
-   # Calculate equilibrium frequencies of M2, males, A, a
+  # Calculate equilibrium frequencies of M2, females, A, a
     data2$q.m2        <-  (data2$'F.12'/2) + (data2$'F.14'/2) + data2$'F.22' + (data2$'F.23'/2) + data2$'F.24' + (data2$'F.34'/2) + data2$'F.44' + 
                          (data2$'G.12'/2) + (data2$'G.14'/2) + data2$'G.22' + (data2$'G.23'/2) + data2$'G.24' + (data2$'G.34'/2) + data2$'G.44'
-    data2$males       <-  data2$'F.22' + data2$'F.24' + data2$'F.44' + data2$'G.22' + data2$'G.24' + data2$'G.44'
+    data2$females       <-  data2$'F.22' + data2$'F.24' + data2$'F.44' + data2$'G.22' + data2$'G.24' + data2$'G.44'
     data2$p.A         <-  data2$'F.11' + data2$'F.12' + (data2$'F.13'/2) + (data2$'F.14'/2) + data2$'F.22' + (data2$'F.23'/2) + (data2$'F.24'/2) + 
                          data2$'G.11' + data2$'G.12' + (data2$'G.13'/2) + (data2$'G.14'/2) + data2$'G.22' + (data2$'G.23'/2) + (data2$'G.24'/2)
     data2$q.a         <-  (data2$'F.13'/2) + (data2$'F.14'/2) + (data2$'F.23'/2) + (data2$'F.24'/2) + data2$'F.33' + data2$'F.34' + data2$'F.44' + 
                          (data2$'G.13'/2) + (data2$'G.14'/2) + (data2$'G.23'/2) + (data2$'G.24'/2) + data2$'G.33' + data2$'G.34' + data2$'G.44' 
-    data2$diffMales   <-  (data2$males - data2$ZHat)
+    data2$diffFemales   <-  (data2$females - data2$ZHat)
+
+   # Calculate equilibrium frequencies of M2, males, A, a
+    data3$q.m2        <-  (data3$'F.12'/2) + (data3$'F.14'/2) + data3$'F.22' + (data3$'F.23'/2) + data3$'F.24' + (data3$'F.34'/2) + data3$'F.44' + 
+                         (data3$'G.12'/2) + (data3$'G.14'/2) + data3$'G.22' + (data3$'G.23'/2) + data3$'G.24' + (data3$'G.34'/2) + data3$'G.44'
+    data3$males       <-  data3$'F.22' + data3$'F.24' + data3$'F.44' + data3$'G.22' + data3$'G.24' + data3$'G.44'
+    data3$p.A         <-  data3$'F.11' + data3$'F.12' + (data3$'F.13'/2) + (data3$'F.14'/2) + data3$'F.22' + (data3$'F.23'/2) + (data3$'F.24'/2) + 
+                         data3$'G.11' + data3$'G.12' + (data3$'G.13'/2) + (data3$'G.14'/2) + data3$'G.22' + (data3$'G.23'/2) + (data3$'G.24'/2)
+    data3$q.a         <-  (data3$'F.13'/2) + (data3$'F.14'/2) + (data3$'F.23'/2) + (data3$'F.24'/2) + data3$'F.33' + data3$'F.34' + data3$'F.44' + 
+                         (data3$'G.13'/2) + (data3$'G.14'/2) + (data3$'G.23'/2) + (data3$'G.24'/2) + data3$'G.33' + data3$'G.34' + data3$'G.44' 
+    data3$diffMales   <-  (data3$males - data3$ZHat)
+
+   # Calculate equilibrium frequencies of M2, males, A, a
+    data4$q.m2        <-  (data4$'F.12'/2) + (data4$'F.14'/2) + data4$'F.22' + (data4$'F.23'/2) + data4$'F.24' + (data4$'F.34'/2) + data4$'F.44' + 
+                         (data4$'G.12'/2) + (data4$'G.14'/2) + data4$'G.22' + (data4$'G.23'/2) + data4$'G.24' + (data4$'G.34'/2) + data4$'G.44'
+    data4$males       <-  data4$'F.22' + data4$'F.24' + data4$'F.44' + data4$'G.22' + data4$'G.24' + data4$'G.44'
+    data4$p.A         <-  data4$'F.11' + data4$'F.12' + (data4$'F.13'/2) + (data4$'F.14'/2) + data4$'F.22' + (data4$'F.23'/2) + (data4$'F.24'/2) + 
+                         data4$'G.11' + data4$'G.12' + (data4$'G.13'/2) + (data4$'G.14'/2) + data4$'G.22' + (data4$'G.23'/2) + (data4$'G.24'/2)
+    data4$q.a         <-  (data4$'F.13'/2) + (data4$'F.14'/2) + (data4$'F.23'/2) + (data4$'F.24'/2) + data4$'F.33' + data4$'F.34' + data4$'F.44' + 
+                         (data4$'G.13'/2) + (data4$'G.14'/2) + (data4$'G.23'/2) + (data4$'G.24'/2) + data4$'G.33' + data4$'G.34' + data4$'G.44' 
+    data4$diffMales   <-  (data4$males - data4$ZHat)
 
     # Color scheme
-    COLS  <-  c(transparentColor('dodgerblue', opacity=0.8),
+    COLS  <-  c('dodgerblue', 'dodgerblue4', 'darkolivegreen', 'tomato3', 'tomato')
+    BGs  <-  c(transparentColor('dodgerblue', opacity=0.8),
               transparentColor('dodgerblue4', opacity=0.8),
               transparentColor('darkolivegreen', opacity=0.8),
               transparentColor('tomato3', opacity=0.8),
               transparentColor('tomato', opacity=0.8))
 
     # k index for easy plotting
-    rs  <-  unique(data$r)
-    ks  <-  unique(data$k)
+    rs  <-  c(0,0.005)
+    ks  <-  unique(data1$k)
 
     # Set plot layout
     layout.mat <- matrix(c(1:4), nrow=2, ncol=2, byrow=TRUE)
@@ -764,20 +792,25 @@ Fig3Alt  <-  function() {
 
 ##  Row 1: GYNODIOECY
     # Panel 1: r = 0.0
-    dat  <-  subset(data, data$r == rs[1])
+#    dat  <-  subset(data, data$r == rs[1])
+    dat  <-  data1
         par(omi=c(0.5, 0.5, 0.6, 0.5), mar = c(5,5,0.5,0.5), bty='o', xaxt='s', yaxt='s')
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(min(data$females),max(data$females)*1.1), ylab='', xlab='', cex.lab=1.2)
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(0,max(data1$females)*1.1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Equilibrium frequencies for different 
-#        lines(ZHat[k==ks[1]] ~ C[k==ks[1]], lwd=2, col='black', cex=1, data=dat)
-        lines(females[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(females[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(females[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
-        lines(females[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
-        lines(females[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
+        points(females[k==ks[5]] ~ C[k==ks[5]], pch=21, col=COLS[5], bg=BGs[5], cex=1, data=dat)
+        points(females[k==ks[4]] ~ C[k==ks[4]], pch=21, col=COLS[4], bg=BGs[4], cex=1, data=dat)
+        points(females[k==ks[3]] ~ C[k==ks[3]], pch=21, col=COLS[3], bg=BGs[3], cex=1, data=dat)
+        points(females[k==ks[2]] ~ C[k==ks[2]], pch=21, col=COLS[2], bg=BGs[2], cex=1, data=dat)
+        points(females[k==ks[1]] ~ C[k==ks[1]], pch=21, col=COLS[1], bg=BGs[1], cex=1, data=dat)
+#        lines(females[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+#        lines(females[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+#        lines(females[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+#        lines(females[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
+#        lines(females[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1)
@@ -789,19 +822,24 @@ Fig3Alt  <-  function() {
     rm(dat)
 
     # Panel 2: r = 0.005
-    dat  <-  subset(data, data$r == rs[2])
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(0,(max(data$females)*1.1)), ylab='', xlab='', cex.lab=1.2)
+#    dat  <-  subset(data3, data3$r == rs[1])
+    dat  <-  data2
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(0,(max(data1$females)*1.1)), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Equilibrium frequencies for different 
-#        lines(ZHat[k==ks[1]] ~ C[k==ks[1]], lwd=2, col='black', cex=1, data=dat)
-        lines(females[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(females[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(females[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
-        lines(females[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
-        lines(females[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
+        points(females[k==ks[5]] ~ C[k==ks[5]], pch=21, col=COLS[5], bg=BGs[5], cex=1, data=dat)
+        points(females[k==ks[4]] ~ C[k==ks[4]], pch=21, col=COLS[4], bg=BGs[4], cex=1, data=dat)
+        points(females[k==ks[3]] ~ C[k==ks[3]], pch=21, col=COLS[3], bg=BGs[3], cex=1, data=dat)
+        points(females[k==ks[2]] ~ C[k==ks[2]], pch=21, col=COLS[2], bg=BGs[2], cex=1, data=dat)
+        points(females[k==ks[1]] ~ C[k==ks[1]], pch=21, col=COLS[1], bg=BGs[1], cex=1, data=dat)
+#        lines(females[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+#        lines(females[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+#        lines(females[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+#        lines(females[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
+#        lines(females[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
         # axes
         axis(1, las=1, labels=NA)
         axis(2, las=1, labels=NA)
@@ -818,9 +856,11 @@ Fig3Alt  <-  function() {
                           expression(paste(italic(k)~"="~italic(hat(k))%*%0.95)),
                           expression(paste(italic(k)~"="~italic(hat(k))%*%0.925)),
                           expression(paste(italic(k)~"="~italic(hat(k))%*%0.9))),
-              lty     =  1,
-              lwd     =  2,
+#              lty     =  1,
+#              lwd     =  2,
+              pch     =  21,
               col     =  c(COLS[1],COLS[2],COLS[3],COLS[4],COLS[5]),
+              pt.bg     =  c(BGs[1],BGs[2],BGs[3],BGs[4],BGs[5]),
               cex     =  1,
               xjust   =  1,
               yjust   =  1,
@@ -830,22 +870,27 @@ Fig3Alt  <-  function() {
     rm(dat)
 
 ##  Row 2: ANDRODIOECY
-    rs  <-  unique(data2$r)
-    ks  <-  unique(data2$k)
+    rs  <-  c(0,0.005)
+    ks  <-  unique(data3$k)
 
     # Panel 3: r = 0.0
-    dat  <-  subset(data2, data2$r == rs[1])
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(0,max(data2$males)*1.1), ylab='', xlab='', cex.lab=1.2)
+    dat  <-  data3
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(0,max(data3$males)*1.1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Equilibrium frequencies for different values of k
-        lines(males[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(males[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(males[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
-        lines(males[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
-        lines(males[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
+        points(males[k==ks[5]] ~ C[k==ks[5]], pch=21, col=COLS[5], bg=BGs[5], cex=1, data=dat)
+        points(males[k==ks[4]] ~ C[k==ks[4]], pch=21, col=COLS[4], bg=BGs[4], cex=1, data=dat)
+        points(males[k==ks[3]] ~ C[k==ks[3]], pch=21, col=COLS[3], bg=BGs[3], cex=1, data=dat)
+        points(males[k==ks[2]] ~ C[k==ks[2]], pch=21, col=COLS[2], bg=BGs[2], cex=1, data=dat)
+        points(males[k==ks[1]] ~ C[k==ks[1]], pch=21, col=COLS[1], bg=BGs[1], cex=1, data=dat)
+#        lines(males[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+#        lines(males[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+#        lines(males[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+#        lines(males[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
+#        lines(males[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, las=1)
@@ -857,18 +902,23 @@ Fig3Alt  <-  function() {
     rm(dat)
 
     # Panel 4: r = 0.1
-    dat  <-  subset(data2, data2$r == rs[2])
-        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(0,max(data2$males)*1.1), ylab='', xlab='', cex.lab=1.2)
+    dat  <-  data4
+        plot(NA, axes=FALSE, type='n', main='',xlim = c(0,0.9), ylim = c(0,max(data3$males)*1.1), ylab='', xlab='', cex.lab=1.2)
         usr  <-  par('usr')
         rect(usr[1], usr[3], usr[2], usr[4], col='white', border=NA)
         plotGrid(lineCol='grey80')
         box()
         # Equilibrium frequencies for different values of k
-        lines(males[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
-        lines(males[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
-        lines(males[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
-        lines(males[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
-        lines(males[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
+        points(males[k==ks[5]] ~ C[k==ks[5]], pch=21, col=COLS[5], bg=BGs[5], cex=1, data=dat)
+        points(males[k==ks[4]] ~ C[k==ks[4]], pch=21, col=COLS[4], bg=BGs[4], cex=1, data=dat)
+        points(males[k==ks[3]] ~ C[k==ks[3]], pch=21, col=COLS[3], bg=BGs[3], cex=1, data=dat)
+        points(males[k==ks[2]] ~ C[k==ks[2]], pch=21, col=COLS[2], bg=BGs[2], cex=1, data=dat)
+        points(males[k==ks[1]] ~ C[k==ks[1]], pch=21, col=COLS[1], bg=BGs[1], cex=1, data=dat)
+#        lines(males[k==ks[1]] ~ C[k==ks[1]], lwd=2, col=COLS[1], cex=1, data=dat)
+#        lines(males[k==ks[2]] ~ C[k==ks[2]], lwd=2, col=COLS[2], cex=1, data=dat)
+#        lines(males[k==ks[3]] ~ C[k==ks[3]], lwd=2, col=COLS[3], cex=1, data=dat)
+#        lines(males[k==ks[4]] ~ C[k==ks[4]], lwd=2, col=COLS[4], cex=1, data=dat)
+#        lines(males[k==ks[5]] ~ C[k==ks[5]], lwd=2, col=COLS[5], cex=1, data=dat)
         # axes
         axis(1, las=1)
         axis(2, labels=NA)
@@ -917,8 +967,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
     }
 
     # k index for easy plotting
-    ks  <-  unique(data$k)
-    rs  <-  unique(data$r)
+    ks  <-  unique(data1$k)
 
     # Set plot layout
     layout.mat <- matrix(c(1:20), nrow=5, ncol=4, byrow=TRUE)
@@ -1409,7 +1458,7 @@ EQInv.Add  <-  function(df="./output/data/EQInvAnalyses/Gyn-partSelf-C25-delta80
 #' @title Figure SX
 #' @author Colin Olito.
 #' @export
-Fig.S8.compDomRev  <-  function() {
+Fig.B7.compDomRev  <-  function() {
 
     # Import data
     data1  <-  read.csv("./output/data/EQInvAnalyses/Gyn-wksel-ObOut-CompleteDomRev-EQInv.csv", header=TRUE)

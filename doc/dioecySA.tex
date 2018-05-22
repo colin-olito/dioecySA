@@ -5,9 +5,6 @@
 %Dependencies
 \usepackage[left]{lineno}
 \usepackage{titlesec}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
 \usepackage{color,soul}
 \usepackage{ogonek}
 \usepackage{float}
@@ -15,11 +12,21 @@
 
 % Other Packages
 %\usepackage{times}
-\usepackage[sc]{mathpazo} 
-\usepackage{fullpage}
-\usepackage[authoryear,sectionbib,sort]{natbib}
-\linespread{1.7}
-\usepackage{lineno}
+\RequirePackage{fullpage}
+\linespread{1.5}
+\RequirePackage[colorlinks=true, allcolors=blue]{hyperref}
+\RequirePackage[english]{babel}
+\RequirePackage{amsmath,amsfonts,amssymb}
+\RequirePackage[sc]{mathpazo}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{url}
+
+% Bibliography
+%\usepackage[authoryear,sectionbib,sort]{natbib}
+\usepackage{natbib} \bibpunct{(}{)}{;}{author-year}{}{,}
+\bibliographystyle{amnatnat}
+\addto{\captionsenglish}{\renewcommand{\refname}{Literature Cited}}
+\setlength{\bibsep}{0.0pt}
 
 % Graphics package
 \usepackage{graphicx}
@@ -29,32 +36,40 @@
 %\newcommand{\code}{\fontfamily{pcr}\selectfont}
 %\newcommand*\chem[1]{\ensuremath{\mathrm{#1}}}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
- 
+\titleformat{\subsubsection}[runin]{\bfseries\itshape}{\thesubsubsection.}{0.5em}{}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title Page
 
-\title{Sexually antagonistic polymorphism and the evolution of dimporphic sexual systems in hermaphrodites}
-\author{Colin Olito$^{\ast}$ \& Tim Connallon}
+\title{Sexually antagonistic polymorphism and the evolution of dimorphic sexual systems in hermaphrodites}
+\author{Colin Olito$^{\ast,1,2}$ \& Tim Connallon$^{1}$}
 \date{\today}
 
 \begin{document}
 \maketitle
 
 
-\noindent{} Centre for Geometric Biology, School of Biological Sciences, Monash University, Victoria 3800, Australia.
-\noindent{} $^{\ast}$ Corresponding author e-mail: colin.olito@gmail.com
+\noindent{} $^{1}$ Centre for Geometric Biology, School of Biological Sciences, Monash University, Victoria 3800, Australia.
+
+\noindent{} $^{2}$ \textit{Present address}: Department of Biology, Section for Evolutionary Ecology, Lund University, Lund 223 62, Sweden.
+
+\noindent{} $^{\ast}$ Corresponding author e-mail: \url{colin.olito@gmail.com}
 
 \bigskip
 
+\noindent{} \textit{Manuscript elements}: Figure~1, Figure~2, Figure~3, Table~1; Online Supplementary Material: Appendix A -- Development of the recursions; Appendix B -- Supplementary figures; Appendix C -- Alternative relations between the selfing rate and inbreeding depression.
+
+\bigskip
 \noindent{} \textit{Running Head}: SA polymorphism and dimorphic sexual systems
 
 \bigskip
 
-\noindent{} \textit{Keywords}: Balancing selection, dioecy, genetic linkage, intralocus sexual conflict, sterility mutation, recombination, two-locus model
+\noindent{} \textit{Keywords}: Androdioecy; Dioecy; Gynodioecy; Intralocus sexual conflict; Linkage disequilibrium; Recombination; Sexual system; Sexual dimorphism
 
 \bigskip
 
-\noindent{} \textit{Manuscript type}: Brief Communication
+\noindent{} \textit{Manuscript type}: Article
 
 \bigskip
 
@@ -70,563 +85,289 @@
 \newpage{}
 \section*{Abstract}
 
-\noindent{} When selection differs between males and females, pleiotropic effects among genes expressed by both sexes can result in sexually antagonistic selection (SA), where beneficial alleles for one sex are deleterious for the other. For hermaphrodites, alleles with opposing fitness effects through each sex function represent analogous genetic constraints on fitness. Recent theory based on single-locus models predicts that the maintenance of SA genetic variation should be greatly reduced in partially selfing populations. However, selfing also reduces the effective rate of recombination, which should facilitate selection on linked allelic combinations and expand opportunities for balancing selection in a multi-locus context. Here I develop a two-locus model of SA selection for simultaneous hermaphrodites, and explore the joint influence of linkage, self-fertilization, and dominance on the maintainance of SA polymorphism. I find that the effective reduction in recombination caused by selfing significantly expands the parameter space where SA polymorphism can be maintained relative to single-locus models. In particular, linkage facilitates the invasion of male-beneficial alleles, partially compensating for the ``female-bias'' in the net direction of selection created by selfing. I discuss the implications of accounting for linkage among SA loci for the maintenance of SA genetic variation and mixed mating systems in hermaphrodites.
-
+\noindent{} Multicellular Eukaryotes employ a broad spectrum of sexual reproduction strategies, ranging from simultaneous hermaphroditism to complete dioecy (separate sexes). The evolutionary pathway from hermaphroditism to dioecy involves the spread of "sterility alleles" that eliminate female or male reproductive functions, producing unisexual individuals. Classical theory predicts that evolutionary transitions to dioecy are feasible when female and male sex functions genetically trade-off with one another (allocation to sex functions is "sexually antagonistic"), and rates of self-fertilization and inbreeding depression are high within the ancestral hermaphrodite population. We show that physical linkage between sterility alleles and loci under sexually antagonistic selection significantly alters these classical predictions. We identify three specific consequences of linkage for the evolution of dimorphic sexual systems. First, linkage broadens conditions for the invasion of unisexual sterility alleles, facilitating transitions to sexual systems that are intermediate between hermaphroditism and dioecy (gyno- and androdioecious populations). Second, linkage elevates the equilibrium frequencies of unisexual individuals within gyno- and androdioecious populations, which promotes subsequent transitions to full dioecy. Third, linkage dampens the role of inbreeding during transitions to gyno- and androdioecy; such transitions become feasible in outbred populations. We discuss implications of these results for the evolution of reproductive systems and sex chromosomes.
 \newpage{}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%
+Multicellular Eukaryotes employ a diverse array of strategies for sexual reproduction \citep{Bachtrog2014}. At one end of this spectrum, simultaneous hermaphrodites express both female and male reproductive structures (sex functions) and may reproduce by outcrossing, self-fertilization, or a combination of both (mixed mating). At the other end of the spectrum, dioecious (or gonochoristic) species are comprised of physically discrete females and males -- typically at similar population frequencies, and often distinguishable by their strikingly different morphologies, behaviors, physiologies and life-histories \citep{Andersson1994}. Within Eukaryotes, flowering plants are particularly diverse in the range of reproductive tactics that they use. The range of plant sexual systems includes hermaphroditism, dioecy, and nearly every possible state in between \citep{Darwin1877, Westergaard1958, Bawa1980, SakaiWeller1999, Bachtrog2014}. These intermediate states include gynodioecy (hermaphrodites and females), androdioecy (hermaphrodites and males), and sub-dioecy (mixtures of hermaphrodites and unisexual males and females; e.g., citealt{SakaiWeller1999, Renner2014}). 
 
-Due to fundamental differences in their reproductive biology, males and females rarely share the same optimal phenotype (\citealt{Parker1979, KokkoJennions2008}). When phenotypic optima differ between males and females, pleiotropic effects among genes expressed by both sexes can result in sexually antagonistic selection (SA hereafter), where beneficial alleles for one sex have deleterious fitness effects in the other (\citealt{Kidwell1977, Rice1992, ConnClark2012}). SA alleles have been shown to play an important role in the maintenance of genetic variation in fitness, the evolution of reproductive and life-history traits, and genome evolution in a variety of theoretical and empirical contexts (\citealt{Barson2015, BondChen2009, CoxCals2010, ConnClark2012, Fry2010, Prout2000, Rice1992, RiceChipp2001}). 
+In plants, dioecy is thought to have evolved repeatedly and independently from ancestral populations of hermaphrodites -- an observation that has inspired much research into the evolutionary mechanisms that might drive these transitions \citep{Westergaard1958, SakaiWeller1999, Charlesworth2006, Bachtrog2014, Renner2014, GoldbergOtto2017, KaferPannell2017}. Both theory and data suggest that transitions from hermaphroditism to dioecy are likely to follow a two-step evolutionary pathway. In the first step, the spread of unisexual females or males within an ancestral population of hermaphrodites gives rise to a mixed-mating population of hermaphrodites and unisexuals of a single sex (i.e., gyno- or androdioecious populations of hermaphrodites and either females or males, respectively \citep{Charlesworth1978a, Charlesworth1978b}). Unisexuality can arise through the invasion of a single "sterility allele" that causes complete loss of one of the two ancestral hermaphrodite sex-functions, or through the invasion of combinations of alleles with cumulative gender-modifying effects \citep{Charlesworth1978a, Charlesworth1978b, Charlesworth1999}. During the second step, the spread of the second type of unisexual completes the transition to full dioecy. The second step may involve the spread of a female-sterility allele in a gynodioecious population, or the spread of a male-sterile allele in an androdioecious population \citep{Westergaard1958, Charlesworth1978a, Charlesworth1978b, Charlesworth2006, Charlesworth2009, KaferPannell2017}. Current data on the evolution of plant sex determination systems are largely consistent with this two-step scenario \citep{Westergaard1958, Charlesworth2002, Charlesworth2006, Renner2014, Ashman2015}.
 
-The existence of physically separate sexes makes the relevance of SA selection to dioecious species intuitive, and this is reflected in the traditional emphasis on SA polymorphism in this group (e.g.~\citealt{Kidwell1977, Rice1992, Prout2000, ConnClark2012}). However, alleles with opposing fitness effects through male and female sex functions represent analogous genetic constraints on fitness for hermaphrodites (\citealt{Abbott2011, JordanConn2014,Tazzyman2015}). For hermaphroditic individuals, both the male and female sex functions must be accommodated by a single phenotype, and there is ample scope for traits with a shared genetic basis to constrain fitness through each sex function (\citealt{Abbott2011, Barrett2002, Conner2006, Sicard2011}). Furthermore, fitness trade-offs between sex functions, and thus SA alleles, can have diverse consequences for the evolution of reproductive traits (e.g.~floral and inflorescence morphology) as well as sexual and mating systems in hermaphrodites (\citealt{LloydWebb1986,WebbLloyd1986, Barrett2002, Abbott2011, Charlesworth1978, HarderBarrett2006, Goodwillie2005}).
+Although the two-step evolutionary path to dioecy is feasible, such transitions are far from inevitable. This raises the question: what are the population genetic conditions that promote or constrain transitions to dioecy through this pathway? Classical theory has shown that transitions to dioecy are most likely to occur when two conditions are met \citep{Lewis1941, Lloyd1975, Lloyd1976, Charlesworth1978a}. First, female and male sex-functions in hermaphrodites must genetically trade-off against one another (e.g., through allocation trade-offs). Second, modest-to-high rates of self-fertilization and inbreeding depression in the ancestral hermaphrodite population promote the spread of unisexual sterility alleles that initiate the transition to dioecy. The theory also predicts that the first sterility allele to spread is more likely to cause male than female sterility, so that gynodioecy is the most likely path from hermaphroditism to dioecy (\citealt{Lloyd1975, Charlesworth1978a, KaferPannell2017}; see \citealt{Charlesworth1999, Charlesworth2006} for comprehensive reviews of relevant theory). Finally, the second sterility mutation to invade the population, which completes the transition to dioecy, is predicted to establish in tight linkage with the locus segregating for the first sterility allele (the "linkage constraint" of \citealt{Charlesworth1978a}). The establishment of complimentary sterility mutations, under tight linkage and in repulsion phase, sets the stage for the subsequent evolution of heteromorphic sex chromosomes (e.g., a gene-rich X and degenerate Y \citealt{Rice1987, Bachtrog2006, Charlesworth2002, Qiuetal2013}). 
 
-The fate of SA alleles in hermaphrodites is complicated by the fact that individuals may pass on genes to subsequent generations through a combination of outcrossing and self-fertilization (\citealt{Goodwillie2005, JarneAuld2006, Igic2005, JordanConn2014}). Self-fertilization has several important theoretical consequences for the maintenance of SA genetic variation (\citealt{JordanConn2014, KimuraOhta1971}). Selfing diminishes the opportunity for balancing selection to maintain SA polymorphism, and thereby reduces the sensitivity of SA polymorphism to dominance (\citealt{JordanConn2014, Tazzyman2015}). If SA alleles influence gamete production and/or gamete quality or performance, selfing also creates a ``female-bias'' in the net direction of selection because there is reduced opportunity for selection to act via the male sex function (\citealt{Charlesworth1978, JordanConn2014}; but see \citealt{Tazzyman2015} for alternative assumptions regarding selection on selfed gametes). This skews the parameter space where SA polymorphism can be maintained towards female-beneficial alleles (\citealt{JordanConn2014}). 
+Genetically-based trade-offs between sex-functions are special cases of a much broader phenomenon of sexual antagonism (hereafter, "SA" selection, or "intralocus" sexual conflict; \citealt{Rice1992,BondurianskyChenoweth2009, Mank2017}), where alleles that benefit one sex are deleterious for the other. In a hermaphrodite population, an SA allele could, for example, increase ovule production yet decrease pollen produciton or viability \citep{JordanConnallon2014, Olito2016}. During the transition to dioecy, male-sterility alleles that improve female sex-function, and female-sterility alleles that improve male sex-function, are essentially SA alleles, with SA effectspotentially arising via reproductive compensation \citep{Lewis1941, Lloyd1975, Charlesworth1978a}. The evolutionary dynamics of unisexual sterility alleles can therefore be understood through the broader perspective of SA selection theory. For example, SA alleles spread within a population when the benefit to one sex offsets the cost to the other; the critical balance between these benefits and costs is determined by the level of inbreeding of the population \citep{Kidwell1977, JordanConnallon2014}. Similarly, unisexual sterility alleles -- which initiate the transition to dioecy -- can spread when the loss of fitness from unisexual sterility is offset by fitness gains through the remaining sex-function, and once again, the balance between these factors is mediated by inbreeding \citep{Charlesworth1978a}. 
 
-Self-fertilization carries with it a variety of other genomic consequences for hermaphrodites, including a reduction in the effective rate of recombination among neighboring loci (reviewed in \citealt{Wright2008}). The effect of selfing on effective recombination is of particular interest because this should drive selection on linked allelic combinations, potentially preserving polymorphisms that would otherwise experience purifying selection at a single locus (\citealt{Fisher1930}). For dioecious species, tight linkage between SA loci is predicted to expand the parameter space where SA polymorphism is maintained (\citealt{Patten2010}). Thus, for hermaphrodites there is the potential for reduced recombination to compensate for the loss in SA polymorphism due to increased selfing. However, the conditions under which each of these two countervailing effects of self-fertilization will be more influential in maintaining SA polymorphism have yet to be explored. 
+Recent multi-locus population genetics theory has shown that a locus under SA selection can substantially impact the evolutionary dynamics at linked loci that segregate for deleterious mutations, meiotic drive elements, or SA alleles \citep{ConnallonClark2010, Patten2010, UbedaPatten2010, ConnallonJordan2016, Olito2016}. For example, strong SA selection at one locus facilitates the spread of physically linked SA alleles that would otherwise be removed from a population (i.e., in the absence of such linkage). This consequence of linkage to an SA locus applies in both dioecious populations \citep{Patten2010,ConnallonClark2010} and hermaphrodite populations with fixed rates of self-fertilization \citep{Olito2016}. These multi-locus models suggest a mechanism that might promote transitions between hermaphrodite and gyno- or androdioecious sexual systems. Linkage of unisexual sterility alleles to an SA locus could, in principle, promote the spread of unisexuals within hermaphrodite populations, and relax evolutionary constraints that would otherwise hinder evolutionary transitions between reproductive systems.
 
-Here I use a two-locus model of SA selection with partial selfing to investigate the joint influence of linkage, self-fertilization, and dominance on the maintainance of SA polymorphism in hermaphroditic species. In the two-locus context, reduced effective recombination caused by selfing significantly increases the parameter space where balancing selection is predicted to maintain SA polymorphism relative to single-locus models. In particular, linkage expands the conditions where male-beneficial alleles are able to invade, partially compensating for the ``female-bias'' in selection introduced by selfing.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Model}
-
-Consider a genetic system involving two diallelic autosomal loci $\mathbf{A}$ (with alleles $A$, $a$) and $\mathbf{B}$ (with alleles $B$, $b$), that recombine at a rate $r$ in a large population of simultaneous hermaphrodites. The rate of self-fertilization ($C$) in the population is independent of the genotype at the loci in question (a `fixed' selfing model \textit{sensu} \citealt{Holden1979,CaballeroHill1992, JordanConn2014}). Generations are assumed to be discrete and non-overlapping, with selection occuring on diploid adults before fertilization. Let $x_i$ and $y_i$ denote the frequencies of the four possible haplotypes $[AB, Ab, aB, ab]$ among male and female gametes respectively. Both loci are under sexually antagonistic selection such that $A$ and $B$ represent male-beneficial alleles, while $a$ and $b$ represent female-beneficial alleles (\citealt{Kidwell1977}). The fitness of offspring formed by the union of the $i$th female and $j$th male gametic haplotypes, $w_{k,ij}$ (where $k \in [m,f]$), is assumed to equal the product of the fitnesses at $\mathbf{A}$ and $\mathbf{B}$ (Table~\ref{Table:Fitness}; parameterization follows \citealt{Patten2010}). Following convention for SA models, sex-specific selection coefficients are constrained to be $0 < s_k < 1$ (e.g.~\citealt{Kidwell1977}).
-
-The evolutionary trajectory of genotype frequencies in this scenario is described by a system of ten recursion equations (\citealt{Holden1979, JordanConn2014}). However, it is possible to approximate the evolutionary trajectories of haplotypes in this system under weak selection (See Appendix A in the Supplementary Information). For partially selfing populations under weak selection, the rate of allele frequency change due to selection should be slow relative to the rate at which genotypes approach equilibirium under non-random mating (\citealt{Nagylaki1997}). Under this assumption, it may be appropriate to use a separation of timescales (\citealt{OttoDay2007}), and calculate the quasi-equilibrium (QE) genotypic frequencies in the absence of selection. The genotypic recursions for allele frequency change across generations can then be approximated by substituting into them the QE frequencies, yielding a reduced system of four haplotype recursions. 
-
-Using this approach, I model the evolution of the four-haplotype system $q_i = [AB, Ab, aB, ab]$, where the QE adult genotypic frequencies are denoted by $\phi_{ij}$. The recursions giving the haplotype frequencies in the next generation are then
-
-\begin{align*} \label{eq:QEhapRec}
-	q'_1 &\approx (1 - C) \frac{(x_1 + y_1)}{2} + C \bigg( \frac{x_1 - r(\phi_{14} - \phi_{23})}{2 \overline{w}_f} \bigg) \\
-	q'_2 &\approx (1 - C) \frac{(x_2 + y_2)}{2} + C \bigg( \frac{x_2 + r(\phi_{14} - \phi_{23})}{2 \overline{w}_f} \bigg) \\
-	q'_3 &\approx (1 - C) \frac{(x_3 + y_3)}{2} + C \bigg( \frac{x_3 + r(\phi_{14} - \phi_{23})}{2 \overline{w}_f} \bigg) \\
-	q'_4 &\approx (1 - C) \frac{(x_4 + y_4)}{2} + C \bigg( \frac{x_4 - r(\phi_{14} - \phi_{23})}{2 \overline{w}_f} \bigg), \numberthis
-\end{align*}
-
-\noindent{} where $x_i$ and $y_i$ are functions $f(C, s_k, h_k, \phi_{ij})$ describing the haplotype frequencies in male and female gametes, and $\overline{w}_f$ is the population average fitness through female function (see Appendix A in the Supplementary Information for a full development of the recursions). The QE haplotype recursions approximated deterministic simulations of the genotypic recursions very well, even under strong selection (Figs.~\ref{fig:addSim} and \ref{fig:domRevSim}; the full set of exact recursions can be found in Appendix A in the Supporting Information); I therefore focus the analysis on the analytic QE results. 
-
-To identify the parameter conditions under which balancing selection is predicted to maintain SA polymorphism, I evaluate the stability of the system of haplotype recursions, Eq(\ref{eq:QEhapRec}), for populations initially fixed for male-beneficial or female-beneficial alleles (i.e.~stability was assessed at the boundary haplotype frequences $[AB]=1$ and $[ab]=1$). For these boundary equilibria, one minus the leading eigenvalue of the Jacobian matrix, $1 - \lambda_L$, approximates the rate of change of the frequencies of rare haplotypes, and therefore whether new mutations will be able to invade (\citealt{OttoDay2007}). Balancing selection is predicted to maintain SA polymorphism when $\lambda_L > 1$ for both boundary equilibria (\citealt{Prout1968}). Three candidate leading eigenvalues emerge from the analysis (See Appendix C in the Supplementary Information). The first two describe invasion at each locus individually, and are identical functions of the sex-specific selection parameters ($s_k$, $h_k$) and the selfing rate ($C$). Balancing selection at both loci occurs whenever single-locus criteria for balancing selection are met because the selection parameters are identical for both loci (if invasion can occur at one locus, it can also occur at the other). If the two SA loci are physically linked, the conditions for balancing selection differ from the single-locus expectation. This condition is described by the third candidate leading eigenvalue, which involves the recombination rate, $r$, in addition to $s_k$, $h_k$, and $C$.
-
-I focus the analysis on representative, and biologically plausible, dominance scenarios that have been recently explored in the single-locus context (\citealt{Kidwell1977, Fry2010, Prout2000, JordanConn2014}). These correspond to: (1) additive fitness effects ($h_f = h_m = 1/2$), as is commonly observed for small to intermediate effect alleles (\citealt{AgrawalWhitlock2011}); and (2) partially recessive fitness effects yielding a ``dominance reversal'' ($h_f = h_m = 1/4$), which are commonly predicted by a variety of fitness landscape models (\citealt{Manna2011, ConnClark2014}), and are predicted to evolve under some conditions for SA alleles (\citealt{Spencer2016}).
+Classical theories for the evolution of dioecy model the initiating step of the transition (see above) using the single-locus invasion conditions for unisexual sterility alleles in a hermaphrodite population \citep{Charlesworth1978a}. Here, we extend this theory by considering the role of linkage between SA loci during transitions to gyno- and androdioecy. We focus on three key questions in our analysis. First, does linkage to an SA locus facilitate the invasion of sterility alleles, for example, by promoting selection of multilocus haplotypes that combine female-beneficial SA alleles with male-sterility alleles, or male-beneficial SA alleles with female-sterility alleles? Second, how does self-fertilization and inbreeding depression in the ancestral hermaphrodite population impact transitions to dioecy in the extended theory? Third, how does linkage to an SA locus impact the equilibrium frequencies of unisexuals in derived gyno- and androdoiecious populations? Our results show that linkage to an SA locus significantly expands the parameter conditions for the invasion of unisexuals, dampens the constraints associated with inbreeding on the invasion of sterility alleles, and elevates the equilibrium frequencies of unisexuals in andro- and gynodioecious populations. Overall, our results indicate that multi-locus consequences of SA selection facilitate the evolution of dimorphic sexual systems, and suggest a hitherto unrecognized role for SA genetic variation during the initial stages of early sex-chromosome evolution.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Models} \label{sec:Models}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+Following previous theory, we model evolutionary transitions to gyno- and androdioecy from an ancestral population of hermaphrodites. Each transition occurs via the invasion of unisexual sterility alleles that cause complete male or female sterility (for gyno- and androdioecy, respectively; \citep{Charlesworth1978a}. In our models, we separately consider the invasion of completely dominant sterility alleles, and completely recessive sterility alleles, during transitions to gyno- and androdioecy (leading to a total of four genetic models). These scenarios mirror classical theory for the invasion of unisexuals in hermaphrodite populations, providing clear points of contrast. Immediately below, we describe in full the simplest model: invasion of a dominant, male-sterility mutation during the evolution of gynodioecy. We then briefly highlight essential differences arising in each of the other three models. Additional details, including full recursions, can be found in Appendix A of the Online Supporting Information.
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Gynodioecy}
+
+Consider a genetic system involving two diallelic autosomal loci, $\mathbf{A}$ (with alleles $A$, $a$) and $\mathbf{M}$ (with alleles $M_1$, $M_2$), that recombine at rate $r$ per meiosis. The $\mathbf{A}$ locus is under sexually antagonistic selection, with the $A$ allele female-beneficial/male-deleterious, and the $a$ allele male-beneficial/female-deleterious. At the $\mathbf{M}$ locus, the $M_1$ allele has a relative fitness of $1$ in both sexes, while the $M_2$ allele causes sterility through the male sex-function, and is completely dominant to the $M_1$ allele (we subsequently consider the case where $M_2$ is recessive to $M_1$). Female unisexuals carrying the $M_2$ allele potentially re-allocate resources towards ovule production that would otherwise have been used for pollen production (\citealt{Lloyd1975,Lloyd1976,Charlesworth1978a}), with $k$ representing the proportional increase in ovule production by unisexual females relative to hermaphrodites. The population is initially hermaphroditic (fixed for $M_1$); evolution of gynodioecy requires the invasion of the $M_2$ allele into the population.
+
+Among offspring of hermaphrodites, a fixed proportion $C$ are produced by self-fertilization, and the remainder are produced by outcrossing. Unisexual females, which carry at least one $M_2$ allele, cannot self-fertilize. Individuals produced by self-fertilization suffer from inbreeding depression, with $\delta$ representing the decreased probability of survival of self-fertilized zygotes relative to zygotes produced by outcrossing. Generations are discrete, and the life-cycle proceeds as follows: birth $\rightarrow$ differential survival due to inbreeding depression $\rightarrow$ selection on reproductive success through male and female sex-functions $\rightarrow$ random fertilization.
+
+Let $x_i$ and $y_i$ denote the frequencies of the four possible haplotypes $[AM_1,AM_2,aM_1,aM_2]$ in female and male gametes, respectively. An individual carrying haplotypes $i$ and $j$ has fitness of $w^f_{ij}$ through the female sex-function, and $w^m_{ij}$ through the male sex-function; fitness per sex-function is multiplicative between the $\mathbf{A}$ and $\mathbf{M}$ loci (Table~\ref{tab:fitness}). We assume there are no parent-of-origin effects on fitness.
+
+To track evolutionary changes in genotype frequencies, we partitioned genotypes by whether they were produced by self-fertilization or by outcrossing. The approach yields a system of $20$ general recursion equations ($10$ genotypes $\times$ two modes of reproduction; see Appendix A). Although more compact approaches have been used for generating recursions in previous models for the evolution of self-fertilization and dioecy (e.g., \citealt{Charlesworth1978a, Charlesworth2010}), we used the following, expanded expressions as a means of clarifying the transmission pathway and assumptions that underlie each of our models. As shown below, our models reproduce the classical results in special cases where there is only selection at loci segregating for sterility alleles.
+
+When $M_2$ is completely dominant to $M_1$, the system of recursions simplifies considerably. Let $F_{ij}$ represent the zygotic frequency the genotype produced by outcrossing and carrying haplotypes $i$ and $j$; $G_{ij}$ is the frequency of the same genotype among zygotes formed via self-fertilization. The recursions for outcrossed zygotes in the next generation are:
+\begin{linenomath}\begin{align*} \label{eq:FprGyn}
+    F'_{11} &= (1 - S) (x_1 y_1)  \\
+    F'_{12} &= (1 - S) (x_2 y_1)  \\
+    F'_{13} &= (1 - S) (x_1 y_3 + x_3 y_1)  \\
+    F'_{14} &= (1 - S) (x_4 y_1)  \\
+    F'_{22} &= 0 \\
+    F'_{23} &= (1 - S) (x_2 y_3)  \\
+    F'_{24} &= 0 \\
+    F'_{33} &= (1 - S) (x_3 y_3)  \\
+    F'_{34} &= (1 - S) (x_4 y_3)  \\
+    F'_{44} &= 0, \numberthis
+\end{align*}\end{linenomath}
+
+\noindent where $x_{i}$ and $y_{i}$ are functions describing the haplotype frequencies among ovules and pollen respectively, and $S$ is the proportion of all ovules produced by the population that are self-fertilized (see Appendix A for details). Note that $y_2=y_4=0$ because these male gametic haplotypes cannot be produced when $M_2$ is a dominant male sterility allele. Among zygotes formed by self-fertilization, the genotypic frequencies in the next generation are: 
+\begin{linenomath}\begin{align*} \label{eq:GprGyn}
+    G'_{11} &= S (o^S_{11} + o^S_{13}/4) \\
+    G'_{13} &= S (o^S_{13}/2) \\
+    G'_{33} &= S (o^S_{33} + o^S_{13}/4), \numberthis
+\end{align*} \end{linenomath}
+
+\noindent where $o^S_{ij}$ are functions describing the proportional contribution of each genotype to self-fertilized ovules (see Appendix A). All $G'_{ij} = 0$ where $ij \neq [11,13,33]$. 
+
+The basic form of the recursions does not change when $M_2$ is recessive, but there are two notable differences. First, because only $M_2M_2$ homozygotes are unisexual females, none of the recursions reduce to zero. Second, the recombination rate parameter ($r$) enters into the nonzero $G'_{ij}$ recursions, as well as the functions for $x_i$ and $y_i$; this was not the case for the gynodioecy model with dominant $M_2$ allele (see Appendix A).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Androdioecy}
+
+Androdioecy evolves when an $M_2$ allele causing female-sterility (e.g., $M_2$ carriers do not produce viable ovules) invades the hermaphrodite population. In contrast to the models of gynodioecy, described above, the reproductive compensation term, $k$, now describes the increase in pollen production by males relative to hermaphrodites. For the case of a dominant $M_2$ allele (i.e., $M_2$ carriers are male), the fitness expressions, $w^f_{ij}$ and $w^m_{ij}$ resemble those described in Table~\ref{tab:fitness}, except the fitness effects of the $\mathbf{M}$ locus apply to the female rather than the male sex-function. 
+
+Recursions for the androdioecy models are similar to the gynodioecy recursions, with a few key differences. When $M_2$ is dominant, the recombination rate drops out of the expressions for haplotype frequencies in ovules ($x_i$; $x_2=x_4=0$, as in the gynodioecy model with dominant $M_2$ allele), whereas haplotype frequencies in pollen are partly dependent on recombination (functions for $y_i$ include $r$ terms). The genotypic frequencies in the next generation among zygotes formed by outcross fertilization, $F'_{ij}$, are otherwise identical to Eq(\ref{eq:FprGyn}), except that heterozygotes at the $\mathbf{M}$ locus do not produce ovules. The form of the $G'_{ij}$ recursions remains unchanged from Eq(\ref{eq:GprGyn}) (see Appendix A).
+
+When the $M_2$ (female-sterility) allele is recessive, only $M_2M_2$ homozygotes are unisexual males. The form of the recursions is similar to the case of gynodioecy with a recessive $M_2$ allele, but with the $\mathbf{M}$ locus now affecting female sterility. Expressions for the ovule and pollen haplotype frequencies, $x_i$ and $y_i$, are functions that partially depend on the recombination rate (see Appendix A).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Analyses} \label{subsec:analyses}
+
+Our analyses address three questions: How does linkage between unisexual sterility alleles and SA loci affect (1) conditions for the evolutionary invasion of unisexual sterility alleles, (2) frequencies of unisexual individuals in andro- and gynodioecious populations, and (3) the evolutionary dynamics and conditions for polymorphism at SA loci? Because they are analytically tractable for linear stability analyses, we used the models of completely dominant unisexual sterility alleles to address questions (1) and (3). However, the evolutionary dynamics of recessive sterility alleles are of particular biological interest because recessive sterility alleles are probably more common than dominant ones (\citealt{Charlesworth1978a}). We therefore used numerical simulation of the models of recessive sterility mutations to address question (2). 
+
+Following previous models of SA selection (e.g., \citealp{Kidwell1977, Prout2000, JordanConnallon2014}), we focus our analyses on the simplest scenario of allelic expression at the SA locus (locus $\mathbf{A}$): we assume that SA alleles have additive fitness effects on the sex-functions ($h_m = h_f = 1/2$). Additional results exploring the effects of dominance reversals at the $\mathbf{A}$ locus ($h_m, h_f < 1/2$) are presented in Appendix C of the Online Supporting Information. These additional results provide results that are qualitatively similar to theoretical predictions for the additive SA scenario. 
+
+We first examine the case where both loci are initially monomorphic ($M_1$ is fixed at the $\mathbf{M}$ locus; $A$ or $a$ is fixed at locus $\mathbf{A}$ locus). To identify conditions for the invasion of derived alleles at each locus (individually or in combination), we carried out a linear stability analysis of each monomorphic condition. These initial conditions correspond to $F_{11} = (1 - C) [AAM_1M_1] = 1$ and $G_{11} = C [AAM_1M_1] = 1$ when $A$ is initially fixed, and to $F_{33} = (1 - C) [aaM_1M_1] = 1$ and $G_{33} = C [aaM_1M_1] = 1$ when $a$ is initially fixed, with terms in square brackets representing starting genotype frequencies. An equilibrium is unstable, and a derived haplotype will invade the population, when the leading eigenvalue of the Jacobian matrix of the system of recursions is greater than one ($\lambda_L > 1$) \citep{OttoDay2007}. For the models involving dominant unisexual sterility alleles, each analysis yields three analytically tractable candidate leading eigenvalues. The first two candidates describe invasion conditions for the derived allele at each locus, independent of the other locus ($\lambda_\mathbf{A}$ and $\lambda_\mathbf{M}$). The third candidate eigenvalue describes the invasion condition for a haplotype carrying both derived alleles ($\lambda_\mathbf{AM}$). We present analytic results for stability analyses of models of dominant sterility alleles.
+
+We subsequently explore how segregating SA variation, maintained under balancing selection, influences the invasion of derived unisexual alleles ($M_2$) into a population of hermaphrodites. For this scenario, we evaluated whether the $M_2$ allele can invade a population at a deterministic polymorphic equilibrium at the $\mathbf{A}$ locus; $M_1$ is initially fixed at the $\mathbf{M}$ locus. Under obligate outcrossing and additive effects of SA alleles, we used exact analytical expressions provided in Kidwell et al. (1977) for the initial conditions at the polymorphic locus ($\hat{p}_f,\hat{p}_m$; \citealt{Kidwell1977}). Exact analytical expressions for a single-locus sexually antagonistic polymorphism cannot be obtained for cases of partial selfing and/or nonadditive effects of SA alleles. For these conditions, single-locus equilibrium frequencies can be approximated under sufficiently weak selection ($s_m,s_f \ll 1$); we use previously published approximations for polymorphic SA equilibrium in our stability analyses for partial selfing cases (see \citealt{JordanConnallon2014,ConnallonJordan2016}; see Appendix B in the Online Supporting Information  for the full list of expressions for single-locus SA polymorphism). The approximations compare well against exact numerical results when selection is moderate to weak ($s_f,s_m \leq 0.5$; \citealt{JordanConnallon2014, ConnallonJordan2016, Olito2016}). To identify conditions under which a dominant $M_2$ allele invades the population, we numerically evaluated whether $\lambda_{\mathbf{M}} > 1$, which corresponds to the condition for invasion of a unisexual.
+
+Linear stability analysis is inconclusive when sterility alleles are recessive. To compliment our analyses of the invasion of dominant unisexual ($M_2$) alleles, we carried out deterministic simulations of the exact recursions to determine the full equilibrium haplotype frequencies for the models of recessive sterility alleles. Initial genotypic frequencies in these simulations are the same as described above. To assess the impact of linkage on the polymorphic frequencies of unisexuals and hermaphrodites, we compared equilbrium frequencies from our models with the corresponding single-locus equilibria for unisexuals (denoted $\hat{Z}$) provided by \citet{Charlesworth1978a}. For these comparisons, we focus on relatively tight linkage between $\mathbf{A}$ and $\mathbf{M}$ ($r\leq 0.1$), which represents the parameter range where our models and prior single-locus models differ the most; predictions from one- and two-locus models converge under loose linkage (high $r$). 
+
+In single-locus models of gynodioecy and androdioecy, the equilibrium frequency of unisexuals is determined by the reproductive compensation term, $k$, and the compound parameter $C \delta$ \citep{Charlesworth1978a}, where $C$ and $delta$ refer to the rate of selfing and the severity of inbreeding depression, respectively. If inbreeding depression is caused primarily by recessive deleterious mutations, as current data suggest \citep{Charlesworth2009}, $C$ and $\delta$ should covary negatively as increased selfing purges deleterious recessives. For simplicity, we accounted for such negative covariance in our simulations by constraining inbreeding depression to follow a linear declining function of the selfing rate: $\delta = \delta^\ast(1 - C/2)$, where $\delta^\ast$ represents the hypothetical severity of inbreeding depression for an outcrossing population. We set $\delta^\ast = 0.8$ for all simulations, which resulted in levels of inbreeding depression that are consistent with empirical data (e.g., Fig. 2 in \citealt{HusbandSchemske1996}). We emphasize that our intention is not to formally model the evolution of inbreeding depression, but to capture effects of purging of deleterious recessives in partially selfing populations, and thereby explore biologically meaningful parameter space for the evolution of gyno- and androdioecy. In fact, a variety of detailed genetic models give rise to a nonlinear relation between inbreeding depression and selfing (e.g., \citealt{OhtaCockerham1974, LandeSchemske1985, Charlesworth1985, Garcia-Dorado2017, LandePorcher2017}). As we show in Appendix E in the Online Supporting Information, such non-linear expressions for $\delta$ as a function of the selfing rate yield results that are similar to those using the linear expression described above. 
+
+To account for the fact that $C$ and $\delta$ also influence the maintenance of SA polymorphism \citep{JordanConnallon2014,Olito2016}, we ran simulations using values of $s_f$ and $s_m$ that correspond to single-locus equilibrium frequencies of $1/2$ for the two SA alleles ($p = [A]$, $q = [a]$; $p=q=1/2$). Thus, our simulations explore the invasion of the male- or female-sterility allele, $M_2$, into hermaphroditic populations at polymorphic equilibrium with equal frequencies of male- and female-beneficial SA alleles at the $\mathbf{A}$ locus.
+
+
+\subsection*{Data availability}
+A full development of all models can be found in Appendix A of the Online Supporting Information. Code necessary to reproduce the simulations is available at \url{https://github.com/colin-olito/dioecySA}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Results}
+%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Invasion into monomorphic populations}
 
-Consideration of invasion at a single locus provides a useful baseline for comparison with the two-locus case. Analysis of the first candidate leading eigenvalue yields the general invasion criteria at a single locus, where balancing selection requires that 
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Gynodioecy:} We begin with the simplest scenario for the evolution of gynodioecy: invasion of a dominant male-sterility allele, $M_2$, into a hermaphrodite population that is initially monomorphic for the SA locus (fixed for the $AAM_1M_1$ or the $aaM_1M_1$ genotype).  
 
-\begin{equation} \label{eq:genInv}
-	\frac{s_m(C - 1)(2 h_m(C - 1) - C)}{s_m(C - 1)(2h_m(C - 1) - C) + (C + 1)(2 - C + 2h_f(C - 1))} < s_f < \frac{s_m(1 - C)(2 - C + 2 h_m (C - 1))}{(C + 1)(2 h_f(C - 1) - C)(s_m - 1)}.
+Three conditions favour the invasion of a derived haplotype, each corresponding to evolutionary instability of the ancestral equilibrium (instability occurs when at least one of the three candidate eigenvalues, $\lambda_{\mathbf{A}}$, $\lambda_{\mathbf{M}}$ and $\lambda_{\mathbf{AM}}$, exceeds one). First, the derived SA allele can invade when $\lambda_{\mathbf{A}} > 1$, which corresponds to the single-locus invasion criteria for SA alleles, as identified by previous theory \citep{Kidwell1977, JordanConnallon2014, Olito2016}. This single-locus invasion condition applies broadly to cases of additive and non-additive effects of SA alleles. 
+
+Second, a male-sterile allele can invade when $\lambda_{\mathbf{M}} > 1$, which corresponds to the classic single-locus criterion for the evolution of gynodioecy:
+
+\begin{equation}\label{eq:1LocGyn}
+	k > 1 - 2 C \delta.
 \end{equation}
 
-\noindent{} Under additive fitness effects ($h_f=h_m=1/2$), Eq(\ref{eq:genInv}) reduces to the single-locus invasion criteria given by \citet{JordanConn2014}; and reduces further under obligate outcrossing ($C=0$) to the classic dioecious result of $s_m/(1+s_m) < s_f < s_m / (1-s_m)$ (\citealt{Tazzyman2015, Patten2010, Kidwell1977}). The corresponding funnel-shaped parameter space where balancing selection at a single locus is predicted to maintain SA polymorphism is shown in Fig.~\ref{fig:funnelPlots} by the shaded regions bounded by black solid lines. 
+\noindent (see Eq(4) of \citealt{Charlesworth1978a}), where $k$ is the increased ovule production in females relative to hermaphrodites, and $\delta$ represents the strength of inbreeding depression in self-fertilized relative to outcrossed individuals. For convenience, we define $\hat{k}$ as the threshold level of reproductive compensation for invasion of a unisexual in the single-locus model; $\hat{k}$ is equal to the right-hand side of Eq(\ref{eq:1LocGyn}), and $k > \hat{k}$ is the single-locus condition for invasion.
 
-Increased self-fertilization broadens the scope for linkage to maintain SA polymorphism that would otherwise be lost in a single-locus model. Analysis of the third candidate leading eigenvalue yields invasion criteria involving both loci that are more complex than the single-locus case. However, under the simplifying assumptions of complete linkage ($r=0$) and obligate outcrossing ($C=0$), the third candidate leading eigenvalue yields invasion criteria which are algebraically equivalent to the two-locus dioecious case (Eq (11) in \citealt{Patten2010}; see Appendix C in the Supplementary Information). As in \citet{Patten2010}, under perfect linkage ($r=0$), the two-locus invasion criteria expands the parameter space conducive to balancing selection, describing a funnel-shaped region that subsumes the region described by the single-locus criteria. With weaker linkage ($0 \leq r \leq 0.5$), stronger selection is required for the two-locus invasion criteria to expand the parameter space conducive to balancing selection (Fig.~\ref{fig:funnelPlots}, greyscale lines). This is most restrictive under obligate outcrossing, where linkage must be tight ($r < 0.2$ for additive effects, $r < 0.1$ for dominance reversal), for the two-locus invasion criteria to increase SA polymorphism beyond the single-locus case (Fig.~\ref{fig:funnelPlots}A,D; \citealt{Patten2010}). If selection on individual SA loci is weak ($s_f,s_m < 0.1$), tight linkage is required to significantly expand the parameter space where balancing selection is predicted beyond that of single-locus models (Figs.~\ref{fig:wkFunnelPlots}, \ref{fig:wkPolymorhism} in the Supplementary Information). However, the magnitude of the increase is still substantial under tight linkage, particularly for additive fitness effects.
+Third, a mutant haplotype bearing both the male-sterile allele and the derived allele at the SA locus can invade when $\lambda_{\mathbf{AM}} > 1$. This condition for invasion takes the same basic form as Eq(\ref{eq:1LocGyn}), in which the minimum value of $k$ that is required for invasion is a decreasing function of $C \delta$. When the population is initially fixed for the female-beneficial SA allele ($A$), the haplotype invasion condition is more restrictive (requiring larger $k$) than the condition in Eq(\ref{eq:1LocGyn}). In contrast, when the population is initially fixed for the male-beneficial allele ($a$), invasion of the derived haplotype becomes more permissive when recombination between loci is sufficiently low relative to the strength of selection at the SA locus. Specifically, the condition for invasion of the $AM_2$ haplotype is more permissive than Eq(\ref{eq:1LocGyn}) when: 
 
-Increased selfing has two important consequences in the two-locus context. As predicted for the single-locus case, selfing biases the net direction of selection towards female interests, reducing the opportunity for male-beneficial alleles to invade at a single locus (Fig.~\ref{fig:funnelPlots}B,C,E,F; \citealt{Charlesworth1978, JordanConn2014}; but see \citealt{Tazzyman2015}). However, the concomitant decrease in effective recombination among double heterozygotes partially compensates for this ``female-bias'' in selection in several ways. Overall, linkage increases the effective strength of selection at both loci, which is more permissive of balancing selection (\citealt{Patten2010}). Reduced recombination also slows the break-up of haplotypes pairing male-beneficial with male-beneficial (and female-beneficial with female-beneficial) alleles at both loci, increasing the likelihood that male-beneficial alleles at each locus are paternally inherited (and female-beneficial alleles are maternally inherited) (\citealt{Patten2010, Ubeda2010}). With higher selfing, this effectively shelters male-beneficial alleles from increased selection through the female sex function. The net effect is to expand the parameter space where balancing selection is predicted to maintain SA polymorphism, particularly for male-beneficial alleles (Fig.~\ref{fig:funnelPlots}, upper greyscale lines). The effect of reduced recombination is strongest at higher selfing rates ($C > 0.5$), where interaction between SA loci expands the parameter space where male-beneficial alleles can invade beyond the single-locus case, even under free recombination (Fig.~\ref{fig:funnelPlots}B-C,E-F, Fig.~\ref{fig:polymorphism}B,D). 
+\begin{equation}\label{eq:2LocGyn}
+	\frac{2 r}{1 + r} < s_f.
+\end{equation}
 
-Under additive fitness effects, the increase in SA polymorphism due to linkage can offset the loss in parameter space attributable to invasion at a single locus up to a selfing rate of about $C = 0.5$ (Fig.~\ref{fig:polymorphism}A). At higher selfing rates ($C > 0.5$), the total parameter space where balancing selection can occur declines, but the relative increase in SA polymorphism predicted by the two-locus model relative to the single-locus case becomes increasingly pronounced, even under free recombination (Fig.~\ref{fig:polymorphism}A,B). Under dominance reversal conditions ($h_f,h_m < 1/2$) the sex-specific fitness costs of SA alleles are partially masked, and balancing selection can maintain SA polymorphism over a broader range of parameter conditions due to net overdominance in fitness (\citealt{ConnClark2012, ConnClark2014}). As a consequence, the effect of linkage is somewhat dampened, and increased selfing always results in a decrease in the total parameter space where SA polymorphism is predicted (Fig.~\ref{fig:polymorphism}C). However, the relative increase in the two-locus relative to the single-locus case remains for higher selfing rates ($C > 0.5$), even under free recombination (Fig.~\ref{fig:polymorphism}D).
+\noindent Eq(\ref{eq:2LocGyn}) shows that linkage to an SA locus promotes the invasion of unisexual females into a hermaphrodite population, relative to the single-locus condition for the evolution of gynodioecy (Eq(\ref{eq:1LocGyn})). With relatively weak SA selection ($s_f = 0.1$), conditions for the invasion of unisexual females expand when linkage to the SA locus is modest ($r \leq 0.05$); strong SA selection further relaxes the conditions of linkage that promote the evolution of gynodioecy. 
+
+Linkage with a male-sterility allele also expands conditions for the invasion of female-beneficial SA alleles. Under obligate outcrossing and additive fitness effects, the single-locus invasion condition for a female-beneficial allele is $s_f > s_m / (1+s_m)$ (\citealt{Kidwell1977}, corresponding to $\lambda_{\mathbf{A}} > 1$ in our model). The conditions for invasion of a derived haplotype linking a female-benefit allele with a male-sterility allele ($AM_2$; corresponding to $\lambda_{\mathbf{AM}} > 1$ in our model) are more permissive, relative to the above single-locus predictions, when:
+
+\begin{equation}\label{eq:2LocGynSA}
+	r < \frac{s_m}{2 + s_m}.
+\end{equation}
+
+\noindent Under partial selfing, invasion of female-beneficial SA alleles is more permissive than in the single-locus case when:
+
+\begin{equation}\label{eq:2LocGynSApartSelf}
+	r < \frac{s_m (1 - C)}{2 + s_m +C (2 - s_m - 4 \delta)}.
+\end{equation}
+
+\noindent Eq(\ref{eq:2LocGynSApartSelf}) shows that selfing dampens the linkage-induced expansion of parameter space for invasion of female-beneficial SA alleles. Nevertheless, tight linkage can still aid invasion of female-beneficial alleles provided there is some degree of outcrossing among hermaphrodites. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Androdioecy:} We identified conditions for the evolution of androdioecy by analyzing stability of a population initially fixed for the $AAM_1M_1$ or the $aaM_1M_1$ genotype; as in the gynodioecy results presented above, we follow the evolution of a dominant sterility allele ($M_2$, causing female sterility) and SA alleles with additive effects on the sex functions. As before, three conditions allow for invasion of a derived haplotype, each defined by the three candidate leading eigenvalues for the equilibrium. Analysis of the first eigenvalue ($\lambda_{\mathbf{A}}$) recovers the general, single-locus invasion criterion for a derived SA allele (see above). Analysis of the second eigenvalue, $\lambda_{\mathbf{M}}$ likewise yields the familiar single-locus invasion criterion for unisexual males into a population of hermaphrodites:
+
+\begin{equation}\label{eq:1LocAndro}
+	k > \frac{1 + C (1 - 2 \delta)}{(1 - C)}.
+\end{equation}
+
+\noindent (see Eq(8) of \citealt{Charlesworth1978a}). As before, we define $\hat{k}$ as the threshold level of reproductive compensation for unisexual invasion in the single-locus model, with $\hat{k}$ equal to the right-hand side of Eq(\ref{eq:1LocGyn}) (for the gynodioecy model) or Eq(\ref{eq:1LocAndro}) (for the androdioecy model), as appropriate.
+
+Haplotypes bearing derived alleles at both loci can invade when $\lambda_{\mathbf{AM}} > 1$, where invasion conditions are once again dependent upon the SA genotype that is initially fixed in the ancestral hermaphrodite population. Mirroring the results of the gynodioecy model, the conditions satisfying $\lambda_{\mathbf{AM}} > 1$ are always more restrictive than the classical invasion condition (Eq(\ref{eq:1LocAndro})) when the population is initially fixed for the male-beneficial allele ($a$). Conditions for invasion are more permissive for populations initially fixed for the female-beneficial allele ($A$). In fact, replacing $s_f$ with $s_m$ in Eq(\ref{eq:2LocGyn}) gives the condition under which the invasion of males is more permissive than the single locus criterion, Eq(\ref{eq:1LocAndro}). Thus, although conditions for the evolution of androdioecy are more restrictive than for gynodioecy (cf. Eq(\ref{eq:1LocAndro}), Eq(\ref{eq:1LocGyn})), the effect of linkage on the evolution of unisexual sterility alleles is similar for the two cases. 
+
+Linkage to a female-sterility allele also facilitates the invasion of male-beneficial SA alleles. Under obligate outcrossing, Eq(\ref{eq:2LocGynSA}), with $s_m$ substituted for $s_f$, provides the condition for invasion of a male-beneficial allele that is linked to a female-sterility allele at the $\mathbf{M}$ locus. However, the parallels between gyno- and androdioecy break down somewhat under partial selfing. In the gynodioecy model, recall that selfing dampens the expansion of parameter space for the invasion of female-beneficial SA alleles that are linked to male-sterility alleles. For the andro-dioecy case, self-fertilization further expands conditions for invasion of male-beneficial SA alleles that are linked to a sterility locus. Under arbitrary selfing in hermaphrodites, linkage to a female-sterility locus expands the invasion condition of male-beneficial SA alleles when:
+
+\begin{equation}\label{eq:2LocAndroSApartSelf}
+	r < \frac{s_f + s_f C (1 - 2 \delta)}{2 + s_f - 2 C + s_f C (1 - 2 \delta)}.
+\end{equation}
+
+\noindent The right hand side of Eq(\ref{eq:2LocAndroSApartSelf}) increases with both $C$ and $s_f$ such that, for $C > 1/3$, there is always some expansion of the parameter space where male-beneficial alleles can invade (i.e., relative to the single-locus expectation), even under free-recombination ($r = 1/2$). 
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Invasion of unisexuals into polymorphic populations}
+
+Three factors determine the fate of new sterility mutations in populations that are initially polymorphic at $\mathbf{A}$: the degree of reproductive compensation associated with unisexual sterility alleles ($k$), the rate of recombination ($r$), and the selfing rate ($C$). Unisexuals are always able to invade populations with segregating SA variation when the classical single-locus conditions for unisexual invasion are satisfied (fig.~\ref{fig:PrInv}; light blue lines; the single-locus conditions are: Eq(\ref{eq:1LocGyn}) and Eq(\ref{eq:1LocAndro})). When the degree of reproductive compensation falls below the single-locus threshold for invasion, unisexuals can still invade provided there is some linkage between loci $\mathbf{A}$ and $\mathbf{M}$. For example, under obligate outcrossing and tight linkage ($r = 0$), unisexuals can invade across $\approx 69\%$ of the parameter conditions maintaining SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$), even if they suffer a  $10\%$ reduction in gamete production relative to the single-locus invasion criterion for unisexual sterility alleles (the right hand side of Eq(\ref{eq:1LocGyn}); see fig.~\ref{fig:PrInv}A,D). With smaller reductions in gamete production relative to the single locus invasion criterion, unisexuals can invade across a greater fraction of parameter space, even when linkage is relatively weak (e.g., $\approx 38\%$ of parameter conditions maintaining SA polymorphism when $k$ is $0.95$ times the minimum level of reproductive compensation for single-locus invasion and $r = 0.2$). 
+
+With a small amount of selfing and high inbreeding depression in hermaphrodites ($C = 1/4,~\delta = 0.8$), invasion conditions for unisexuals remain similar to the obligate outcrossing scenario, with similar ranges of parameter space allowing for the evolution of gynodioecy and androdioecy (fig.~\ref{fig:PrInv}B,E). However, under high selfing rates and low inbreeding depression ($C = 3/4,~\delta = 0.2$), transitions to androdioecy become much more permissive than transitions to gynodioecy. Most notably, tighter linkage is required for the invasion of male-sterility alleles (for gynodioecy) than for the spread of female-sterility alleles (for androdioecy). Yet even under complete linkage, conditions are more amenable for transitions to andro- than to gynodioecy (fig.~\ref{fig:PrInv}C,F). This contrast in the effect of selfing between the models of gynodioecy and androdioecy arises because partial selfing causes asymmetry in the evolutionary dynamics of SA alleles, in favour of female-benefit alleles (\citealt{ Charlesworth1978a, JordanConnallon2014}; see Appendix D, figs.~D1--D6 for examples of how the selfing rate and inbreeding depression influence SA invasion conditions). Analogous to previous results for linked SA loci \citep{Olito2016}, this female-bias in selection increases the scope for linkage to a male-beneficial SA allele to facilitate invasion of a female-sterility allele (resulting in androdioecy), but has the opposite effect for a male-sterility allele linked to a female-beneficial allele (resulting in gynodioecy).
+
+In the models of gyno- and androdioecy, the loss of parameter space where unisexuals can invade is determined by the rate of recombination, the degree of reproductive compensation, and the relative strength of selection through each sex-function. With weaker linkage between $\mathbf{A}$ and $\mathbf{M}$, invasion of unisexuals requires that selection is stronger at the SA locus (larger values of $s_m$ and $s_f$), and also increasingly biased toward the gender of the invading unisexuals. This result is intuitive: for the derived haplotype to successfully invade, weaker linkage between the SA and sterility loci must be compensated for by stronger selection favouring the SA allele (the female-benefit allele, $A$, for gynodioecy, and the male-benefit allele, $a$, for androdioecy). Hence, with incomplete linkage the invasion of male-sterility alleles requires female-biased selection, while the invasion of female-sterility requires male-biased selection (see Appendix D, figs.~D1--D6 in the Online Supporting Information). 
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Equilibrium frequencies of unisexuals when sterility alleles are recessive}
+
+Linkage with an SA locus elevates the equilibrium frequencies of unisexuals in the population relative to single-locus predictions. For example, for models involving recessive sterility alleles with reproductive compensation ($k$) exactly matching or exceeding the threshold for unisexual invasion in the single-locus model (i.e., $k \geq \hat{k}$; where $\hat{k}$ is equal to the right-hand side of Eq(\ref{eq:1LocGyn}) or Eq(\ref{eq:1LocAndro}) as appropriate), linkage can lead to equilibrium frequencies of unisexuals that far exceed predictions of the single-locus models provided in \citet{Charlesworth1978a} (fig.~\ref{fig:eqFreq2v1Loc}, greyscale lines). The effect is strongest in predominantly outcrossing populations with relatively tight linkage ($r < 0.05$), and weakens with increased selfing among hermaphrodites (recall that inbreeding depression also declines with selfing in our models; see \hyperref[sec:Models]{Models}). As the strength of linkage declines, unisexual equilibria in our models converge to predictions for single-locus models. Finally, female and male unisexuals reach similar equilibrium frequencies in the gyno- and androdioecy models, despite more restrictive single-locus conditions for the evolution of androdioecy (i.e., Eq.\ref{eq:1LocGyn} vs.~Eq.\ref{eq:1LocAndro}).
+
+Of course, linkage to an SA locus also permits invasion of unisexual sterility alleles when reproductive compensation falls below the single-locus threshold for invasion ($k < \hat{k}$; fig.~\ref{fig:eqFreq}). In cases where invasion occurs with linkage, but not in the single-locus context, the combination of tight linkage and high outcrossing rates once again heighten the equilibrium frequencies of unisexuals (fig.~\ref{fig:eqFreq}A,C). Equilibrium unisexual frequencies ultimately drop to $0$ as the degree of linkage, outcrossing, and reproductive compensation declines (fig.~\ref{fig:eqFreq}B,D). In these cases, the frequencies of males in the androdioecy model are more sensitive to reductions in $k$ than for the equilibrium frequencies of females in the gynodioecy model. In models of recessive sterility alleles, with incomplete linkage and low reproductive compensation, \hl{equilibrium frequencies of unisexuals are highest for populations with intermediate selfing rates}. These intermediate peaks reflect the balance between two key factors affecting the evolution of recessive unisexuals. First, selfing increases the expression, in $M_2 M_2$ homozygotes, of rare unisexual sterility alleles and lowers inbreeding depression, which promotes the spread of unisexuals in the population. Second, because unisexuals can only reproduce by outcrossing, high selfing rates ultimately limit the reproductive contributions of unisexuals to the next generation, which hinders the spread of unisexual alleles. 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%
 
-Accounting for linkage between SA loci yields several theoretical insights regarding the maintenance of SA polymorphism in hermaphroditic organisms. Provided that either linkage is tight or selection is strong, the reduction in the effective recombination rate due to selfing significantly expands the parameter space where balancing selection is predicted to maintain SA polymorphism beyond that of single-locus models (doubling the parameter space under some conditions). When the sex-specific fitness costs of SA alleles are partially recessive, net overdominance of heterozygotes across both sex functions allows polymorphism to be maintained over a broader range of parameter space than when fitness costs are additive. This alters relative importance of recombination and net overdominance as proximal mechanisms underlying balancing selection at multiple SA loci. However, this does not dramatically influence the role of linkage betwen SA loci in expanding SA polymorphism relative to single-locus models. Thus, although balancing selection at SA loci is least likely in highly selfing species, it may still provide a plausible mechanism, along with recurrent mutation (\citealt{JordanConn2014}), for the maintenance of genetic variation at linked SA loci in populations with intermediate to high selfing rates. 
+The first theoretical insight provided by our models is that linkage among SA loci facilitates the invasion of unisexual sterility alleles, and elevates the equilibrium frequencies of unisexuals relative to single-locus predictions. The second is that when linkage is relatively tight, this effect is greatest for predominantly outcrossing populations -- suggesting that the ancestral hermaphrodite selfing rate may play a different role in the evolution of separate sexes than predicted by the classic models of \citet{Charlesworth1978a}. Overall, these predictions suggest that the unisexual sterility alleles driving the evolution of dimorphic sexual systems are likely to evolve in genomic regions harboring polymorphic SA loci. When this occurs, elevated frequencies of unisexuals in the resulting gyno- and androdioecious populations are more likely to evolve than previously predicted, facilitating subsequent transitions to separate sexes \citep{Charlesworth1978a}. Below, we discuss the implications of our findings, and suggest empirical tests of our predictions, in three main contexts: SA polymorphism and the evolution of gyno- and androdioecy, hermaphrodite mating systems and the evolution of dioecy, and the population genetic basis of the evolution of separate sexes.
 
-The joint influence of linkage and self-fertilization on SA polymorphism may have interesting implications for the genomic location of SA loci in hermaphrodites. On one hand, polymorphic SA genes are predicted to be more tightly clustered in the genome than expected at random because linkage facilitates SA polymorphism (\citealt{Patten2010,JordanChar2011}). The current results predict that the effect of linkage on the maintenance of SA polymorphism should be stronger in partially selfing species relative to obligately outcrossing ones. This could facilitate increased clustering of polymorphic SA genes in the genomes of partial selfers relative to outcrossers. On the other hand, the reduction in effective rates of recombination due to selfing may have the opposite effect, where interactions between more distant loci are increasingly able to facilitate balancing selection on SA alleles in selfing species. A comparison of the genomic location of SA loci in species with varying rates of self-fertilization would be an interesting direction for future empirical work, particularly given the past emphasis on dioecious species (\citealt{BondChen2009, Abbott2011}).
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{SA Polymorphism and the evolution of dimorphic sexual systems}
 
-As the frequency of self-fertilization increases, linkage among SA loci compensates for the increasing ``female-bias'' in selection and associated decrease in SA polymorphism predicted by single-locus models (\citealt{Charlesworth1978, JordanConn2014}; but see discussion of model assumptions below). This occurs primarily through an expansion of the parameter space where male-beneficial alleles are able to invade. In this way, linkage among SA loci may have bearing on the prevalence of mixed mating systems. Although many hermaphroditic plants and animals reproduce primarily through either outcrossing or selfing, a large fraction reproduce though a combination of the two (\citealt{JarneAuld2006, Goodwillie2005, Igic2005}). Various theoretical explanations have been proposed for mixed mating strategies, including (but not limited to) reproductive assurance (\citealt{Lloyd1979}), purging of deleterious alleles and reduced inbreeding depression (\citealt{LandeSchemske1985}), reproductive compensation (\citealt{HarderRoutley2007, PorcherLande2005}), and frequency dependence (\citealt{Holsinger1991}) (reviewed in \citealt{Goodwillie2005, HarderBarrett2006}). The female-bias in selection caused by increased selfing is consistent with the evolution of "selfing syndromes" (\citealt{Sicard2011,JordanConn2014}). However, the concomitant increase in the parameter space where male-beneficial alleles can invade relative to the single-locus case provides an additional mechanism for the persistence of traits promoting male gamete dispersal and performance in partially selfing populations, provided these traits are under SA selection (\citealt{Barrett2002, Goodwillie2005, HarderBarrett2006}). Given that change in SA allele frequencies is often predicted to be slow and dominated by drift (\citealt{ConnClark2011, ConnClark2012, ConnClark2014}), the loss of male-beneficial alleles may also be slow and stochastic in partially selfing species with linked SA loci, regardless of whether mixed mating is an evolutionary stable strategy.
+Although dioecy is relatively uncommon among angiosperms (represented in $\approx 7\%$ of genera), the fantastic diversity and repeated evolution of dimorphic sexual systems in flowering plants begs a genetical explanation \citep{Renner2014,KaferPannell2017}. Several evolutionary pathways, and a variety of genetic mechanisms, lead from hermaphroditism to separate sexes, but all ultimately involve the evolutionary invasion of at least two unisexual sterility alleles \citep{Charlesworth1978a,Charlesworth1978b,Renner2014,Ashman2015}. When accompanied by allocation trade-offs between sex-functions, unisexual sterility alleles are an important class of SA allele, yet previous theory has not considered the potential influence of standing SA genetic variation, or genetic architecture, on their invasion and establishment in hermaphroditic populations. Our theoretical results suggest that physical linkage among SA loci can strongly influence the evolution of gyno- or androdioecy from hermaphroditism, expanding the conditions under which dimorphic sexual systems, and ultimately separate sexes, are predicted to evolve. 
 
-It should be noted that the increased invasion of male-beneficial alleles predicted by this model is sensitive to the assumption that selection on SA alleles influences the performance of selfed female gametes (\citealt{Tazzyman2015}). The appropriateness of this assumption depends on whether SA fitness costs are incurred primarily through differential gamete production and/or quality and performance of male and female gametes, or external factors such as conflict with mates (\citealt{Tazzyman2015}). In the absence of selection influencing the performance of selfed female gametes, there is no asymmetry in the net direction of selection, and thus no bias towards the increased invasion of male-beneficial alleles. The scope for linkage to increase SA polymorphism beyond single-locus predictions is also greatly reduced when selection does not influence the performance of selfed gametes (no expansion occurs beyond $r \approx 1/4$, even under strong selfing and additive fitness effects; Appendix C in the Supplementary Information). Thus, the mechanisms underlying SA fitness costs can be very important in determining the effect of linkage on the maintenance of SA polymorphism in hermaphrodites.
+Classical theoretical predictions, based on single-locus models, suggest that conditions for the evolution of dioecy may be quite stringent \citep{Lloyd1975,Lloyd1976,Charlesworth1978a,KaferPannell2017}. For unisexual sterility alleles to invade, the resulting unisexuals must adequately compensate for the loss of a sex function through increased gamete production. On the other hand, we find that the conditions for the spread of unisexual sterility alleles can be quite permissive -- especially if the sterility mutation arises on a haplotype bearing a complimentary SA allele (e.g., one that is beneficial for the same sex-function as the invading unisexuals). In this case, invasion requires only modest linkage for biologically plausible selection coefficients (e.g., $s_f,s_m \leq 0.1$). When linkage does exist, the fitness effects of the complimentary SA allele help offset the loss of a sex function, and reduce the amount of reproductive compensation required by unisexuals to invade the population relative to single-locus predictions \citep{Charlesworth1978a}. These results are similar to other multilocus models of sex-specific selection and mutations, which show that predominantly female-harming mutations tend to accumulate on haplotypes carrying male-benefit alleles \citep{ConnallonJordan2016}. An important corollary of this result is that the conditions for the maintenance of SA polymorphism are also expanded by linkage to sex-specific sterility mutations. Hence, new unisexual sterility mutations underpinning dimorphic sexual systems are most likely to evolve in tight linkage with other SA loci, and should simultaneously promote the maintenance of SA polymorphism at linked loci. 
 
+The amount of standing SA genetic variation should directly influence the potential for hermaphroditic populations to evolve dimorphic sexual systems. Although the invasion conditions for unisexual sterility alleles into populations without segregating SA variation are generally favourable, the waiting time for double mutants with the necessary haplotype (e.g., female-beneficial--male-sterile) to appear could be long \citep{WeinreichChao2005,ConnallonClark2010}. However, we find that the invasion conditions for unisexual sterility alleles are still quite permissive when there is standing SA genetic variation in hermaphroditic populations. Although it is not yet clear how much SA genetic variation for fitness is harbored by hermaphroditic species, three features of SA selection suggest that this is not an unlikely scenario, particularly in large populations. First, balancing selection is predicted to maintain SA polymorphism in partially selfing populations over a broad spectrum of parameter conditions, particularly when SA loci are linked \citep{Patten2010,JordanConnallon2014,Olito2016}. Second, net directional selection under SA is predicted to be small, even when fitness effects in each sex are large, resulting in relatively long persistence times of SA alleles \citep{ConnallonClark2012}. Long persistence times facilitate the formation of double-mutant haplotypes (e.g., \citealt{WeinreichChao2005}), and elevates the contribution of SA alleles to fitness variance compared to other classes of mutations (e.g., unconditionally beneficial or deleterious alleles; \citealt{ConnallonClark2012}). Third, although definitively indentifying SA loci is challenging, emerging data suggest that segregating SA allele frequencies can be non-trivial, even in partially selfing hermaphroditic populations \citep{Barson2015,LeeKelly2015}. Additional studies attempting to quantify the degree of SA genetic variation in hermaphroditic species would help clarify the potential for dimorphic sexual systems to evolve from hermaphroditism, especially if they were to target species exhibiting intraspecific variation in the degree or frequency of dimorphic sexual systems (e.g., many of the species reviewed in \citealt{SakaiWeller1999,Barrett2010,Renner2014}).
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Mating systems and the evolution of dioecy}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Acknowledgments}
+The interplay between hermaphrodite mating systems and reproductive compensation is a key factor influencing the evolution of separate sexes in flowering plants, especially via the gynodieocy pathway \citep{Darwin1877,Charlesworth1978a}. Previous theory predicts that the evolution of gynodioecy is driven by the combination of reproductive compensation by unisexuals, and inbreeding avoidance, and is therefore most likely to occur in partially selfing populations \citep{Lewis1942,Lloyd1975,Charlesworth1978a,KaferPannell2017}. This prediction follows directly from the structure of Eq(\ref{eq:1LocGyn}) where $\hat{k}$ depends entirely on the product of the selfing rate and inbreeding depression ($C \delta$). In contrast, the evolution of androdioecy is predicted to require significantly higher reproductive compensation, especially in partially selfing populations, because invading males must still compete with selfing hermaphrodites to fertilize ovules \citep{Charlesworth1978b,KaferPannell2017}. 
 
-The author thanks C.~Venables, J.~Cally, and T.~Connallon for helpful discussions and feedback, and two anonymous reviewers for their very helpful comments. The idea for this study was conceived during discussion among Drs.~Tim Connallon, Crispin Jordan, and Jessica K.~Abbott, and the author gratefully acknowledges their encouragement to develop it. This work was funded by a Monash University Dean's International Postgraduate Student Scholarship, and by the Monash University Centre for Geometric Biology.
+The population selfing rate plays a similarly critical role in our models. As noted above, linkage to an SA locus expands conditions for invasion and elevates the equilibrium frequencies of unisexual indiviuals. Yet, the effects of linkage are especially prominent under low rates of self-fertilization, and weaken with increased selfing. The evolution of higher equilibrium frequencies of females in the gynodioecy model is particularly important because this should facilitate the subsequent evolution of dioecy via invasion of partial female-sterility mutations \citep{Charlesworth1978a,Charlesworth1978b,Charlesworth1999,Charlesworth2006}. The major implication is that when male-sterility mutations do arise in linkage with other SA loci, single-locus theory may significantly underestimate the potential for gynodieocy, and subsequently dioecy, to evolve in predominantly outcrossing species. Moreover, outcrossing hermaphrodite populations are more likely to harbor segregating SA genetic variation than selfing ones \citep{JordanConnallon2014,Olito2016}. Hence, the ancestral mating systems in which linkage to a polymorphic SA locus is predicted to have the largest effect on evolutionary transitions to dioecy are also the ones that are most likely to harbor segregating SA variation. 
 
-\newpage{}
+For the evolution of androdioecy, modest linkage to an SA locus broadens the conditions for invasion of female-sterility alleles, even for highly selfing populations. Linkage also increases equilibrium frequencies of unisexual males (given invasion), particularly in populations with low selfing-rates. Thus, when linkage exists between a female-steriliy allele and another SA locus, single-locus theory may underestimate the potential for the evolution of androdioecy, and subsequently, of dioecy. However, our models agree with previous theory that the conditions for invasion of female-sterility alleles in partially selfing populations are still quite stringent, requiring very high reproductive compensation (large $k$; \citealt{Charlesworth1978a}, Eq(\ref{eq:1LocAndro})). Overall, linkage with an SA locus will always faciliate the invasion of female-sterility mutations, but the evolution of androdioecy, and dioecy via the androdioecy pathway, is still expected to be quite rare relative to gynodioecy \citep{Charlesworth1978a,Charlesworth2006,KaferPannell2017,Renner2014}.
 
+Despite the longstanding theoretical prediction of a strong correlation between the hermaphrodite mating system and dioecy, empirical evidence for this association remains equivocal \citep{Charlesworth1985,Charlesworth2006,Renner2014}. Our predictions suggest a partial explanation for this weak association. In species where unisexual sterility alleles arise in linkage with another SA locus, evolutionary transitions to dimorphic sexual systems should be elevated in taxa with predominantly outcrossing hermaphrodite ancestors. However, not all transitions to dioecy will have occurred by our proposed mechanism, and the net effect will be a weakened correlation between the ancestral hermaphrodite selfing rate, and dieocy. In light of our results, a re-examination of the evolutionary association between angiosperm mating and sexual systems using modern phylogenetic comparative methods would be most interesting, and would help identify species where our proposed mechanism for the evolution of gynodioecy is most likely to have played a role (e.g., species with dimorphic sexual systems that appear to have evolved from predominantly outcrossing ancestors). 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{The population genetic basis for the evolution of separate sexes}
 
+Our results also have implications for the role of SA alleles during the early stages of sex chromosome evolution. The process of sex chromosome origin and differentiation into distinct X and Y (or Z and W) chromosomes is thought to proceed by the following series of steps. First, a sex-determining locus originates on an ordinary pair of autosomes. Second, SA genes linked to the sex-determining locus accumulate over time. Third, this linked SA variation drives the evolution of suppressed recombination between the neo sex-chromosomes, generally via chromosomal inversions. Fourth, the non-recombining sex chromosome degenerates (usually). Finally, mechanisms of dosage compensation evolve in response to the loss of coding regions on the degenerate sex chromosome (sometimes) \citep{Rice1987,Charlesworth2002,CharlesworthEtAl2005,Bachtrog2006,Qiuetal2013,Bachtrog2014}. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Tables}
-\renewcommand{\thetable}{\arabic{table}}
-\setcounter{table}{0}
+A key assumption that the emergence of a sex-determining locus is the first step in this process traces back (again) to classic population genetic theory of unisexual sterility alleles. The key prediction is that after the invasion of a recessive male-sterility allele (yielding gynodioecy), the subsequent invasion of dominant gender modifiers leading to full dioecy require tight linkage to the first male-sterility locus (the linkage constraint of \citealt{Charlesworth1978a}). The sequential invasion of tightly linked gender modifiers leads to a tightly coupled pair of sex-determining loci -- effectively a single sex determining locus. Once this sex determining locus arises, further differentiation following the steps outlined above can result in heteromorphic sex chromosomes.
 
-\begin{table}[h]
-\caption{Two-locus fitness expressions for the adult female sex function ($w_{f,ij}$) and male sex function ($w_{m,ij}$). Rows and columns indicate the haplotype inherited from mothers and fathers respectively.}
-\label{Table:Fitness}
-\centering
-\begin{tabular}{l c c c c} \hline
-Haplotype & $y_1 = AB$ & $y_2 = Ab$ & $y_3 = aB$ & $y_4 = ab$ \\
-\hline
-Females & & & & \\
-$x_1 = AB$ & $(1-s_f)^2$ & $(1 - s_f)(1 - h_f s_f)$ & $(1 - s_f)(1 - h_f s_f)$ & $(1 - h_f s_f)^2$ \\
-$x_2 = Ab$ & $(1 - s_f)(1 - h_f s_f)$ & $(1-s_f)$ & $(1 - h_f s_f)^2$ & $(1 - h_f s_f)$ \\
-$x_3 = aB$ & $(1 - s_f)(1 - h_f s_f)$ & $(1 - h_f s_f)^2$ & $(1-s_f)$ & $(1 - h_f s_f)$ \\
-$x_4 = ab$ & $(1 - h_f s_f)^2$ & $(1 - h_f s_f)$ & $(1 - h_f s_f)$ & $1$ \\
-Males & & & & \\
-$x_1 = AB$ & $1$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)^2$ \\
-$x_2 = Ab$ & $(1 - h_m s_m)$ & $(1-s_m)$ & $(1 - h_m s_m)^2$ & $(1 - s_m)(1 - h_m s_m)$ \\
-$x_3 = aB$ & $(1 - h_m s_m)$ & $(1 - h_m s_m)^2$ & $(1-s_m)$ & $(1 - s_m)(1 - h_f s_f)$ \\
-$x_4 = ab$ & $(1 - h_m s_m)^2$ & $(1 - s_m)(1 - h_m s_m)$ & $(1-s_m)(1 - h_m s_m)$ & $(1-s_m)^2$ \\
-\hline
-\end{tabular}
-\bigskip{}
-\end{table}
+Our theoretical results suggest a previously unrecognized, or at least underappreciated, role for SA genetic variation in hermaphroditic taxa during these initial stages of sex-chromosome evolution. Our finding that linkage with a polymorphic SA locus facilitates the invasion of unisexual sterility alleles strongly suggests that the accumulation of SA genetic variation may often precede the origin of sex-determination loci. In other words, SA may represent the first (rather than an intermediate) step in the origin and evolution of new sex chromosome systems. This role of SA genetic variation during the origin of sex chromosomes is similar to prior theory regarding sex chromosome turnover \citep{vanDoornKirkpatrick2007,vanDoornKirkpatrick2010}, but is distinct in that it begins with SA variation in hermaphroditic populations, and deals with the invasion of unisexual sterility alleles rather than master sex-determining loci. In addition, our finding that linkage drives the evolution of elevated equilibrium frequencies of unisexuals should also facilitate the invasion of tightly linked gender modifiers yielding separate sexes \citep{Charlesworth1978a}. The resulting complex of linked SA and sterility loci effectively establishes a nascent sex-determining-region on the neo sex-chromosome pair. If pre-existing SA polymorhism at the linked SA locus survives the transition to dioecy, the process of accumulating SA variation prior to recombination suppression will have already begun -- setting the stage for the subsequent accumulation of linked SA genetic variation and recombination suppression leading to sex-chromosome differentiation \citep{Charlesworth1978a,Rice1987,Bachtrog2006,Qiuetal2013}. Given the crucial role of linkage in each of these steps, it seems plausible that the degree of SA genetic variation present when an initial male-sterility mutation arises may help explain the large variation in the rate and extent of sex-chromosome differentiation in angiosperms \citep{Charlesworth2002,Renner2014,Bachtrog2014}.
 
 
-\newpage{}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Figures}
- 
-\begin{figure}[H] 
-\includegraphics[scale=0.8]{./Fig1}
-\caption{Self-fertilization increases the scope for genetic linkage to expand the parameter space where balancing selection can maintain SA polymorphism. Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--C), and dominance reversal ($h_i = 1/4$; panels D--F). In each panel, the shaded region between the black lines indicates the region of sexually antagonistic polymorphism for the single locus case; greyscale lines indicate the thresholds for invasion for female-beneficial (lower lines) and male-beneficial (upper lines) alleles at different recombination rates for the two-locus model.}
-\label{fig:funnelPlots}
-\end{figure}
-\newpage{}
-
-
-\begin{figure}[H]
-\includegraphics[scale=0.9]{./Fig2}
-\caption{The proportion of parameter space where SA polymorphism is maintained declines with increased recombination and self-fertilization (panels A,C). The increase in SA polymorphism in the two-locus model relative to the single-locus case also declines with the recombination rate, but increases with the rate of self-fertilization (panels B,D). Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--B), and dominance reversal ($h_i = 1/4$; panels C--D). Results were obtained by evaluating the leading eigenvalue of the Jacobian matrix of the haplotype recursions for populations initially fixed for the haplotypies $[AB]$ and $[ab]$ at 30,000 points distributed uniformly throughout parameter space defined by $s_m \times s_f$.}
-\label{fig:polymorphism}
-\end{figure}
-\newpage{}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Supporting Information}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Appendix A: Development of recursions, quasi-equilibrium approximations}
-\renewcommand{\theequation}{A\arabic{equation}}
-\titleformat{\subsubsection}    
-{\normalfont\fontsize{12pt}{17}\itshape}{\thesubsubsection}{12pt}{}
-
-\subsubsection*{Recursions}
-
-Consider the genetic system described in the main text. Adult genotypic frequencies formed by the union of the $i$th and $j$th haplotypes are denoted using $F_{ij}$, and the overall haplotype frequencies, $q_i$ are
-
-\begin{align*}
-	q_1 &= F_{11} + \frac{F_{12} + F_{13} + F_{14}}{2} \\
-	q_2 &= F_{22} + \frac{F_{12} + F_{23} + F_{24}}{2} \\
-	q_3 &= F_{33} + \frac{F_{13} + F_{23} + F_{34}}{2} \\
-	q_4 &= F_{44} + \frac{F_{14} + F_{24} + F_{34}}{2}. \numberthis \label{eqn}
-\end{align*} 
-
-Haplotype frequencies in female gametes are denoted $x_1 = [AB]$, $x_2 = [Ab]$, $x_3 = [aB]$, and $x_4 = [ab]$, and the corresponding frequencies in male gametes are denoted $y_1$, $y_2$, $y_3$, and $y_4$. The contribution of genotype $ij$ to the production of offspring in the next generation is denoted by $F^f_{ij}$. Given these conditions, the recursion equations for the genotypic frequencies in the next generation are (\citealt{Holden1979, JordanConn2014})
-
-\begin{align*} \label{eq:genRec}
-	F'_{11} &= (1 - C) (x_1 y_1)           + C \bigg( F^f_{11} + \frac{F^f_{12} + F^f_{13} + F^f_{14}(1 - r)^2 + F^f_{23} r^2}{4} \bigg)  \\
-	F'_{12} &= (1 - C) (x_1 y_2 + x_2 y_1) + C \bigg( \frac{F^f_{12} + F^f_{14} r(1-r) + F^f_{23} r(1-r)}{2} \bigg)  \\
-	F'_{13} &= (1 - C) (x_1 y_3 + x_3 y_1) + C \bigg( \frac{F^f_{13} + F^f_{14} r(1-r) + F^f_{23} r(1-r)}{2} \bigg)  \\
-	F'_{14} &= (1 - C) (x_1 y_4 + x_4 y_1) + C \bigg( \frac{F^f_{14} (1-r)^2 + F^f_{23} r^2}{2} \bigg)  \\
-	F'_{22} &= (1 - C) (x_2 y_2)           + C \bigg( F^f_{22} + \frac{F^f_{12} + F^f_{14} r^2 + F^f_{23} (1-r)^2 + F^f_{24}}{4} \bigg)  \\
-	F'_{23} &= (1 - C) (x_2 y_3 + x_3 y_2) + C \bigg( \frac{F^f_{14} r^2 + F^f_{23} (1-r)^2}{2} \bigg)  \\
-	F'_{24} &= (1 - C) (x_2 y_4 + x_4 y_2) + C \bigg( \frac{F^f_{24} + F^f_{14} r(1-r) + F^f_{23} r(1-r)}{2} \bigg)  \\
-	F'_{33} &= (1 - C) (x_3 y_3)           + C \bigg( F^f_{33} + \frac{F^f_{13} + F^f_{14} r^2 + F^f_{23} (1-r)^2 + F^f_{34}}{4} \bigg)  \\
-	F'_{34} &= (1 - C) (x_3 y_4 + x_4 y_3) + C \bigg( \frac{F^f_{14} r(1-r) + F^f_{23} r(1-r) + F^f_{34}}{2} \bigg)  \\
-	F'_{44} &= (1 - C) (x_4 y_4)           + C \bigg( F^f_{44} + \frac{F^f_{14} (1-r)^2 + F^f_{23} r^2 + F^f_{24} + F^f_{34}}{4} \bigg)  \numberthis
-\end{align*}
-
-\noindent{} where $x_{i}$ are
-
-\begin{align*}
-	x_1 &= \frac{2 F_{11} w_{f11} + F_{12} w_{f12} + F_{13} w_{f13} + F_{14} w_{f14}}{2 \overline{w}_f} - r \bigg( \frac{F_{14} w_{f14} - F_{23} w_{f23}}{2 \overline{w}_f} \bigg) \\
-	x_2 &= \frac{2 F_{22} w_{f22} + F_{12} w_{f12} + F_{23} w_{f23} + F_{24} w_{f24}}{2 \overline{w}_f} + r \bigg( \frac{F_{14} w_{f14} - F_{23} w_{f23}}{2 \overline{w}_f} \bigg) \\
-	x_3 &= \frac{2 F_{33} w_{f33} + F_{34} w_{f34} + F_{13} w_{f13} + F_{23} w_{f23}}{2 \overline{w}_f} + r \bigg( \frac{F_{14} w_{f14} - F_{23} w_{f23}}{2 \overline{w}_f} \bigg) \\
-	x_4 &= \frac{2 F_{44} w_{f44} + F_{32} w_{f32} + F_{14} w_{f14} + F_{24} w_{f24}}{2 \overline{w}_f} - r \bigg( \frac{F_{14} w_{f14} - F_{23} w_{f23}}{2 \overline{w}_f} \bigg), \numberthis
-\end{align*}
-
-\noindent{} $y_{i}$ are
-
-\begin{align*}
-	y_1 &= \frac{2 F_{11} w_{m11} + F_{12} w_{m12} + F_{13} w_{m13} + F_{14} w_{m14}}{2 \overline{w}_m} - r \bigg( \frac{F_{14} w_{m14} - F_{23} w_{m14}}{2 \overline{w}_m} \bigg) \\
-	y_2 &= \frac{2 F_{22} w_{m22} + F_{12} w_{m12} + F_{23} w_{m23} + F_{24} w_{m24}}{2 \overline{w}_m} + r \bigg( \frac{F_{14} w_{m14} - F_{23} w_{m23}}{2 \overline{w}_m} \bigg) \\
-	y_3 &= \frac{2 F_{33} w_{m33} + F_{34} w_{m34} + F_{13} w_{m13} + F_{23} w_{m23}}{2 \overline{w}_m} + r \bigg( \frac{F_{14} w_{m14} - F_{23} w_{m23}}{2 \overline{w}_m} \bigg) \\
-	y_4 &= \frac{2 F_{44} w_{m44} + F_{32} w_{m32} + F_{14} w_{m14} + F_{24} w_{m24}}{2 \overline{w}_m} - r \bigg( \frac{F_{14} w_{m14} - F_{23} w_{m23}}{2 \overline{w}_m} \bigg), \numberthis
-\end{align*}
-
-\noindent{} where ${w}_{k,ij}$ represent the fitness through each sex function ($k \in [m,f]$) of adults resulting from the union of the $i$th and $j$th haplotypes, and the population mean fitness through each sex function is
-
-\begin{align*}
-	\overline{w}_f = F_{11} w_{f11} + &F_{12} w_{f12} + F_{13} w_{f13} + F_{14} w_{f14} + F_{22} w_{f22} + \\ 
-				     &F_{23} w_{f23} + F_{24} w_{f24} + F_{33} w_{f33} + F_{34} w_{f34} + F_{44} w_{f44} \numberthis \\
-	\overline{w}_m = F_{11} w_{m11} + &F_{12} w_{m12} + F_{13} w_{m13} + F_{14} w_{m14} + F_{22} w_{m22} + \\
-				     &F_{23} w_{m23} + F_{24} w_{m24} + F_{33} w_{m33} + F_{34} w_{m34} + F_{44} w_{m44}. \numberthis
-\end{align*}
-
-
-Combining Eqns(A1-A6) and simplifying yields the general haplotype recursion equations: 
-
-\begin{align*} \label{eq:hapRec}
-	q'_1 &= F'_{11} + \frac{F'_{12} + F'_{13} + F'_{14}}{2} = (1 - C) \frac{(x_1 + y_1)}{2} + C \bigg( \frac{x_1 - r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
-	q'_2 &= F'_{22} + \frac{F'_{12} + F'_{23} + F'_{24}}{2} = (1 - C) \frac{(x_2 + y_2)}{2} + C \bigg( \frac{x_2 + r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
-	q'_3 &= F'_{33} + \frac{F'_{13} + F'_{23} + F'_{34}}{2} = (1 - C) \frac{(x_3 + y_3)}{2} + C \bigg( \frac{x_3 + r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg) \\
-	q'_4 &= F'_{44} + \frac{F'_{14} + F'_{24} + F'_{34}}{2} = (1 - C) \frac{(x_4 + y_4)}{2} + C \bigg( \frac{x_4 - r(F_{14} - F_{23})}{2 \overline{w}_f} \bigg). \numberthis
-\end{align*}
-
-
-\subsubsection*{QE Approximations}
-
-After \citet{CaballeroHill1992}, the QE genotypic frequencies for a single locus, $\mathbf{A}$, are
-
-\begin{align*}
-	F_{AA}^* &= q^2 + \frac{C q(1 - q)}{(2 - C)} \\
-	F_{Aa}^* &= 2 q (1 - q) - \frac{2 C q(1 - q)}{(2 - C)} \\
-	F_{aa}^* &= (1 - q)^2 + \frac{C q(1 - q)}{2 - C}, \numberthis 
-\end{align*}
-
-\noindent{} where $q$ is the allele frequency and $C$ is the fixed proportion of self fertilization. We can extend these single-locus results for the two-locus model to calculate the QE adult genotypic frequencies formed by the union of the $i$th and $j$th haplotypes:
-
-\begin{align*}
-	\phi_{11} &= q_1^2 + C q_1 (1 - q_1) / (2-C)  \\
-	\phi_{12} &= 4 q_1 q_2 (1 - C) / (2-C)        \\
-	\phi_{13} &= 4 q_1 q_3 (1 - C) / (2-C)        \\
-	\phi_{14} &= 4 q_1 q_4 (1 - C) / (2-C)        \\
-	\phi_{22} &= q_2^2 + C q_2 (1 - q_2) / (2-C)  \\
-	\phi_{23} &= 4 q_2 q_3 (1 - C) / (2-C)        \\
-	\phi_{24} &= 4 q_2 q_4 (1 - C) / (2-C)        \\
-	\phi_{33} &= q_3^2 + C q_3 (1 - q_3) / (2-C)  \\
-	\phi_{34} &= 4 q_3 q_4 (1 - C) / (2-C)        \\
-	\phi_{44} &= q_4^2 + C q_4 (1 - q_4) / (2-C)  \numberthis
-\end{align*}
-
-Following standard two-locus theory for partially selfing populations (\citealt{Holden1979, OttoDay2007, JordanConn2014}), and substituting the QE genotypic frequencies, $\phi_{ij}$, yields the haplotype recursions given in Eq(\ref{eq:QEhapRec}), where $x_{i}$ are
-
-\begin{align*}
-	x_1 &= \frac{2 \phi_{11} w_{f11} + \phi_{12} w_{f12} + \phi_{13} w_{f13} + \phi_{14} w_{f14}}{2 \overline{w}_f} -
-				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \\
-	x_2 &= \frac{2 \phi_{22} w_{f22} + \phi_{12} w_{f12} + \phi_{23} w_{f23} + \phi_{24} w_{f24}}{2 \overline{w}_f} +
-				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \\ 
-	x_3 &= \frac{2 \phi_{33} w_{f33} + \phi_{34} w_{f34} + \phi_{13} w_{f13} + \phi_{23} w_{f23}}{2 \overline{w}_f} +
-				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \\
-	x_4 &= \frac{2 \phi_{44} w_{f44} + \phi_{34} w_{f34} + \phi_{13} w_{f13} + \phi_{24} w_{f24}}{2 \overline{w}_f} -
-				r \bigg( \frac{\phi_{14} w_{f14} - \phi_{23} w_{f23}} {2 \overline{w}_f} \bigg) \numberthis
-\end{align*}
-
-\noindent{} and $y_{i}$ are
-
-\begin{align*}
-	y_1 &= \frac{2 \phi_{11} w_{m11} + \phi_{12} w_{m12} + \phi_{13} w_{m13} + \phi_{14} w_{m14}}{2 \overline{w}_m} -
-				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \\
-	y_2 &= \frac{2 \phi_{22} w_{m22} + \phi_{12} w_{m12} + \phi_{23} w_{m23} + \phi_{24} w_{m24}}{2 \overline{w}_m} +
-				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \\
-	y_3 &= \frac{2 \phi_{33} w_{m33} + \phi_{34} w_{m34} + \phi_{13} w_{m13} + \phi_{23} w_{m23}}{2 \overline{w}_m} +
-				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \\
-	y_4 &= \frac{2 \phi_{44} w_{m44} + \phi_{34} w_{m34} + \phi_{13} w_{m13} + \phi_{24} w_{m24}}{2 \overline{w}_m} -
-				r \bigg( \frac{\phi_{14} w_{m14} - \phi_{23} w_{m23}} {2 \overline{w}_m} \bigg) \numberthis
-\end{align*}
-
-\noindent{} and the population mean fitness through each sex function is
-
-\begin{align*}
-	\overline{w}_f = \phi_{11} w_{f11} + &\phi_{12} w_{f12} + \phi_{13} w_{f13} + \phi_{14} w_{f14} + \phi_{22} w_{f22} + \\ 
-				     &\phi_{23} w_{f23} + \phi_{24} w_{f24} + \phi_{33} w_{f33} + \phi_{34} w_{f34} + \phi_{44} w_{f44} \numberthis \\
-	\overline{w}_m = \phi_{11} w_{m11} + &\phi_{12} w_{m12} + \phi_{13} w_{m13} + \phi_{14} w_{m14} + \phi_{22} w_{m22} + \\
-				     &\phi_{23} w_{m23} + \phi_{24} w_{m24} + \phi_{33} w_{m33} + \phi_{34} w_{m34} + \phi_{44} w_{m44}. \numberthis
-\end{align*}
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Appendix B: Supplementary figures}
-\renewcommand{\theequation}{B\arabic{equation}}
-\setcounter{equation}{0}
-\renewcommand{\thefigure}{B\arabic{figure}}
-\setcounter{figure}{0}
-
-\begin{figure}[H]
-\includegraphics[scale=0.7]{./recSimFig_add}
-\caption{Haplotype recursions evaluated at QE, and the resulting invasion conditions, approximate the evolutionary trajectory of the full genotypic recursions very well under additive allelic effects, even under strong selection. Predicted regions of SA polymorphism based on deterministic simulations using the genotypic recursions Eq(\ref{eq:genRec}) are compared against the outcome of the invasion analysis for the haplotype recursions using the QE approximation (Eq \ref{eq:QEhapRec}) across a gradient of selfing ($C$) and recombination ($r$) rates. Green points indicate parameter conditions where deterministic simulations of the genotypic recursions (Sim.) and the invasion analysis based on eigenvalues for the QE haplotype approximations (Eig.) both predicted polymorphism. Red points indicate regions where the Sim.~predicted polymorphism but the Eig.~did not; and blue points indicate the opposite. The proportion of each outcome is shown in the upper left corner of each panel. Black solid lines show the invasion conditions based on the haplotype recursions using the QE approximation for the given values of $C$ and $r$, with lines drawn for both the two-locus and single-locus invasion conditions when $r > 0$.}
-\label{fig:addSim}
-\end{figure}
-\newpage{}
-
-
-\begin{figure}[H] 
-\includegraphics[scale=0.7]{./recSimFig_domRev}
-\caption{Haplotype recursions evaluated at QE, and the resulting invasion conditions, approximate the evolutionary trajectory of the full genotypic recursions very well under allelic effects resulting in dominance reversal, even under strong selection. Predicted regions of SA polymorphism based on deterministic simulations using the genotypic recursions equations (\ref{eq:genRec}) are compared against the outcome of the invasion analysis for the haplotype recursions using the QE approximation (Eq \ref{eq:QEhapRec}) across a gradient of selfing ($C$) and recombination ($r$) rates. Green points indicate parameter conditions where deterministic simulations of the genotypic recursions (Sim.) and the invasion analysis based on eigenvalues for the QE haplotype approximations (Eig.) both predicted polymorphism. Red points indicate regions where the Sim.~predicted polymorphism but the Eig.~did not; and blue points indicate the opposite. The proportion of each outcome is shown in the upper left corner of each panel. Black solid lines show the invasion conditions based on the haplotype recursions using the QE approximation for the given values of $C$ and $r$, with lines drawn for both the two-locus and single-locus invasion conditions when $r > 0$.}
-\label{fig:domRevSim}
-\end{figure}
-\newpage{}
-
-
-\begin{figure}[H]
-\includegraphics[scale=0.75]{./Fig1wk}
-\caption{Under weak selection ($s_f,s_m < 0.1$), the parameter space where sexually antagonistic polymorphism is maintained is only expanded beyond the single-locus case when there is very tight linkage ($r \approx 0$). Thus, there is little scope for self-fertilization to influence sexually antagonistic polymorphism. Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--C), and dominance reversal ($h_i = 1/4$; panels D--F). In each panel, the shaded region between the black lines indicates the region of sexually antagonistic polymorphism for the single-locus case; grey lines indicate the thresholds for invasion for female-beneficial (lower lines) and male-beneficial (upper lines) alleles under complete linkage ($r = 0$).}
-\label{fig:wkFunnelPlots}
-\end{figure}
-\newpage{}
-
-
-\begin{figure}[H]
-\includegraphics[scale=0.8]{./Fig2wk}
-\caption{Under weak selection, the proportion of parameter space where SA polymorphism is maintained again declines with increased recombination and self-fertilization (panels A,C). The increase in SA polymorphism in the two-locus model relative to the single-locus case also declines with the recombination rate, but increases with the rate of self-fertilization (panels B,D). However, these effects are limited to cases of extremely tight linkage ($r < 0.004$). Results are shown for the conditions of additive allelic effects ($h_i = 1/2$; panels A--B), and dominance reversal ($h_i = 1/4$; panels C--D). Results were obtained by evaluating the leading eigenvalues of $\mathbf{J}$ for populations initially fixed for the haplotypies $[AB]$ and $ab$ at 30,000 points distributed uniformly throughout parameter space defined by $s_m \times s_f$, where $s_f,s_m \in [0,0.1]$}
-\label{fig:wkPolymorhism}
-\end{figure}
-\newpage{}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Appendix C: Mathematica Notebook}
-\renewcommand{\theequation}{C\arabic{equation}}
-\setcounter{equation}{0}
-\renewcommand{\thefigure}{B\arabic{figure}}
-\setcounter{figure}{0}
-
-See attached Mathematica Notebook (.nb) file.
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Acknowledgements}
+This research was supported by Monash University Dean's International Postgraduate Scholarship and Postgraduate Publication Awards to C.O., and an ARC \hl{XXX} grant to T.C. Valuable feedback on earlier versions of the manuscript were provided by C.~Venables, L.~D.~Harder, M.~Patten, H.~Spencer, EDITOR, and XXX reviewers. C.~O. conceived the study, developed the recursions, performed the analyses, and wrote the manuscript. T.C. provided assistance developing the recursions and writing the manuscript.
 
 
 %%%%%%%%%%%%%%%%%%%%%
 % Bibliography
 %%%%%%%%%%%%%%%%%%%%%
+\bibliography{dioecySA-bibliography}
 
-\begin{thebibliography}{}
-
-\bibitem[{Abbott(2011)Abbott}]{Abbott2011}
-Abbott, J.~K. 2011.
-\newblock Intralocus sexual conflict and sexually antagonistic genetic variation in hermaphroditic animals.
-\newblock Proc. R. Soc. B 278:161–-169.
-
-\bibitem[{Agrawal and Whitlock(2011)Agrawal and Whitlock}]{AgrawalWhitlock2011}
-Agrawal, A.~F., and M.~C. Whitlock. 2011.
-\newblock Inferences about the distribution of dominance drawn from yeast gene knockout data.
-\newblock Genetics 178:553--566.
-
-\bibitem[{Barrett(2002)Barrett}]{Barrett2002}
-Barrett, S.~C.~H. 2002.
-\newblock Sexual interference of the floral kind.
-\newblock Heredity 88:154–-159.
-
-\bibitem[{Barson et~al.(2015)Barson et al. 2015}]{Barson2015}
-Barson, N.~J. \textit{et~al}. 2015.
-\newblock Sex-dependent dominance at a single locus maintains variation in age at maturity in Atlantic salmon.
-\newblock Nature 528:405--408.
-
-\bibitem[{Bonduriansky and Chenoweth(2009)Bonduriansky and Chenoweth}]{BondChen2009}
-Bonduriansky, R. and S.~F. Chenoweth. 2009.
-\newblock intralocus sexual conflict.
-\newblock Trends in Ecology and Evolution 24:280--288.
-
-\bibitem[{Caballero and Hill(1992)Caballero and Hill}]{CaballeroHill1992}
-Caballero, A. and W.~G. Hill. 1992.
-\newblock Effects of partial inbreeding on fixation rates and variation of mutant genes.
-\newblock Genetics 131:493--507.
-
-\bibitem[{Charlesworth and Charlesworth(1978)Charlesworth and Charlesworth}]{Charlesworth1978}
-Charlesworth, D. and B. Charlesworth. 1978.
-\newblock Population genetics of partial male-sterility and the evolution of monoecy and dioecy.
-\newblock Heredity 41:137--153.
-
-\bibitem[{Connallon and Clark(2011)Connallon and Clark}]{ConnClark2011}
-Connallon, T. and A.~G. Clark. 2011.
-\newblock The resolution of sexual antagonism by gene duplication
-\newblock Genetics 187:919--937.
-
-\bibitem[{Connallon and Clark(2012)Connallon and Clark}]{ConnClark2012}
-Connallon, T. and A.~G. Clark. 2012.
-\newblock A general population genetic framework for antagonistic selection that accounts for demography and recurrent mutation.
-\newblock Genetics 190:1477--1489.
-
-\bibitem[{Connallon and Clark(2014)Connallon and Clark}]{ConnClark2014}
-Connallon, T. and A.~G. Clark. 2014b.
-\newblock Balancing selection in species with separate sexes: insights from Fisher's geometric model.
-\newblock Genetics 197:991--1006.
-
-\bibitem[{Conner(2006)Conner}]{Conner2006}
-Conner, J. 2006.
-\newblock Ecological genetics of floral evolution.
-\newblock Pp. 260-–277 in L.~D. Harder and S.~C.~H. Barrett, \textit{eds}. The ecology and evolution of flowers. Oxford Univ. Press, New York.
-
-\bibitem[{Cox and Calsbeek(2010)Cox and Calsbeek}]{CoxCals2010}
-Cox, R.~M. and R. Calsbeek. 2010.
-\newblock Cryptic sex-ratio bias provides indirect genetic benefits despite sexual conflict.
-\newblock Science 328:92--94.
-
-\bibitem[{Fisher(1930)Fisher}]{Fisher1930}
-Fisher, R.~A. 1930.
-\newblock The genetical theory of natural selection.
-\newblock Clarendon Press, Oxford, U.K.
-
-\bibitem[{Fry(2010)Fry}]{Fry2010}
-Fry, J.~D. 2010.
-\newblock The genomic location of sexually antagonistic variation: some cautionary comments.
-\newblock Evolution 64:1510-1516.
-
-\bibitem[{Goodwillie et al.(2005)Goodwillie et al.}]{Goodwillie2005}
-Goodwillie, C., S. Kalisz, and C.~G. Eckert. 2005.
-\newblock The evolutionary enigma of mixed mating systems in plants: occurrence, theoretical explanations, and empirical evidence.
-\newblock Ann. Rev. Ecol. Evol. Syst. 36:47--79.
-
-\bibitem[{Harder et al.(2007)Harder et al.}]{HarderRoutley2007}
-Harder, L.~D., S.~A. Richards, and M.~B. Routley. 2007.
-\newblock Effects of reproductive compensation, gamete discounting, and reproductive assurance on mating-system diversity in hermaphrodites.
-\newblock Evolution 62:157--172.
-
-\bibitem[{Harder and Barrett(2006)Harder and Barrett}]{HarderBarrett2006} %Need to choose chapter!
-Harder, L.~D. and S.~C.~H. Barrett. 2006.
-\newblock Ecology and evolution of flowers.
-\newblock Oxford Univ. Press, Oxford, U.K.
-
-\bibitem[{Holden(1979)Holden}]{Holden1979}
-Holden, L.~R. 1979.
-\newblock New properties of the two-locus partial selfing model with selection.
-\newblock Genetics 93:217--236.
-
-\bibitem[{Holsinger(1991)Holsinger}]{Holsinger1991}
-Holsinger, K.~E. 1991.
-\newblock Mass-action models of plant mating systems: the evolutionary stability of mixed mating systems.
-\newblock American Naturalist 138:606--622.
-
-\bibitem[{Igic and Kohn(2005)Igic and Kohn}]{Igic2005}
-Igic, B. and J.~R. Kohn. 2005.
-\newblock The distribution of plant mating systems: study bias against obligately outcrossing species.
-\newblock Evolution 60:1098--1103.
-
-\bibitem[{Jarne and Auld(2006)Jarne and Auld}]{JarneAuld2006}
-Jarne, P. and J.~R. Auld. 2006.
-\newblock Animals mix it up too: the distribution of self-fertilization among hermaphroditic animals.
-\newblock Evolution 60:1816--1824.
-
-\bibitem[{Jordan and Connallon(2014)Jordan and Connallon}]{JordanConn2014}
-Jordan, C.~Y. and T. Connallon. 2014.
-\newblock Sexually antagonistic polymorphism in simultaneous hermaphrod-\\ites.
-\newblock Evolution 68:3555--3569.
-
-\bibitem[{Jordan and Charlesworth(2011)Jordan and Charlesworth}]{JordanChar2011}
-Jordan, C.~Y. and D. Charlesworth. 2011.
-\newblock The potential for sexually antagonistic polymorphism in different genome regions.
-\newblock Evolution 66:505--516.
-
-\bibitem[{Kidwell et~al.(1977)Kidwell, Clegg, Stewart, and Prout}]{Kidwell1977}
-Kidwell, J.~F., M.~T. Clegg, F.~M. Stewart, and T. Prout. 1977.
-\newblock Regions of stable equilibria for models of differential selection in the two sexes under random mating.
-\newblock Genetics 85:171--183.
-
-\bibitem[{Kimura and Ohta(1971)Kimura and Ohta}]{KimuraOhta1971}
-Kimura, M. and T. Ohta. 1971.
-\newblock Theoretical aspects of population genetics.
-\newblock Princeton University Press, Princeton, New Jersey, USA.
-
-\bibitem[{Kokko and Jennions(2008)Kokko and Jennions}]{KokkoJennions2008}
-Kokko, H. and M.~D. Jennions. 2008.
-\newblock Parental investment, sexual selection, and sex ratios.
-\newblock J. Evol. Biol. 21:919--948.
-
-\bibitem[{Lloyd(1979)Lloyd}]{Lloyd1979}
-Lloyd, D.~G. 1979.
-\newblock Some reproductive factors affecting the selection of self-fertilization in plants.
-\newblock American Naturalist. 113:67--79.
-
-\bibitem[{Lloyd and Webb(1986)Lloyd and Webb}]{LloydWebb1986}
-Lloyd, D.~G. and C.~J. Webb. 1986.
-\newblock The avoidance of interference between the presentation of pollen and stigmas in angiosperms I. Dichogamy.
-\newblock NZ J. Bot. 24:135--162.
-
-\bibitem[{Manna et~al.(2011)Manna et~al.}]{Manna2011}
-Manna, F., G. Martin, and T. Lenormand. 2011.
-\newblock Fitness landscapes: an alternative theory for the dominance of mutation.
-\newblock Genetics 189:923--937.
-
-\bibitem[{Nagylaki(1997)Nagylaki}]{Nagylaki1997}
-Nagylaki, T. 1997.
-\newblock The diffusion model for migration and selection in a plant population.
-\newblock Journal of Mathematical Biology 35:409--431.
-
-\bibitem[{Otto and Day(2007)Otto and Day}]{OttoDay2007}
-Otto, S.~P. and T. Day. 2007.
-\newblock A biologist's guide to mathematical modeling in ecology and evolution.
-\newblock Princeton University Press, Princeton, New Jersey, USA.
-
-\bibitem[{Parker(1979)Parker}]{Parker1979}
-Parker, G.~A. 1979.
-\newblock Sexual selection and sexual conflict.
-\newblock Pp. 123--166 \textit{in} M.~S. Blum and N.~A. Blum, eds. Sexual Selection and Reproductive Competition in Insects. Academic Press.
-
-\bibitem[{Patten et~al.(2010)Patten et~al.}]{Patten2010}
-Patten, M.~M., D. Haig, and F. \'{U}beda. 2010.
-\newblock Fitness variation due to sexual antagonism and linkage disequilibrium.
-\newblock Evolution 64:3638--3642.
-
-\bibitem[{Porcher and Lande(2005)Porcher and Lande}]{PorcherLande2005}
-Porcher, E. and R. Lande. 2005.
-\newblock Reproductive compensation in the evolution of plant mating systems.
-\newblock New Phytologist 166:673--684.
-
-\bibitem[{Prout(1968)Prout}]{Prout1968}
-Prout, T. 1968.
-\newblock Sufficient conditions for multiple niche polymorphism.
-\newblock American Naturalist 102:493--496.
-
-\bibitem[{Prout(2000)Prout}]{Prout2000}
-Prout, T. 2000.
-\newblock How well does opposing selection maintain variation?
-\newblock Pp. 157--203 \textit{in} R.~S. Singh and C.~B. Kimbras, eds. Evolutionary Genetics from molecules to morphology. Cambridge University Press, Cambridge, U.K.
-
-\bibitem[{Rice(1992)Rice}]{Rice1992}
-Rice, W.~R. 1992.
-\newblock Sexually antagonistic genes: experimental evidence.
-\newblock Science 256:1436--1439.
-
-\bibitem[{Rice and Chippindale(2001)Rice and Chippindale}]{RiceChipp2001}
-Rice, W.~R. and A.~K. Chippindale. 2001.
-\newblock Intersexual ontogenetic conflict.
-\newblock Journal of evolutionary biology 14:685--693.
-
-\bibitem[{Lande and Schemske(1985)Lande and Schemske}]{LandeSchemske1985}
-Schemske, D.~W. and R. Lande. 1985.
-\newblock The evolution of self-fertilization and inbreeding depression in plants. I. Genetic Models.
-\newblock Evolution 39:24--40.
-
-\bibitem[{Sicard and Lenhard(2011)Sicard and Lenhard}]{Sicard2011}
-Sicard, A. and M. Lenhard. 2011.
-\newblock The selfing syndrome: a model for studying the genetic and evolutionary basis of morphological adaptation in plants.
-\newblock Ann. Bot. 107:1433--1443.
-
-\bibitem[{Spencer and Priest(2016)Spencer and Priest}]{Spencer2016}
-Spencer, H.~G. and N.~K. Priest. 2016.
-\newblock The evolution of sex-specific dominance in response to sexually antagonistic selection.
-\newblock The American Naturalist 187:658--666.
-
-\bibitem[{Tazzyman and Abbott(2015)Tazzyman and Abbott}]{Tazzyman2015}
-Tazzyman, S.~J. and J.~K. Abbott. 2015.
-\newblock Self-fertilization and inbreeding limit the scope for sexually antagonisitc polymorphism.
-\newblock Journal of Evolutionary Biology 28:723--729.
-
-\bibitem[{\'Ubeda et~al.(2010)\'Ubeda et~al.}]{Ubeda2010}
-\'Ubeda, F., D. Haig, and M.~M. Patten. 2010.
-\newblock Stable linkage disequilibrium owing to sexual antagonism.
-\newblock Proc.~Roy.~Soc.~B DOI:10.1098/rspb.2010.12.
-
-\bibitem[{Webb and Lloyd(1986)Webb and Lloyd}]{WebbLloyd1986}
-Webb, C.~J. and D.~G. Lloyd. 1986.
-\newblock The avoidance of interference between the presentation of pollen and stigmas in angiosperms II. Herkogamy.
-\newblock NZ J. Bot. 24:163--178.
-
-\bibitem[{Wright et~al.(2008)Wright et~al.}]{Wright2008}
-Wright, S.~I., R.~W. Ness, J.~P. Foxe, and S.~C.~H. Barrett. 2008.
-\newblock Genomic consequences of outcrossing and selfing in plants.
-\newblock Int. J. Plant Sci. 169:105--118.
+\newpage
 
 
-\end{thebibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Tables 
+
+\begin{table}[htbp]
+\centering
+\caption{\bf Fitness expressions for diploid adults prior to reproduction for the model of a dominant male-sterility mutation ($w^f_{ij}$ denotes fitness effects through the female sex-function , $w^m_{ij}$ for male sex-function).}
+\begin{tabular}{l c c c c} \hline
+Haplotype & $ AM_1$ & $ AM_2$ & $ aM_1$ & $ aM_2$ \\
+\hline
+Female sex-function & & & & \\
+$ AM_1$ & $1$ & $(1 + k)$ & $(1 - h_f s_f)$        & $(1 - h_f s_f)(1 + k)$ \\
+$ AM_2$ & $-$ & $(1 + k)$ & $(1 - h_f s_f)(1 + k)$ & $(1 - h_f s_f)(1 + k)$ \\
+$ aM_1$ & $-$ & $-$       & $(1 - s_f)$            & $(1 - s_f)(1 + k)$ \\
+$ aM_2$ & $-$ & $-$       & $-$                    & $(1 - s_f)(1 + k)$ \\
+Male sex-function & & & & \\
+$ AM_1$ & $(1 - s_m)$ & $0$ & $(1 - h_m s_m)$ & $0$ \\
+$ AM_2$ & $-$         & $0$ & $0$             & $0$ \\
+$ aM_1$ & $-$         & $-$ & $1$             & $0$ \\
+$ aM_2$ & $-$         & $-$ & $-$             & $0$ \\
+\hline
+\end{tabular}
+\label{tab:fitness}\\
+{\footnotesize Note: Rows and columns indicate the \textit{i}th and \textit{j}th gametic haplotype respectively. The lower triangle of each matrix is the reflection of the upper triangle, and is omitted for simplicity and consistency with the $i \geq j$ row/column indexing used throughout the article.}
+\end{table}
+\newpage{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Figures 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=0.57]{./Fig1}
+\caption{Invasion of unisexuals into populations with pre-existing SA polymorphism. Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant sex-specific sterility allele at $\mathbf{M}$ can invade, assuming additive SA fitness effects at the SA $\mathbf{A}$ locus ($h_f=h_m=1/2$), plotted as a function of the recombination rate $r$. Panels A--C show results from the model of gynodioecy via invasion of a male-sterility allele, while planels D--F show results for the model of androdioecy via invasion of a female-sterility allele. For each panel, results are shown for different values of reproductive compensation, $k$, chosen as a fraction of the single-locus invasion threshold for the unisequal sterility allele ($\hat{k}$, which is equal to the right-hand side of Eq(\ref{eq:1LocGyn}) or Eq(\ref{eq:1LocAndro}) for the models of gynodioecy and androdioecy respectively). Hence, the orange, green, and dark blue lines show scenarios where unisexuals experience a decrease in gamete production relative to hermaphrodites of $1$, $5$, and $10\%$. Note the different scale for the x-axis in panels C and F. Results were obtained by evaluating the three candidate leading eigenvalues ($\lambda_{\mathbf{A}}$,$\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ parameter space.}
+\label{fig:PrInv}
+\end{figure}
+
+\newpage{}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{./Fig2Alt}
+\caption{Effect of linkage on equilibrium frequencies of unisexual (A) females, and (B) males when reproductive compensation is above the single-locus threshold for invasion of unisexual sterility allele (i.e., $k > \hat{k}$; where $\hat{k}$ is equal to the right-hand side of Eq(\ref{eq:1LocGyn}) or Eq(\ref{eq:1LocAndro}) as appropriate). Results are shown for the models of gyno- and androdioecy via invasion of recessive unisexual sterility alleles, additive fitness effects at $\mathbf{A}$ ($h_f = h_m = 0.5$, using selection coefficients of $s_m = 0.1$ (for the model of gynodioecy) and $s_f = 0.1$ (for the model of androdioecy), and inbreeding depression that follows $\delta = \delta^\ast(1 - C/2)$ (see \hyperref[sec:Models]{Models}). Plots illustrate the increase in equilibrium frequencies of unisexuals predicted by our two-locus models (dashed greyscale lines) relative to the corresponding exact single-locus equilibrium frequencies (solid black line; $\hat{Z}$ predicted by \citealt{Charlesworth1978a}). Results are shown for four different levels of recombination, highlighting that with weaker linkage, the two-locus predictions converge on those of the single-locus model.}
+\label{fig:eqFreq2v1Loc}
+\end{figure}
+\newpage{}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=0.75]{./Fig3Alt_copy}
+\caption{Equilibrium frequencies of unisexual (A--B) females and (C--D) males across a gradient of reproductive compensation (with values chosen as a fraction of the single-locus invasion threshold for $M_2$ ($\hat{k}$, which is equal to the right-hand side of Eq(\ref{eq:1LocGyn}) or Eq(\ref{eq:1LocAndro})() for the models of gynodioecy and androdioecy respectively). Results are shown for the models of gyno- and androdioecy via invasion of recessive unisexual sterility alleles, additive fitness effects at $\mathbf{A}$ ($h_f = h_m = 0.5$, using selection coefficients of $s_m = 0.1$ (for the model of gynodioecy) and $s_f = 0.1$ (for the model of androdioecy), and inbreeding depression that decreases linearly with the selfing rate: $\delta = \delta^\ast(1 - C/2)$ (see \hyperref[sec:Models]{Models}). Plots show the equilibrium frequencies of unisexuals predicted by our models for five different levels of reproductive compensation, calculated as a fraction of the single-locus invasion criterion for $M_2$ defined by Eq(\ref{eq:1LocGyn}) and Eq(\ref{eq:1LocAndro}). Note that the single-locus equilibrium frequency of unisexuals always equals $0$ when $k < \hat{k}$. Hence, the lines corresponding to $k < \hat{k}$ illustrate how linkage among SA loci expands the parameter space where unisexual sterility alleles can invade beyond the predictions of the single-locus models.}
+\label{fig:eqFreq}
+\end{figure}
+
 
 \end{document}
