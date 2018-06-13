@@ -1,4 +1,4 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Caballero and Hill(1992)}]{CaballeroHill1992}
@@ -35,6 +35,12 @@ Connallon, T., and A.~G. Clark. 2012.
 \newblock A general population genetic framework for antagonistic selection
   that accounts for demography and recurrent mutation.
 \newblock Genetics 190:1477--1489.
+
+\bibitem[{Connallon and Jordan(2016)}]{ConnallonJordan2016}
+Connallon, T., and C.~Y. Jordan. 2016.
+\newblock Accumulation of deleterious mutations near sexually antagonistic
+  genes.
+\newblock G3 6:2273--2280.
 
 \bibitem[{Fry(2009)}]{Fry2010}
 Fry, J.~D. 2009.

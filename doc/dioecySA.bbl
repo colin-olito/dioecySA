@@ -1,4 +1,4 @@
-\begin{thebibliography}{50}
+\begin{thebibliography}{49}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Andersson(1994)}]{Andersson1994}
@@ -29,12 +29,6 @@ Bachtrog, D., J.~E. Mank, C.~L. Peichel, M.~Kirkpatrick, S.~P. Otto, T.-L.
 \newblock Sex determination: why so many ways of doing it?
 \newblock PLoS Biology 12:e1001899.
 
-\bibitem[{Barrett(2010)}]{Barrett2010}
-Barrett, S.~C.~H. 2010.
-\newblock Darwin's legacy: the forms, function, and sexual diversity of
-  flowers.
-\newblock Phil.~Trans.~Roy.~Soc.~B. 365:351--368.
-
 \bibitem[{Barson et~al.(2015)Barson, Ayanat, Hindar, Baranski, Bolstad, Fiske,
   Jacq, Jensen, Johnston, Karlsson, Kent, Moen, Niemel\"{a}, Nome, Naesje,
   Orell, Romakkaniemi, Saegrov, Urdal, Erkinaro, Lien, and
@@ -51,6 +45,13 @@ Barson, N.~J., T.~Ayanat, K.~Hindar, M.~Baranski, G.~H. Bolstad, P.~Fiske,
 Bawa, K.~F. 1980.
 \newblock Evolution of dioecy in flowering plants.
 \newblock Ann.~Rev.~Ecol.~Syst. 11:15--39.
+
+\bibitem[{Blackburn et~al.(2010)Blackburn, Albert, and
+  Otto}]{BlackburnOtto2010}
+Blackburn, G.~S., A.~Y.~K. Albert, and S.~P. Otto. 2010.
+\newblock The evolution of sex ratio adjustment in the presence of sexually
+  antagonistic selection.
+\newblock American Naturalist 176:264--275.
 
 \bibitem[{Bonduriansky and Chenoweth(2009)}]{BondurianskyChenoweth2009}
 Bonduriansky, R., and S.~F. Chenoweth. 2009.
@@ -98,12 +99,6 @@ Charlesworth, D., and B.~Charlesworth. 1978{\natexlab{\emph{b}}}.
 \newblock Population genetics of partial male-sterility and the evolution of
   monoecy and dioecy.
 \newblock Heredity 41:137--153.
-
-\bibitem[{Charlesworth et~al.(2005)Charlesworth, Charlesworth, and
-  Marais}]{CharlesworthEtAl2005}
-Charlesworth, D., B.~Charlesworth, and G.~Marais. 2005.
-\newblock Steps in the evolution of heteromorphic sex chromosomes.
-\newblock Heredity 95:118--128.
 
 \bibitem[{Charlesworth and Willis(2009)}]{Charlesworth2009}
 Charlesworth, D., and J.~Willis. 2009.
