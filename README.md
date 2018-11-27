@@ -12,12 +12,12 @@ Will be come available when the manuscript has successfully passed the peer revi
 
 ## Reproducing the manuscript
 
-The easiest way to reproduce the manuscript is to simply clone the repo, run `createFigs.R`, and then compile the manuscript file `doc/Dioecy-SA-SexChromosomes.tex` using whatever default LaTeX editor/engine you have. 
+The easiest way to reproduce the manuscript is to simply clone the repo, run `createFigs.R`, and then compile the manuscript file `doc/dioecySA.tex` using whatever default LaTeX editor/engine you have. 
 
 
 ## Contact & bug reporting
 
-Please report any bugs, problems, or issues by opening an issue on the 2LocusPartSelf github [issues page](https://github.com/colin-olito/twoLocusPartSelf/issues). If you would like to report a bug/issue, and do not have a github account (and don't want to get one), please send a brief email detailing the problem you encountered to colin.olito at monash dot edu.
+Please report any bugs, problems, or issues by opening an issue on the dioecySA github [issues page](https://github.com/colin-olito/dioecySA/issues). If you would like to report a bug/issue, and do not have a github account (and don't want to get one), please send a brief email detailing the problem you encountered to colin.olito at monash dot edu.
 
 
 

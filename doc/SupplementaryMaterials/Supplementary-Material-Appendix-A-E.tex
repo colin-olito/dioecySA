@@ -27,7 +27,7 @@
 \RequirePackage[scaled]{helvet}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{url}
-\RequirePackage[colorlinks=true, allcolors=blue]{hyperref}
+\RequirePackage[colorlinks=true, allcolors=black]{hyperref}
 %\RequirePackage[colorlinks=true, allcolors=blue,draft=true]{hyperref}
 \RequirePackage{lettrine}
 \RequirePackage{cleveref}
@@ -79,7 +79,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Supplementary Material (Appendices A--E) for: Sexually antagonistic polymorphism and the evolution of dimporphic sexual systems in hermaphrodites. \textit{The American Naturalist}}
+\title{Supplementary Material (Appendices A--E) for: Sexually antagonistic variation and the evolution of dimorphic sexual systems. \textit{The American Naturalist}}
 
 %\author{Colin Olito$^{\ast,1,2}$ \& Tim Connallon$^{1}$}
 \date{\today}
@@ -702,13 +702,13 @@ Following previous theory of SA selection we also explored the the representativ
 %%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Invasion into monomorphic populations} 
 
-Under a dominance reversal scenario at the SA locus, invasion criteria for SA alleles are more permissive than when SA fitness effects are additive \citep{Kidwell1977, ConnallonClark2012, JordanConnallon2014, Olito2016}. In our models, a dominance reversal at the SA locus expands the conditions for invasion of a $M_2$ sterility allele. For example, consider a model of gynodioecy, with a dominant male-sterility allele and obligate outcrossing in the ancestral hermaphrodite population ($C=0$). In a population fixed for the female-beneficial SA allele, an incomplete dominance reversal ($h_f=h_m=1/4$) expands conditions for the spread of unisexual females (via $AM_2$ haplotype), relative to the single-locus condition for gynodioecy (Eq(1) in the main text), when:
+Under a dominance reversal scenario at the SA locus, invasion criteria for SA alleles are more permissive than when SA fitness effects are additive \citep{Kidwell1977, ConnallonClark2012, JordanConnallon2014, Olito2016}. In our models, a dominance reversal at the SA locus expands the conditions for invasion of a $M_2$ sterility allele. For example, consider a model of gynodioecy, with a dominant male-sterility allele and obligate outcrossing in the ancestral hermaphrodite population ($C=0$). In a population fixed for the female-beneficial SA allele, an incomplete dominance reversal ($h_f=h_m=1/4$) expands conditions for the spread of unisexual females (via $AM_2$ haplotype), relative to the single-locus condition for gynodioecy (Eq(3) in the main text), when:
 
 \begin{equation}\label{eq:2LocGynDomRev}
     \frac{4 r}{3 + r} < s_f.
 \end{equation}
 
-\noindent which is more permissive than the analogous result for the additive model of SA genetic variation (i.e., Eq(\ref{eq:2LocGynDomRev}) vs. Eq(2) in the main text).
+\noindent which is more permissive than the analogous result for the additive model of SA genetic variation (i.e., Eq(\ref{eq:2LocGynDomRev}) vs. Eq(3) in the main text).
 
 Linkage to a male-sterility locus expands the parameter conditions for invasion of a female-benefit allele (i.e, beyond the single-locus prediction) when:
 
@@ -724,7 +724,7 @@ As for the case of additive SA fitness effects, replacing $s_f$ with $s_m$ in Eq
 
 \noindent The conditions described in Eq(\ref{eq:2LocAndDomRevSA}) are quite permissive, expanding the parameter space where a male benefit allele can invade over single-locus predictions, even under free recombination, so long as $s_f$ is greater than $\sim 0.24$. 
 
-Analogous analytic results for the cases of partial dominance reversal at the SA locus and partial selfing ($0 < C < 1$) are possible, but yield complex expressions which not easily interpreted. However, examination of complete dominance reversals ($h_f = h_m = 0$) provides some additional insight. In this case, conditions for the spread of a male unisexual sterility allele that is linked to a female-benefit SA allele are relaxed even further. The invasion of unisexual females becomes more permissive than the single-locus prediction as long as $r < s_f$, regardless of the population selfing rate. Again, replacing $s_f$ with $s_m$ in Eq(\ref{eq:2LocGynDomRev}) gives the analogous conditions for the invasion of unisexual males in the model of androdioecy.
+Analogous analytic results for the cases of partial dominance reversal at the SA locus and partial selfing ($0 < C < 1$) are possible, but yield complex expressions that are not easily interpreted. However, examination of complete dominance reversals ($h_f = h_m = 0$) provides some additional insight. In this case, conditions for the spread of a male unisexual sterility allele that is linked to a female-benefit SA allele are relaxed even further. The invasion of unisexual females becomes more permissive than the single-locus prediction as long as $r < s_f$, regardless of the population selfing rate. Again, replacing $s_f$ with $s_m$ in Eq(\ref{eq:2LocGynDomRev}) gives the analogous conditions for the invasion of unisexual males in the model of androdioecy.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -745,9 +745,20 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 \renewcommand{\thefigure}{D\arabic{figure}}
 \setcounter{figure}{0}
 
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=0.75]{./DblMutExpansionKHatFig}
+\caption{Effect of linkage between the $\mathbf{A}$ and $\mathbf{M}$ loci on the threshold level of reproductive compensation for successful invasion of unisexual females (panel A) and males (panel B) into hermaphrodite populations. Plots show the decrease in reproductive compensation for the invasion of 'double mutants' (i.e., based on $\lambda_{\mathbf{AM}}$) compared with the single locus invasion criteria (i.e., based on $\lambda_{\mathbf{M}}$; see Eq(3) and Eq(6) for the models of gyno- and androdioecy respectively) for different selection intensities, selfing rates ($C$) and inbreeding depression ($\delta$) as a function of the recombination rate between the two loci. We vary the recombination rate between $0$ and the threshold where the one- and two-locus invasion conditions become equivalent, Eq(4). For the model of gynodioecy, we first solved $\lambda_{\mathbf{AM}} > 1$ for $k$ (denoted $\hat{k}_{\mathbf{AM}}$ for convenience), and then calculated the proportional decrease in reproductive compensation by subtracting $\hat{k}_{\mathbf{AM}}$ from $\hat{k}$ (the right side of Eq(3)) and dividing by the latter for the specificed values of $C$, $\delta$, $r$, and $s_j$ (where $j \in \{f,m\}$). These results confirm the result presented in fig.~1 of the main text, that the parameter space where unisexual females can invade is increased in the two-locus model because linkage reduces $\hat{k}_{\mathbf{AM}}$ relative to $\hat{k}$ across biologically plausible values of $C$ and $\delta$. Because the integral of Eq(6) is undefined when $C = 1$, we restricted the integration to include high, but not complete, selfing rates $C = [0, 0.9]$ for the model of androdioecy; comparisons between the models should therefore be made with caution.}
+\label{fig:dblMutKHatFig}
+\end{figure}
+\newpage{}
+
+
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB1-Gyno-obOut-funnel}
+\includegraphics[scale=0.58]{./FigD1-Gyno-obOut-funnel}
 \caption{Invasion of dominant male-sterility mutations into populations with segregating SA variation under obligate outcrossing. Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:GynObOutFunnel}
 \end{figure}
@@ -755,7 +766,7 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB2-Gyno-C25-d80-funnel}
+\includegraphics[scale=0.58]{./FigD2-Gyno-C25-d80-funnel}
 \caption{Invasion of dominant male-sterility mutations into populations with segregating SA variation under conditions of low selfing ($C = 0.25$) and high inbreeding depression ($\delta = 0.8$). Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:GynC25d80Funnel}
 \end{figure}
@@ -763,7 +774,7 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB3-Gyno-C75-d20-funnel}
+\includegraphics[scale=0.58]{./FigD3-Gyno-C75-d20-funnel}
 \caption{Invasion of dominant male-sterility mutations into populations with segregating SA variation under conditions of high selfing ($C = 0.75$) and low inbreeding depression ($\delta = 0.2$). Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:GynC75d20Funnel}
 \end{figure}
@@ -771,7 +782,7 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB4-Andro-obOut-funnel}
+\includegraphics[scale=0.58]{./FigD4-Andro-obOut-funnel}
 \caption{Invasion of dominant female-sterility mutations into populations with segregating SA variation under obligate outcrossing. Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant female-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:AndroObOutFunnel}
 \end{figure}
@@ -779,7 +790,7 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB5-Andro-C25-d80-funnel}
+\includegraphics[scale=0.58]{./FigD5-Andro-C25-d80-funnel}
 \caption{Invasion of dominant female-sterility mutations into populations with segregating SA variation under conditions of low selfing ($C = 0.25$) and high inbreeding depression ($\delta = 0.8$). Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant female-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:AndC25d80Funnel}
 \end{figure}
@@ -787,7 +798,7 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB6-Andro-C75-d20-funnel}
+\includegraphics[scale=0.58]{./FigD6-Andro-C75-d20-funnel}
 \caption{Invasion of dominant female-sterility mutations into populations with segregating SA variation under conditions of high selfing ($C = 0.75$) and low inbreeding depression ($\delta = 0.2$). Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant female-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with additive fitness effects ($h_f=h_m=1/2$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:AndC75d20Funnel}
 \end{figure}
@@ -797,14 +808,14 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[scale=0.7]{./FigB7-EQinv-domRev}
-\caption{Invasion of unisexuals into populations with pre-existing SA polymorphism. Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant sex-specific sterility allele at $\mathbf{M}$ can invade, assuming completely recessive SA fitness effects at the SA $\mathbf{A}$ locus ($h_f=h_m=0$), plotted as a function of the recombination rate $r$. Panels A--C show results from the model of gynodioecy via invasion of a male-sterility allele, while planels D--F show results for the model of androdioecy via invasion of a female-sterility allele. For each panel, results are shown for different values of reproductive compensation, $k$, chosen as a fraction of the single-locus invasion threshold for $M_2$ ($\hat{k}$, which is equal to the right-hand side of Eq(1) or Eq(7) in the main text for the models of gynodioecy and androdioecy respectively). Hence, the orange, green, and dark blue lines show scenarios where unisexuals experience a decrease in gamete production relative to hermaphrodites of $1$, $5$, and $10\%$. Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{A}}$,$\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ parameter space.}
+\includegraphics[scale=0.7]{./FigD7R1}
+\caption{Invasion of unisexuals into populations with pre-existing SA polymorphism. Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant sex-specific sterility allele at $\mathbf{M}$ can invade, assuming completely recessive SA fitness effects at the SA $\mathbf{A}$ locus ($h_f=h_m=0$), plotted as a function of the recombination rate $r$. Panels A--C show results from the model of gynodioecy via invasion of a male-sterility allele, while planels D--F show results for the model of androdioecy via invasion of a female-sterility allele. For each panel, results are shown for different values of reproductive compensation, $k$, chosen as a fraction of the single-locus invasion threshold for $M_2$ ($\hat{k}$, which is equal to the right-hand side of Eq(3) or Eq(6) in the main text for the models of gynodioecy and androdioecy respectively). Hence, the orange, green, and dark blue lines show scenarios where unisexuals experience a decrease in gamete production relative to hermaphrodites of $1$, $5$, and $10\%$. Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{A}}$,$\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ parameter space.}
 \label{fig:PrInvDomRev}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB8-Gyno-domRev-obOut-funnel}
+\includegraphics[scale=0.58]{./FigD8-Gyno-domRev-obOut-funnel}
 \caption{Invasion of dominant male-sterility mutations into populations with segregating SA variation under obligate outcrossing ($C=0$) and a complete dominance reversal. Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with completely recessive fitness effects ($h_f=h_m=0$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:GynObOutFunnelDomRev}
 \end{figure}
@@ -812,7 +823,7 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB9-Gyno-domRev-C25-d80-funnel}
+\includegraphics[scale=0.58]{./FigD9-Gyno-domRev-C25-d80-funnel}
 \caption{Invasion of dominant male-sterility mutations into populations with segregating SA variation under conditions of low selfing ($C = 0.25$), high inbreeding depression ($\delta = 0.8$), and a complete dominance reversal. Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with completely recessive fitness effects ($h_f=h_m=0$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:GynC25d80FunnelDomRev}
 \end{figure}
@@ -820,7 +831,7 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB10-Gyno-domRev-C75-d20-funnel}
+\includegraphics[scale=0.58]{./FigD10-Gyno-domRev-C75-d20-funnel}
 \caption{Invasion of dominant male-sterility mutations into populations with segregating SA variation under conditions of high selfing ($C = 0.75$), low inbreeding depression ($\delta = 0.2$), and a complete dominance reversal. Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant male-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with completely recessive fitness effects ($h_f=h_m=0$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:GynC75d20FunnelDomRev}
 \end{figure}
@@ -828,7 +839,7 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB11-Andro-domRev-obOut-funnel}
+\includegraphics[scale=0.58]{./FigD11-Andro-domRev-obOut-funnel}
 \caption{Invasion of dominant female-sterility mutations into populations with segregating SA variation under obligate outcrossing ($C=0$) and a complete dominance reversal. Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant female-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with completely recessive fitness effects ($h_f=h_m=0$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:AndObOutFunnelDomRev}
 \end{figure}
@@ -836,7 +847,7 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB12-Andro-domRev-C25-d80-funnel}
+\includegraphics[scale=0.58]{./FigD12-Andro-domRev-C25-d80-funnel}
 \caption{Invasion of dominant female-sterility mutations into populations with segregating SA variation under conditions of low selfing ($C = 0.25$), high inbreeding depression ($\delta = 0.8$), and a complete dominance reversal. Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant female-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with completely recessive fitness effects ($h_f=h_m=0$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:AndC25d80FunnelDomRev}
 \end{figure}
@@ -844,16 +855,25 @@ Although the conditions permitting the invasion of unisexuals are less restricti
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.58]{./FigB13-Andro-domRev-C75-d20-funnel}
+\includegraphics[scale=0.58]{./FigD13-Andro-domRev-C75-d20-funnel}
 \caption{Invasion of dominant female-sterility mutations into populations with segregating SA variation under conditions of high selfing ($C = 0.75$), low inbreeding depression ($\delta = 0.2$), and a complete dominance reversal. Plots show the fraction of parameter conditions maintaining single-locus SA polymorphism (within the range $0 < s_f,s_m \leq 0.5$) where a dominant female-sterility allele at $\mathbf{M}$ can invade populations initially at single-locus equilibrium frequencies for $\mathbf{A}$ with completely recessive fitness effects ($h_f=h_m=0$). Results were obtained by evaluating the two relevant candidate leading eigenvalues ($\lambda_{\mathbf{M}}$,$\lambda_{\mathbf{AM}}$) of the Jacobian matrix of the genotype $\times$ transmission mode recursions for populations at the above initial conditions for $1000$ points uniformly distributed throughout the relevant $s_f \times s_m$ paramter space. Blue points indicate parameter sets where $1 - \lambda_{\mathbf{M}} > 0$, and/or $\lambda_{\mathbf{AM}} - 1 > 0$. Solid black lines represent the corresponding single-locus invasion criteria for SA alleles.}
 \label{fig:AndC75d20FunnelDomRev}
 \end{figure}
 \newpage{}
 
+
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.75]{./FigB14-Eq-Unisexual-Frequency-DomRev}
-\caption{Equilibrium frequencies of unisexual (A--B) females and (C--D) males across a gradient of reproductive compensation. Results are shown for the models of gyno- and androdioecy via invasion of recessive unisexual sterility alleles, recessive SA fitness effects at $\mathbf{A}$ ($h_f = h_m = 1/4$, using selection coefficients of $s_m = 0.1$ (for the model of gynodioecy) and $s_f = 0.1$ (for the model of androdioecy), and inbreeding depression that decreases linearly with the selfing rate: $\delta = \delta^\ast(1 - C/2)$ (see Models section in the main text). Plots show the equilibrium frequencies of unisexuals predicted by our models for five different levels of reproductive compensation, calculated as a fraction of the single-locus invasion criterion for $M_2$ defined by Eq(1) and Eq(7) in the main text. Note that the single-locus equilibrium frequency of unisexuals always equals $0$ when $k < \hat{k}$. Hence, the lines corresponding to $k < \hat{k}$ illustrate how linkage among SA loci expands the parameter space where unisexual sterility alleles can invade beyond the predictions of the single-locus models.}
+\includegraphics[scale=0.75]{./EqFreqAtKHat}
+\caption{Effect of linkage on equilibrium frequencies of unisexual (A) females, and (B) males when reproductive compensation is nearly equal to the single-locus threshold for invasion of unisexual sterility allele (i.e., $k = \hat{k} \times 1.001$; where $\hat{k}$ is equal to the right-hand side of Eq(3) or Eq(6) as appropriate). Results are shown for the models of gyno- and androdioecy via invasion of recessive unisexual sterility alleles, additive fitness effects at $\mathbf{A}$ ($h_f = h_m = 0.5$, using selection coefficients of $s_m = 0.1$ (for the model of gynodioecy) and $s_f = 0.1$ (for the model of androdioecy), and inbreeding depression that follows $\delta = \delta^\ast(1 - C/2)$ (see Models section in the main text). Plots illustrate the increase in equilibrium frequencies of unisexuals predicted by our two-locus models (dashed greyscale lines) relative to the corresponding exact single-locus equilibrium frequencies, which are very small at this level of reproductive compensation (solid black line; $\hat{Z}$ predicted by \citealt{Charlesworth1978a}). Results are shown for four different levels of recombination, highlighting that with weaker linkage, the two-locus predictions converge on those of the single-locus model.}
+\label{fig:eqFreq2v1Loc}
+\end{figure}
+\newpage{}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.75]{./FigD14-Eq-Unisexual-Frequency-DomRev}
+\caption{Equilibrium frequencies of unisexual (A--B) females and (C--D) males across a gradient of reproductive compensation. Results are shown for the models of gyno- and androdioecy via invasion of recessive unisexual sterility alleles, recessive SA fitness effects at $\mathbf{A}$ ($h_f = h_m = 1/4$, using selection coefficients of $s_m = 0.1$ (for the model of gynodioecy) and $s_f = 0.1$ (for the model of androdioecy), and inbreeding depression that decreases linearly with the selfing rate: $\delta = \delta^\ast(1 - C/2)$ (see Models section in the main text). Plots show the equilibrium frequencies of unisexuals predicted by our models for five different levels of reproductive compensation, calculated as a fraction of the single-locus invasion criterion for $M_2$ defined by Eq(3) and Eq(6) in the main text. Note that the single-locus equilibrium frequency of unisexuals always equals $0$ when $k < \hat{k}$. Hence, the lines corresponding to $k < \hat{k}$ illustrate how linkage among SA loci expands the parameter space where unisexual sterility alleles can invade beyond the predictions of the single-locus models.}
 \label{fig:eqFreqDomRev}
 \end{figure}
 \newpage{}

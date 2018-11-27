@@ -30,10 +30,26 @@ source('R/functions-recSim-Andro-Rec.R')
 
 #  Linear C-delta relation
 	# dStar = 0.8
+		# sm = 0.1
 
-	# sm = 0.1
-	recursionFwdSimLoop(gen = 500000, dStar = 0.8, a = 1, b = 0.5, sm = 0.1, hf = 0.5, hm = 0.5, resolution = 0.05,
-		                kMult = c(1.1, 0.975, 0.95, 0.925, 0.90), r.vals = c(0.0, 0.005), threshold = 1e-7)
+			# all sims (TAKES A VERY LONG TIME)
+			# k = kHat*1.1
+#				recursionFwdSimLoop.oneLev(gen = 500000, dStar = 0.8, a = 1, b = 0.5, sm = 0.1, hf = 0.5, hm = 0.5, resolution = 0.1,
+#										   kMult = c(1.1, 0.975, 0.95, 0.925, 0.90), r.vals = c(0.0, 0.005, 0.01, 0.05), threshold = 1e-7)
+
+			# Single values for kMult and r
+			# k = kHat*1.1
+				recursionFwdSimLoop.oneLev(gen = 500000, dStar = 0.8, a = 1, b = 0.5, sm = 0.1, hf = 0.5, hm = 0.5, resolution = 0.1,
+										   kMult = c(1.1), r.vals = c(0.0, 0.005, 0.01, 0.05), threshold = 1e-7)
+			# k = kHat*1.0
+				recursionFwdSimLoop.oneLev(gen = 500000, dStar = 0.8, a = 1, b = 0.5, sm = 0.1, hf = 0.5, hm = 0.5, resolution = 0.1,
+										   kMult = c(1.001), r.vals = c(0.0, 0.005, 0.01, 0.05), threshold = 1e-7)
+			# r = 0
+				recursionFwdSimLoop.oneLev(gen = 500000, dStar = 0.8, a = 1, b = 0.5, sm = 0.1, hf = 0.5, hm = 0.5, resolution = 0.1,
+										   kMult = c(1.1, 0.975, 0.95, 0.925, 0.90), r.vals = c(0.0), threshold = 1e-7)
+			# r = 0.005
+				recursionFwdSimLoop.oneLev(gen = 500000, dStar = 0.8, a = 1, b = 0.5, sm = 0.1, hf = 0.5, hm = 0.5, resolution = 0.1,
+										   kMult = c(1.1, 0.975, 0.95, 0.925, 0.90), r.vals = c(0.005), threshold = 1e-7)
 
 
 #  Concave C-delta relation

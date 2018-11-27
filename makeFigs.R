@@ -27,66 +27,76 @@ source('R/functions-figures.R')
 # PAPER FIGURES
 ###############
 
-toPdf(Fig.1(), figPath(name='Fig1.pdf'), width=5, height=7.75)
-embed_fonts(figPath(name='Fig1.pdf'))
+toPdf(DblMutExpansionFig(), 
+              figPath(name='DblMutExpansionFig.pdf'), width=7, height=4)
+embed_fonts(figPath(name='DblMutExpansionFig.pdf'))
 
-toPdf(Fig2Alt(dfGyn = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_add.csv",
-              dfAnd = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_add.csv"), 
-              figPath(name='Fig2Alt.pdf'), width=7, height=4)
-embed_fonts(figPath(name='Fig2Alt.pdf'))
+toPdf(EQInvFig.R1(), figPath(name='EQInvFig-R1.pdf'), width=5, height=7.75)
+embed_fonts(figPath(name='EQInvFig-R1.pdf'))
 
-toPdf(Fig3Alt(), 
-            figPath(name='Fig3AltPts.pdf'), width=7, height=7)
-embed_fonts(figPath(name='Fig3AltPts.pdf'))
+toPdf(EqFreqBigKFig(), 
+             figPath(name = 'EqFreqBigK.pdf'), width=7, height=4)
+embed_fonts( figPath(name = 'EqFreqBigK.pdf'))
+
+toPdf(EqFreqAllKFig(), 
+            figPath(name='EqFreqAllKFig.pdf'), width=7, height=7)
+embed_fonts(figPath(name='EqFreqAllKFig.pdf'))
 
 
 ########################
 # SUPPLEMENTARY FIGURES
 ########################
+toPdf(EqFreqAtKHatFig(), 
+             figPath(name = 'EqFreqAtKHat.pdf'), width=7, height=4)
+embed_fonts( figPath(name = 'EqFreqAtKHat.pdf'))
+
 
 ## Appendix B: Supplementary Figures
+
+toPdf(DblMutExpansionKHatFig(), 
+              figPath(name='DblMutExpansionKHatFig.pdf'), width=7, height=4)
+embed_fonts(figPath(name='DblMutExpansionKHatFig.pdf'))
 
 ## Figs. B1-B6 -- Funnel plots for invasion into initially polymorphic populations
 # ADDITIVE SA FITNESS EFFECTS
 	# Gynodioecy
 	  # Obligate Outcrossing
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-ObOut-Add-EQInv.csv", wkSel = TRUE), 
-	  	          figPath(name='FigB1-Gyno-obOut-funnel.pdf'), width=9, height=10)
-	  embed_fonts(figPath(name='FigB1-Gyno-obOut-funnel.pdf'))
+	  	          figPath(name='FigD1-Gyno-obOut-funnel.pdf'), width=9, height=10)
+	  embed_fonts(figPath(name='FigD1-Gyno-obOut-funnel.pdf'))
 	
 	  # Low selfing, High Inbreeding Depression
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-Add-EQInv.csv", wkSel = TRUE), 
-			          figPath(name='FigB2-Gyno-C25-d80-funnel.pdf'), width=9, height=10)
-	  embed_fonts(figPath(name='FigB2-Gyno-C25-d80-funnel.pdf'))
+			          figPath(name='FigD2-Gyno-C25-d80-funnel.pdf'), width=9, height=10)
+	  embed_fonts(figPath(name='FigD2-Gyno-C25-d80-funnel.pdf'))
 	
 	  # High selfing, Low Inbreeding Depression
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-Add-EQInv.csv", wkSel=TRUE), 
-			          figPath(name='FigB3-Gyno-C75-d20-funnel.pdf'), width=9, height=10)
-	  embed_fonts(figPath(name='FigB3-Gyno-C75-d20-funnel.pdf'))
+			          figPath(name='FigD3-Gyno-C75-d20-funnel.pdf'), width=9, height=10)
+	  embed_fonts(figPath(name='FigD3-Gyno-C75-d20-funnel.pdf'))
 
 	# Androdioecy
 	  # Obligate Outcrossing
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/And-wksel-ObOut-Add-EQInv.csv", wkSel=TRUE), 
-	  	          figPath(name='FigB4-Andro-obOut-funnel.pdf'), width=9, height=10)
-	  embed_fonts(figPath(name='FigB4-Andro-obOut-funnel.pdf'))
+	  	          figPath(name='FigD4-Andro-obOut-funnel.pdf'), width=9, height=10)
+	  embed_fonts(figPath(name='FigD4-Andro-obOut-funnel.pdf'))
 	
 	  # Low selfing, High Inbreeding Depression
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/And-wksel-partSelf-C25-delta80-Add-EQInv.csv", wkSel = TRUE), 
-			          figPath(name='FigB5-Andro-C25-d80-funnel.pdf'), width=9, height=10)
-	  embed_fonts(figPath(name='FigB5-Andro-C25-d80-funnel.pdf'))
+			          figPath(name='FigD5-Andro-C25-d80-funnel.pdf'), width=9, height=10)
+	  embed_fonts(figPath(name='FigD5-Andro-C25-d80-funnel.pdf'))
 	
 	  # High selfing, Low Inbreeding Depression
 	  toPdf(EQInv.Add(df="./output/data/EQInvAnalyses/And-wksel2-partSelf-C75-delta20-Add-EQInv.csv", wkSel=TRUE), 
-			          figPath(name='FigB6-Andro-C75-d20-funnel.pdf'), width=9, height=10)
-	  embed_fonts(figPath(name='FigB6-Andro-C75-d20-funnel.pdf'))
+			          figPath(name='FigD6-Andro-C75-d20-funnel.pdf'), width=9, height=10)
+	  embed_fonts(figPath(name='FigD6-Andro-C75-d20-funnel.pdf'))
 
 
 ## Figs. S8 -- Fraction of parameter space where sterility alleles can invade initially polymorphic populations
 ##             under COMPLETE DOMINACE REVERSAL at the SA locus
-toPdf(
-  Fig.B7.compDomRev(), 
-            figPath(name='FigB7.pdf'), width=5, height=7.75)
-embed_fonts(figPath(name='FigB7.pdf'))
+toPdf(EQInvcompDomRev.R1(), 
+            figPath(name='FigD7R1.pdf'), width=5, height=7.75)
+embed_fonts(figPath(name='FigD7R1.pdf'))
 
 
 ## Figs. S9-S14 -- Funnel plots for invasion into initially polymorphic populations
@@ -95,48 +105,48 @@ embed_fonts(figPath(name='FigB7.pdf'))
     # Obligate Outcrossing
     toPdf(
       EQInv.domRev(df="./output/data/EQInvAnalyses/Gyn-wksel-ObOut-CompleteDomRev-EQInv.csv", wkSel = TRUE), 
-                figPath(name='FigB8-Gyno-domRev-obOut-funnel.pdf'), width=9, height=10)
-    embed_fonts(figPath(name='FigB8-Gyno-domRev-obOut-funnel.pdf'))
+                figPath(name='FigD8-Gyno-domRev-obOut-funnel.pdf'), width=9, height=10)
+    embed_fonts(figPath(name='FigD8-Gyno-domRev-obOut-funnel.pdf'))
 
     # Low selfing, High Inbreeding Depression
     toPdf(
       EQInv.domRev(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C25-delta80-CompleteDomRev-EQInv.csv", wkSel = TRUE),
-                figPath(name='FigB9-Gyno-domRev-C25-d80-funnel.pdf'), width=9, height=10)
-    embed_fonts(figPath(name='FigB9-Gyno-domRev-C25-d80-funnel.pdf'))
+                figPath(name='FigD9-Gyno-domRev-C25-d80-funnel.pdf'), width=9, height=10)
+    embed_fonts(figPath(name='FigD9-Gyno-domRev-C25-d80-funnel.pdf'))
 
     # High selfing, Low Inbreeding Depression
     toPdf(
       EQInv.domRev(df="./output/data/EQInvAnalyses/Gyn-wksel-partSelf-C75-delta20-CompleteDomRev-EQInv2.csv", wkSel = TRUE),
-                figPath(name='FigB10-Gyno-domRev-C75-d20-funnel.pdf'), width=9, height=10)
-    embed_fonts(figPath(name='FigB10-Gyno-domRev-C75-d20-funnel.pdf'))
+                figPath(name='FigD10-Gyno-domRev-C75-d20-funnel.pdf'), width=9, height=10)
+    embed_fonts(figPath(name='FigD10-Gyno-domRev-C75-d20-funnel.pdf'))
 
   # Androdioecy
     # Obligate Outcrossing
     toPdf(
       EQInv.domRev(df="./output/data/EQInvAnalyses/And-wksel-ObOut-CompleteDomRev-EQInv.csv", wkSel = TRUE), 
-                figPath(name='FigB11-Andro-domRev-obOut-funnel.pdf'), width=9, height=10)
-    embed_fonts(figPath(name='FigB11-Andro-domRev-obOut-funnel.pdf'))
+                figPath(name='FigD11-Andro-domRev-obOut-funnel.pdf'), width=9, height=10)
+    embed_fonts(figPath(name='FigD11-Andro-domRev-obOut-funnel.pdf'))
 
     # Low selfing, High Inbreeding Depression
     toPdf(
       EQInv.domRev(df="./output/data/EQInvAnalyses/And-wksel-partSelf-C25-delta80-CompleteDomRev-EQInv.csv", wkSel = TRUE),
-                figPath(name='FigB12-Andro-domRev-C25-d80-funnel.pdf'), width=9, height=10)
-    embed_fonts(figPath(name='FigB12-Andro-domRev-C25-d80-funnel.pdf'))
+                figPath(name='FigD12-Andro-domRev-C25-d80-funnel.pdf'), width=9, height=10)
+    embed_fonts(figPath(name='FigD12-Andro-domRev-C25-d80-funnel.pdf'))
 
     # High selfing, Low Inbreeding Depression
     toPdf(
       EQInv.domRev(df="./output/data/EQInvAnalyses/And-wksel-partSelf-C75-delta20-CompleteDomRev-EQInv.csv", wkSel = TRUE),
-                figPath(name='FigB13-Andro-domRev-C75-d20-funnel.pdf'), width=9, height=10)
-    embed_fonts(figPath(name='FigB13-Andro-domRev-C75-d20-funnel.pdf'))
+                figPath(name='FigD13-Andro-domRev-C75-d20-funnel.pdf'), width=9, height=10)
+    embed_fonts(figPath(name='FigD13-Andro-domRev-C75-d20-funnel.pdf'))
 
 
 ## Figs. S15 -- Equilibrium unisexual frequencies under
 #               COMPLETE DOMINACE REVERSAL FOR SA FITNESS EFFECTS
 
-toPdf(Fig3Alt(df1 = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_domRev.csv", 
+toPdf(EqFreqAllKFig(df1 = "./output/data/simResults/gyn-recess_dStar0.8_a1_sm0.1_domRev.csv", 
               df2 = "./output/data/simResults/and-recess_dStar0.8_a1_sm0.1_domRev.csv"), 
-            figPath(name='FigB14-Eq-Unisexual-Frequency-DomRev.pdf'), width=7, height=7)
-embed_fonts(figPath(name='FigB14-Eq-Unisexual-Frequency-DomRev.pdf'))
+            figPath(name='FigD14-Eq-Unisexual-Frequency-DomRev.pdf'), width=7, height=7)
+embed_fonts(figPath(name='FigD14-Eq-Unisexual-Frequency-DomRev.pdf'))
 
 
 

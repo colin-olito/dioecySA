@@ -465,8 +465,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 			  convergence, and thus how long the simulations take')
 
 	# Calculate Cs, deltas, sfs 
-#	Cs  <-  seq(0, 0.9, by = resolution)
-	Cs  <-  0
+	Cs  <-  seq(0, 0.9, by = resolution)
 	Ds  <-  deltaC(dStar = dStar, C=Cs, a=a, b=b)
 
 	if(hf == hm & hm == 0.5) {
@@ -547,7 +546,6 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 		}
 	}
 	setTxtProgressBar(pb, length(r.vals)*nrow(Ks))
-
 	#  Compile results as data.frame
 	rs  <-  c()
 	ks  <-  c()
@@ -559,6 +557,7 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 			ks  <-  c(ks, rep(kMult[j], length(Cs)))
 		}
 	}
+
 	results.df  <-  data.frame("hf"      =  rep(hf, length(r.vals)*nrow(Ks)*length(Cs)),
 							   "hm"      =  rep(hm, length(r.vals)*nrow(Ks)*length(Cs)),
 							   "C"       =  rep(Cs, length(r.vals)*nrow(Ks)),
@@ -575,10 +574,26 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 	
 	#  Write results.df to .txt file
 	if(hm == hf & hf == 0.5) {
-		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_r", r.vals, "_add", ".csv", sep="")
+		if(length(r.vals) == 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_r", r.vals, "_add", ".csv", sep="")	
+		}
+		if(length(kMult) == 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_k", kMult, "_add", ".csv", sep="")	
+		}
+		if(length(r.vals) > 1 && length(kMult) > 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_add", ".csv", sep="")
+		}
 	}
 	if(hm == hf & hf == 0.25) {
-		filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_r", r.vals, "_domRev", ".csv", sep="")
+		if(length(r.vals) == 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_r", r.vals, "_domRev", ".csv", sep="")	
+		}
+		if(length(kMult) == 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_k", kMult, "_add", ".csv", sep="")	
+		}
+		if(length(r.vals) > 1 && length(kMult) > 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_domRev", ".csv", sep="")
+		}
 	}
 	write.csv(results.df, file=filename, row.names = FALSE)
 
@@ -588,6 +603,155 @@ recursionFwdSimLoop  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5,
 
 
 
+recursionFwdSimLoop.oneLev  <-  function(gen = 5000, dStar = 0.8, a = 1, b = 0.5, 
+	                              sm = 0.5, hf = 0.5, hm = 0.5, resolution = 0.1,
+	                              kMult = c(1.1, 0.95, 0.9), r.vals = c(0.0), 
+	                              threshold = 1e-7) {
+	## Warnings
+	if(any(c(dStar,sm,hf,hm,r.vals) < 0) | any(c(dStar,sm,hf,hm) > 1) | any(r.vals > 0.5))
+		stop('At least one of the chosen parameter values fall outside of the reasonable bounds')
+
+	if(threshold > 1e-6)
+		stop('Carefully consider whether you want to change this threshold, 
+			  as it will affect how many generations are required to reach
+			  convergence, and thus how long the simulations take')
+
+	# Calculate Cs, deltas, sfs 
+	Cs  <-  seq(0, 0.9, by = resolution)
+	Ds  <-  deltaC(dStar = dStar, C=Cs, a=a, b=b)
+
+	if(hf == hm & hm == 0.5) {
+		sfs  <-  equalPQ.add(sm = sm, C = Cs, delta = Ds)
+	}
+	if(hf == hm & hm == 0.25) {
+		sfs  <-  equalPQ.domRev(sm = sm, C = Cs, delta = Ds)	
+	}
+
+	# Calculate k values
+	Ks     <-  matrix(0, nrow=length(kMult), ncol=length(Cs))
+	for(i in 1:nrow(Ks)){
+    	Ks[i,]  <-  invGyn(Cs, Ds) * kMult[i]
+    }
+
+	#  initialize storage structures
+	eqFreqs  <-  matrix(0, nrow=length(r.vals)*nrow(Ks)*length(Cs), ncol=20)
+	qHat     <-  rep(0, length(r.vals)*nrow(Ks)*length(Cs))
+	ZHat     <-  rep(0, length(r.vals)*nrow(Ks)*length(Cs))
+	
+	##  Simulation Loop over values of r, sm, sf for fixed selfing rate (C)
+	print('Running Deterministic Recursion Simulations')
+	pb   <-  txtProgressBar(min=0, max=length(r.vals)*nrow(Ks), style=3)
+	setTxtProgressBar(pb, 0)
+	for (i in 1:length(r.vals)) {
+		for (j in 1:nrow(Ks)) {
+			for (m in 1:length(Cs)) {
+				
+				par.list  <-  list(
+							   		gen    =  gen,
+									C      =  Cs[m],
+									delta  =  Ds[m],
+									sf     =  sfs[m],
+									sm     =  sm,
+									hf     =  hm,
+									hm     =  hf,
+									k      =  Ks[j,m],
+									r      =  r.vals[i]
+								   )
+
+				##  Set initial frequencies 
+					# Additive effects
+					if(hm == 0.5 & hf == 0.5) {
+					   	qhat  <-  qHatAdd(par.list$C, par.list$delta, par.list$sf, par.list$sm)
+					   	QEs   <-  c(QE.FAA(q = qhat, C = par.list$C), QE.FAa(q = qhat, C = par.list$C), QE.Faa(q = qhat, C = par.list$C))
+					   }
+					# Dominance Reversal
+					if(hm == 0.25 & hf == 0.25) {
+					   	qhat  <-  qHatDomRev(par.list$C, par.list$delta, par.list$sf, par.list$sm, par.list$hf)
+					   	QEs   <-  c(QE.FAA(q = qhat, C = par.list$C), QE.FAa(q = qhat, C = par.list$C), QE.Faa(q = qhat, C = par.list$C))
+					   	}
+				   	if(par.list$C == 0) {
+						QEs[QEs == max(QEs)]  <-  max(QEs) - 0.02
+						Fii.init  <-  round(c(QEs[1], 0, QEs[2], 0, 0.02, 0, 0, QEs[3], 0, 0), digits=8) 
+						Gii.init  <-  rep(0,10)
+				   	}
+				   	if(par.list$C != 0) {
+				   		QEs   <-  QEs/sum(QEs)
+				   	   	QEs[QEs == max(QEs)][1]  <-  max(QEs) - 0.02
+						Fii.init  <-  round(c((1 - par.list$C)*QEs[1], 0, (1 - par.list$C)*QEs[2], 0, (1 - par.list$C)*0.02, 0, 0, (1 - par.list$C)*QEs[3], 0, 0), digits=8)
+						Gii.init  <-  round(c(      par.list$C*QEs[1], 0,       par.list$C*QEs[2], 0,       par.list$C*0.02, 0, 0,       par.list$C*QEs[3], 0, 0), digits=8)
+					}
+					if(sum(Fii.init,Gii.init) != 1) {
+						Fii.init  <-  Fii.init/sum(Fii.init, Gii.init)
+						Gii.init  <-  Gii.init/sum(Fii.init, Gii.init)
+					}
+
+		 		# Run simulation for given parameter values
+				res  <-  recursionFwdSim(par.list = par.list, Fii.init = Fii.init, Gii.init = Gii.init, threshold = threshold)
+#if(m==3) browser()
+
+				# Store equilibrium frequencies
+				eqFreqs[((i-1)*nrow(Ks)*length(Cs)) + ((j-1)*length(Cs)) + m,]  <-  res$EQ.freq
+				qHat[((i-1)*nrow(Ks)*length(Cs))    + ((j-1)*length(Cs)) + m]   <-  res$qHat
+				ZHat[((i-1)*nrow(Ks)*length(Cs))    + ((j-1)*length(Cs)) + m]   <-  res$Zhat
+			}
+		setTxtProgressBar(pb, ((i-1)*nrow(Ks) + j))
+		}
+	}
+	setTxtProgressBar(pb, length(r.vals)*nrow(Ks))
+	#  Compile results as data.frame
+	rs  <-  c()
+	ks  <-  c()
+	for(i in 1:length(r.vals)) {
+		rs  <-  c(rs, rep(r.vals[i], nrow(Ks)*length(Cs)))
+	}
+	for(i in 1:length(r.vals)) {
+		for(j in 1:nrow(Ks)) {
+			ks  <-  c(ks, rep(kMult[j], length(Cs)))
+		}
+	}
+
+	results.df  <-  data.frame("hf"      =  rep(hf, length(r.vals)*nrow(Ks)*length(Cs)),
+							   "hm"      =  rep(hm, length(r.vals)*nrow(Ks)*length(Cs)),
+							   "C"       =  rep(Cs, length(r.vals)*nrow(Ks)),
+							   "delta"   =  rep(Ds, length(r.vals)*nrow(Ks)),
+							   "r"       =  rs,
+							   "k"       =  ks,
+							   "sf"      =  rep(sfs, length(r.vals)*nrow(Ks)),
+							   "sm"      =  sm
+							   )
+	results.df  <-  cbind(results.df, eqFreqs, qHat,ZHat)
+	colnames(results.df)  <-  c('hf','hm','C','delta','r','k','sf','sm',
+		                        'F.11', 'F.12', 'F.13', 'F.14', 'F.22', 'F.23', 'F.24', 'F.33', 'F.34', 'F.44', 
+	    	                    'G.11', 'G.12', 'G.13', 'G.14', 'G.22', 'G.23', 'G.24', 'G.33', 'G.34', 'G.44', 'qHat','ZHat')
+	
+	#  Write results.df to .txt file
+	if(hm == hf & hf == 0.5) {
+		if(length(r.vals) == 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_r", r.vals, "_add", ".csv", sep="")	
+		}
+		if(length(kMult) == 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_k", kMult, "_add", ".csv", sep="")	
+		}
+		if(length(r.vals) > 1 && length(kMult) > 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_add", ".csv", sep="")
+		}
+	}
+	if(hm == hf & hf == 0.25) {
+		if(length(r.vals) == 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_r", r.vals, "_domRev", ".csv", sep="")	
+		}
+		if(length(kMult) == 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_k", kMult, "_domRev", ".csv", sep="")	
+		}
+		if(length(r.vals) > 1 && length(kMult) > 1) {
+			filename  <-  paste("./output/data/simResults/gyn-recess", "_dStar", dStar, "_a", a, "_sm", sm, "_domRev", ".csv", sep="")
+		}
+	}
+	write.csv(results.df, file=filename, row.names = FALSE)
+
+	#  Return results.df in case user wants it
+	return(results.df)
+}
 
 
 #######################################
