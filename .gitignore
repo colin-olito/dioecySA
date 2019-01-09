@@ -104,7 +104,7 @@ vignettes/*.pdf
 *.nb
 # Untracked Folders #
 #####################
-output/*
+output/figures/*
 doc/notes/*
 doc/PublisherFiles/*
 doc/R0/*
