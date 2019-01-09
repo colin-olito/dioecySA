@@ -1,5 +1,11 @@
-\begin{thebibliography}{49}
+\begin{thebibliography}{67}
 \providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Abbott(2011)}]{Abbott2011}
+Abbott, J.~K. 2011.
+\newblock Intra-locus sexual conflict and sexually antagonistic genetic
+  variation in hermaphroditic animals.
+\newblock Proc.~Roy.~Soc.~Lond.~B 278:161--169.
 
 \bibitem[{Andersson(1994)}]{Andersson1994}
 Andersson, M. 1994.
@@ -29,6 +35,12 @@ Bachtrog, D., J.~E. Mank, C.~L. Peichel, M.~Kirkpatrick, S.~P. Otto, T.-L.
 \newblock Sex determination: why so many ways of doing it?
 \newblock PLoS Biology 12:e1001899.
 
+\bibitem[{Barrett(2010)}]{Barrett2010}
+Barrett, S.~C.~H. 2010.
+\newblock Darwin's legacy: the forms, function, and sexual diversity of
+  flowers.
+\newblock Phil.~Trans.~Roy.~Soc.~B. 365:351--368.
+
 \bibitem[{Barson et~al.(2015)Barson, Ayanat, Hindar, Baranski, Bolstad, Fiske,
   Jacq, Jensen, Johnston, Karlsson, Kent, Moen, Niemel\"{a}, Nome, Naesje,
   Orell, Romakkaniemi, Saegrov, Urdal, Erkinaro, Lien, and
@@ -53,10 +65,10 @@ Blackburn, G.~S., A.~Y.~K. Albert, and S.~P. Otto. 2010.
   antagonistic selection.
 \newblock American Naturalist 176:264--275.
 
-\bibitem[{Bonduriansky and Chenoweth(2009)}]{BondurianskyChenoweth2009}
-Bonduriansky, R., and S.~F. Chenoweth. 2009.
-\newblock Intralocus sexual conflict.
-\newblock Trends in Ecology and Evolution 24:280--288.
+\bibitem[{Bull(1983)}]{Bull1983}
+Bull, J.~J. 1983.
+\newblock Evolution of sex determining systems.
+\newblock The Benjamin/Cummings Publishing Company, California, USA.
 
 \bibitem[{Charlesworth and
   Charlesworth(1978{\natexlab{\emph{a}}})}]{Charlesworth1978a}
@@ -68,6 +80,14 @@ Charlesworth, B., and D.~Charlesworth. 1978{\natexlab{\emph{a}}}.
 ---{}---{}---. 2010.
 \newblock Elements of evolutionary genetics.
 \newblock Roberts and Company, Colorado, USA.
+
+\bibitem[{Charlesworth et~al.(2007)Charlesworth, Miyo, and
+  Borthwick}]{Charlesworth-etal-2007}
+Charlesworth, B., T.~Miyo, and H.~Borthwick. 2007.
+\newblock Selection responses of means and inbreeding depression for female
+  fecundity in drosophila melanogaster suggest contributions from
+  intermediate-frequency alleles to quantitative trait variation.
+\newblock Genetics Research 89:85--91.
 
 \bibitem[{Charlesworth(1985)}]{Charlesworth1985}
 Charlesworth, D. 1985.
@@ -100,6 +120,12 @@ Charlesworth, D., and B.~Charlesworth. 1978{\natexlab{\emph{b}}}.
   monoecy and dioecy.
 \newblock Heredity 41:137--153.
 
+\bibitem[{Charlesworth et~al.(2005)Charlesworth, Charlesworth, and
+  Marais}]{CharlesworthEtAl2005}
+Charlesworth, D., B.~Charlesworth, and G.~Marais. 2005.
+\newblock Steps in the evolution of heteromorphic sex chromosomes.
+\newblock Heredity 95:118--128.
+
 \bibitem[{Charlesworth and Willis(2009)}]{Charlesworth2009}
 Charlesworth, D., and J.~Willis. 2009.
 \newblock The genetics of inbreeding depression.
@@ -117,16 +143,44 @@ Connallon, T., and A.~G. Clark. 2010.
   that accounts for demography and recurrent mutation.
 \newblock Genetics 190:1477--1489.
 
+\bibitem[{Connallon and Hall(2018)}]{ConnallonHall2018}
+Connallon, T., and M.~D. Hall. 2018.
+\newblock Genetic constraints on adaptation: a theoretical primer for the
+  genomics era.
+\newblock Annals of the New York Academy of Sciences 1422:65--87.
+
 \bibitem[{Connallon and Jordan(2016)}]{ConnallonJordan2016}
 Connallon, T., and C.~Y. Jordan. 2016.
 \newblock Accumulation of deleterious mutations near sexually antagonistic
   genes.
 \newblock G3 6:2273--2280.
 
+\bibitem[{Crnokrak and Barrett(2002)}]{CrnokrakBarrett2002}
+Crnokrak, P., and S.~C.~H. Barrett. 2002.
+\newblock Purging the genetic load: a review of the experimental evidence.
+\newblock Evolution 56:2347--2358.
+
 \bibitem[{Darwin(1877)}]{Darwin1877}
 Darwin, C. 1877.
 \newblock The different forms of flowers on plants of the same species.
 \newblock John Murray, London.
+
+\bibitem[{Dufay and Billard(2012)}]{DufayBillard2012}
+Dufay, M., and E.~Billard. 2012.
+\newblock How much better are females? the occurrence of female advantage, its
+  proximal causes and its variation within and among gynodioecious species.
+\newblock Ann.~Bot. 109:505--519.
+
+\bibitem[{Frank(1989)}]{Frank1989}
+Frank, S.~A. 1989.
+\newblock The evolutionary dynamics of cytoplasmic male sterility.
+\newblock American Naturalist 133:345--376.
+
+\bibitem[{Fry(2009)}]{Fry2010}
+Fry, J.~D. 2009.
+\newblock The genomice location of sexually antagonistic variation: some
+  cautionary comments.
+\newblock Evolution 64:1510--1516.
 
 \bibitem[{Garcia-Dorado(2017)}]{Garcia-Dorado2017}
 Garcia-Dorado, A. 2017.
@@ -141,11 +195,29 @@ Goldberg, E.~E., S.~P. Otto, J.~C. Vamosi, I.~Mayrose, N.~Sabath, R.~Ming, and
 \newblock Macroevolutionary synthesis of flowering plant sexual systems.
 \newblock Evolution 71:898--912.
 
+\bibitem[{Gregorious(1982)}]{Gregorious1982}
+Gregorious, H.-R. 1982.
+\newblock Selection in plant populations of effectively infinite size
+  ii.~protectedness of a biallelic polymorphism.
+\newblock J.~Theor.~Biol. 96:689--705.
+
+\bibitem[{Hedrick and Garcia-Dorado(2016)}]{HedrickGarcia-Dorado2016}
+Hedrick, P.~W., and A.~Garcia-Dorado. 2016.
+\newblock An explicit model for the inbreeding load in the evolutionary
+  analysis of selfing.
+\newblock TREE 31:940--952.
+
 \bibitem[{Husband and Schemske(1996)}]{HusbandSchemske1996}
 Husband, B.~C., and D.~W. Schemske. 1996.
 \newblock Evolution of the magnitude and timing of inbreeding depression in
   plants.
 \newblock Evolution 50:54--70.
+
+\bibitem[{Jarne and Auld(2006)}]{JarneAuld2006}
+Jarne, P., and J.~R. Auld. 2006.
+\newblock Animals mix it up too: the distribution of self-fertilization among
+  hermaphroditic animals.
+\newblock Evolution 60:1816--1824.
 
 \bibitem[{Jordan and Connallon(2014)}]{JordanConnallon2014}
 Jordan, C.~Y., and T.~Connallon. 2014.
@@ -209,17 +281,35 @@ Mank, J.~E. 2017.
 \newblock Population genetics of sexual conflict in the genomic era.
 \newblock Nature Reviews Genetics 18:721--730.
 
+\bibitem[{Morgan(1992a)}]{Morgan1992a}
+Morgan, M.~T. 1992a.
+\newblock The evolution of traits influencing male and female fertility in
+  outcrossing plants.
+\newblock American Naturalist 139:1022--1051.
+
+\bibitem[{Morgan(1992b)}]{Morgan1992b}
+---{}---{}---. 1992b.
+\newblock Attractive structures and the stability of hermaphroditic sex
+  expression in flowering plants.
+\newblock Evolution 46:1199--1213.
+
 \bibitem[{Ohta and Cockerham(1974)}]{OhtaCockerham1974}
 Ohta, T., and C.~C. Cockerham. 1974.
 \newblock Detrimental genes with partial selfing and effects on a neutral
   locus.
 \newblock Genet.~Res.~Camb. 23:191--200.
 
-\bibitem[{Olito(2017)}]{Olito2016}
+\bibitem[{Olito(2017)}]{Olito2017}
 Olito, C. 2017.
 \newblock Consequences of genetic linkage for the maintenance of sexually
   antagonistic polymorphism in hermaphrodites.
 \newblock Evolution 71:458--464.
+
+\bibitem[{Olito et~al.(2018)Olito, Abbott, and Jordan}]{Olito-etal-2018}
+Olito, C., J.~K. Abbott, and C.~Y. Jordan. 2018.
+\newblock The interaction between sex-specific selection and local adaptation
+  in species without separate sexes.
+\newblock Phil.~Tran.~Roy.~Soc.~B 373:20170426.
 
 \bibitem[{Otto and Day(2007)}]{OttoDay2007}
 Otto, S., and T.~Day. 2007.
@@ -259,10 +349,11 @@ Rice, W.~R. 1987.
   chromosomes.
 \newblock Evolution 41:911--914.
 
-\bibitem[{Rice(1992)}]{Rice1992}
----{}---{}---. 1992.
-\newblock Sexually antagonistic genes: experimental evidence.
-\newblock Science 256:1436--1439.
+\bibitem[{Roze(2015)}]{Roze2015}
+Roze, D. 2015.
+\newblock Effects of interference between selected loci on the mutation load,
+  inbreeding depression, and heterosis.
+\newblock Genetics 201:745--757.
 
 \bibitem[{Sakai and Weller(1999)}]{SakaiWeller1999}
 Sakai, A.~K., and S.~G. Weller. 1999.
@@ -270,6 +361,12 @@ Sakai, A.~K., and S.~G. Weller. 1999.
 \newblock Chap.~1, pages 1--31 \emph{in} M.~A. Geber, T.~E. Dawson, and L.~F.
   Delph, eds. Gender and sexual dimorphism in flowering plants. Springer
   Science and Business Media, Heidelberg, Germany.
+
+\bibitem[{Seger and Eckhart(1996)}]{SegerEckhart1996}
+Seger, J., and V.~M. Eckhart. 1996.
+\newblock Evolution of sexual systems and sex allocation in plants when growth
+  and reproduction overlap.
+\newblock Proc.~Roy.~Soc.~B 263:833--841.
 
 \bibitem[{\'{U}beda et~al.(2010)\'{U}beda, Haig, and Patten}]{UbedaPatten2010}
 \'{U}beda, F., D.~Haig, and M.~Patten. 2010.
@@ -286,6 +383,20 @@ van Doorn, G.~S., and M.~Kirkpatrick. 2007.
 \newblock Transitions between male and female heterogamety caused by
   sex-antagonistic selection.
 \newblock Genetics 186:629--645.
+
+\bibitem[{Vicoso et~al.(2013)Vicoso, Kaiser, and Bachtrog}]{Vicoso2013}
+Vicoso, B., V.~B. Kaiser, and D.~Bachtrog. 2013.
+\newblock Sex-biased gene expression at homomorphic sex chromosomes in emus and
+  its implication for sex chromosome evolution.
+\newblock PNAS 110:6453--6458.
+
+\bibitem[{Webb(1999)}]{Webb1999}
+Webb, C.~J. 1999.
+\newblock Empirical studies: Evolution and maintenance of dimorphic breeding
+  systems.
+\newblock Chap.~3, pages 61--95 \emph{in} M.~A. Geber, T.~E. Dawson, and L.~F.
+  Delph, eds. Gender and sexual dimorphism in flowering plants. Springer
+  Science and Business Media, Heidelberg, Germany.
 
 \bibitem[{Weinreich and Chao(2005)}]{WeinreichChao2005}
 Weinreich, D.~M., and L.~Chao. 2005.
