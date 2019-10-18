@@ -376,7 +376,7 @@ recursionFwdSim  <-  function(par.list, Fii.init, Gii.init, threshold = 1e-7, ..
 	colnames(Fii.gen)  <-  c('Fpr.11', 'Fpr.12', 'Fpr.13', 'Fpr.14', 'Fpr.22', 'Fpr.23', 'Fpr.24', 'Fpr.33', 'Fpr.34', 'Fpr.44',
 		                     'Gpr.11', 'Gpr.12', 'Gpr.13', 'Gpr.14', 'Gpr.22', 'Gpr.23', 'Gpr.24', 'Gpr.33', 'Gpr.34', 'Gpr.44')
 	
-	##  Generation Loop
+						##  Generation Loop
 		# initialize
 	for (j in 1:ncol(Fii.gen)) {
 		recFct          <-  get(colnames(Fii.gen)[j])

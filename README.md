@@ -2,15 +2,18 @@
 
 ## Overview
 
-This is the GitHub repository for the development of a population genetics theory project about the evolution of dioecy and incipient sex chromosomes. Citing information for the resulting paper will be provided when it is made [available through the publisher](http://XXXXX). You can also contact me directly if you would like a reprint. Here you can find all of the necessary code to reproduce the analyses and the pre-publication manuscript. The *Mathematica* `.nb` files where the models are developed are not tracked by git, but can be downloaded as an online appendix from the publisher website above (or contact me and I will be happy to provide if you don't have access to the appendices). Aside from the `.nb` files, all necessary code for creating the figures can be found in the `./R/functions-*.R` files. 
+This is the GitHub repository for the development of a population genetics theory project about the evolution of dioecy and incipient sex chromosomes. The published article is now [available through the publisher](https://www.journals.uchicago.edu/doi/full/10.1086/702847). 
+
+* Shortly after publication, the authors noticed a mistake in the analytic results pertaining to the invasion of sexually antagonistic alleles (hereafter, “SA alleles”) linked to a unisexual sterility allele. The correction is available [here](https://www.journals.uchicago.edu/doi/full/10.1086/705014).
+
+You can also contact me directly if you would like a reprint. Here you can find all of the necessary code to reproduce the analyses and the pre-publication manuscript. The *Mathematica* `.nb` files where the models are developed are not tracked by git, but can be downloaded as an online appendix from the publisher website above (or contact me and I will be happy to provide if you don't have access to the appendices). Aside from the `.nb` files, all necessary code for creating the figures can be found in the `./R/functions-*.R` files. 
 
 
 ## Citing information
 
-Olito, C. and Connallon, T. 2019. Sexually antagonistic variation and the evolution of dimorphic sexual systems. *The American Naturalist* doi:10.1086/XXXXXX
+Olito, C. and Connallon, T. 2019. Sexually antagonistic variation and the evolution of dimorphic sexual systems. *American Naturalist* 193: 688--701. doi:10.1086/702847
 
-DOI and volume/page no. info will be updated when made available by the publisher.
-
+* Olito, C. and Connallon, T. 2019. *Correction*. *American Naturalist* 194:741--742.
 
 ## Reproducing the manuscript
 

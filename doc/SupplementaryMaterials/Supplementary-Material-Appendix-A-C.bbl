@@ -1,0 +1,63 @@
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Caballero and Hill(1992)}]{CaballeroHill1992}
+Caballero, A., and W.~G. Hill. 1992.
+\newblock Effects of partial inbreeding on fixation rates and variation of
+  mutant genes.
+\newblock Genetics 131:493--507.
+
+\bibitem[{Connallon and Clark(2014)}]{ConnallonClark2014}
+Connallon, T., and A.~Clark. 2014.
+\newblock Balancing selection in species with separate sexes: insights from
+  fisher's geometric model.
+\newblock Genetics 197:991--1006.
+
+\bibitem[{Connallon and Clark(2012)}]{ConnallonClark2012}
+Connallon, T., and A.~G. Clark. 2012.
+\newblock A general population genetic framework for antagonistic selection
+  that accounts for demography and recurrent mutation.
+\newblock Genetics 190:1477--1489.
+
+\bibitem[{Connallon and Jordan(2016)}]{ConnallonJordan2016}
+Connallon, T., and C.~Y. Jordan. 2016.
+\newblock Accumulation of deleterious mutations near sexually antagonistic
+  genes.
+\newblock G3 6:2273--2280.
+
+\bibitem[{Fry(2009)}]{Fry2010}
+Fry, J.~D. 2009.
+\newblock The genomice location of sexually antagonistic variation: some
+  cautionary comments.
+\newblock Evolution 64:1510--1516.
+
+\bibitem[{Jordan and Connallon(2014)}]{JordanConnallon2014}
+Jordan, C.~Y., and T.~Connallon. 2014.
+\newblock Sexually antagonistic polymorphism in simultaneous hermaphrodites.
+\newblock Evolution 68:3555--3569.
+
+\bibitem[{Kidwell et~al.(1977)Kidwell, Clegg, Stewart, and Prout}]{Kidwell1977}
+Kidwell, J.~F., M.~T. Clegg, F.~M. Stewart, and T.~Prout. 1977.
+\newblock Regions of stable equilibria for models of selection in the two sexes
+  under random mating.
+\newblock Genetics 85:171--183.
+
+\bibitem[{Nagylaki(1997)}]{Nagylaki1997}
+Nagylaki, T. 1997.
+\newblock The diffusion model for migration and selection in a plant
+  population.
+\newblock J.~Math.~Biol. 35:409--431.
+
+\bibitem[{Olito(2017)}]{Olito2016}
+Olito, C. 2017.
+\newblock Consequences of genetic linkage for the maintenance of sexually
+  antagonistic polymorphism in hermaphrodites.
+\newblock Evolution 71:458--464.
+
+\bibitem[{Otto and Day(2007)}]{OttoDay2007}
+Otto, S., and T.~Day. 2007.
+\newblock A biologist's guide to mathematical modeling in ecology and
+  evolution.
+\newblock Princeton University Press, New Jersey, USA.
+
+\end{thebibliography}
